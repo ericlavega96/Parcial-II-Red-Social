@@ -15,7 +15,6 @@ public class Ciudad implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idPais")
     @NotNull
-    @Column(unique = true)
     private Pais pais;
 
     public Ciudad() {
