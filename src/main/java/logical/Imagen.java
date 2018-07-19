@@ -12,6 +12,8 @@ public class Imagen {
     @Column(length = 500000000)
     private byte [] imagen;
 
+
+    //Cambiar a uno a uno
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "fotoPerfil")
     private Set<Usuario> usuariosPerfil;
 
@@ -19,7 +21,9 @@ public class Imagen {
     @JoinColumn(name = "album")
     private Album album;
 
-    @ManyToMany(mappedBy = "listaImagenesEtiquetadas")
+    //Cambiar a many to many
+    @ManyToOne
+    @JoinColumn(name = "album")
     private Set<Usuario> listaUsuariosEtiquetados;
 
 }

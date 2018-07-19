@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class LikesArticulo implements Serializable {
+public class LikePost implements Serializable {
     @Id
     @GeneratedValue
     @Column(name="LIKESARTICULO_ID")
@@ -21,15 +21,13 @@ public class LikesArticulo implements Serializable {
     private Usuario usuario;
 
     @Column(name="isLIKE")
-    boolean isLike;
+    private boolean isLike;
 
-    @OneToMany(mappedBy = "articulo", cascade = CascadeType.ALL)
-    Set<LikesArticulo> likeArticulo = new HashSet<>();
 
-    public LikesArticulo() {
+    public LikePost() {
     }
 
-    public LikesArticulo(Post post, Usuario usuario, boolean isLike) {
+    public LikePost(Post post, Usuario usuario, boolean isLike) {
         this.post = post;
         this.usuario = usuario;
         this.isLike = isLike;

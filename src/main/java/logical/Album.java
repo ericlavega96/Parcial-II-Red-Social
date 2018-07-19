@@ -10,7 +10,7 @@ public class Album {
     private long idAlbum;
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "album")
-    private Set<Usuario> imagenes;
+    private Set<Imagen> imagenes;
 
     @ManyToOne
     @JoinColumn(name = "usuario")
@@ -27,11 +27,11 @@ public class Album {
         this.idAlbum = idAlbum;
     }
 
-    public Set<Usuario> getImagenes() {
+    public Set<Imagen> getImagenes() {
         return imagenes;
     }
 
-    public void setImagenes(Set<Usuario> imagenes) {
+    public void setImagenes(Set<Imagen> imagenes) {
         this.imagenes = imagenes;
     }
 

@@ -50,6 +50,8 @@ public class Usuario implements Serializable{
             @JoinColumn (name = "idUsuario") })
     private Set<Usuario> amigos;
 
+
+    //Cambiar a One to One
     @ManyToOne
     @JoinColumn(name = "idImagen")
     @NotNull
@@ -70,7 +72,7 @@ public class Usuario implements Serializable{
     private Set<Imagen> listaImagenesEtiquetadas;
 
     @OneToMany(mappedBy = "usuario",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    Set<LikesArticulo> likeArticulo = new HashSet<>();
+    Set<LikePost> likeArticulo = new HashSet<>();
 
     public Usuario() {
     }

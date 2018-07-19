@@ -4,6 +4,7 @@ import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -23,13 +24,17 @@ public class Post {
     @NotNull
     private Date fecha;
 
-    @OneToMany(mappedBy = "articulo",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "post",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Comentario> listaComentarios;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "ARTICULO_TAG", joinColumns = { @JoinColumn(name = "idPost") }, inverseJoinColumns = {
+    @JoinTable(name = "POST_TAG", joinColumns = { @JoinColumn(name = "idPost") }, inverseJoinColumns = {
             @JoinColumn(name = "idTag") })
     private Set<Tag> listaTags;
+
+
+    @OneToMany(mappedBy = "idPost", cascade = CascadeType.ALL)
+    Set<LikePost> likePosts = new HashSet<>();
 
     public Post() {
     }
