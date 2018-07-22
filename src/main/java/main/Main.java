@@ -12,8 +12,9 @@ public class Main {
 
     public static void main(String[] args) throws Exception{
         staticFiles.location("/templates");
-        new RutasSpark().iniciarSpark();
         ServiciosBootStrap.getInstancia().init();
         ServiciosUsuario.getInstancia().crearAdmin();
+        new RutasSpark().iniciarSpark();
+
     }
 }

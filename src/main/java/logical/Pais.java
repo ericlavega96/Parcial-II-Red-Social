@@ -14,10 +14,14 @@ public class Pais implements Serializable {
     @NotNull
     @Column(unique = true)
     private String pais;
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "pais")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pais", cascade = CascadeType.ALL)
     private Set<Ciudad> ciudades;
 
     public Pais() {
+    }
+
+    public Pais(String pais) {
+        this.pais = pais;
     }
 
     public long getIdPais() {

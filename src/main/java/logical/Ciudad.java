@@ -4,24 +4,29 @@ import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 public class Ciudad implements Serializable {
     @Id
+    @GeneratedValue
     private long idCiudad;
     @NotNull
     @Column(unique = true)
     private String ciudad;
+
     @ManyToOne
     @JoinColumn(name = "idPais")
     @NotNull
     private Pais pais;
 
+    @OneToMany(mappedBy = "ciudad",fetch = FetchType.EAGER)
+    private Set<Usuario> usuarios;
+
     public Ciudad() {
     }
 
-    public Ciudad(long idCiudad, String ciudad, Pais pais) {
-        this.idCiudad = idCiudad;
+    public Ciudad(String ciudad, Pais pais) {
         this.ciudad = ciudad;
         this.pais = pais;
     }

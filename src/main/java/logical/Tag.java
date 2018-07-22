@@ -14,8 +14,8 @@ public class Tag {
     @NotNull
     private String tag;
 
-    @ManyToMany(mappedBy = "listaEtiquetas")
-    private Set<Post> listaTags;
+    @ManyToMany(mappedBy = "listaTags")
+    private Set<Post> listaPost;
 
     public Tag() {
     }
@@ -40,11 +40,11 @@ public class Tag {
         this.tag = tag;
     }
 
-    public Set<Post> getListaTags() {
-        return listaTags;
+    public Set<Post> getlistaPost() {
+        return listaPost;
     }
 
-    public void setListaTags(Set<Post> listaTags) {
-        this.listaTags = listaTags;
+    public void setlistaPost(Set<Post> listaPost) {
+        this.listaPost = listaPost;
     }
 }

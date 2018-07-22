@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.jar.Attributes;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
@@ -21,11 +22,15 @@ public class RutasSpark {
 
         List<Usuario> misUsuarios = new ArrayList<Usuario>();
 
+        get("/", (request, response) -> {
+            response.redirect("/login");
+            return "";
+        });
 
         get("/login", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-
-            return new ModelAndView(attributes, "sign-in.ftl");
+            attributes.put("titulo","Login");
+            return new ModelAndView(attributes, "sign-in.html");
         }, freeMarkerEngine);
 
         post("/procesarUsuario", (request, response) -> {

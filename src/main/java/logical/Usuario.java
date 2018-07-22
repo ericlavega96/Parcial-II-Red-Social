@@ -32,9 +32,8 @@ public class Usuario implements Serializable{
     @NotNull
     private Date fechaNacimiento;
 
-    @ManyToOne
-    @JoinColumn(name = "idCiudad")
     @NotNull
+    @ManyToOne
     private Ciudad ciudad;
 
     private String lugarDeEstudio;
@@ -57,8 +56,8 @@ public class Usuario implements Serializable{
     private Set<Actividad> timeline;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(name = "AMISTADES", joinColumns = { @JoinColumn(name = "idUsuario") }, inverseJoinColumns = {
-            @JoinColumn (name = "idUsuario") })
+    @JoinTable(name = "AMISTADES", joinColumns = { @JoinColumn(name = "USUARIO") }, inverseJoinColumns = {
+            @JoinColumn (name = "AMIGO") })
     private Set<Usuario> amigos;
 
     @OneToOne(cascade = CascadeType.ALL)

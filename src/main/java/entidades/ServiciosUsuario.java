@@ -1,8 +1,6 @@
 package entidades;
 
-import logical.Ciudad;
-import logical.Imagen;
-import logical.Usuario;
+import logical.*;
 import servicios.MetodosDB;
 
 import javax.persistence.EntityManager;
@@ -46,9 +44,11 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
         if(getInstancia().existAdmin())
             return false;
         else{
-            getInstancia().crear(new Usuario("admin@redsocial.com", "1234" ,"Admin", "", "NA", new Date(), new Ciudad()
-                    ,"",
-                    "", null, true));
+            Pais pais = new Pais("RD");
+            Ciudad ciudad = new Ciudad("Santiago", pais);
+            ServiciosPais.getInstancia().crear(pais);
+            ServiciosCiudad.getInstancia().crear(ciudad);
+            getInstancia().crear(new Usuario("admin@redsocial.com", "1234" ,"Admin", "", "NA", new Date(), ciudad,"","", null, true));
             return true;
         }
     }

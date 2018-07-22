@@ -17,11 +17,11 @@ public class Album {
     @JoinColumn(name = "usuario")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "post",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<ComentarioPost> listaComentarioPosts;
+    @OneToMany(mappedBy = "album",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<ComentarioAlbum> listaComentarioAlbum;
 
     @OneToMany(mappedBy = "album", cascade = CascadeType.ALL)
-    Set<LikePost> likeAlbums = new HashSet<>();
+    Set<LikeAlbum> likeAlbum = new HashSet<>();
 
     public Album() {
     }
