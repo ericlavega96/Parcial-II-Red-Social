@@ -1,6 +1,5 @@
 package servicios;
 
-import logical.Articulo;
 import org.h2.tools.Server;
 
 import javax.persistence.EntityManager;
