@@ -1,13 +1,13 @@
 package entidades;
 
-import logical.Comentario;
+import logical.ComentarioPost;
 import servicios.MetodosDB;
 
-public class ServiciosComentario extends MetodosDB<Comentario> {
+public class ServiciosComentario extends MetodosDB<ComentarioPost> {
 
     private static ServiciosComentario instancia;
 
-    private ServiciosComentario(){super(Comentario.class);}
+    private ServiciosComentario(){super(ComentarioPost.class);}
 
     public static ServiciosComentario getInstancia(){
         if(instancia==null){

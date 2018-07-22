@@ -18,6 +18,9 @@ public class Post {
     @NotNull
     private Usuario autor;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Imagen fotoPost;
+
     @NotNull
     private String cuerpo;
 
@@ -25,20 +28,28 @@ public class Post {
     private Date fecha;
 
     @OneToMany(mappedBy = "post",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<Comentario> listaComentarios;
+    private Set<ComentarioPost> listaComentarioPosts;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "POST_TAG", joinColumns = { @JoinColumn(name = "idPost") }, inverseJoinColumns = {
             @JoinColumn(name = "idTag") })
     private Set<Tag> listaTags;
 
-
-    @OneToMany(mappedBy = "idPost", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     Set<LikePost> likePosts = new HashSet<>();
 
     public Post() {
     }
 
+    public Post(Usuario autor, Imagen fotoPost, String cuerpo, Date fecha, Set<ComentarioPost> listaComentarioPosts, Set<Tag> listaTags, Set<LikePost> likePosts) {
+        this.autor = autor;
+        this.fotoPost = fotoPost;
+        this.cuerpo = cuerpo;
+        this.fecha = fecha;
+        this.listaComentarioPosts = listaComentarioPosts;
+        this.listaTags = listaTags;
+        this.likePosts = likePosts;
+    }
 
     public long getIdPost() {
         return idPost;
@@ -72,12 +83,12 @@ public class Post {
         this.fecha = fecha;
     }
 
-    public Set<Comentario> getListaComentarios() {
-        return listaComentarios;
+    public Set<ComentarioPost> getListaComentarioPosts() {
+        return listaComentarioPosts;
     }
 
-    public void setListaComentarios(Set<Comentario> listaComentarios) {
-        this.listaComentarios = listaComentarios;
+    public void setListaComentarioPosts(Set<ComentarioPost> listaComentarioPosts) {
+        this.listaComentarioPosts = listaComentarioPosts;
     }
 
     public Set<Tag> getListaTags() {
@@ -86,5 +97,13 @@ public class Post {
 
     public void setListaTags(Set<Tag> listaTags) {
         this.listaTags = listaTags;
+    }
+
+    public Imagen getFotoPost() {
+        return fotoPost;
+    }
+
+    public void setFotoPost(Imagen fotoPost) {
+        this.fotoPost = fotoPost;
     }
 }

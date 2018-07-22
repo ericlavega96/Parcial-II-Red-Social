@@ -5,7 +5,7 @@ import com.sun.istack.internal.NotNull;
 import javax.persistence.*;
 
 @Entity
-public class Comentario {
+public class ComentarioPost {
     @Id
     @GeneratedValue
     private long id;
@@ -23,10 +23,10 @@ public class Comentario {
     @NotNull
     private Post post;
 
-    public Comentario() {
+    public ComentarioPost() {
     }
 
-    public Comentario(String comentario, Usuario autor, Post post) {
+    public ComentarioPost(String comentario, Usuario autor, Post post) {
         this.comentario = comentario;
         this.autor = autor;
         this.post = post;

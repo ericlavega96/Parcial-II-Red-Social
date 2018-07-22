@@ -31,13 +31,17 @@ public class Usuario implements Serializable{
     private Ciudad ciudad;
 
     private String lugarDeEstudio;
+
     private String empleo;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "autor")
     private Set<Post> posts;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "autor")
-    private Set<Comentario> cometarios;
+    private Set<ComentarioPost> comentarios;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "autor")
+    private Set<ComentarioAlbum> comentariosAlbum;
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "usuario")
     private Set<Album> albumes;
@@ -50,11 +54,7 @@ public class Usuario implements Serializable{
             @JoinColumn (name = "idUsuario") })
     private Set<Usuario> amigos;
 
-
-    //Cambiar a One to One
-    @ManyToOne
-    @JoinColumn(name = "idImagen")
-    @NotNull
+    @OneToOne(cascade = CascadeType.ALL)
     private Imagen fotoPerfil;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "emisor")
@@ -74,7 +74,23 @@ public class Usuario implements Serializable{
     @OneToMany(mappedBy = "usuario",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     Set<LikePost> likeArticulo = new HashSet<>();
 
+    @OneToMany(mappedBy = "usuario",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    Set<LikePost> likePosts = new HashSet<>();
+
     public Usuario() {
+    }
+
+    public Usuario(String correo, String nombres, String apellidos, String sexo, Date fechaNacimiento, Ciudad ciudad, String lugarDeEstudio, String empleo, Imagen fotoPerfil, boolean admin) {
+        this.correo = correo;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.sexo = sexo;
+        this.fechaNacimiento = fechaNacimiento;
+        this.ciudad = ciudad;
+        this.lugarDeEstudio = lugarDeEstudio;
+        this.empleo = empleo;
+        this.fotoPerfil = fotoPerfil;
+        this.admin = admin;
     }
 
     public long getIdUsuario() {
@@ -157,12 +173,12 @@ public class Usuario implements Serializable{
         this.posts = posts;
     }
 
-    public Set<Comentario> getCometarios() {
-        return cometarios;
+    public Set<ComentarioPost> getCometarios() {
+        return comentarios;
     }
 
-    public void setCometarios(Set<Comentario> cometarios) {
-        this.cometarios = cometarios;
+    public void setCometarios(Set<ComentarioPost> comentarios) {
+        this.comentarios = comentarios;
     }
 
     public Set<Album> getAlbumes() {

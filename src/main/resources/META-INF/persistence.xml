@@ -8,7 +8,7 @@
         <class>logical.Actividad</class>
         <class>logical.Album</class>
         <class>logical.Ciudad</class>
-        <class>logical.Comentario</class>
+        <class>logical.ComentarioPost</class>
         <class>logical.Imagen</class>
         <class>logical.Pais</class>
         <class>logical.Post</class>
