@@ -13,15 +13,22 @@ public class Usuario implements Serializable{
     @Id
     @GeneratedValue
     private long idUsuario;
+
     @NotNull
     @Column(unique = true)
     private String correo;
+
+    @NotNull
+    private String password;
+
     @NotNull
     private String nombres;
-    @NotNull
+
     private String apellidos;
+
     @NotNull
     private String sexo;
+
     @NotNull
     private Date fechaNacimiento;
 
@@ -80,7 +87,9 @@ public class Usuario implements Serializable{
     public Usuario() {
     }
 
-    public Usuario(String correo, String nombres, String apellidos, String sexo, Date fechaNacimiento, Ciudad ciudad, String lugarDeEstudio, String empleo, Imagen fotoPerfil, boolean admin) {
+    public Usuario(String correo, String password, String nombres, String apellidos, String sexo, Date fechaNacimiento,
+                   Ciudad
+            ciudad, String lugarDeEstudio, String empleo, Imagen fotoPerfil, boolean admin) {
         this.correo = correo;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -107,6 +116,14 @@ public class Usuario implements Serializable{
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNombres() {
@@ -243,5 +260,37 @@ public class Usuario implements Serializable{
 
     public void setListaImagenesEtiquetadas(Set<Imagen> listaImagenesEtiquetadas) {
         this.listaImagenesEtiquetadas = listaImagenesEtiquetadas;
+    }
+
+    public Set<ComentarioPost> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(Set<ComentarioPost> comentarios) {
+        this.comentarios = comentarios;
+    }
+
+    public Set<ComentarioAlbum> getComentariosAlbum() {
+        return comentariosAlbum;
+    }
+
+    public void setComentariosAlbum(Set<ComentarioAlbum> comentariosAlbum) {
+        this.comentariosAlbum = comentariosAlbum;
+    }
+
+    public Set<LikePost> getLikeArticulo() {
+        return likeArticulo;
+    }
+
+    public void setLikeArticulo(Set<LikePost> likeArticulo) {
+        this.likeArticulo = likeArticulo;
+    }
+
+    public Set<LikePost> getLikePosts() {
+        return likePosts;
+    }
+
+    public void setLikePosts(Set<LikePost> likePosts) {
+        this.likePosts = likePosts;
     }
 }
