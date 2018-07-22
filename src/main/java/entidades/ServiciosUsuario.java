@@ -46,7 +46,8 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
         if(getInstancia().existAdmin())
             return false;
         else{
-            getInstancia().crear(new Usuario("admin@redsocial.com", "Admin", "", "NA", new Date(), new Ciudad(),"",
+            getInstancia().crear(new Usuario("admin@redsocial.com", "1234" ,"Admin", "", "NA", new Date(), new Ciudad()
+                    ,"",
                     "", null, true));
             return true;
         }

@@ -68,7 +68,7 @@ public class Usuario implements Serializable{
     private Set<SolicitudAmistad> solicitudesEnviadas;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "receptor")
-    private Set<SolicitudAmistad> solicitudesRecividas;
+    private Set<SolicitudAmistad> solicitudesRecibidas;
 
     @NotNull
     private boolean admin;
@@ -91,6 +91,7 @@ public class Usuario implements Serializable{
                    Ciudad
             ciudad, String lugarDeEstudio, String empleo, Imagen fotoPerfil, boolean admin) {
         this.correo = correo;
+        this.password = password;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.sexo = sexo;
@@ -238,12 +239,12 @@ public class Usuario implements Serializable{
         this.solicitudesEnviadas = solicitudesEnviadas;
     }
 
-    public Set<SolicitudAmistad> getSolicitudesRecividas() {
-        return solicitudesRecividas;
+    public Set<SolicitudAmistad> getSolicitudesRecibidas() {
+        return solicitudesRecibidas;
     }
 
-    public void setSolicitudesRecividas(Set<SolicitudAmistad> solicitudesRecividas) {
-        this.solicitudesRecividas = solicitudesRecividas;
+    public void setSolicitudesRecibidas(Set<SolicitudAmistad> solicitudesRecibidas) {
+        this.solicitudesRecibidas = solicitudesRecibidas;
     }
 
     public boolean isAdmin() {
