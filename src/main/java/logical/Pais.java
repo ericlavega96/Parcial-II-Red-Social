@@ -9,26 +9,26 @@ import java.util.Set;
 @Entity
 public class Pais implements Serializable {
     @Id
-    @GeneratedValue
-    private long idPais;
-    @NotNull
-    @Column(unique = true)
+    private String idPais;
+    //@NotNull
+    //@Column(unique = true)
     private String pais;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pais", cascade = CascadeType.ALL)
-    private Set<Ciudad> ciudades;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pais",cascade = CascadeType.ALL)
+    private Set<Usuario> usuarios;
 
     public Pais() {
     }
 
-    public Pais(String pais) {
+    public Pais(String idPais, String pais) {
+        this.idPais = idPais;
         this.pais = pais;
     }
 
-    public long getIdPais() {
+    public String getIdPais() {
         return idPais;
     }
 
-    public void setIdPais(long idPais) {
+    public void setIdPais(String idPais) {
         this.idPais = idPais;
     }
 
@@ -40,11 +40,11 @@ public class Pais implements Serializable {
         this.pais = pais;
     }
 
-    public Set<Ciudad> getCiudades() {
-        return ciudades;
+    public Set<Usuario> getCiudades() {
+        return usuarios;
     }
 
-    public void setCiudades(Set<Ciudad> ciudades) {
-        this.ciudades = ciudades;
+    public void setCiudades(Set<Usuario> usuarios) {
+        this.usuarios = usuarios;
     }
 }

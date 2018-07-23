@@ -34,7 +34,9 @@ public class Usuario implements Serializable{
 
     @NotNull
     @ManyToOne
-    private Ciudad ciudad;
+    private Pais pais;
+
+    private String ciudad;
 
     private String lugarDeEstudio;
 
@@ -87,14 +89,14 @@ public class Usuario implements Serializable{
     }
 
     public Usuario(String correo, String password, String nombres, String apellidos, String sexo, Date fechaNacimiento,
-                   Ciudad
-            ciudad, String lugarDeEstudio, String empleo, Imagen fotoPerfil, boolean admin) {
+                   Pais pais, String ciudad, String lugarDeEstudio, String empleo, Imagen fotoPerfil, boolean admin) {
         this.correo = correo;
         this.password = password;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.sexo = sexo;
         this.fechaNacimiento = fechaNacimiento;
+        this.pais = pais;
         this.ciudad = ciudad;
         this.lugarDeEstudio = lugarDeEstudio;
         this.empleo = empleo;
@@ -158,12 +160,12 @@ public class Usuario implements Serializable{
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public Ciudad getCiudad() {
-        return ciudad;
+    public Pais getPais() {
+        return pais;
     }
 
-    public void setCiudad(Ciudad ciudad) {
-        this.ciudad = ciudad;
+    public void setPais(Pais pais) {
+        this.pais = pais;
     }
 
     public String getLugarDeEstudio() {
@@ -292,5 +294,13 @@ public class Usuario implements Serializable{
 
     public void setLikePosts(Set<LikePost> likePosts) {
         this.likePosts = likePosts;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
     }
 }

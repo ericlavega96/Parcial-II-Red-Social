@@ -3,6 +3,10 @@ package entidades;
 import logical.Pais;
 import servicios.MetodosDB;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 public class ServiciosPais extends MetodosDB<Pais> {
 
     private static ServiciosPais instancia;
@@ -14,5 +18,32 @@ public class ServiciosPais extends MetodosDB<Pais> {
             instancia = new ServiciosPais();
         }
         return instancia;
+    }
+
+    private static boolean existPais(){
+        List<Pais> paisesEncontrados =getInstancia().findAll();
+        if(paisesEncontrados.size() <= 0)
+            return false;
+        else
+            return true;
+    }
+
+    public static boolean crearPaises(){
+
+        if(!existPais()){
+            Locale localObj;
+            try {
+                for (String p : Locale.getISOCountries()) {
+                    localObj = new Locale("", p);
+                    //System.out.println(" - Código de país: " + p + " para el país " + localObj.getDisplayCountry());
+                    getInstancia().crear(new Pais(p, localObj.getDisplayCountry()));
+                }
+                return true;
+            }catch (Exception ex){
+                throw  ex;
+            }
+        }
+        else
+            return false;
     }
 }
