@@ -20,10 +20,10 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
         return instancia;
     }
 
-    public Usuario findByUsernameAndPassword(String username, String password){
+    public Usuario findByEmailAndPassword(String correo, String password){
         EntityManager em = getEntityManager();
-        Query query = em.createQuery("select u from Usuario u where u.correo = :username AND u.password = :password");
-        query.setParameter("username", username);
+        Query query = em.createQuery("select u from Usuario u where u.correo = :correo AND u.password = :password");
+        query.setParameter("correo", correo);
         query.setParameter("password", password);
         Usuario resultado = (Usuario)query.getSingleResult();
         return resultado;

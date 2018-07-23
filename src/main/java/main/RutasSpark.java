@@ -1,5 +1,6 @@
 package main;
 
+import entidades.ServiciosUsuario;
 import freemarker.template.Configuration;
 import logical.Usuario;
 import spark.ModelAndView;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.jar.Attributes;
 
+import static main.Main.Encryptamiento;
 import static spark.Spark.get;
 import static spark.Spark.post;
 
@@ -35,14 +37,22 @@ public class RutasSpark {
 
         post("/procesarUsuario", (request, response) -> {
             try {
-                String usernameAVerificar = request.queryParams("username");
+                String correoAVerificar = request.queryParams("email");
                 String passwordsAVerificar = request.queryParams("password");
-                //String isRecordado = request.queryParams("recordar");
+                String isRecordado = request.queryParams("recordar");
+                Usuario logUser = ServiciosUsuario.getInstancia().findByEmailAndPassword(correoAVerificar,passwordsAVerificar);
 
-                if (usernameAVerificar != null && passwordsAVerificar != null)
+                if (logUser != null) {
+                    request.session(true);
+                    request.session().attribute("usuario", logUser);
+                    if(isRecordado!=null){
+                        response.cookie("/", "jdklsjfklsjfl",
+                                Encryptamiento(correoAVerificar), (60*60*24*7), false, true);
+                    }
                     response.redirect("/perfilUsuario");
-                else
-                    response.redirect("/login");
+                } else {
+                    response.redirect("/iniciarSesion");
+                }
 
             } catch (Exception e) {
                 System.out.println("Error al intentar iniciar sesión " + e.toString());
@@ -53,7 +63,7 @@ public class RutasSpark {
         get("/perfilUsuario", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
 
-            return new ModelAndView(attributes, "user-profile.ftl");
+            return new ModelAndView(attributes, "user-profile.html");
         }, freeMarkerEngine);
     }
 }
