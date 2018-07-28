@@ -17,8 +17,9 @@ public class Album {
     @JoinColumn(name = "usuario")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "album",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<ComentarioAlbum> listaComentarioAlbum;
+    private String nombre;
+
+    private String descripcion;
 
     @OneToMany(mappedBy = "album", cascade = CascadeType.ALL)
     Set<LikeAlbum> likeAlbum = new HashSet<>();
@@ -26,9 +27,11 @@ public class Album {
     public Album() {
     }
 
-    public Album(Set<Imagen> imagenes, Usuario usuario) {
+    public Album(Set<Imagen> imagenes, Usuario usuario, String nombre, String descripcion) {
         this.imagenes = imagenes;
         this.usuario = usuario;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
     }
 
     public long getIdAlbum() {
@@ -47,11 +50,35 @@ public class Album {
         this.imagenes = imagenes;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Set<LikeAlbum> getLikeAlbum() {
+        return likeAlbum;
+    }
+
+    public void setLikeAlbum(Set<LikeAlbum> likeAlbum) {
+        this.likeAlbum = likeAlbum;
+    }
+
     public Usuario getUsuario() {
         return usuario;
     }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

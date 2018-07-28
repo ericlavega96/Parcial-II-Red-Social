@@ -5,7 +5,7 @@ import com.sun.istack.internal.NotNull;
 import javax.persistence.*;
 
 @Entity
-public class ComentarioAlbum {
+public class ComentarioFoto {
     @Id
     @GeneratedValue
     private long id;
@@ -19,17 +19,17 @@ public class ComentarioAlbum {
     private Usuario autor;
 
     @ManyToOne
-    @JoinColumn(name = "idAlbum")
+    @JoinColumn(name = "idImagen")
     @NotNull
-    private Album album;
+    private Imagen imagen;
 
-    public ComentarioAlbum() {
+    public ComentarioFoto() {
     }
 
-    public ComentarioAlbum(String comentario, Usuario autor, Album album) {
+    public ComentarioFoto(String comentario, Usuario autor, Imagen imagen) {
         this.comentario = comentario;
         this.autor = autor;
-        this.album = album;
+        this.imagen = imagen;
     }
 
     public long getId() {
@@ -56,11 +56,11 @@ public class ComentarioAlbum {
         this.autor = autor;
     }
 
-    public Album getAlbum() {
-        return album;
+    public Imagen getImagen() {
+        return imagen;
     }
 
-    public void setAlbum(Album album) {
-        this.album = album;
+    public void setImagen(Imagen imagen) {
+        this.imagen = imagen;
     }
 }

@@ -49,7 +49,7 @@ public class Usuario implements Serializable{
     private Set<ComentarioPost> comentarios;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "autor")
-    private Set<ComentarioAlbum> comentariosAlbum;
+    private Set<ComentarioFoto> comentariosAlbum;
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "usuario")
     private Set<Album> albumes;
@@ -272,11 +272,11 @@ public class Usuario implements Serializable{
         this.comentarios = comentarios;
     }
 
-    public Set<ComentarioAlbum> getComentariosAlbum() {
+    public Set<ComentarioFoto> getComentariosAlbum() {
         return comentariosAlbum;
     }
 
-    public void setComentariosAlbum(Set<ComentarioAlbum> comentariosAlbum) {
+    public void setComentariosAlbum(Set<ComentarioFoto> comentariosAlbum) {
         this.comentariosAlbum = comentariosAlbum;
     }
 

@@ -596,111 +596,49 @@
 									</div><!--product-feed-tab end-->
 									<div class="product-feed-tab" id="info-dd">
 										<div class="user-profile-ov">
+											<h3>Lugar de Nacimiento</h3>
+											<h4>${pais_origen}</h4>
+											<p> ${ciudad_origen} </p>
+										</div><!--user-profile-ov end-->
+
+										<div class="user-profile-ov">
 											<h3>Información General</h3>
-											<h4>Fecha de Nacimiento</h4>
-											<h4>Lugar de Nacimiento</h4>
+											<h4>Fecha de Nacimiento: </h4><h5>${fecha_nacimiento}</h5>
+											<br>
+											<h4>Lugar de Nacimiento: </h4><h5>${lugar_nacimiento}</h5>
 										</div><!--user-profile-ov end-->
-										<div class="user-profile-ov st2">
-											<h3>Trabajos</h3>
-											<h4>Web designer</h4>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. </p>
-											<h4>UI / UX Designer</h4>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id.</p>
-											<h4>PHP developer</h4>
-											<p class="no-margin">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. </p>
-										</div><!--user-profile-ov end-->
-										<div class="user-profile-ov">
-											<h3>Lugares de Estudio</h3>
-											<h4>Master of Computer Science</h4>
-											<span>2015 - 2018</span>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. </p>
-										</div><!--user-profile-ov end-->
-										<div class="user-profile-ov">
-											<h3>Ciudad</h3>
-											<h4>India</h4>
-											<p>151/4 BT Chownk, Delhi </p>
-										</div><!--user-profile-ov end-->
-										<div class="user-profile-ov">
-											<h3>Trabajos</h3>
-											<ul>
-												<li><a href="#" title="">HTML</a></li>
-												<li><a href="#" title="">PHP</a></li>
-												<li><a href="#" title="">CSS</a></li>
-												<li><a href="#" title="">Javascript</a></li>
-												<li><a href="#" title="">Wordpress</a></li>
-												<li><a href="#" title="">Photoshop</a></li>
-												<li><a href="#" title="">Illustrator</a></li>
-												<li><a href="#" title="">Corel Draw</a></li>
-											</ul>
-										</div><!--user-profile-ov end-->
+										<#if lugar_estudio??>
+											<div class="user-profile-ov">
+												<h3>Lugares de Estudio</h3>
+												<h4>${lugar_estudio}</h4>
+											</div><!--user-profile-ov end-->
+										</#if>
+										<#if trabajo??>
+											<div class="user-profile-ov st2">
+												<h3>Centro de Trabajo</h3>
+												<h4>${trabajo}</h4>
+											</div><!--user-profile-ov end-->
+										</#if>
+
+
 									</div><!--product-feed-tab end-->
 									<div class="product-feed-tab" id="portfolio-dd">
 										<div class="portfolio-gallery-sec">
-											<h3>Portfolio</h3>
-											<div class="gallery_pf">
-												<div class="row">
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img1.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
+											<#list albumes as album>
+												<h3>album.nombre</h3>
+												<div class="gallery_pf">
+													<div class="row">
+														<#list album.imagenes as imagen>
+															<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+																<div class="gallery_pt">
+																	<img src="images/resources/pf-img1.jpg" alt="">
+																	<a href="#" title=""><img src="images/all-out.png" alt=""></a>
+																</div><!--gallery_pt end-->
+															</div>
+														</#list>
 													</div>
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img2.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
-													</div>
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img3.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
-													</div>
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img4.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
-													</div>
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img5.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
-													</div>
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img6.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
-													</div>
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img7.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
-													</div>
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img8.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
-													</div>
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img9.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
-													</div>
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img10.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
-													</div>
-												</div>
-											</div><!--gallery_pf end-->
+												</div><!--gallery_pf end-->
+											</#list>
 										</div><!--portfolio-gallery-sec end-->
 									</div><!--product-feed-tab end-->
 								</div><!--main-ws-sec end-->
@@ -794,4 +732,5 @@
 </body>
 
 <!-- Mirrored from gamboldesigns.net/Demo/HTML/user-profile.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 03:36:21 GMT -->
+<!--Variables usadas: ${fecha_nacimiento} ${lugar_nacimiento} ${pais_origen} ${ciudad_origen} ${lugar_estudio}-->
 </html>
