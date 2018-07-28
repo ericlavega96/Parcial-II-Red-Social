@@ -50,7 +50,7 @@ public class RutasSpark {
                         response.cookie("/", "jdklsjfklsjfl",
                                 Encryptamiento(correoAVerificar), (60*60*24*7), false, true);
                     }
-                    response.redirect("/perfilUsuario");
+                    response.redirect("/perfilUsuario/"+logUser.getCorreo());
                 } else {
                     response.redirect("/iniciarSesion");
                 }
@@ -61,10 +61,17 @@ public class RutasSpark {
             return "";
         });
 
-        get("/perfilUsuario", (request, response) -> {
+        get("/perfilUsuario/:correo", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-
-            return new ModelAndView(attributes, "user-profile.html");
+            String correoUser = request.params("correo");
+            Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
+            attributes.put("fecha_nacimiento", user.getFechaNacimiento());
+            attributes.put("pais_origen", user.getPais().getPais());
+            attributes.put("ciudad_origen", user.getCiudad());
+            attributes.put("lugar_estudio", user.getLugarDeEstudio());
+            attributes.put("trabajo", user.getEmpleo());
+            attributes.put("albumes", user.getAlbumes());
+            return new ModelAndView(attributes, "my-profile-feed.html");
         }, freeMarkerEngine);
 
         post("/registrarUsuario", (request, response) -> {

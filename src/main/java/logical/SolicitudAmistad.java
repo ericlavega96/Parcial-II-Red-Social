@@ -19,9 +19,13 @@ public class SolicitudAmistad {
     @JoinColumn(name = "RECEPTOR")
     @NotNull
     private Usuario receptor;
-    private String mensaje;
 
     public SolicitudAmistad() {
+    }
+
+    public SolicitudAmistad(Usuario emisor, Usuario receptor) {
+        this.emisor = emisor;
+        this.receptor = receptor;
     }
 
     public long getIdSolicitud() {
@@ -48,11 +52,4 @@ public class SolicitudAmistad {
         this.receptor = receptor;
     }
 
-    public String getMensaje() {
-        return mensaje;
-    }
-
-    public void setMensaje(String mensaje) {
-        this.mensaje = mensaje;
-    }
 }
