@@ -3,9 +3,8 @@ package entidades;
 import logical.Pais;
 import servicios.MetodosDB;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 public class ServiciosPais extends MetodosDB<Pais> {
 
@@ -19,31 +18,14 @@ public class ServiciosPais extends MetodosDB<Pais> {
         }
         return instancia;
     }
+    public Pais findByCountry(String pais){
+        EntityManager em = getEntityManager();
+        Query query = em.createQuery("select p from Pais p where p.pais = :pais");
+        query.setParameter("pais", pais);
 
-    private static boolean existPais(){
-        List<Pais> paisesEncontrados =getInstancia().findAll();
-        if(paisesEncontrados.size() <= 0)
-            return false;
-        else
-            return true;
+        Pais resultado = (Pais)query.getSingleResult();
+        return resultado;
+
     }
 
-    public static boolean crearPaises(){
-
-        if(!existPais()){
-            Locale localObj;
-            try {
-                for (String p : Locale.getISOCountries()) {
-                    localObj = new Locale("", p);
-                    //System.out.println(" - Código de país: " + p + " para el país " + localObj.getDisplayCountry());
-                    getInstancia().crear(new Pais(p, localObj.getDisplayCountry()));
-                }
-                return true;
-            }catch (Exception ex){
-                throw  ex;
-            }
-        }
-        else
-            return false;
-    }
 }

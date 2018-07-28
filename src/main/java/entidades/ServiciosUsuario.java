@@ -44,10 +44,11 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
         if(getInstancia().existAdmin())
             return false;
         else{
-            Pais pais = ServiciosPais.getInstancia().find("DO");
-            getInstancia().crear(new Usuario("admin@redsocial.com", "1234" ,"Admin", "", "NA", new Date(),
-                    pais,"Santiago","",
-                    "", null, true));
+            Pais pais = new Pais("RD");
+            Ciudad ciudad = new Ciudad("Santiago", pais);
+            ServiciosPais.getInstancia().crear(pais);
+            ServiciosCiudad.getInstancia().crear(ciudad);
+            getInstancia().crear(new Usuario("Administrador", "" ,"", new Date(), ciudad,"" , "","admin@redsocial.com","1234", null, true));
             return true;
         }
     }

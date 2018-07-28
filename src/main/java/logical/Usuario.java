@@ -15,13 +15,6 @@ public class Usuario implements Serializable{
     private long idUsuario;
 
     @NotNull
-    @Column(unique = true)
-    private String correo;
-
-    @NotNull
-    private String password;
-
-    @NotNull
     private String nombres;
 
     private String apellidos;
@@ -34,13 +27,19 @@ public class Usuario implements Serializable{
 
     @NotNull
     @ManyToOne
-    private Pais pais;
-
-    private String ciudad;
+    private Ciudad ciudad;
 
     private String lugarDeEstudio;
 
     private String empleo;
+
+    @NotNull
+    @Column(unique = true)
+    private String correo;
+
+    @NotNull
+    private String password;
+
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "autor")
     private Set<Post> posts;
@@ -88,18 +87,17 @@ public class Usuario implements Serializable{
     public Usuario() {
     }
 
-    public Usuario(String correo, String password, String nombres, String apellidos, String sexo, Date fechaNacimiento,
-                   Pais pais, String ciudad, String lugarDeEstudio, String empleo, Imagen fotoPerfil, boolean admin) {
-        this.correo = correo;
-        this.password = password;
+    public Usuario(String nombres, String apellidos, String sexo, Date fechaNacimiento,
+                   Ciudad ciudad, String lugarDeEstudio, String empleo, String correo, String password,Imagen fotoPerfil, boolean admin) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.sexo = sexo;
         this.fechaNacimiento = fechaNacimiento;
-        this.pais = pais;
         this.ciudad = ciudad;
         this.lugarDeEstudio = lugarDeEstudio;
         this.empleo = empleo;
+        this.correo = correo;
+        this.password = password;
         this.fotoPerfil = fotoPerfil;
         this.admin = admin;
     }
@@ -160,12 +158,12 @@ public class Usuario implements Serializable{
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public Pais getPais() {
-        return pais;
+    public Ciudad getCiudad() {
+        return ciudad;
     }
 
-    public void setPais(Pais pais) {
-        this.pais = pais;
+    public void setCiudad(Ciudad ciudad) {
+        this.ciudad = ciudad;
     }
 
     public String getLugarDeEstudio() {
@@ -294,13 +292,5 @@ public class Usuario implements Serializable{
 
     public void setLikePosts(Set<LikePost> likePosts) {
         this.likePosts = likePosts;
-    }
-
-    public String getCiudad() {
-        return ciudad;
-    }
-
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
     }
 }

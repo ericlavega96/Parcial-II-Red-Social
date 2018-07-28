@@ -1,15 +1,17 @@
 package main;
 
+import entidades.ServiciosCiudad;
+import entidades.ServiciosPais;
 import entidades.ServiciosUsuario;
 import freemarker.template.Configuration;
+import logical.Ciudad;
+import logical.Pais;
 import logical.Usuario;
 import spark.ModelAndView;
 import spark.template.freemarker.FreeMarkerEngine;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.jar.Attributes;
 
 import static main.Main.Encryptamiento;
@@ -32,7 +34,9 @@ public class RutasSpark {
         get("/login", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("titulo","Login");
-            return new ModelAndView(attributes, "sign-in.html");
+            attributes.put("paises",ServiciosPais.getInstancia().findAll());
+            attributes.put("ciudades",ServiciosCiudad.getInstancia().findAll());
+            return new ModelAndView(attributes, "sign-in.ftl");
         }, freeMarkerEngine);
 
         post("/procesarUsuario", (request, response) -> {
@@ -65,6 +69,30 @@ public class RutasSpark {
 
             return new ModelAndView(attributes, "user-profile.html");
         }, freeMarkerEngine);
+
+        post("/registrarUsuario", (request, response) -> {
+            //try {
+                String nombres = request.queryParams("nombres");
+                String apellidos = request.queryParams("apellidos");
+                String sexo = request.queryParams("rbMasculino");
+                String fechaNacimiento = request.queryParams("fechaNacimiento");
+                String pais = request.queryParams("cbBoxPais");
+                String ciudad = request.queryParams("cbBoxCiudad");
+                String lugarEstudio = request.queryParams("lugarEstudio");
+                String empleo = request.queryParams("empleo");
+                String correo = request.queryParams("email");
+                String password = request.queryParams("password");
+
+                Usuario nuevoUsuario = new Usuario(nombres,apellidos,(sexo!= null) ? "Masculino":"Femenino",new SimpleDateFormat("yyyy-mm-dd").parse(fechaNacimiento), ServiciosCiudad.getInstancia().findByCityAndCountry(ciudad,pais),lugarEstudio,empleo,correo,password,null,false);
+                ServiciosUsuario.getInstancia().crear(nuevoUsuario);
+
+
+            //} catch (Exception e) {
+            //    System.out.println("Error al intentar iniciar sesión " + e.toString());
+            //}
+            return "";
+        });
+
     }
 }
 
