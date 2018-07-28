@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from gamboldesigns.net/Demo/HTML/sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 03:36:44 GMT -->
+<!-- Mirrored from gamboldesigns.net/Demo/HTML/sign-in.ftl by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 03:36:44 GMT -->
 <head>
 	<meta charset="UTF-8">
 	<title>WorkWise Html Template</title>
@@ -18,6 +18,16 @@
 	<link rel="stylesheet" type="text/css" href="lib/slick/slick-theme.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/responsive.css">
+	<script>
+        var password = document.getElementById("registrarUsuarioPassword");
+        var repetirPassword = document.getElementById("repetirPassword");
+
+        repetirPassword.addEventListener("input", function (event) {
+            if (password.value != repetirPassword.value) {
+                email.setCustomValidity("Debe de repetir la contraseña correctamente.");
+            }
+        });
+	</script>
 </head>
 
 <body class="sign-in">
@@ -67,17 +77,17 @@
 								<div class="sign_in_sec" id="tab-2">
 									<h3>Registrarte</h3>
 									<div class="dff-tab current" id="tab-3">
-										<form>
+										<form action="/registrarUsuario" method="post">
 											<div class="row">
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" name="name" placeholder="Nombres" required>
+														<input type="text" name="nombres" placeholder="Nombres" required>
 														<i class="la la-user"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="text" name="surnames" placeholder="Apellidos" required>
+														<input type="text" name="apellidos" placeholder="Apellidos" required>
 														<i class="la la-user"></i>
 													</div>
 												</div>
@@ -99,23 +109,27 @@
 												<div class="col-lg-12 no-pdd" id="bday">
 													<small>Fecha de Nacimiento</small><br><br>
 													<div class="sn-field">
-														<input type="date" name="birthdate" required>
+														<input type="date" name="fechaNacimiento" required>
 														<i class="la la-birthday-cake"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
 														<i class="la la-globe"></i>
-														<select>
-															<option>País</option>
+														<select name="cbBoxPais" required>
+															<#list paises as pais>
+																<option>${pais.pais}</option>
+															</#list>
 														</select>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
 														<i class="la la-building"></i>
-														<select>
-															<option>Ciudad</option>
+														<select name="cbBoxCiudad" required>
+															<#list ciudades as ciudad>
+																<option>${ciudad.ciudad}</option>
+															</#list>
 														</select>
 													</div>
 												</div>
@@ -133,13 +147,19 @@
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="password" name="password" placeholder="Contraseña" required>
+														<input type="text" name="email" placeholder="Correo electrónico">
+														<i class="la la-user"></i>
+													</div><!--sn-field end-->
+												</div>
+												<div class="col-lg-12 no-pdd">
+													<div class="sn-field">
+														<input type="password"  id="registrarUsuarioPassword" name="password" placeholder="Contraseña" required>
 														<i class="la la-lock"></i>
 													</div>
 												</div>
 												<div class="col-lg-12 no-pdd">
 													<div class="sn-field">
-														<input type="password" name="repeat-password" placeholder="Repetir Contraseña" required>
+														<input type="password" name="repetirPassword" placeholder="Repetir Contraseña" required>
 														<i class="la la-lock"></i>
 													</div>
 												</div>
@@ -178,5 +198,5 @@
 	</script>
 </body>
 
-<!-- Mirrored from gamboldesigns.net/Demo/HTML/sign-in.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 03:36:46 GMT -->
+<!-- Mirrored from gamboldesigns.net/Demo/HTML/sign-in.ftl by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 03:36:46 GMT -->
 </html>

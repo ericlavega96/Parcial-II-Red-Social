@@ -20,6 +20,11 @@ public class Pais implements Serializable {
     public Pais() {
     }
 
+    public Pais(String pais, Set<Ciudad> ciudades) {
+        this.pais = pais;
+        this.ciudades = ciudades;
+    }
+
     public Pais(String pais) {
         this.pais = pais;
     }

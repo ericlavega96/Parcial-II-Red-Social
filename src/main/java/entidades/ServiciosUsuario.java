@@ -48,7 +48,7 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
             Ciudad ciudad = new Ciudad("Santiago", pais);
             ServiciosPais.getInstancia().crear(pais);
             ServiciosCiudad.getInstancia().crear(ciudad);
-            getInstancia().crear(new Usuario("admin@redsocial.com", "1234" ,"Admin", "", "NA", new Date(), ciudad,"","", null, true));
+            getInstancia().crear(new Usuario("Administrador", "" ,"", new Date(), ciudad,"" , "","admin@redsocial.com","1234", null, true));
             return true;
         }
     }

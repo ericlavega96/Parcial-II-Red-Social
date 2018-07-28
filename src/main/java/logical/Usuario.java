@@ -15,13 +15,6 @@ public class Usuario implements Serializable{
     private long idUsuario;
 
     @NotNull
-    @Column(unique = true)
-    private String correo;
-
-    @NotNull
-    private String password;
-
-    @NotNull
     private String nombres;
 
     private String apellidos;
@@ -39,6 +32,14 @@ public class Usuario implements Serializable{
     private String lugarDeEstudio;
 
     private String empleo;
+
+    @NotNull
+    @Column(unique = true)
+    private String correo;
+
+    @NotNull
+    private String password;
+
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "autor")
     private Set<Post> posts;
@@ -86,11 +87,8 @@ public class Usuario implements Serializable{
     public Usuario() {
     }
 
-    public Usuario(String correo, String password, String nombres, String apellidos, String sexo, Date fechaNacimiento,
-                   Ciudad
-            ciudad, String lugarDeEstudio, String empleo, Imagen fotoPerfil, boolean admin) {
-        this.correo = correo;
-        this.password = password;
+    public Usuario(String nombres, String apellidos, String sexo, Date fechaNacimiento,
+                   Ciudad ciudad, String lugarDeEstudio, String empleo, String correo, String password,Imagen fotoPerfil, boolean admin) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.sexo = sexo;
@@ -98,6 +96,8 @@ public class Usuario implements Serializable{
         this.ciudad = ciudad;
         this.lugarDeEstudio = lugarDeEstudio;
         this.empleo = empleo;
+        this.correo = correo;
+        this.password = password;
         this.fotoPerfil = fotoPerfil;
         this.admin = admin;
     }
