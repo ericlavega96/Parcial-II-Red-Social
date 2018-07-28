@@ -1,5 +1,6 @@
 package main;
 
+import entidades.ServiciosPais;
 import entidades.ServiciosUsuario;
 import org.jasypt.util.text.BasicTextEncryptor;
 import servicios.ServiciosBootStrap;
@@ -14,6 +15,7 @@ public class Main {
     public static void main(String[] args) throws Exception{
         staticFiles.location("/templates");
         ServiciosBootStrap.getInstancia().init();
+        ServiciosPais.getInstancia().crearPaises();
         ServiciosUsuario.getInstancia().crearAdmin();
         new RutasSpark().iniciarSpark();
 
