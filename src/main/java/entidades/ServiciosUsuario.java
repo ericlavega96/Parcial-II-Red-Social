@@ -30,6 +30,14 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
 
     }
 
+    public Usuario findByEmail(String correo){
+        EntityManager em = getEntityManager();
+        Query query = em.createQuery("select u from Usuario u where u.correo = :correo");
+        query.setParameter("correo", correo);
+        Usuario resultado = (Usuario)query.getSingleResult();
+        return resultado;
+    }
+
     public boolean existAdmin(){
         EntityManager em = getEntityManager();
         Query query = em.createQuery("select u from Usuario u where u.admin = true");
