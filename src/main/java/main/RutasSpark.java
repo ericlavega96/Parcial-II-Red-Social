@@ -68,7 +68,7 @@ public class RutasSpark {
         }, freeMarkerEngine);
 
         post("/registrarUsuario", (request, response) -> {
-            //try {
+            try {
                 String nombres = request.queryParams("nombres");
                 String apellidos = request.queryParams("apellidos");
                 String sexo = request.queryParams("rbMasculino");
@@ -85,10 +85,11 @@ public class RutasSpark {
                         new SimpleDateFormat("yyyy-mm-dd").parse(fechaNacimiento),ServiciosPais.getInstancia()
                         .findByCountry(pais), ciudad,lugarEstudio,empleo,null,false);
                 ServiciosUsuario.getInstancia().crear(nuevoUsuario);
+                response.redirect("/login");
 
-            //} catch (Exception e) {
-            //    System.out.println("Error al intentar iniciar sesión " + e.toString());
-            //}
+            } catch (Exception e) {
+                System.out.println("Error al intentar registrar usuario" + e.toString());
+            }
             return "";
         });
 
