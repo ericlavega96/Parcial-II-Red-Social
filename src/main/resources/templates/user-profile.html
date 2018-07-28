@@ -592,19 +592,20 @@
 											</div><!--process-comm end-->
 										</div><!--posts-section end-->
 									</div><!--product-feed-tab end-->
+
+									<!-- #inicio - Tab info-->
 									<div class="product-feed-tab" id="info-dd">
+										<div class="user-profile-ov">
+											<h3>Información General</h3>
+											<h4>Fecha de Nacimiento: </h4><h5>${fecha_nacimiento}</h5>
+										</div><!--user-profile-ov end-->
+
 										<div class="user-profile-ov">
 											<h3>Lugar de Nacimiento</h3>
 											<h4>${pais_origen}</h4>
 											<p> ${ciudad_origen} </p>
 										</div><!--user-profile-ov end-->
 
-										<div class="user-profile-ov">
-											<h3>Información General</h3>
-											<h4>Fecha de Nacimiento: </h4><h5>${fecha_nacimiento}</h5>
-											<br>
-											<h4>Lugar de Nacimiento: </h4><h5>${lugar_nacimiento}</h5>
-										</div><!--user-profile-ov end-->
 										<#if lugar_estudio??>
 											<div class="user-profile-ov">
 												<h3>Lugares de Estudio</h3>
@@ -617,30 +618,33 @@
 												<h4>${trabajo}</h4>
 											</div><!--user-profile-ov end-->
 										</#if>
+									</div><!--#fin - Tab info-->
 
-
-									</div><!--product-feed-tab end-->
+									<!-- #inicio - Album -->
 									<div class="product-feed-tab" id="portfolio-dd">
-										<div class="portfolio-gallery-sec">
-											<#list albumes as album>
+										<#list albumes as album>
+											<div class="portfolio-gallery-sec">
 												<h3>album.nombre</h3>
+												<h4>album.descripcion</h4>
 												<div class="gallery_pf">
 													<div class="row">
 														<#list album.imagenes as imagen>
+
 															<div class="col-lg-4 col-md-4 col-sm-6 col-6">
 																<div class="gallery_pt">
 																	<img src="images/resources/pf-img1.jpg" alt="">
 																	<a href="#" title=""><img src="images/all-out.png" alt=""></a>
 																</div><!--gallery_pt end-->
 															</div>
+
 														</#list>
 													</div>
 												</div><!--gallery_pf end-->
-											</#list>
-										</div><!--portfolio-gallery-sec end-->
-									</div><!--product-feed-tab end-->
-								</div><!--main-ws-sec end-->
-							</div>
+											</div><!--portfolio-gallery-sec end-->
+										</#list>
+									</div><!-- #fin - Tab Album-->
+
+
 							<div class="col-lg-3">
 								<div class="right-sidebar">
 									<div class="message-btn">

@@ -23,6 +23,9 @@ public class Imagen {
     @OneToMany(mappedBy = "imagen",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<ComentarioFoto> listaComentarioFoto;
 
+    public Imagen() {
+    }
+
     public Imagen(byte[] imagen, Album album, Set<Usuario> listaUsuariosEtiquetados) {
         this.imagen = imagen;
         this.album = album;

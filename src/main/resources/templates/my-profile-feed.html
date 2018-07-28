@@ -637,45 +637,35 @@
 											</div><!--process-comm end-->
 										</div><!--posts-section end-->
 									</div><!--product-feed-tab end-->
+
+									<!-- #inicio - Tab info-->
 									<div class="product-feed-tab" id="info-dd">
 										<div class="user-profile-ov">
-											<h3><a href="#" title="" class="overview-open">Overview</a> <a href="#" title="" class="overview-open"><i class="fa fa-pencil"></i></a></h3>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. Nunc eu augue nec arcu efficitur faucibus. Aliquam accumsan ac magna convallis bibendum. Quisque laoreet augue eget augue fermentum scelerisque. Vivamus dignissim mollis est dictum blandit. Nam porta auctor neque sed congue. Nullam rutrum eget ex at maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget vestibulum lorem.</p>
+											<h3><a href="#" title="" class="overview-open">Información General</a> <a href="#" title="" class="overview-open"><i class="fa fa-pencil"></i></a></h3>
+											<h4>Fecha de Nacimiento: </h4><h5>${fecha_nacimiento}</h5>
 										</div><!--user-profile-ov end-->
-										<div class="user-profile-ov st2">
-											<h3><a href="#" title="" class="exp-bx-open">Experience </a><a href="#" title="" class="exp-bx-open"><i class="fa fa-pencil"></i></a> <a href="#" title="" class="exp-bx-open"><i class="fa fa-plus-square"></i></a></h3>
-											<h4>Web designer <a href="#" title=""><i class="fa fa-pencil"></i></a></h4>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. </p>
-											<h4>UI / UX Designer <a href="#" title=""><i class="fa fa-pencil"></i></a></h4>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id.</p>
-											<h4>PHP developer <a href="#" title=""><i class="fa fa-pencil"></i></a></h4>
-											<p class="no-margin">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. </p>
-										</div><!--user-profile-ov end-->
+
 										<div class="user-profile-ov">
-											<h3><a href="#" title="" class="ed-box-open">Education</a> <a href="#" title="" class="ed-box-open"><i class="fa fa-pencil"></i></a> <a href="#" title=""><i class="fa fa-plus-square"></i></a></h3>
-											<h4>Master of Computer Science</h4>
-											<span>2015 - 2018</span>
-											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor aliquam felis, nec condimentum ipsum commodo id. Vivamus sit amet augue nec urna efficitur tincidunt. Vivamus consectetur aliquam lectus commodo viverra. </p>
+											<h3><a href="#" title="" class="lct-box-open">Lugar de Nacimiento</a> <a href="#" title="" class="lct-box-open"><i class="fa fa-pencil"></i></a> <a href="#" title=""><i class="fa fa-plus-square"></i></a></h3>
+											<h4>${pais_origen}</h4>
+											<p> ${ciudad_origen} </p>
 										</div><!--user-profile-ov end-->
-										<div class="user-profile-ov">
-											<h3><a href="#" title="" class="lct-box-open">Location</a> <a href="#" title="" class="lct-box-open"><i class="fa fa-pencil"></i></a> <a href="#" title=""><i class="fa fa-plus-square"></i></a></h3>
-											<h4>India</h4>
-											<p>151/4 BT Chownk, Delhi </p>
-										</div><!--user-profile-ov end-->
-										<div class="user-profile-ov">
-											<h3><a href="#" title="" class="skills-open">Skills</a> <a href="#" title="" class="skills-open"><i class="fa fa-pencil"></i></a> <a href="#"><i class="fa fa-plus-square"></i></a></h3>
-											<ul>
-												<li><a href="#" title="">HTML</a></li>
-												<li><a href="#" title="">PHP</a></li>
-												<li><a href="#" title="">CSS</a></li>
-												<li><a href="#" title="">Javascript</a></li>
-												<li><a href="#" title="">Wordpress</a></li>
-												<li><a href="#" title="">Photoshop</a></li>
-												<li><a href="#" title="">Illustrator</a></li>
-												<li><a href="#" title="">Corel Draw</a></li>
-											</ul>
-										</div><!--user-profile-ov end-->
-									</div><!--product-feed-tab end-->
+
+										<#if lugar_estudio??>
+											<div class="user-profile-ov">
+											<h3><a href="#" title="" class="overview-open">Centro de Estudio</a> <a href="#" title="" class="overview-open"><i class="fa fa-pencil"></i></a></h3>
+												<h4>${lugar_estudio}</h4>
+											</div><!--user-profile-ov end-->
+										</#if>
+										<#if trabajo??>
+											<div class="user-profile-ov st2">
+												<h3><a href="#" title="" class="overview-open">Centro de Trabajo</a> <a href="#" title="" class="overview-open"><i class="fa fa-pencil"></i></a></h3>
+												<h4>${trabajo}</h4>
+											</div><!--user-profile-ov end-->
+										</#if>
+									</div><!--#fin - Tab info-->
+
+
 									<div class="product-feed-tab" id="saved-jobs">
 										<div class="posts-section">
 											<div class="post-bar">
@@ -1158,75 +1148,30 @@
 											</div><!--process-comm end-->
 										</div><!--posts-section end-->
 									</div><!--product-feed-tab end-->
+
+									<!-- #inicio - Album -->
 									<div class="product-feed-tab" id="portfolio-dd">
-										<div class="portfolio-gallery-sec">
-											<h3>Portfolio</h3>
-											<div class="gallery_pf">
-												<div class="row">
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img1.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
+										<#list albumes as album>
+											<div class="portfolio-gallery-sec">
+												<h3>album.nombre</h3>
+												<h4>album.descripcion</h4>
+												<div class="gallery_pf">
+													<div class="row">
+														<#list album.imagenes as imagen>
+															<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+																<div class="gallery_pt">
+																	<img src="images/resources/pf-img1.jpg" alt="">
+																	<a href="#" title=""><img src="images/all-out.png" alt=""></a>
+																</div><!--gallery_pt end-->
+															</div>
+														</#list>
 													</div>
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img2.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
-													</div>
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img3.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
-													</div>
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img4.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
-													</div>
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img5.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
-													</div>
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img6.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
-													</div>
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img7.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
-													</div>
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img8.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
-													</div>
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img9.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
-													</div>
-													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-														<div class="gallery_pt">
-															<img src="images/resources/pf-img10.jpg" alt="">
-															<a href="#" title=""><img src="images/all-out.png" alt=""></a>
-														</div><!--gallery_pt end-->
-													</div>
-												</div>
-											</div><!--gallery_pf end-->
-										</div><!--portfolio-gallery-sec end-->
-									</div><!--product-feed-tab end-->
+												</div><!--gallery_pf end-->
+											</div><!--portfolio-gallery-sec end-->
+										</#list>
+									</div><!-- #fin - Tab Album-->
+
+
 									<div class="product-feed-tab" id="payment-dd">
 										<div class="billing-method">
 											<ul>
