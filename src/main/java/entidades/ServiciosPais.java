@@ -5,6 +5,9 @@ import servicios.MetodosDB;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class ServiciosPais extends MetodosDB<Pais> {
 
@@ -18,6 +21,34 @@ public class ServiciosPais extends MetodosDB<Pais> {
         }
         return instancia;
     }
+
+    private static boolean existPais(){
+        List<Pais> paisesEncontrados =getInstancia().findAll();
+        if(paisesEncontrados.size() <= 0)
+            return false;
+        else
+            return true;
+    }
+
+    public static boolean crearPaises(){
+
+        if(!existPais()){
+            Locale localObj;
+            try {
+                for (String p : Locale.getISOCountries()) {
+                    localObj = new Locale("", p);
+                    //System.out.println(" - Código de país: " + p + " para el país " + localObj.getDisplayCountry());
+                    getInstancia().crear(new Pais(p, localObj.getDisplayCountry()));
+                }
+                return true;
+            }catch (Exception ex){
+                throw  ex;
+            }
+        }
+        else
+            return false;
+    }
+
     public Pais findByCountry(String pais){
         EntityManager em = getEntityManager();
         Query query = em.createQuery("select p from Pais p where p.pais = :pais");
@@ -25,7 +56,9 @@ public class ServiciosPais extends MetodosDB<Pais> {
 
         Pais resultado = (Pais)query.getSingleResult();
         return resultado;
-
     }
+
+
+
 
 }

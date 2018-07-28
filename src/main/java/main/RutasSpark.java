@@ -1,10 +1,8 @@
 package main;
 
-import entidades.ServiciosCiudad;
 import entidades.ServiciosPais;
 import entidades.ServiciosUsuario;
 import freemarker.template.Configuration;
-import logical.Ciudad;
 import logical.Pais;
 import logical.Usuario;
 import spark.ModelAndView;
@@ -35,7 +33,7 @@ public class RutasSpark {
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("titulo","Login");
             attributes.put("paises",ServiciosPais.getInstancia().findAll());
-            attributes.put("ciudades",ServiciosCiudad.getInstancia().findAll());
+            //attributes.put("ciudades",ServiciosCiudad.getInstancia().findAll());
             return new ModelAndView(attributes, "sign-in.ftl");
         }, freeMarkerEngine);
 
@@ -83,9 +81,11 @@ public class RutasSpark {
                 String correo = request.queryParams("email");
                 String password = request.queryParams("password");
 
-                Usuario nuevoUsuario = new Usuario(nombres,apellidos,(sexo!= null) ? "Masculino":"Femenino",new SimpleDateFormat("yyyy-mm-dd").parse(fechaNacimiento), ServiciosCiudad.getInstancia().findByCityAndCountry(ciudad,pais),lugarEstudio,empleo,correo,password,null,false);
+                Usuario nuevoUsuario = new Usuario(nombres,apellidos,correo,password,
+                        (sexo!= null) ? "Masculino":"Femenino",
+                        new SimpleDateFormat("yyyy-mm-dd").parse(fechaNacimiento),ServiciosPais.getInstancia()
+                        .findByCountry(pais), ciudad,lugarEstudio,empleo,null,false);
                 ServiciosUsuario.getInstancia().crear(nuevoUsuario);
-
 
             //} catch (Exception e) {
             //    System.out.println("Error al intentar iniciar sesión " + e.toString());
