@@ -33,7 +33,6 @@ public class RutasSpark {
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("titulo","Login");
             attributes.put("paises",ServiciosPais.getInstancia().findAll());
-            //attributes.put("ciudades",ServiciosCiudad.getInstancia().findAll());
             return new ModelAndView(attributes, "sign-in.ftl");
         }, freeMarkerEngine);
 
@@ -75,7 +74,7 @@ public class RutasSpark {
                 String sexo = request.queryParams("rbMasculino");
                 String fechaNacimiento = request.queryParams("fechaNacimiento");
                 String pais = request.queryParams("cbBoxPais");
-                String ciudad = request.queryParams("cbBoxCiudad");
+                String ciudad = request.queryParams("ciudad");
                 String lugarEstudio = request.queryParams("lugarEstudio");
                 String empleo = request.queryParams("empleo");
                 String correo = request.queryParams("email");
