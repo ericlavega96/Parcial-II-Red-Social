@@ -76,6 +76,9 @@ public class RutasSpark {
             attributes.put("lugar_estudio", user.getLugarDeEstudio());
             attributes.put("trabajo", user.getEmpleo());
             attributes.put("albumes", user.getAlbumes());
+            for (Post post: ServiciosPost.getInstancia().findByAuthor(logUser)){
+                System.out.println(post.getCuerpo());
+            }
             return new ModelAndView(attributes, "my-profile-feed.ftl");
         }, freeMarkerEngine);
 

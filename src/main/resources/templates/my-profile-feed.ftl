@@ -402,7 +402,7 @@
 										<div class="posts-section">
 											<div class="post-topbar">
 												<div class="user-picy">
-													<img src="images/resources/user-pic.png" alt="">
+													<img src="/images/resources/user-pic.png" alt="">
 												</div>
 												<div class="post-st">
 													<ul>
@@ -433,7 +433,7 @@
                                                     </div>
                                                     <div class="epi-sec">
                                                         <ul class="descp">
-                                                            <li><img src="/images/icon9.png" alt=""><span>${usuario.pais}</span></li>
+                                                            <li><img src="/images/icon9.png" alt=""><span>${usuario.pais.pais}</span></li>
                                                         </ul>
                                                         <ul class="bk-links">
                                                             <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>

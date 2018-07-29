@@ -18,7 +18,6 @@ public class Main {
         ServiciosPais.getInstancia().crearPaises();
         ServiciosUsuario.getInstancia().crearAdmin();
         new RutasSpark().iniciarSpark();
-
     }
 
     public static String Encryptamiento(String text){
