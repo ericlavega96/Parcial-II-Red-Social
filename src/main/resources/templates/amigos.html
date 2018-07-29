@@ -233,7 +233,7 @@
 					</div>
 				</div><!--header-data end-->
 			</div>
-		</header><!--header end-->
+		</header><!--header end-->		
 
 
 
@@ -244,20 +244,20 @@
 				</div><!--company-title end-->
 				<div class="companies-list">
 					< class="row">
-					<#list usuarios as user>
-						<div class="col-lg-3 col-md-4 col-sm-6 col-12">
-							<div class="company_profile_info">
-								<div class="company-up-info">
-									<img src="images/resources/pf-icon1.png" alt="">
-									<h3>${user.nombres} ${user.apellidos}</h3>
-									<h4>${user.ciudad}, ${user.pais}</h4>
-								</div>
-								<a href="/perfilUsuario/"${user.correo} title="" class="view-more-pro">View Profile</a>
-							</div><!--company_profile_info end-->
-						</div>
-					</#list>
-				</div>
-			</div><!--companies-list end-->
+						<#list logUser.amigos as amigo>
+							<div class="col-lg-3 col-md-4 col-sm-6 col-12">
+								<div class="company_profile_info">
+									<div class="company-up-info">
+										<img src="images/resources/pf-icon1.png" alt="">
+										<h3>${amigo.nombres} ${amigo.apellidos}</h3>
+										<h4>${amigo.ciudad}, ${amigo.pais}</h4>
+									</div>
+									<a href="/perfilUsuario/"${user.correo} title="" class="view-more-pro">View Profile</a>
+								</div><!--company_profile_info end-->
+							</div>
+						</#list>
+					</div>
+				</div><!--companies-list end-->
 				<div class="process-comm">
 					<div class="spinner">
 						<div class="bounce1"></div>
