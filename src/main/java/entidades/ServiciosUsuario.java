@@ -6,6 +6,7 @@ import servicios.MetodosDB;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.Date;
+import java.util.Set;
 
 public class ServiciosUsuario extends MetodosDB<Usuario> {
 
@@ -59,4 +60,5 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
             return true;
         }
     }
+
 }

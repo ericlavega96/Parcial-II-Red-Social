@@ -3,6 +3,7 @@ package logical;
 import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,7 +19,10 @@ public class Tag {
     private Set<Post> listaPost;
 
     public Tag() {
+
     }
+
+
 
     public Tag(String tag) {
         this.tag = tag;
@@ -46,5 +50,12 @@ public class Tag {
 
     public void setlistaPost(Set<Post> listaPost) {
         this.listaPost = listaPost;
+    }
+
+    public static Set<Tag> crearEtiquetas(String[] tags){
+        Set<Tag> etiquetasList = new HashSet<>();
+        for (String etiqueta : tags)
+            etiquetasList.add(new Tag(etiqueta.trim()));
+        return etiquetasList;
     }
 }

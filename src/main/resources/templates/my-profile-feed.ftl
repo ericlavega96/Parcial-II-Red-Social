@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from gamboldesigns.net/Demo/HTML/my-profile-feed.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 03:36:21 GMT -->
+<!-- Mirrored from gamboldesigns.net/Demo/HTML/my-profile-feed.ftl by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 03:36:21 GMT -->
 <head>
 <meta charset="UTF-8">
 <title>WorkWise Html Template</title>
@@ -72,7 +72,7 @@
 								</a>
 								<ul>
 									<li><a href="user-profile.html" title="">User Profile</a></li>
-									<li><a href="my-profile-feed.html" title="">my-profile-feed</a></li>
+									<li><a href="my-profile-feed.ftl" title="">my-profile-feed</a></li>
 								</ul>
 							</li>
 							<li>
@@ -228,7 +228,7 @@
 								<li><a href="#" title="">Faqs</a></li>
 								<li><a href="#" title="">Terms & Conditions</a></li>
 							</ul>
-							<h3 class="tc"><a href="sign-in.ftl" title="">Logout</a></h3>
+							<h3 class="tc"><a href="sign-in.html" title="">Logout</a></h3>
 						</div><!--user-account-settingss end-->
 					</div>
 				</div><!--header-data end-->
@@ -400,6 +400,73 @@
 									</div><!--user-tab-sec end-->
 									<div class="product-feed-tab current" id="feed-dd">
 										<div class="posts-section">
+											<div class="post-topbar">
+												<div class="user-picy">
+													<img src="images/resources/user-pic.png" alt="">
+												</div>
+												<div class="post-st">
+													<ul>
+														<li><a class="post_project" href="#" title="">Publicar en el muro</a></li>
+													</ul>
+												</div><!--post-st end-->
+											</div><!--post-topbar end-->
+											<#list usuario.getPosts() as post>
+                                                <div class="post-bar">
+                                                    <div class="post_topbar">
+                                                        <div class="usy-dt">
+                                                            <img src="/images/resources/us-pic.png" alt="">
+                                                            <div class="usy-name">
+                                                                <h3>${usuario.nombres}</h3>
+                                                                <span><img src="/images/clock.png" alt="">${post.fecha}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="ed-opts">
+                                                            <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+                                                            <ul class="ed-options">
+                                                                <li><a href="#" title="">Editar Post</a></li>
+                                                                <li><a href="#" title="">Unsaved</a></li>
+                                                                <li><a href="#" title="">Unbid</a></li>
+                                                                <li><a href="#" title="">Close</a></li>
+                                                                <li><a href="#" title="">Hide</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <div class="epi-sec">
+                                                        <ul class="descp">
+                                                            <li><img src="/images/icon9.png" alt=""><span>${usuario.pais}</span></li>
+                                                        </ul>
+                                                        <ul class="bk-links">
+                                                            <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
+                                                            <li><a href="#" title=""><i class="la la-envelope"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="job_descp">
+                                                        <h3>Senior Wordpress Developer</h3>
+                                                        <ul class="job-dt">
+                                                            <li><a href="#" title="">Full Time</a></li>
+                                                            <li><span>$30 / hr</span></li>
+                                                        </ul>
+                                                        <p>${post.cuerpo}</p>
+                                                        <ul class="skill-tags">
+															<#list post.getListaTags() as tag>
+                                                                <li><a>${tag.tag}</a></li>
+															</#list>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="job-status-bar">
+                                                        <ul class="like-com">
+                                                            <li>
+                                                                <a href="#"><i class="la la-heart"></i> Like</a>
+                                                                <img src="/images/liked-img.png" alt="">
+                                                                <span>25</span>
+                                                            </li>
+                                                            <li><a href="#" title="" class="com"><img
+                                                                    src="/images/com.png" alt=""> Comentarios 15</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div><!--post-bar end-->
+											</#list>
+
 											<div class="post-bar">
 												<div class="post_topbar">
 													<div class="usy-dt">
@@ -1338,6 +1405,30 @@
 			</div>
 		</footer><!--footer end-->
 
+		<div class="post-popup pst-pj">
+			<div class="post-project">
+				<h3>Nueva Publicación</h3>
+				<div class="post-project-fields">
+					<form action="/publicarPost" method="post">
+						<div class="row">
+							<div class="col-lg-12">
+								<textarea name="publicacion" placeholder="Escriba aquí..."></textarea>
+							</div>
+							<div class="col-lg-12">
+								<input type="text" name="tags">
+							</div>
+							<div class="col-lg-12">
+								<ul>
+									<li><button class="active" type="submit" value="publicar">Publicar</button></li>
+								</ul>
+							</div>
+						</div>
+					</form>
+				</div><!--post-project-fields end-->
+				<a href="#" title=""><i class="la la-times-circle-o"></i></a>
+			</div><!--post-project end-->
+		</div><!--post-project-popup end-->
+
 		<div class="overview-box" id="overview-box">
 			<div class="overview-edit">
 				<h3>Overview</h3>
@@ -1477,6 +1568,6 @@
 <script type="text/javascript" src="/js/script.js"></script>
 </body>
 
-<!-- Mirrored from gamboldesigns.net/Demo/HTML/my-profile-feed.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 03:36:28 GMT -->
+<!-- Mirrored from gamboldesigns.net/Demo/HTML/my-profile-feed.ftl by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 03:36:28 GMT -->
 <!--Variables usadas: ${fecha_nacimiento} ${pais_origen} ${ciudad_origen} ${lugar_estudio} ${trabajo}-->
 </html>

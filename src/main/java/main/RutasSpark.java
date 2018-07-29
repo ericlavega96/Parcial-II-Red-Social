@@ -1,9 +1,12 @@
 package main;
 
 import entidades.ServiciosPais;
+import entidades.ServiciosPost;
 import entidades.ServiciosUsuario;
 import freemarker.template.Configuration;
 import logical.Pais;
+import logical.Post;
+import logical.Tag;
 import logical.Usuario;
 import spark.ModelAndView;
 import spark.template.freemarker.FreeMarkerEngine;
@@ -33,7 +36,7 @@ public class RutasSpark {
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("titulo","Login");
             attributes.put("paises",ServiciosPais.getInstancia().findAll());
-            return new ModelAndView(attributes, "sign-in.ftl");
+            return new ModelAndView(attributes, "sign-in.html");
         }, freeMarkerEngine);
 
         post("/procesarUsuario", (request, response) -> {
@@ -50,7 +53,7 @@ public class RutasSpark {
                         response.cookie("/", "jdklsjfklsjfl",
                                 Encryptamiento(correoAVerificar), (60*60*24*7), false, true);
                     }
-                    response.redirect("/perfilUsuario/"+logUser.getCorreo());
+                    response.redirect("/perfilUsuario/" + logUser.getCorreo());
                 } else {
                     response.redirect("/iniciarSesion");
                 }
@@ -63,15 +66,17 @@ public class RutasSpark {
 
         get("/perfilUsuario/:correo", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
+            Usuario logUser = request.session(true).attribute("usuario");
             String correoUser = request.params("correo");
             Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
+            attributes.put("usuario",logUser);
             attributes.put("fecha_nacimiento", user.getFechaNacimiento());
             attributes.put("pais_origen", user.getPais().getPais());
             attributes.put("ciudad_origen", user.getCiudad());
             attributes.put("lugar_estudio", user.getLugarDeEstudio());
             attributes.put("trabajo", user.getEmpleo());
             attributes.put("albumes", user.getAlbumes());
-            return new ModelAndView(attributes, "my-profile-feed.html");
+            return new ModelAndView(attributes, "my-profile-feed.ftl");
         }, freeMarkerEngine);
 
         post("/registrarUsuario", (request, response) -> {
@@ -97,6 +102,21 @@ public class RutasSpark {
             } catch (Exception e) {
                 System.out.println("Error al intentar registrar usuario" + e.toString());
             }
+            return "";
+        });
+
+        post("/publicarPost", (request, response) -> {
+            try {
+                Usuario logUser = request.session(true).attribute("usuario");
+                String publicacion = request.queryParams("publicacion");
+                String[] tags = request.queryParams("tags").split(",");
+                Set<Tag> postEtiquetas = Tag.crearEtiquetas(tags);
+                Post nuevoPost = new Post(logUser,null,publicacion,new Date(),null,postEtiquetas,null);
+                ServiciosPost.getInstancia().crear(nuevoPost);
+                response.redirect("/perfilUsuario/" + logUser.getCorreo());
+            } catch (Exception e) {
+               // System.out.println("Error al realizar post" + e.toString());
+           }
             return "";
         });
 
