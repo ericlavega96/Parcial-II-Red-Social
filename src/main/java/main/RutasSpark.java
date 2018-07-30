@@ -4,15 +4,14 @@ import entidades.ServiciosPais;
 import entidades.ServiciosPost;
 import entidades.ServiciosUsuario;
 import freemarker.template.Configuration;
-import logical.Pais;
-import logical.Post;
-import logical.Tag;
-import logical.Usuario;
+import logical.*;
 import spark.ModelAndView;
 import spark.template.freemarker.FreeMarkerEngine;
 
+import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.List;
 import java.util.jar.Attributes;
 
 import static main.Main.Encryptamiento;
@@ -70,6 +69,7 @@ public class RutasSpark {
             String correoUser = request.params("correo");
             Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
             attributes.put("usuario",logUser);
+            attributes.put("posts",ServiciosPost.getInstancia().findByAuthor(logUser));
             attributes.put("fecha_nacimiento", user.getFechaNacimiento());
             attributes.put("pais_origen", user.getPais().getPais());
             attributes.put("ciudad_origen", user.getCiudad());
@@ -114,7 +114,12 @@ public class RutasSpark {
                 String publicacion = request.queryParams("publicacion");
                 String[] tags = request.queryParams("tags").split(",");
                 Set<Tag> postEtiquetas = Tag.crearEtiquetas(tags);
-                Post nuevoPost = new Post(logUser,null,publicacion,new Date(),null,postEtiquetas,null);
+                Imagen imagen = null;
+                if(request.queryParams("imagen") != null){
+                    String foto = request.queryParams("imagen");
+                    imagen = new Imagen(foto.getBytes(),null,null);
+                }
+                Post nuevoPost = new Post(logUser,imagen,publicacion,new Date(),null,postEtiquetas,null);
                 ServiciosPost.getInstancia().crear(nuevoPost);
                 response.redirect("/perfilUsuario/" + logUser.getCorreo());
             } catch (Exception e) {

@@ -4,31 +4,32 @@
 
 <!-- Mirrored from gamboldesigns.net/Demo/HTML/my-profile-feed.ftl by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 03:36:21 GMT -->
 <head>
-<meta charset="UTF-8">
-<title>WorkWise Html Template</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="" />
-<meta name="keywords" content="" />
-<link rel="stylesheet" type="text/css" href="/css/animate.css">
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/css/flatpickr.min.css">
-<link rel="stylesheet" type="text/css" href="/css/line-awesome.css">
-<link rel="stylesheet" type="text/css" href="/css/line-awesome-font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="/lib/slick/slick.css">
-<link rel="stylesheet" type="text/css" href="/lib/slick/slick-theme.css">
-<link rel="stylesheet" type="text/css" href="/css/style.css">
-<link rel="stylesheet" type="text/css" href="/css/responsive.css">
+	<meta charset="UTF-8">
+	<title>WorkWise Html Template</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" type="text/css" href="/css/animate.css">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/flatpickr.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/line-awesome.css">
+	<link rel="stylesheet" type="text/css" href="/css/line-awesome-font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/lib/slick/slick.css">
+	<link rel="stylesheet" type="text/css" href="/lib/slick/slick-theme.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/responsive.css">
+	<style>
+		#postedImage{
+        	width(150);
+        	height(200);
+		}
+	</style>
 </head>
 
 
 <body>
-	
-
 	<div class="wrapper">
-		
-
-
 		<header>
 			<div class="container">
 				<div class="header-data">
@@ -410,7 +411,7 @@
 													</ul>
 												</div><!--post-st end-->
 											</div><!--post-topbar end-->
-											<#list usuario.getPosts() as post>
+											<#list posts as post>
                                                 <div class="post-bar">
                                                     <div class="post_topbar">
                                                         <div class="usy-dt">
@@ -447,6 +448,9 @@
                                                             <li><span>$30 / hr</span></li>
                                                         </ul>
                                                         <p>${post.cuerpo}</p>
+														<#if post.fotoPost??>
+                                                            <img id="postedImage" src="/images/${post.fotoPost}">
+														</#if>
                                                         <ul class="skill-tags">
 															<#list post.getListaTags() as tag>
                                                                 <li><a>${tag.tag}</a></li>
@@ -461,8 +465,9 @@
                                                                 <span>25</span>
                                                             </li>
                                                             <li><a href="#" title="" class="com"><img
-                                                                    src="/images/com.png" alt=""> Comentarios 15</a></li>
+                                                                    src="/images/com.png" alt=""> Comment 15</a></li>
                                                         </ul>
+                                                        <a><i class="la la-eye"></i>Views 50</a>
                                                     </div>
                                                 </div><!--post-bar end-->
 											</#list>
@@ -1409,13 +1414,14 @@
 			<div class="post-project">
 				<h3>Nueva Publicación</h3>
 				<div class="post-project-fields">
-					<form action="/publicarPost" method="post">
+					<form action="/publicarPost" method="post" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-lg-12">
 								<textarea name="publicacion" placeholder="Escriba aquí..."></textarea>
 							</div>
+                            <input type="file" name="imagen" accept="image/*">
 							<div class="col-lg-12">
-								<input type="text" name="tags">
+								<input class="tags-input" name="tags">
 							</div>
 							<div class="col-lg-12">
 								<ul>

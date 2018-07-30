@@ -24,6 +24,7 @@ public class Imagen {
     private Set<ComentarioFoto> listaComentarioFoto;
 
     public Imagen() {
+
     }
 
     public Imagen(byte[] imagen, Album album, Set<Usuario> listaUsuariosEtiquetados) {

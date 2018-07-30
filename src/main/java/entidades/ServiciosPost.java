@@ -24,7 +24,7 @@ public class ServiciosPost extends MetodosDB<Post> {
 
     public List<Post> findByAuthor(Usuario user){
         EntityManager em = getEntityManager();
-        Query query = em.createQuery("select p from Post p where p.autor = :user");
+        Query query = em.createQuery("select p from Post p where p.autor = :user order by p.fecha DESC" );
         query.setParameter("user", user);
         List<Post> resultado = query.getResultList();
         return resultado;
