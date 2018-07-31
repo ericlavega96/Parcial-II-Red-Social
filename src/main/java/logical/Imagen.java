@@ -10,8 +10,8 @@ public class Imagen {
     @Id
     @GeneratedValue
     private long idImagen;
-    @Column(length = 500000000)
-    private byte [] imagen;
+
+    private String imagen;
 
     @ManyToOne
     @JoinColumn(name = "album")
@@ -27,7 +27,7 @@ public class Imagen {
 
     }
 
-    public Imagen(byte[] imagen, Album album, Set<Usuario> listaUsuariosEtiquetados) {
+    public Imagen(String imagen, Album album, Set<Usuario> listaUsuariosEtiquetados) {
         this.imagen = imagen;
         this.album = album;
         this.listaUsuariosEtiquetados = listaUsuariosEtiquetados;
@@ -41,11 +41,11 @@ public class Imagen {
         this.idImagen = idImagen;
     }
 
-    public byte[] getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(byte[] imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 

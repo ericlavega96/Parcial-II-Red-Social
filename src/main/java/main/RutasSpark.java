@@ -1,20 +1,21 @@
 package main;
 
+import entidades.ServiciosImagen;
 import entidades.ServiciosPais;
 import entidades.ServiciosPost;
 import entidades.ServiciosUsuario;
 import freemarker.template.Configuration;
-import logical.*;
+import logical.Imagen;
+import logical.Post;
+import logical.Tag;
+import logical.Usuario;
+import servicios.Encriptamiento;
 import spark.ModelAndView;
 import spark.template.freemarker.FreeMarkerEngine;
 
-import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.List;
-import java.util.jar.Attributes;
 
-import static main.Main.Encryptamiento;
 import static spark.Spark.get;
 import static spark.Spark.post;
 
@@ -27,7 +28,11 @@ public class RutasSpark {
         List<Usuario> misUsuarios = new ArrayList<Usuario>();
 
         get("/", (request, response) -> {
-            response.redirect("/login");
+            Usuario logUser = request.session(true).attribute("usuario");
+            if(logUser==null)
+                response.redirect("/login");
+            else
+                response.redirect("redSocial/userArea/" + logUser.getCorreo() + "/perfilUsuario");
             return "";
         });
 
@@ -49,10 +54,10 @@ public class RutasSpark {
                     request.session(true);
                     request.session().attribute("usuario", logUser);
                     if(isRecordado!=null){
-                        response.cookie("/", "jdklsjfklsjfl",
-                                Encryptamiento(correoAVerificar), (60*60*24*7), false, true);
+                        response.cookie("/", "sr5h464h846s4dhds4h6w9uyh",
+                                new Encriptamiento().encriptar(correoAVerificar), (60*60*24*7), false, true);
                     }
-                    response.redirect("/perfilUsuario/" + logUser.getCorreo());
+                    response.redirect("redSocial/userArea/" + logUser.getCorreo() + "/perfilUsuario");
                 } else {
                     response.redirect("/iniciarSesion");
                 }
@@ -63,7 +68,7 @@ public class RutasSpark {
             return "";
         });
 
-        get("/perfilUsuario/:correo", (request, response) -> {
+        get("redSocial/userArea/:correo/perfilUsuario", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
             Usuario logUser = request.session(true).attribute("usuario");
             String correoUser = request.params("correo");
@@ -109,25 +114,29 @@ public class RutasSpark {
         });
 
         post("/publicarPost", (request, response) -> {
-            try {
-                Usuario logUser = request.session(true).attribute("usuario");
-                String publicacion = request.queryParams("publicacion");
-                String[] tags = request.queryParams("tags").split(",");
-                Set<Tag> postEtiquetas = Tag.crearEtiquetas(tags);
+            //try {
                 Imagen imagen = null;
+                System.out.println(request.queryParams("imagen"));
                 if(request.queryParams("imagen") != null){
-                    String foto = request.queryParams("imagen");
-                    imagen = new Imagen(foto.getBytes(),null,null);
+                    System.out.println("Entró para guardar la imagen");
+                    imagen = new Imagen(ServiciosImagen.getInstancia().guardarFoto("imagen",request),null,null);
                 }
-                Post nuevoPost = new Post(logUser,imagen,publicacion,new Date(),null,postEtiquetas,null);
+                Usuario logUser = request.session(true).attribute("usuario");
+                String cuerpo = request.queryParams("cuerpo");
+                System.out.println(request.queryParams("post-tags"));
+                if(request.queryParams("post-tags") == null)
+                    System.out.println("VACIO");
+                String tags = request.queryParams("post-tags");
+                //Set<Tag> postEtiquetas = Tag.crearEtiquetas(tags);
+
+                Post nuevoPost = new Post(logUser,imagen,cuerpo,new Date(),null,null,null);
                 ServiciosPost.getInstancia().crear(nuevoPost);
-                response.redirect("/perfilUsuario/" + logUser.getCorreo());
-            } catch (Exception e) {
-               // System.out.println("Error al realizar post" + e.toString());
-           }
+                response.redirect("/redSocial/userArea/" + logUser.getCorreo() + "/perfilUsuario");
+            //} catch (Exception e) {
+              //  System.out.println("Error al realizar post" + e.toString());
+            //}
             return "";
         });
 
     }
 }
-

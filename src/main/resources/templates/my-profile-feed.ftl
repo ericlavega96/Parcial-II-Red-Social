@@ -449,7 +449,7 @@
                                                         </ul>
                                                         <p>${post.cuerpo}</p>
 														<#if post.fotoPost??>
-                                                            <img id="postedImage" src="/images/${post.fotoPost}">
+                                                            <img id="postedImage" src="/src/main/resources/templates/photos/${post.fotoPost.imagen}">
 														</#if>
                                                         <ul class="skill-tags">
 															<#list post.getListaTags() as tag>
@@ -1417,11 +1417,11 @@
 					<form action="/publicarPost" method="post" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col-lg-12">
-								<textarea name="publicacion" placeholder="Escriba aquí..."></textarea>
+								<textarea name="cuerpo" placeholder="Escriba aquí..."></textarea>
 							</div>
                             <input type="file" name="imagen" accept="image/*">
 							<div class="col-lg-12">
-								<input class="tags-input" name="tags">
+								<input class="tags-input" name="post-tags">
 							</div>
 							<div class="col-lg-12">
 								<ul>
