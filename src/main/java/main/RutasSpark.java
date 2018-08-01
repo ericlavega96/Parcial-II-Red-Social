@@ -26,7 +26,7 @@ public class RutasSpark {
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_0);
         cfg.setClassForTemplateLoading(Main.class, "/templates");
         FreeMarkerEngine freeMarkerEngine = new FreeMarkerEngine(cfg);
-        File fotosDir = new File("src/main/resources/templates/photos");
+        File fotosDir = new File("photos");
         fotosDir.mkdir();
 
         List<Usuario> misUsuarios = new ArrayList<Usuario>();

@@ -15,6 +15,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception{
         staticFiles.location("/templates");
+        staticFiles.externalLocation("photos");
         ServiciosBootStrap.getInstancia().init();
         ServiciosPais.getInstancia().crearPaises();
         ServiciosUsuario.getInstancia().crearAdmin();
