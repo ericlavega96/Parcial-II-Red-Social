@@ -13,17 +13,21 @@ import servicios.Encriptamiento;
 import spark.ModelAndView;
 import spark.template.freemarker.FreeMarkerEngine;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static spark.Spark.get;
 import static spark.Spark.post;
+import static spark.Spark.staticFiles;
 
 public class RutasSpark {
     public void iniciarSpark() {
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_0);
         cfg.setClassForTemplateLoading(Main.class, "/templates");
         FreeMarkerEngine freeMarkerEngine = new FreeMarkerEngine(cfg);
+        File fotosDir = new File("src/main/resources/templates/photos");
+        fotosDir.mkdir();
 
         List<Usuario> misUsuarios = new ArrayList<Usuario>();
 
@@ -84,14 +88,15 @@ public class RutasSpark {
             for (Post post: ServiciosPost.getInstancia().findByAuthor(logUser)){
                 System.out.println(post.getCuerpo());
             }
-            return new ModelAndView(attributes, "my-profile-feed.ftl");
+            return new ModelAndView(attributes, "my-profile-feed.html");
         }, freeMarkerEngine);
 
         post("/registrarUsuario", (request, response) -> {
             try {
                 String nombres = request.queryParams("nombres");
                 String apellidos = request.queryParams("apellidos");
-                String sexo = request.queryParams("rbMasculino");
+                String sexo = request.queryParams("cbMasculino");
+                System.out.println(sexo);
                 String fechaNacimiento = request.queryParams("fechaNacimiento");
                 String pais = request.queryParams("cbBoxPais");
                 String ciudad = request.queryParams("ciudad");
@@ -101,7 +106,7 @@ public class RutasSpark {
                 String password = request.queryParams("password");
 
                 Usuario nuevoUsuario = new Usuario(nombres,apellidos,correo,password,
-                        (sexo!= null) ? "Masculino":"Femenino",
+                        (sexo != null) ? "Masculino":"Femenino",
                         new SimpleDateFormat("yyyy-mm-dd").parse(fechaNacimiento),ServiciosPais.getInstancia()
                         .findByCountry(pais), ciudad,lugarEstudio,empleo,null,false);
                 ServiciosUsuario.getInstancia().crear(nuevoUsuario);
@@ -114,27 +119,24 @@ public class RutasSpark {
         });
 
         post("/publicarPost", (request, response) -> {
-            //try {
+            try {
+                String imagenRuta = (ServiciosImagen.getInstancia().guardarFoto("imagen",fotosDir,request));
                 Imagen imagen = null;
                 System.out.println(request.queryParams("imagen"));
-                if(request.queryParams("imagen") != null){
+                if(imagenRuta != null){
                     System.out.println("Entró para guardar la imagen");
-                    imagen = new Imagen(ServiciosImagen.getInstancia().guardarFoto("imagen",request),null,null);
+                    imagen = new Imagen(imagenRuta,null,null);
                 }
                 Usuario logUser = request.session(true).attribute("usuario");
                 String cuerpo = request.queryParams("cuerpo");
-                System.out.println(request.queryParams("post-tags"));
-                if(request.queryParams("post-tags") == null)
-                    System.out.println("VACIO");
-                String tags = request.queryParams("post-tags");
-                //Set<Tag> postEtiquetas = Tag.crearEtiquetas(tags);
-
-                Post nuevoPost = new Post(logUser,imagen,cuerpo,new Date(),null,null,null);
+                String tags = request.queryParams("tags");
+                Set<Tag> postEtiquetas = Tag.crearEtiquetas(tags.split(","));
+                Post nuevoPost = new Post(logUser,imagen,cuerpo,new Date(),null,postEtiquetas,null);
                 ServiciosPost.getInstancia().crear(nuevoPost);
                 response.redirect("/redSocial/userArea/" + logUser.getCorreo() + "/perfilUsuario");
-            //} catch (Exception e) {
-              //  System.out.println("Error al realizar post" + e.toString());
-            //}
+            } catch (Exception e) {
+                System.out.println("Error al realizar post" + e.toString());
+            }
             return "";
         });
 

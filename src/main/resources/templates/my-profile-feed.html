@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from gamboldesigns.net/Demo/HTML/my-profile-feed.ftl by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 03:36:21 GMT -->
+<!-- Mirrored from gamboldesigns.net/Demo/HTML/my-profile-feed.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 03:36:21 GMT -->
 <head>
 	<meta charset="UTF-8">
 	<title>WorkWise Html Template</title>
@@ -21,8 +21,13 @@
 	<link rel="stylesheet" type="text/css" href="/css/responsive.css">
 	<style>
 		#postedImage{
-        	width(150);
-        	height(200);
+            display: block;
+            max-width:500px;
+            max-height:300px;
+            width: auto;
+            height: auto;
+			margin: auto;
+			margin-bottom: 15px;
 		}
 	</style>
 </head>
@@ -73,7 +78,7 @@
 								</a>
 								<ul>
 									<li><a href="user-profile.html" title="">User Profile</a></li>
-									<li><a href="my-profile-feed.ftl" title="">my-profile-feed</a></li>
+									<li><a href="my-profile-feed.html" title="">my-profile-feed</a></li>
 								</ul>
 							</li>
 							<li>
@@ -449,7 +454,7 @@
                                                         </ul>
                                                         <p>${post.cuerpo}</p>
 														<#if post.fotoPost??>
-                                                            <img id="postedImage" src="/src/main/resources/templates/photos/${post.fotoPost.imagen}">
+                                                            <img id="postedImage" src="/photos/${post.fotoPost.imagen}">
 														</#if>
                                                         <ul class="skill-tags">
 															<#list post.getListaTags() as tag>
@@ -461,11 +466,10 @@
                                                         <ul class="like-com">
                                                             <li>
                                                                 <a href="#"><i class="la la-heart"></i> Like</a>
-                                                                <img src="/images/liked-img.png" alt="">
-                                                                <span>25</span>
                                                             </li>
-                                                            <li><a href="#" title="" class="com"><img
-                                                                    src="/images/com.png" alt=""> Comment 15</a></li>
+                                                            <li><a href="#" title=""><img
+																	src="/images/com.png" alt=""> Comment 15</a>
+															</li>
                                                         </ul>
                                                         <a><i class="la la-eye"></i>Views 50</a>
                                                     </div>
@@ -1421,7 +1425,7 @@
 							</div>
                             <input type="file" name="imagen" accept="image/*">
 							<div class="col-lg-12">
-								<input class="tags-input" name="post-tags">
+								<input class="tags-input" name="tags">
 							</div>
 							<div class="col-lg-12">
 								<ul>
@@ -1574,6 +1578,6 @@
 <script type="text/javascript" src="/js/script.js"></script>
 </body>
 
-<!-- Mirrored from gamboldesigns.net/Demo/HTML/my-profile-feed.ftl by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 03:36:28 GMT -->
+<!-- Mirrored from gamboldesigns.net/Demo/HTML/my-profile-feed.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 03:36:28 GMT -->
 <!--Variables usadas: ${fecha_nacimiento} ${pais_origen} ${ciudad_origen} ${lugar_estudio} ${trabajo}-->
 </html>

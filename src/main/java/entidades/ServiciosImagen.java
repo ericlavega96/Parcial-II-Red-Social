@@ -13,6 +13,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 
+import static spark.Spark.staticFiles;
+
 
 public class ServiciosImagen extends MetodosDB<Imagen> {
 
@@ -27,24 +29,13 @@ public class ServiciosImagen extends MetodosDB<Imagen> {
         return instancia;
     }
 
-    public String guardarFoto(String attName,Request req) {
-        File fotosDir = new File("src/main/resources/templates/photos");
-        fotosDir.mkdir();
+    public String guardarFoto(String attName,File fotosDir,Request req) throws IOException, ServletException {
         Path tempFile = null;
-        try {
-            tempFile = Files.createTempFile(fotosDir.toPath(), "", "");
-            req.attribute("org.eclipse.multipartConfig", new MultipartConfigElement("/temp"));
-        } catch (IOException e) {
-            return "Error " + e.toString();
-        }
-        try {
-            InputStream input = req.raw().getPart(attName).getInputStream();
+        tempFile = Files.createTempFile(fotosDir.toPath(), "", ".png");
+        req.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
+        try(InputStream input = req.raw().getPart(attName).getInputStream()){
             Files.copy(input, tempFile, StandardCopyOption.REPLACE_EXISTING);
-        } catch (IOException e) {
-            return "Error " + e.toString();
-        } catch (ServletException e) {
-            return "Error " + e.toString();
         }
-        return "/" + tempFile.getFileName().toString();
+        return tempFile.getFileName().toString();
     }
 }

@@ -24,7 +24,7 @@ public class Filtros {
             if (logUser == null && username != null) {
                 request.session(true);
                 request.session().attribute("usuario",
-                        ServiciosUsuario.getInstancia().findByEmail(new Encriptamiento().desencriptar(username)));
+                            ServiciosUsuario.getInstancia().findByEmail(new Encriptamiento().desencriptar(username)));
             }
         });
 
