@@ -24,6 +24,8 @@
 	<style>
 		#postedImage{
             display: block;
+			min-width: 500px;
+			min-height: 300px;
             max-width:500px;
             max-height:300px;
             width: auto;
@@ -1313,25 +1315,136 @@
 
 									<!-- #inicio - Album -->
 									<div class="product-feed-tab" id="portfolio-dd">
-										<#list albumes as album>
 											<div class="portfolio-gallery-sec">
-												<h3>album.nombre</h3>
-												<h4>album.descripcion</h4>
+												<h3>Álbumes de ${usuario.nombres} ${usuario.apellidos}</h3>
+												<div class="post-album">
+													<ul>
+														<li><a class="post_album" href="#" title=""><i class="la la-plus"></i>Crear nuevo álbum</a></li>
+													</ul>
+												</div><!--post-st end-->
 												<div class="gallery_pf">
 													<div class="row">
-														<#list album.imagenes as imagen>
-															<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-																<div class="gallery_pt">
-																	<img src="/images/resources/pf-img1.jpg" alt="">
-																	<a href="#" title=""><img src="/images/all-out.png" alt=""></a>
-																</div><!--gallery_pt end-->
-															</div>
-														</#list>
+														<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+															<div class="album-container tab-feed">
+																<ul>
+																	<li data-tab="album-imagenes" class="animated fadeIn active">
+																			<a href="#" title=""></a>
+																			<img src="/images/folder.png" alt="">
+																			<p>Navidades</p>
+																	</li>
+																</ul>
+															</div><!--gallery_pt end-->
+														</div>
+														<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+															<div class="album-container">
+																<img src="/images/folder.png" alt="">
+																<a href="#" title=""></a>
+																<p>Navidades</p>
+															</div><!--gallery_pt end-->
+														</div>
+														<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+															<div class="album-container">
+																<img src="/images/folder.png" alt="">
+																<a href="#" title=""></a>
+																<p>Navidades</p>
+															</div><!--gallery_pt end-->
+														</div>
+														<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+															<div class="album-container">
+																<img src="/images/folder.png" alt="">
+																<a href="#" title=""></a>
+																<p>Navidades</p>
+															</div><!--gallery_pt end-->
+														</div>
+														<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+															<div class="album-container">
+																<img src="/images/folder.png" alt="">
+																<a href="#" title=""></a>
+																<p>Navidades</p>
+															</div><!--gallery_pt end-->
+														</div>
+														<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+															<div class="album-container">
+																<img src="/images/folder.png" alt="">
+																<a href="#" title=""></a>
+																<p>Navidades</p>
+															</div><!--gallery_pt end-->
+														</div>
 													</div>
-												</div><!--gallery_pf end-->
+												</div>
 											</div><!--portfolio-gallery-sec end-->
-										</#list>
 									</div><!-- #fin - Tab Album-->
+
+
+									<div class="product-feed-tab current animated fadeIn" id="album-imagenes">
+										<div class="portfolio-gallery-sec">
+											<h3>Fotos</h3>
+											<div class="gallery_pf">
+												<div class="row">
+													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+														<div class="gallery_pt">
+															<img src="/images/resources/pf-img1.jpg" alt="">
+															<a href="#" title=""><img src="/images/all-out.png" alt=""></a>
+														</div><!--gallery_pt end-->
+													</div>
+													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+														<div class="gallery_pt">
+															<img src="/images/resources/pf-img2.jpg" alt="">
+															<a href="#" title=""><img src="/images/all-out.png" alt=""></a>
+														</div><!--gallery_pt end-->
+													</div>
+													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+														<div class="gallery_pt">
+															<img src="/images/resources/pf-img3.jpg" alt="">
+															<a href="#" title=""><img src="/images/all-out.png" alt=""></a>
+														</div><!--gallery_pt end-->
+													</div>
+													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+														<div class="gallery_pt">
+															<img src="/images/resources/pf-img4.jpg" alt="">
+															<a href="#" title=""><img src="/images/all-out.png" alt=""></a>
+														</div><!--gallery_pt end-->
+													</div>
+													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+														<div class="gallery_pt">
+															<img src="/images/resources/pf-img5.jpg" alt="">
+															<a href="#" title=""><img src="/images/all-out.png" alt=""></a>
+														</div><!--gallery_pt end-->
+													</div>
+													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+														<div class="gallery_pt">
+															<img src="/images/resources/pf-img6.jpg" alt="">
+															<a href="#" title=""><img src="/images/all-out.png" alt=""></a>
+														</div><!--gallery_pt end-->
+													</div>
+													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+														<div class="gallery_pt">
+															<img src="/images/resources/pf-img7.jpg" alt="">
+															<a href="#" title=""><img src="/images/all-out.png" alt=""></a>
+														</div><!--gallery_pt end-->
+													</div>
+													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+														<div class="gallery_pt">
+															<img src="/images/resources/pf-img8.jpg" alt="">
+															<a href="#" title=""><img src="/images/all-out.png" alt=""></a>
+														</div><!--gallery_pt end-->
+													</div>
+													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+														<div class="gallery_pt">
+															<img src="/images/resources/pf-img9.jpg" alt="">
+															<a href="#" title=""><img src="/images/all-out.png" alt=""></a>
+														</div><!--gallery_pt end-->
+													</div>
+													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+														<div class="gallery_pt">
+															<img src="/images/resources/pf-img10.jpg" alt="">
+															<a href="#" title=""><img src="/images/all-out.png" alt=""></a>
+														</div><!--gallery_pt end-->
+													</div>
+												</div>
+											</div><!--gallery_pf end-->
+										</div><!--portfolio-gallery-sec end-->
+									</div>
 
 
 									<div class="product-feed-tab" id="payment-dd">
@@ -1506,6 +1619,31 @@
 							<div class="col-lg-12">
 								<ul>
 									<li><button class="active" type="submit" value="publicar">Publicar</button></li>
+								</ul>
+							</div>
+						</div>
+					</form>
+				</div><!--post-project-fields end-->
+				<a href="#" title=""><i class="la la-times-circle-o"></i></a>
+			</div><!--post-project end-->
+		</div><!--post-project-popup end-->
+
+		<div class="post-popup pst-album">
+			<div class="post-album">
+				<h3>Nuevo Álbum</h3>
+				<div class="post-project-fields">
+					<form action="/crearNuevoAlbum" method="post" enctype="multipart/form-data">
+						<div class="row">
+							<div class="col-lg-12">
+								<input type="text" name="pf-name" placeholder="Nombre del Álbum">
+							</div>
+							<div class="col-lg-12 subir-imagen-div">
+								<button class="subir-imagen-btn"> Seleccione una imagen <i class="fa fa-upload"></i></button>
+								<input type="file" name="imagen" accept="image/*" multiple>
+							</div>
+							<div class="col-lg-12">
+								<ul>
+									<li><button class="active" type="submit" value="publicar"> Crear Álbum</button></li>
 								</ul>
 							</div>
 						</div>

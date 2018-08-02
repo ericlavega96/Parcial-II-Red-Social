@@ -140,6 +140,7 @@ nav ul li a,
 .view-more > a,
 .tags-sec ul li a,
 .post-st ul li a,
+.post-album ul li a,
 .ed-opts > a,
 .bk-links li a,
 .like-com li a,
@@ -185,6 +186,7 @@ nav ul li:hover > ul,
 .search-bar form button,
 .search_form form input,
 .post-st ul li a,
+.post-album ul li a,
 .post-bar,
 .bk-links li i,
 .bid_now,
@@ -1002,6 +1004,37 @@ main {
 .post-st ul li a:hover,
 .post-st ul li a.active {
 	background-color: #e44d3a;
+	color: #fff;
+}
+
+
+
+
+
+.post-album {
+	float: left;
+	margin-top: 5px;
+}
+.post-album ul li {
+	display: inline-block;
+	margin-right: 6px;
+}
+.post-album ul li:last-child {
+	margin-right: 0;
+}
+.post-album ul li a {
+	color: #b2b2b2;
+	font-size: 16px;
+	display: inline-block;
+	background-color: #e5e5e5;
+	height: 40px;
+	padding: 0 15px;
+	line-height: 40px;
+	font-weight: 500;
+}
+.post-album ul li a:hover,
+.post-album ul li a.active {
+	background-color: greenyellow;
 	color: #fff;
 }
 
@@ -1906,7 +1939,70 @@ main {
 .post-project-fields form ul li a:hover {
 	background-color: #e44d3a;
 	color: #fff;
-} 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ================ post-album-popup =============== */
+
+
+.post-popup {
+	width: 570px;
+	margin: 0 auto;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateX(-50%) translateY(-50%) scale(0.65);
+	-moz-transform: translateX(-50%) translateY(-50%) scale(0.65);
+	-ms-transform: translateX(-50%) translateY(-50%) scale(0.65);
+	-o-transform: translateX(-50%) translateY(-50%) scale(0.65);
+	transform: translateX(-50%) translateY(-50%) scale(0.65);
+	opacity: 0;
+	visibility: hidden;
+	z-index: 0;
+}
+.post-popup.active {
+	opacity: 1;
+	visibility: visible;
+	z-index: 999;
+	-webkit-transform: scale(1) translateX(-50%) translateY(-50%);
+}
+.post-album > a {
+	position: absolute;
+	top: -20px;
+	right: -20px;
+	color: #fff;
+	font-size: 22px;
+	cursor: pointer;
+}
+.post-album > a:hover {
+	color: #fff;
+}
+.post-album {
+	float: left;
+	width: 100%;
+	position: relative;
+}
+.post-album h3 {
+	float: left;
+	width: 100%;
+	background-color: #e44d3a;
+	color: #fff;
+	text-align: center;
+	font-size: 18px;
+	font-weight: 500;
+	padding: 20px 0;
+}
+
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #b2b2b2;
 }
@@ -3044,6 +3140,39 @@ footer {
 	width: auto;
 	height: auto;
 }
+
+.album-container{
+	opacity: 1;
+}
+.album-container:hover{
+	opacity: 0.5;
+}
+
+.album-container p{
+	width: 55%;
+	font-size: 15px;
+	text-align: center;
+	margin: auto;
+}
+
+.album-container:hover p{
+	font-size: 20px;
+}
+
+
+.album-container img{
+	width: 50%;
+	margin: 25px 36px 5px;
+}
+
+.album-container:hover img{
+	 width: 55%;
+}
+
+
+
+
+
 
 
 

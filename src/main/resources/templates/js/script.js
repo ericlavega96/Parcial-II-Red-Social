@@ -16,6 +16,19 @@ $(window).on("load", function() {
         return false;
     });
 
+    //  ============= POST ALBUM POPUP FUNCTION =========
+
+    $(".post_album").on("click", function(){
+        $(".post-popup.pst-album").addClass("active");
+        $(".wrapper").addClass("overlay");
+        return false;
+    });
+    $(".post-album > a").on("click", function(){
+        $(".post-popup.pst-album").removeClass("active");
+        $(".wrapper").removeClass("overlay");
+        return false;
+    });
+
     //  ============= POST JOB POPUP FUNCTION =========
 
     $(".post-jb").on("click", function(){
