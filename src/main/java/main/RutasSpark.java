@@ -134,19 +134,24 @@ public class RutasSpark {
             return "";
         });
 
-        post("/comentarPost/:id", (request, response) -> {
-            try {
-                String comentario = request.queryParams("comentarioNuevo");
-                Usuario autor = request.session(true).attribute("usuario");
-                Post postActual = ServiciosPost.getInstancia().find(Long.parseLong(request.params("id")));
+        get("/procesarLike/:id", (request, response) -> {
+            //try {
+                    Usuario usuario = request.session(true).attribute("usuario");
+                    String postId = request.params("id");
 
-                ComentarioPost nuevoComentario = new ComentarioPost(comentario,new Date(),autor,postActual);
-                ServiciosComentarioPost.getInstancia().crear(nuevoComentario);
-                response.redirect("/redSocial/userArea/" + autor.getCorreo() + "/perfilUsuario");
+                    if(usuario != null){
+                        Post post = ServiciosPost.getInstancia().find(Long.parseLong(postId));
+                        if(ServiciosPost.getInstancia().findUserLike(usuario,post)){
+                            ServiciosLikePost.getInstancia().deleteLike(post,usuario);
+                        }else{
+                            ServiciosLikePost.getInstancia().crear(new LikePost(post,usuario,true));
+                        }
+                        response.redirect("/redSocial/userArea/" + usuario.getCorreo() + "/perfilUsuario");
+                    }
 
-            } catch (Exception e) {
-                System.out.println("Error al publicar comentario: " + e.toString());
-            }
+            //} catch (Exception e) {
+            //    System.out.println("Error al indicar like en el post: " + e.toString());
+            //}
             return "";
         });
 

@@ -29,4 +29,21 @@ public class ServiciosPost extends MetodosDB<Post> {
         List<Post> resultado = query.getResultList();
         return resultado;
     }
+
+    public long getLikesCount(Post post){
+        EntityManager em = getEntityManager();
+        Query query = em.createQuery("select l from LikePost l WHERE l.post = :post AND l.isLike = true");
+        query.setParameter("post", post);
+        long resultado = query.getResultList().size();
+        return resultado;
+    }
+
+    public boolean findUserLike(Usuario user,Post post){
+        EntityManager em = getEntityManager();
+        Query query = em.createQuery("select l from LikePost l WHERE l.post = :post AND l.usuario = :user");
+        query.setParameter("post", post);
+        query.setParameter("user",user);
+        boolean resultado = query.getResultList().size() >= 1;
+        return resultado;
+    }
 }

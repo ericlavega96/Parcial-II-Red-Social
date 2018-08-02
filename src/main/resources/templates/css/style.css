@@ -1280,6 +1280,7 @@ main {
 	float: left;
 	margin-top: 6px;
 	margin-right: 5px;
+	cursor:pointer;
 }
 .like-com li a:hover {
 	color: #e44d3a;
@@ -1287,6 +1288,10 @@ main {
 .like-com li a.active {
 	color: #e44d3a;
 }
+.like-com li a .active{
+	color: #e44d3a;
+}
+
 .like-com li a i {
 	margin-right: 2px;
 	font-size: 17px;
@@ -1308,7 +1313,7 @@ main {
 	float: left;
 	text-align: center;
 	font-weight: 600;
-	margin-left: -25px;
+	margin: 2px -4px -8px 4px;
 }
 .like-com li .com {
 	position: relative;
