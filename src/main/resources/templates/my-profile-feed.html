@@ -39,6 +39,7 @@
 			overflow: hidden;
 			outline:none;
 		}
+
 		.inputor {
 			height: 160px;
 			width: 90%;
@@ -490,13 +491,13 @@
                                                     <div class="job-status-bar">
                                                         <ul class="like-com">
                                                             <li>
-                                                                <a href="#"><i class="la la-heart"></i> Like</a>
+                                                                <a id="like-btn" href="/procesarLike/${post.idPost}"><i class="la la-heart"></i> Like</a>
+																<span>${post.likesCount()}</span>
                                                             </li>
                                                             <li>
 																<button id="comments-btn" onclick="mostrarSeccionComentarios()"><a><img src="/images/com.png" alt=""> Comentarios</a></button>
 															</li>
                                                         </ul>
-                                                        <a><i class="la la-eye"></i>Views 50</a>
                                                     </div>
 													<div id="comentarios">
 														<#list post.listaComentariosPost as comentario>
@@ -1481,7 +1482,7 @@
 								<textarea class="textarea inputor" id="inputor" name="cuerpo" placeholder="Escriba aquí..."></textarea>
 							</div-->
 
-							<textarea class="textarea inputor" id="inputor" name="descripcion" placeholder="Descripción del post. Puedes etiquetar a algún amigo con @"></textarea>
+							<textarea class="textarea inputor" id="inputor" name="cuerpo" placeholder="Etiquete con *"></textarea>
 
                             <input type="file" name="imagen" accept="image/*">
 							<div class="col-lg-12">
@@ -1646,6 +1647,16 @@
 				seccionComentarios.style.display = "none";
 			}
 		}
+	</script>
+	<script>
+		var like = $("#like-btn");
+		like.click(function () {
+			if(like.hasClass("active")){
+			    like.removeClass("active");
+            }else{
+			    like.toggleClass("active");
+			}
+        })
 	</script>
 </body>
 <!-- Mirrored from gamboldesigns.net/Demo/HTML/my-profile-feed.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 03:36:28 GMT -->

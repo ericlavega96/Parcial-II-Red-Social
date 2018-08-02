@@ -1,6 +1,7 @@
 package logical;
 
 import com.sun.istack.internal.NotNull;
+import entidades.ServiciosPost;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -106,4 +107,7 @@ public class    Post {
     public void setFotoPost(Imagen fotoPost) {
         this.fotoPost = fotoPost;
     }
+
+
+    public long likesCount(){return ServiciosPost.getInstancia().getLikesCount(this);}
 }
