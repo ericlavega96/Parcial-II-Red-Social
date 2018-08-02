@@ -19,6 +19,7 @@ public class Main {
         ServiciosBootStrap.getInstancia().init();
         ServiciosPais.getInstancia().crearPaises();
         ServiciosUsuario.getInstancia().crearAdmin();
+        ServiciosUsuario.getInstancia().crearAmigoAdmin();
         new RutasSpark().iniciarSpark();
         new Filtros().aplicarFiltros();
     }

@@ -103,6 +103,7 @@ public class Usuario implements Serializable{
         this.empleo = empleo;
         this.fotoPerfil = fotoPerfil;
         this.admin = admin;
+        this.amigos = new HashSet<>();
     }
 
     public long getIdUsuario() {
