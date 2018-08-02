@@ -107,11 +107,4 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
             return false;
     }
 
-    /*
-    get("/json/amigos", (request, response) -> {
-            Usuario logUser = request.session(true).attribute("usuario");
-            //String correoUser = request.params("correo");
-            return ServiciosUsuario.getInstancia().amigosToJSON(logUser);
-        },  new JsonTransformer());
-     */
 }

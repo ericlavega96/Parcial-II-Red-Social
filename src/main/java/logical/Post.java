@@ -108,6 +108,13 @@ public class    Post {
         this.fotoPost = fotoPost;
     }
 
+    public Set<LikePost> getLikePosts() {
+        return likePosts;
+    }
+
+    public void setLikePosts(Set<LikePost> likePosts) {
+        this.likePosts = likePosts;
+    }
 
     public long likesCount(){return ServiciosPost.getInstancia().getLikesCount(this);}
 }

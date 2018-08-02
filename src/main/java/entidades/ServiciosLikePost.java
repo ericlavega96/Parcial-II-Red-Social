@@ -22,12 +22,15 @@ public class ServiciosLikePost extends MetodosDB<LikePost> {
     }
     public void deleteLike(Post post, Usuario user){
         EntityManager em = getEntityManager();
-        Query query = em.createQuery("select la from LikesArticulo la where la.usuario = :user AND la.psot = :post");
+        Query query = em.createQuery("select la from LikePost la where la.usuario = :user AND la.post = :post");
         query.setParameter("user", user);
         query.setParameter("post", post);
         List<LikePost> resultado = query.getResultList();
         for(LikePost la : resultado) {
-            em.remove(la.getId());
+            la.setPost(null);
+            la.setUsuario(null);
+            getInstancia().editar(la);
+            getInstancia().eliminar(la.getId());
         }
         return;
     }

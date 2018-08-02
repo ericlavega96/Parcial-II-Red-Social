@@ -4,6 +4,7 @@ import entidades.*;
 import freemarker.template.Configuration;
 import logical.*;
 import servicios.Encriptamiento;
+import servicios.JsonTransformer;
 import spark.ModelAndView;
 import spark.template.freemarker.FreeMarkerEngine;
 
@@ -154,6 +155,12 @@ public class RutasSpark {
             //}
             return "";
         });
+
+        get("/json/amigos", (request, response) -> {
+            Usuario logUser = request.session(true).attribute("usuario");
+            //String correoUser = request.params("correo");
+            return ServiciosUsuario.getInstancia().amigosToJSON(logUser);
+        },  new JsonTransformer());
 
 
     }
