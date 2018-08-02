@@ -1,14 +1,8 @@
 package main;
 
-import entidades.ServiciosImagen;
-import entidades.ServiciosPais;
-import entidades.ServiciosPost;
-import entidades.ServiciosUsuario;
+import entidades.*;
 import freemarker.template.Configuration;
-import logical.Imagen;
-import logical.Post;
-import logical.Tag;
-import logical.Usuario;
+import logical.*;
 import servicios.Encriptamiento;
 import spark.ModelAndView;
 import spark.template.freemarker.FreeMarkerEngine;
@@ -139,6 +133,23 @@ public class RutasSpark {
             }
             return "";
         });
+
+        post("/comentarPost/:id", (request, response) -> {
+            try {
+                String comentario = request.queryParams("comentarioNuevo");
+                Usuario autor = request.session(true).attribute("usuario");
+                Post postActual = ServiciosPost.getInstancia().find(Long.parseLong(request.params("id")));
+
+                ComentarioPost nuevoComentario = new ComentarioPost(comentario,new Date(),autor,postActual);
+                ServiciosComentarioPost.getInstancia().crear(nuevoComentario);
+                response.redirect("/redSocial/userArea/" + autor.getCorreo() + "/perfilUsuario");
+
+            } catch (Exception e) {
+                System.out.println("Error al publicar comentario: " + e.toString());
+            }
+            return "";
+        });
+
 
     }
 }

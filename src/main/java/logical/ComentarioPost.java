@@ -3,6 +3,7 @@ package logical;
 import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class ComentarioPost {
@@ -12,6 +13,8 @@ public class ComentarioPost {
 
     @NotNull
     private String comentario;
+
+    private Date fecha;
 
     @ManyToOne
     @JoinColumn(name = "idUsuario")
@@ -26,8 +29,9 @@ public class ComentarioPost {
     public ComentarioPost() {
     }
 
-    public ComentarioPost(String comentario, Usuario autor, Post post) {
+    public ComentarioPost(String comentario,Date fecha,Usuario autor, Post post) {
         this.comentario = comentario;
+        this.fecha = fecha;
         this.autor = autor;
         this.post = post;
     }
@@ -48,6 +52,14 @@ public class ComentarioPost {
         this.comentario = comentario;
     }
 
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
     public Usuario getAutor() {
         return autor;
     }
@@ -63,4 +75,5 @@ public class ComentarioPost {
     public void setPost(Post post) {
         this.post = post;
     }
+
 }

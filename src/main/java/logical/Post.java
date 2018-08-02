@@ -28,7 +28,7 @@ public class    Post {
     private Date fecha;
 
     @OneToMany(mappedBy = "post",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<ComentarioPost> listaComentarioPosts;
+    private Set<ComentarioPost> listaComentariosPost;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "POST_TAG", joinColumns = { @JoinColumn(name = "idPost") }, inverseJoinColumns = {
@@ -41,12 +41,12 @@ public class    Post {
     public Post() {
     }
 
-    public Post(Usuario autor, Imagen fotoPost, String cuerpo, Date fecha, Set<ComentarioPost> listaComentarioPosts, Set<Tag> listaTags, Set<LikePost> likePosts) {
+    public Post(Usuario autor, Imagen fotoPost, String cuerpo, Date fecha, Set<ComentarioPost> listaComentariosPost, Set<Tag> listaTags, Set<LikePost> likePosts) {
         this.autor = autor;
         this.fotoPost = fotoPost;
         this.cuerpo = cuerpo;
         this.fecha = fecha;
-        this.listaComentarioPosts = listaComentarioPosts;
+        this.listaComentariosPost = listaComentariosPost;
         this.listaTags = listaTags;
         this.likePosts = likePosts;
     }
@@ -83,12 +83,12 @@ public class    Post {
         this.fecha = fecha;
     }
 
-    public Set<ComentarioPost> getListaComentarioPosts() {
-        return listaComentarioPosts;
+    public Set<ComentarioPost> getListaComentariosPost() {
+        return listaComentariosPost;
     }
 
-    public void setListaComentarioPosts(Set<ComentarioPost> listaComentarioPosts) {
-        this.listaComentarioPosts = listaComentarioPosts;
+    public void setListaComentariosPost(Set<ComentarioPost> listaComentariosPost) {
+        this.listaComentariosPost = listaComentariosPost;
     }
 
     public Set<Tag> getListaTags() {

@@ -1181,6 +1181,14 @@ main {
 	padding: 0 20px 20px 20px;
 	border-bottom: 1px solid #e5e5e5;
 }
+
+.job_descp {
+	float: left;
+	width: 100%;
+	padding: 0 20px 20px 20px;
+	border-bottom: 1px solid #e5e5e5;
+}
+
 .job_descp h3 {
 	color: #000000;
 	font-size: 18px;
@@ -1522,6 +1530,8 @@ main {
 	width: 100%;
 	background-color: #fff;
 	padding: 20px;
+	border-bottom: 1px solid #e5e5e5;
+
 }
 .plus-ic {
 	float: left;
@@ -1563,7 +1573,6 @@ main {
 }
 .comment-list {
 	display: table;
-	padding-bottom: 30px;
 }
 .bg-img {
 	display: table-cell;
@@ -1624,6 +1633,7 @@ main {
 .post-comment {
 	float: left;
 	width: 100%;
+	padding: 8px 0px 10px 15px;
 }
 .cm_img {
 	float: left;
