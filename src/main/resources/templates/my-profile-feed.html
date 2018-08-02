@@ -5,6 +5,7 @@
 <!-- Mirrored from gamboldesigns.net/Demo/HTML/my-profile-feed.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 03:36:21 GMT -->
 <head>
 	<meta charset="UTF-8">
+	<meta http-equiv="x-ua-compatible" content="IE=Edge"/>
 	<title>WorkWise Html Template</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="" />
@@ -19,8 +20,7 @@
 	<link rel="stylesheet" type="text/css" href="/lib/slick/slick-theme.css">
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<link rel="stylesheet" type="text/css" href="/css/responsive.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/at.js/1.4.0/css/jquery.atwho.min.css">
-
+	<link rel="stylesheet" href="/css/jquery.atwho.css" rel="stylesheet">
 	<style>
 		#postedImage{
             display: block;
@@ -38,6 +38,21 @@
 			cursor:pointer;
 			overflow: hidden;
 			outline:none;
+		}
+		.inputor {
+			height: 160px;
+			width: 90%;
+			border: 1px solid #dadada;
+			border-radius: 4px;
+			padding: 5px 8px;
+			outline: 0 none;
+			margin: 10px 0;
+			background: white;
+			font-size: inherit;
+			overflow-y: scroll;
+		}
+		.inputor:focus {
+			border: 1px solid rgb(6, 150, 247);
 		}
 	</style>
 </head>
@@ -1462,10 +1477,12 @@
 				<div class="post-project-fields">
 					<form action="/publicarPost" method="post" enctype="multipart/form-data">
 						<div class="row">
-							<div class="input-field">
-								<input type="text" class="validate" name="titulo" placeholder="Titulo del post">
+							<!--div class="input-field">
 								<textarea class="textarea inputor" id="inputor" name="cuerpo" placeholder="Escriba aquí..."></textarea>
-							</div>
+							</div-->
+
+							<textarea class="textarea inputor" id="inputor" name="descripcion" placeholder="Descripción del post. Puedes etiquetar a algún amigo con @"></textarea>
+
                             <input type="file" name="imagen" accept="image/*">
 							<div class="col-lg-12">
 								<input class="tags-input" name="tags">
@@ -1611,17 +1628,15 @@
 
 	</div><!--theme-layout end-->
 
-
-
 	<script type="text/javascript" src="/js/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/popper.js"></script>
 	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/js/flatpickr.min.js"></script>
 	<script type="text/javascript" src="/lib/slick/slick.min.js"></script>
 	<script type="text/javascript" src="/js/script.js"></script>
-	<script type="text/javascript" src="/dist/js/jquery.atwho.js"></script>
-	<script type="text/javascript" src="/js/autoComplete.js"></script>
-	<script type="text/javascript" src="https://ichord.github.io/Caret.js/src/jquery.caret.js"></script>
+	<script type="text/javascript" src="/js/funciones-atwho.js"></script>
+	<script type="text/javascript" src="/js/jquery.atwho.js"></script>
+	<script type="text/javascript" src="/js/jquery.caret.js"></script>
 	<script>
 		function mostrarSeccionComentarios() {
 			var seccionComentarios = document.getElementById("comentarios");
