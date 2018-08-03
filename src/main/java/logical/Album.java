@@ -1,6 +1,7 @@
 package logical;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,6 +11,8 @@ public class Album {
     @GeneratedValue
     private long idAlbum;
 
+    private String nombre;
+
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "album")
     private Set<Imagen> imagenes;
 
@@ -17,7 +20,7 @@ public class Album {
     @JoinColumn(name = "usuario")
     private Usuario usuario;
 
-    private String nombre;
+    private Date fecha;
 
     private String descripcion;
 
@@ -27,11 +30,12 @@ public class Album {
     public Album() {
     }
 
-    public Album(Set<Imagen> imagenes, Usuario usuario, String nombre, String descripcion) {
-        this.imagenes = imagenes;
-        this.usuario = usuario;
+    public Album(String nombre, String descripcion,Usuario usuario,Date fecha) {
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.imagenes = new HashSet<>();
+        this.usuario = usuario;
+        this.fecha = fecha;
     }
 
     public long getIdAlbum() {
@@ -80,5 +84,13 @@ public class Album {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 }

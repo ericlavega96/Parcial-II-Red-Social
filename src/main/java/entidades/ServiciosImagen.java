@@ -38,16 +38,5 @@ public class ServiciosImagen extends MetodosDB<Imagen> {
         }
         return tempFile.getFileName().toString();
     }
-    /*
-    public String guardarFotos(String attName,File fotosDir,Request req) throws IOException, ServletException {
-        Path tempFile = null;
-        tempFile = Files.createTempFile(fotosDir.toPath(), "", ".png");
-        req.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
-        try(InputStream input = req.raw().getPart(attName).getInputStream()){
-            input.
-            Files.copy(input, tempFile, StandardCopyOption.REPLACE_EXISTING);
-        }
-        return tempFile.getFileName().toString();
-    }
-    */
+
 }

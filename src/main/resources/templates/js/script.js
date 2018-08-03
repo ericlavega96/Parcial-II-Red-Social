@@ -29,6 +29,19 @@ $(window).on("load", function() {
         return false;
     });
 
+    //  ============= POST FOTO POPUP FUNCTION =========
+
+    $(".post_foto").on("click", function(){
+        $(".post-popup.pst-foto").addClass("active");
+        $(".wrapper").addClass("overlay");
+        return false;
+    });
+    $(".post-foto > a").on("click", function(){
+        $(".post-popup.pst-foto").removeClass("active");
+        $(".wrapper").removeClass("overlay");
+        return false;
+    });
+
     //  ============= POST JOB POPUP FUNCTION =========
 
     $(".post-jb").on("click", function(){

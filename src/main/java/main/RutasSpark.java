@@ -78,7 +78,10 @@ public class RutasSpark {
             attributes.put("ciudad_origen", user.getCiudad());
             attributes.put("lugar_estudio", user.getLugarDeEstudio());
             attributes.put("trabajo", user.getEmpleo());
-            attributes.put("albumes", user.getAlbumes());
+            attributes.put("albumes", ServiciosAlbum.getInstancia().findAlbumsByUser(logUser));
+            for (Album album : ServiciosAlbum.getInstancia().findAlbumsByUser(logUser)){
+                System.out.println("Album cargado: " + String.valueOf(album.getIdAlbum()));
+            }
             for (Post post: ServiciosPost.getInstancia().findByAuthor(logUser)){
                 System.out.println(post.getCuerpo());
             }
@@ -236,29 +239,43 @@ public class RutasSpark {
             return "";
         });
 
-         /* post("/crearNuevoAlbum", (request, response) -> {
+         post("/crearNuevoAlbum", (request, response) -> {
             try {
-                String[] imagenesRutas = (ServiciosImagen.getInstancia().guardarFoto("imagen",fotosDir,request));
-                Imagen imagen = null;
-                System.out.println(request.queryParams("imagen"));
-                if(imagenRuta != null){
-                    System.out.println("Entró para guardar la imagen");
-                    imagen = new Imagen(imagenRuta,null,null);
-                }
+                String nombreAlbum = request.queryParams("nombreAlbum");
+                String descripcion = request.queryParams("descripcion");
                 Usuario logUser = request.session(true).attribute("usuario");
-                String cuerpo = request.queryParams("cuerpo");
-                String tags = request.queryParams("tags");
-                Set<Tag> postEtiquetas = Tag.crearEtiquetas(tags.split(","));
-                Post nuevoPost = new Post(logUser,imagen,cuerpo,new Date(),null,postEtiquetas,null);
-                ServiciosPost.getInstancia().crear(nuevoPost);
+
+                Album nuevoAlbum = new Album(nombreAlbum,descripcion,logUser,null);
+                ServiciosAlbum.getInstancia().editar(nuevoAlbum);
+
                 response.redirect("/redSocial/userArea/" + logUser.getCorreo() + "/perfilUsuario");
             } catch (Exception e) {
-                System.out.println("Error al realizar post" + e.toString());
+                System.out.println("Error al crear album" + e.toString());
             }
             return "";
-        }); */
+        });
 
+        post("/insertarImagenAlbum/:idAlbum", (request, response) -> {
+            try {
+                String imagenRuta = (ServiciosImagen.getInstancia().guardarFoto("fotoAlbum",fotosDir,request));
+                String idAlbum = request.params("idAlbum");
+                Album albumActual = ServiciosAlbum.getInstancia().find(Long.valueOf(idAlbum));
 
+                Imagen imagen = null;
+                if(imagenRuta != null){
+                    imagen = new Imagen(imagenRuta,albumActual,null);
+                    albumActual.getImagenes().add(imagen);
+                }
+                Usuario logUser = request.session(true).attribute("usuario");
+
+                ServiciosAlbum.getInstancia().editar(albumActual);
+
+                response.redirect("/redSocial/userArea/" + logUser.getCorreo() + "/perfilUsuario");
+            } catch (Exception e) {
+                System.out.println("Error al realizar insertar imagen en el album" + e.toString());
+            }
+            return "";
+        });
 
     }
 }
