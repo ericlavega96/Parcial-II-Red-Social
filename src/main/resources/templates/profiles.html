@@ -250,12 +250,13 @@
 								<div class="company-up-info">
 									<img src="/images/resources/pf-icon1.png" alt="">
 									<h3>${amigo.nombres} ${amigo.apellidos}</h3>
-									<h4>${amigo.ciudad}, ${amigo.pais}</h4>
+									<h4>${amigo.ciudad}, ${amigo.pais.getPais()}</h4>
 									<ul>
-										<li><ahref = "/redSocial/userArea/${usuario.correo}/eliminarAmigo?amigo=${amigo.correo}" title="" class="hire-us">Eliminar Amigo</a></li>
+										<li><a href =
+													   "/redSocial/userArea/${logUser.correo}/eliminarAmigo?amigo=${amigo.correo}" title="" class="hire-us">Eliminar Amigo</a></li>
 									</ul>
 								</div>
-								<a href="redSocial/perfil/${amigo.correo}/perfilUsuario" title="" class="view-more-pro">View Profile</a>
+								<a href="/redSocial/perfil/${amigo.correo}/perfilUsuario" title="" class="view-more-pro">View Profile</a>
 							</div><!--company_profile_info end-->
 						</div>
 					</#list>
@@ -266,7 +267,10 @@
 									<img src="/images/resources/pf-icon1.png" alt="">
 									<h3>${user.nombres} ${user.apellidos}</h3>
 									<h4>${user.ciudad}, ${user.pais.getPais()}</h4>
-									<li><a href="#" title="" class="follow">Añadir Amigo</a></li>
+									<ul>
+										<li><a
+												href="/redSocial/userArea/${logUser.correo}/enviarRequest?amigo=${user.correo}" title="" class="follow">Añadir Amigo</a></li>
+									</ul>
 								</div>
 								<a href="/redSocial/perfil/${user.correo}/perfilUsuario" title=""
 								   class="view-more-pro">Ver Perfil</a>
