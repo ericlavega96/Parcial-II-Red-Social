@@ -6,6 +6,7 @@ import logical.*;
 import servicios.Encriptamiento;
 import servicios.JsonTransformer;
 import spark.ModelAndView;
+import spark.Session;
 import spark.template.freemarker.FreeMarkerEngine;
 
 import java.io.File;
@@ -181,7 +182,9 @@ public class RutasSpark {
             Usuario user = ServiciosUsuario.getInstancia().find(logUser.getIdUsuario());
             attributes.put("logUser",logUser);
             attributes.put("amigos", user.getAmigos());
-            attributes.put("otrosUsuarios",ServiciosUsuario.getInstancia().findNoAmigos(user));
+            attributes.put("otrosUsuarios",
+                    ServiciosUsuario.getInstancia().findNoAmigos(user,ServiciosUsuario
+                    .getInstancia().findAll()));
             return new ModelAndView(attributes, "profiles.html");
         }, freeMarkerEngine);
 
@@ -216,6 +219,9 @@ public class RutasSpark {
             attributes.put("lugar_estudio", user.getLugarDeEstudio());
             attributes.put("trabajo", user.getEmpleo());
             attributes.put("albumes", user.getAlbumes());
+            attributes.put("sugerencias",
+                    ServiciosUsuario.getInstancia().findNoAmigos(logUser,
+                            ServiciosUsuario.getInstancia().findSugerencia(logUser)));
             for (Post post: ServiciosPost.getInstancia().findByAuthor(logUser)){
                 System.out.println(post.getCuerpo());
             }
@@ -338,15 +344,26 @@ public class RutasSpark {
             return "";
         });
 
-        get("/visualizarImagen/:idAlbum/:imagen", (request, response) -> {
+        get("/logout", (request, response) ->
+        {
+            Session ses = request.session(true);
+            ses.invalidate();
+            response.removeCookie("sr5h464h846s4dhds4h6w9uyh");
+            response.redirect("/");
+            return "";
+        });
+
+        get("redSocial/admin/:correo/zonaAdmin", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
             Usuario logUser = request.session(true).attribute("usuario");
-            String imagen = request.params("imagen");
-            attributes.put("logUser",logUser);
-            attributes.put("foto",imagen);
-            return new ModelAndView(attributes, "messages.html");
-        }, freeMarkerEngine);
 
+            String correoUser = request.params("correo");
+            Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
+            attributes.put("logUser",logUser);
+            attributes.put("usuario",user);
+            attributes.put("listaUsuarios",ServiciosUsuario.getInstancia().findAll());
+            return new ModelAndView(attributes, "admin-cuentas.html");
+        }, freeMarkerEngine);
 
     }
 }
