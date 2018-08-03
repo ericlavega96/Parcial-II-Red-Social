@@ -109,27 +109,30 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
 
     public List<Usuario> findNoAmigos(Usuario user){
         List<Usuario> resultado = new ArrayList<>();
-        for(Usuario u : getInstancia().findAll())
-            for(Usuario a : user.getAmigos())
-                if(!u.getCorreo().equals(a.getCorreo()) && !u.getCorreo().equals(user.getCorreo()))
-                        resultado.add(u);
+        if(user.getAmigos().size() > 0){
+            for(Usuario u : getInstancia().findAll())
+                for(Usuario a : user.getAmigos())
+                    if(!u.getCorreo().equals(a.getCorreo()) && !u.getCorreo().equals(user.getCorreo()))
+                            resultado.add(u);
+        }
+        else {
+            for (Usuario u : getInstancia().findAll())
+                if (!u.getCorreo().equals(user.getCorreo()))
+                    resultado.add(u);
+        }
+        for(Usuario u : resultado)
+            System.out.println("No amigo: " + u.getCorreo());
         return resultado;
     }
 
     public boolean deleteAmistad(Usuario usuario, Usuario amigo){
-        /*EntityManager em = getEntityManager();
-        Query query = em.createNativeQuery(
-                "DELETE FROM AMISTADES WHERE USUARIO="+usuario.getIdUsuario()+
-                        " AND AMIGO="+amigo.getIdUsuario());
-        Usuario resultado = (Usuario)query.getSingleResult();
-        return resultado;*/
-        for(Usuario a : usuario.getAmigos())
+       for(Usuario a : usuario.getAmigos())
             if(a.getIdUsuario() == amigo.getIdUsuario()) {
                 usuario.getAmigos().remove(a);
                 getInstancia().editar(usuario);
                 return true;
             }
-        return false;
+       return false;
     }
 
 }

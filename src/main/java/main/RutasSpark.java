@@ -178,11 +178,10 @@ public class RutasSpark {
             Map<String, Object> attributes = new HashMap<>();
             Usuario logUser = request.session(true).attribute("usuario");
 
-            String correoUser = request.params("correo");
-            Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
+            Usuario user = ServiciosUsuario.getInstancia().find(logUser.getIdUsuario());
             attributes.put("logUser",logUser);
-            attributes.put("amigos", logUser.getAmigos());
-            attributes.put("otrosUsuarios",ServiciosUsuario.getInstancia().findNoAmigos(logUser));
+            attributes.put("amigos", user.getAmigos());
+            attributes.put("otrosUsuarios",ServiciosUsuario.getInstancia().findNoAmigos(user));
             return new ModelAndView(attributes, "profiles.html");
         }, freeMarkerEngine);
 
@@ -238,6 +237,68 @@ public class RutasSpark {
             }
             return "";
         });
+
+        get("/redSocial/userArea/:correo/enviarRequest", (request, response) -> {
+            String correoUser = request.params("correo");
+            String correoAmigo = request.queryParams("amigo");
+            Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
+            Usuario amigo = ServiciosUsuario.getInstancia().findByEmail(correoAmigo);
+            if(user==null || amigo==null)
+                response.redirect("/");
+            else{
+                ServiciosSolicitudAmistad.getInstancia().crearRequest(user,amigo);
+                response.redirect("/redSocial/perfil/"+correoUser+"/perfilUsuario");
+            }
+            return "";
+        });
+
+        post("/redSocial/userArea/:correo/rechazarRequest", (request, response) -> {
+            String correoUser = request.params("correo");
+            long idRequest = Long.parseLong(request.queryParams("solicitud"));
+            SolicitudAmistad solicitud = ServiciosSolicitudAmistad.getInstancia().find(idRequest);
+            Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
+            Usuario amigo = solicitud.getEmisor();
+            if(user==null || amigo==null)
+                response.redirect("/");
+            else{
+                ServiciosSolicitudAmistad.getInstancia().eliminar(solicitud.getIdSolicitud());
+                response.redirect("/redSocial/userArea/"+correoUser+"/settings");
+            }
+            return "";
+        });
+
+        post("/redSocial/userArea/:correo/aceptarRequets", (request, response) -> {
+            String correoUser = request.params("correo");
+            long idRequest = Long.parseLong(request.queryParams("solicitud"));
+            SolicitudAmistad solicitud = ServiciosSolicitudAmistad.getInstancia().find(idRequest);
+
+            Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
+            Usuario amigo = solicitud.getEmisor();
+            if(user==null || amigo==null)
+                response.redirect("/");
+            else{
+                user.getAmigos().add(amigo);
+                amigo.getAmigos().add(user);
+                ServiciosUsuario.getInstancia().editar(user);
+                ServiciosSolicitudAmistad.getInstancia().eliminar(solicitud.getIdSolicitud());
+                response.redirect("/redSocial/userArea/"+correoUser+"/settings");
+            }
+            return "";
+        });
+
+        get("/redSocial/userArea/:correo/settings", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            Usuario logUser = request.session(true).attribute("usuario");
+            String correoUser = request.params("correo");
+            Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
+            attributes.put("logUser",logUser);
+            attributes.put("usuario",user);
+            attributes.put("solicitudes",user.getSolicitudesRecibidas());
+            for (Post post: ServiciosPost.getInstancia().findByAuthor(logUser)){
+                System.out.println(post.getCuerpo());
+            }
+            return new ModelAndView(attributes, "profile-account-setting.html");
+        }, freeMarkerEngine);
 
          post("/crearNuevoAlbum", (request, response) -> {
             try {
