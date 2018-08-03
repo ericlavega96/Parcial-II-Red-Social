@@ -46,24 +46,33 @@
 							<li>
 								<a href="/redSocial/listaUsuarios" title="">
 									<span><img src="/images/icon4.png" alt=""></span>
-									Profiles
+									Usuarios
 								</a>
+							</li>
+							<li>
+								<a href="#" title="" class="not-box-open">
+									<span><img src="/images/icon7.png" alt=""></span>
+									Notificaciones
+								</a>
+								<div class="notification-box">
+									<div class="nott-list">
+										<#list logUser.timeline as notificacion>
+											<div class="notfication-details">
+												<div class="notification-info">
+													<h3>${notificacion.actividad}</h3>
+													<br>
+													<span><h2>${notificacion.getFechaString()}</h2></span>
+												</div><!--notification-info -->
+											</div>
+										</#list>
+									</div><!--nott-list end-->
+								</div><!--notification-box end-->
 							</li>
 							<li>
 								<a href="/redSocial/userArea/${logUser.correo}/settings" title="">
 									<span><img src="/images/icon3.png" alt=""></span>
 									Configuración
 								</a>
-							</li>
-							<li>
-								<a href="companies.html" title="">
-									<span><img src="/images/icon2.png" alt=""></span>
-									Companies
-								</a>
-								<ul>
-									<li><a href="companies.html" title="">Companies</a></li>
-									<li><a href="company-profile.html" title="">Company Profile</a></li>
-								</ul>
 							</li>
 							<#if logUser.admin>
 								<li>
@@ -73,106 +82,6 @@
 									</a>
 								</li>
 							</#if>
-							<li>
-								<a href="#" title="" class="not-box-open">
-									<span><img src="/images/icon6.png" alt=""></span>
-									Messages
-								</a>
-								<div class="notification-box msg">
-									<div class="nt-title">
-										<h4>Setting</h4>
-										<a href="#" title="">Clear all</a>
-									</div>
-									<div class="nott-list">
-										<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="/images/resources/ny-img1.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="messages.html" title="">Jassica William</a> </h3>
-							  					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</p>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="/images/resources/ny-img2.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="messages.html" title="">Jassica William</a></h3>
-							  					<p>Lorem ipsum dolor sit amet.</p>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="/images/resources/ny-img3.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="messages.html" title="">Jassica William</a></h3>
-							  					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut labore et dolore magna aliqua.</p>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="view-all-nots">
-						  					<a href="messages.html" title="">View All Messsages</a>
-						  				</div>
-									</div><!--nott-list end-->
-								</div><!--notification-box end-->
-							</li>
-							<li>
-								<a href="#" title="" class="not-box-open">
-									<span><img src="/images/icon7.png" alt=""></span>
-									Notification
-								</a>
-								<div class="notification-box">
-									<div class="nt-title">
-										<h4>Setting</h4>
-										<a href="#" title="">Clear all</a>
-									</div>
-									<div class="nott-list">
-										<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="/images/resources/ny-img1.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="/images/resources/ny-img2.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="/images/resources/ny-img3.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="notfication-details">
-							  				<div class="noty-user-img">
-							  					<img src="/images/resources/ny-img2.png" alt="">
-							  				</div>
-							  				<div class="notification-info">
-							  					<h3><a href="#" title="">Jassica William</a> Comment on your project.</h3>
-							  					<span>2 min ago</span>
-							  				</div><!--notification-info -->
-						  				</div>
-						  				<div class="view-all-nots">
-						  					<a href="#" title="">View All Notification</a>
-						  				</div>
-									</div><!--nott-list end-->
-								</div><!--notification-box end-->
-							</li>
 						</ul>
 					</nav><!--nav end-->
 					<div class="menu-btn">
@@ -239,46 +148,7 @@
 													<span><a href="/redSocial/userArea/${logUser.correo}/enviarRequest?amigo=${sugerencia.correo}"><i class="la la-plus"></i></a></span>
 												</div>
 											</#list>
-											<div class="suggestion-usd">
-												<img src="/images/resources/s2.png" alt="">
-												<div class="sgt-text">
-													<h4>John Doe</h4>
-													<span>PHP Developer</span>
-												</div>
-												<span><i class="la la-plus"></i></span>
-											</div>
-											<div class="suggestion-usd">
-												<img src="/images/resources/s3.png" alt="">
-												<div class="sgt-text">
-													<h4>Poonam</h4>
-													<span>Wordpress Developer</span>
-												</div>
-												<span><i class="la la-plus"></i></span>
-											</div>
-											<div class="suggestion-usd">
-												<img src="/images/resources/s4.png" alt="">
-												<div class="sgt-text">
-													<h4>Bill Gates</h4>
-													<span>C & C++ Developer</span>
-												</div>
-												<span><i class="la la-plus"></i></span>
-											</div>
-											<div class="suggestion-usd">
-												<img src="/images/resources/s5.png" alt="">
-												<div class="sgt-text">
-													<h4>Jessica William</h4>
-													<span>Graphic Designer</span>
-												</div>
-												<span><i class="la la-plus"></i></span>
-											</div>
-											<div class="suggestion-usd">
-												<img src="/images/resources/s6.png" alt="">
-												<div class="sgt-text">
-													<h4>John Doe</h4>
-													<span>PHP Developer</span>
-												</div>
-												<span><i class="la la-plus"></i></span>
-											</div>
+
 											<div class="view-more">
 												<a href="#" title="">View More</a>
 											</div>
@@ -289,16 +159,10 @@
 							<div class="col-lg-6">
 								<div class="main-ws-sec">
 									<div class="user-tab-sec">
-										<h3>John Doe</h3>
+										<h3>${logUser.nombres} ${logUser.apellidos}</h3>
 										<div class="star-descp">
-											<span>Graphic Designer at Self Employed</span>
-											<ul>
-												<li><i class="fa fa-star"></i></li>
-												<li><i class="fa fa-star"></i></li>
-												<li><i class="fa fa-star"></i></li>
-												<li><i class="fa fa-star"></i></li>
-												<li><i class="fa fa-star-half-o"></i></li>
-											</ul>
+											<span>${logUser.ciudad} ${logUser.pais.getPais()}</span>
+
 										</div><!--star-descp end-->
 										<div class="tab-feed">
 											<ul>
@@ -615,35 +479,7 @@
 									</div><!-- #fin - Tab Album-->
 
 
-							<div class="col-lg-3">
-								<div class="right-sidebar">
-									<div class="message-btn">
-										<a href="#" title=""><i class="fa fa-envelope"></i> Message</a>
-									</div>
-									<div class="widget widget-portfolio">
-										<div class="wd-heady">
-											<h3>Portfolio</h3>
-											<img src="/images/photo-icon.png" alt="">
-										</div>
-										<div class="pf-gallery">
-											<ul>
-												<li><a href="#" title=""><img src="/images/resources/pf-gallery1.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="/images/resources/pf-gallery2.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="/images/resources/pf-gallery3.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="/images/resources/pf-gallery4.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="/images/resources/pf-gallery5.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="/images/resources/pf-gallery6.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="/images/resources/pf-gallery7.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="/images/resources/pf-gallery8.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="/images/resources/pf-gallery9.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="/images/resources/pf-gallery10.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="/images/resources/pf-gallery11.png" alt=""></a></li>
-												<li><a href="#" title=""><img src="/images/resources/pf-gallery12.png" alt=""></a></li>
-											</ul>
-										</div><!--pf-gallery end-->
-									</div><!--widget-portfolio end-->
-								</div><!--right-sidebar end-->
-							</div>
+
 						</div>
 					</div><!-- main-section-data end-->
 				</div> 
