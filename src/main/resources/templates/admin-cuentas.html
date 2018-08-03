@@ -421,22 +421,22 @@
 									<div class="tablaContainer">
 										<table>
 											<tr>
-												<th>Username</th><th>Nombre del Usuario</th><th>Contraseña</th><th>Permiso</th>
+												<th>ID</th><th>Nombre Completo</th><th>Contraseña</th><th>Permiso
+											</th>
 											</tr>
 											<tr>
 												<#list listaUsuarios as usuario>
 											<tr>
 												<td>${usuario.idUsuario}</td>
 												<td>${usuario.nombres} ${usuario.apellidos}</td>
-												<td>${usuario.password}</td>
 												<td>${usuario.correo}</td>
-												<#if usuario.administrador>
-												<td>Administrador</td>
-												<#elseif usuario.autor>
-												<td>Autor</td>
+												<td>${usuario.password}</td>
+
+												<#if usuario.admin>
+													<td>Administrador</td>
 												<#else>
-												<td>Ninguno</td>
-											</#if>
+													<td> - </td>
+												</#if>
 											<td><a href="/visualizarUsuario?id=${usuario.username}" class="button">Visualizar</a></td>
 											<td><a href="/editarUsuario?id=${usuario.username}" class="button">Editar</a></td>
 											<td><a href="/eliminarUsuario?id=${usuario.username}" class="button">Eliminar</a></td>
