@@ -4,6 +4,8 @@ import logical.Imagen;
 import servicios.MetodosDB;
 import spark.Request;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletException;
 import java.io.File;
@@ -37,6 +39,14 @@ public class ServiciosImagen extends MetodosDB<Imagen> {
             Files.copy(input, tempFile, StandardCopyOption.REPLACE_EXISTING);
         }
         return tempFile.getFileName().toString();
+    }
+
+    public long getLikesCount(Imagen imagen){
+        EntityManager em = getEntityManager();
+        Query query = em.createQuery("select i from LikeImagen i WHERE i.imagen = :imagen AND i.isLike = true");
+        query.setParameter("imagen", imagen);
+        long resultado = query.getResultList().size();
+        return resultado;
     }
 
 }

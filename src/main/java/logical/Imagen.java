@@ -1,6 +1,8 @@
 package logical;
 
 import com.google.gson.annotations.Expose;
+import entidades.ServiciosImagen;
+import entidades.ServiciosPost;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -72,4 +74,6 @@ public class Imagen {
     public void setListaComentarioFoto(Set<ComentarioFoto> listaComentarioFoto) {
         this.listaComentarioFoto = listaComentarioFoto;
     }
+
+    public long likesCount(){return ServiciosImagen.getInstancia().getLikesCount(this);}
 }

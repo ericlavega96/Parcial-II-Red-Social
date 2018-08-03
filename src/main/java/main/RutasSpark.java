@@ -365,5 +365,14 @@ public class RutasSpark {
             return new ModelAndView(attributes, "admin-cuentas.html");
         }, freeMarkerEngine);
 
+        get("/visualizarImagen/:idAlbum/:idImagen", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            Usuario logUser = request.session(true).attribute("usuario");
+            String idImagen = request.params("idImagen");
+            attributes.put("logUser",logUser);
+            attributes.put("foto",ServiciosImagen.getInstancia().find(Long.valueOf(idImagen)));
+            return new ModelAndView(attributes, "visualizarFotoAlbum.html");
+        }, freeMarkerEngine);
+
     }
 }
