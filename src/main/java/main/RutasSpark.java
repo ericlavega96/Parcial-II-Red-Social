@@ -12,9 +12,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-import static spark.Spark.get;
-import static spark.Spark.post;
-import static spark.Spark.staticFiles;
+import static spark.Spark.*;
 
 public class RutasSpark {
     public void iniciarSpark() {
@@ -38,7 +36,7 @@ public class RutasSpark {
         get("/login", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
             attributes.put("titulo","Login");
-            attributes.put("paises",ServiciosPais.getInstancia().findAll());
+            attributes.put("paises",ServiciosPais.getInstancia().findAllOrdenado());
             return new ModelAndView(attributes, "sign-in.html");
         }, freeMarkerEngine);
 
@@ -63,6 +61,7 @@ public class RutasSpark {
 
             } catch (Exception e) {
                 System.out.println("Error al intentar iniciar sesión " + e.toString());
+                response.redirect("/login");
             }
             return "";
         });
@@ -172,11 +171,93 @@ public class RutasSpark {
             return "";
         });
 
+        get("/redSocial/listaUsuarios", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            Usuario logUser = request.session(true).attribute("usuario");
+
+            String correoUser = request.params("correo");
+            Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
+            attributes.put("logUser",logUser);
+            attributes.put("amigos", logUser.getAmigos());
+            attributes.put("otrosUsuarios",ServiciosUsuario.getInstancia().findNoAmigos(logUser));
+            return new ModelAndView(attributes, "profiles.html");
+        }, freeMarkerEngine);
+
+        get("redSocial/userArea/:correo/amigos", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            Usuario logUser = request.session(true).attribute("usuario");
+
+            String correoUser = request.params("correo");
+            Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
+            attributes.put("logUser",logUser);
+            attributes.put("usuario",user);
+            return new ModelAndView(attributes, "amigos.html");
+        }, freeMarkerEngine);
+
         get("/json/amigos", (request, response) -> {
             Usuario logUser = request.session(true).attribute("usuario");
             //String correoUser = request.params("correo");
             return ServiciosUsuario.getInstancia().amigosToJSON(logUser);
         },  new JsonTransformer());
+
+        get("redSocial/perfil/:correo/perfilUsuario", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            Usuario logUser = request.session(true).attribute("usuario");
+            String correoUser = request.params("correo");
+            Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
+            attributes.put("logUser",logUser);
+            attributes.put("usuario",user);
+            attributes.put("posts",ServiciosPost.getInstancia().findByAuthor(logUser));
+            attributes.put("fecha_nacimiento", user.getFechaNacimiento());
+            attributes.put("pais_origen", user.getPais().getPais());
+            attributes.put("ciudad_origen", user.getCiudad());
+            attributes.put("lugar_estudio", user.getLugarDeEstudio());
+            attributes.put("trabajo", user.getEmpleo());
+            attributes.put("albumes", user.getAlbumes());
+            for (Post post: ServiciosPost.getInstancia().findByAuthor(logUser)){
+                System.out.println(post.getCuerpo());
+            }
+            return new ModelAndView(attributes, "user-profile.html");
+        }, freeMarkerEngine);
+
+        get("/redSocial/userArea/:correo/eliminarAmigo", (request, response) -> {
+            String correoUser = request.params("correo");
+            String correoAmigo = request.queryParams("amigo");
+            Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
+            Usuario amigo = ServiciosUsuario.getInstancia().findByEmail(correoAmigo);
+            if(user==null || amigo==null)
+                response.redirect("/");
+            else{
+                ServiciosUsuario.getInstancia().deleteAmistad(user,amigo);
+                ServiciosUsuario.getInstancia().deleteAmistad(amigo,user);
+                ServiciosUsuario.getInstancia().editar(user);
+                response.redirect("/redSocial/userArea/"+correoUser+"/amigos");
+            }
+            return "";
+        });
+
+         /* post("/crearNuevoAlbum", (request, response) -> {
+            try {
+                String[] imagenesRutas = (ServiciosImagen.getInstancia().guardarFoto("imagen",fotosDir,request));
+                Imagen imagen = null;
+                System.out.println(request.queryParams("imagen"));
+                if(imagenRuta != null){
+                    System.out.println("Entró para guardar la imagen");
+                    imagen = new Imagen(imagenRuta,null,null);
+                }
+                Usuario logUser = request.session(true).attribute("usuario");
+                String cuerpo = request.queryParams("cuerpo");
+                String tags = request.queryParams("tags");
+                Set<Tag> postEtiquetas = Tag.crearEtiquetas(tags.split(","));
+                Post nuevoPost = new Post(logUser,imagen,cuerpo,new Date(),null,postEtiquetas,null);
+                ServiciosPost.getInstancia().crear(nuevoPost);
+                response.redirect("/redSocial/userArea/" + logUser.getCorreo() + "/perfilUsuario");
+            } catch (Exception e) {
+                System.out.println("Error al realizar post" + e.toString());
+            }
+            return "";
+        }); */
+
 
 
     }

@@ -58,6 +58,14 @@ public class ServiciosPais extends MetodosDB<Pais> {
         return resultado;
     }
 
+    public List<Pais> findAllOrdenado(){
+        EntityManager em = getEntityManager();
+        Query query = em.createQuery("select p from Pais p order by p.pais");
+
+        List<Pais> resultado = query.getResultList();
+        return resultado;
+    }
+
 
 
 
