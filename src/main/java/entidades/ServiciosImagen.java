@@ -1,6 +1,7 @@
 package entidades;
 
 import logical.Imagen;
+import logical.Usuario;
 import servicios.MetodosDB;
 import spark.Request;
 
@@ -46,6 +47,15 @@ public class ServiciosImagen extends MetodosDB<Imagen> {
         Query query = em.createQuery("select i from LikeImagen i WHERE i.imagen = :imagen AND i.isLike = true");
         query.setParameter("imagen", imagen);
         long resultado = query.getResultList().size();
+        return resultado;
+    }
+
+    public boolean findUserLike(Usuario user, Imagen imagen){
+        EntityManager em = getEntityManager();
+        Query query = em.createQuery("select l from LikeImagen l WHERE l.imagen = :imagen AND l.usuario = :user");
+        query.setParameter("imagen", imagen);
+        query.setParameter("user",user);
+        boolean resultado = query.getResultList().size() >= 1;
         return resultado;
     }
 

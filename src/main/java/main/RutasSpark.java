@@ -9,9 +9,11 @@ import spark.ModelAndView;
 import spark.Session;
 import spark.template.freemarker.FreeMarkerEngine;
 
+import java.awt.*;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.List;
 
 import static spark.Spark.*;
 
@@ -374,6 +376,48 @@ public class RutasSpark {
             attributes.put("foto",ServiciosImagen.getInstancia().find(Long.valueOf(idImagen)));
             return new ModelAndView(attributes, "visualizarFotoAlbum.html");
         }, freeMarkerEngine);
+
+
+        get("/procesarLikeFoto/:idAlbum/:idImagen", (request, response) -> {
+            try {
+                Usuario usuario = request.session(true).attribute("usuario");
+                String imagenId = request.params("idImagen");
+                String albumFoto = request.params("idAlbum");
+
+                if(usuario != null){
+                    Imagen imagen = ServiciosImagen.getInstancia().find(Long.parseLong(imagenId));
+                    if(ServiciosImagen.getInstancia().findUserLike(usuario,imagen)){
+                        ServiciosLikeImagen.getInstancia().deleteLike(imagen,usuario);
+                    }else{
+                        ServiciosLikeImagen.getInstancia().crear(new LikeImagen(imagen,usuario,true));
+                    }
+                    response.redirect("/visualizarImagen/" + albumFoto + "idAlbum/" + imagenId);
+                }
+
+            } catch (Exception e) {
+                System.out.println("Error al indicar like en la foto: " + e.toString());
+            }
+            return "";
+        });
+
+        post("/comentarFoto/:idAlbum/:idImagen", (request, response) -> {
+            try {
+                String comentario = request.queryParams("comentarioNuevo");
+                Usuario autor = request.session(true).attribute("usuario");
+                Imagen imagenActual = ServiciosImagen.getInstancia().find(Long.parseLong(request.params("idImagen")));
+                String imagenId = request.params("idImagen");
+                String albumFoto = request.params("idAlbum");
+
+                ComentarioFoto nuevoComentario = new ComentarioFoto(comentario,new Date(),autor,imagenActual);
+                ServiciosComentarioFoto.getInstancia().crear(nuevoComentario);
+                response.redirect("/visualizarImagen/" + albumFoto + "idAlbum/" + imagenId);
+
+            } catch (Exception e) {
+                System.out.println("Error al publicar comentario en la foto: " + e.toString());
+            }
+            return "";
+        });
+
 
     }
 }

@@ -4,21 +4,31 @@
 
 <!-- Mirrored from gamboldesigns.net/Demo/HTML/visualizarFotoAlbum.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 03:36:28 GMT -->
 <head>
-<meta charset="UTF-8">
-<title>WorkWise Html Template</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="" />
-<meta name="keywords" content="" />
-<link rel="stylesheet" type="text/css" href="/css/animate.css">
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="/css/line-awesome.css">
-<link rel="stylesheet" type="text/css" href="/css/line-awesome-font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="/css/jquery.mCustomScrollbar.min.css">
-<link rel="stylesheet" type="text/css" href="/lib/slick/slick.css">
-<link rel="stylesheet" type="text/css" href="/lib/slick/slick-theme.css">
-<link rel="stylesheet" type="text/css" href="/css/style.css">
-<link rel="stylesheet" type="text/css" href="/css/responsive.css">
+	<meta charset="UTF-8">
+	<title>WorkWise Html Template</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" type="text/css" href="/css/animate.css">
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/line-awesome.css">
+	<link rel="stylesheet" type="text/css" href="/css/line-awesome-font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" type="text/css" href="/lib/slick/slick.css">
+	<link rel="stylesheet" type="text/css" href="/lib/slick/slick-theme.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/responsive.css">
+	<style>
+		#comments-btn{
+			background-color: Transparent;
+			background-repeat:no-repeat;
+			border: none;
+			cursor:pointer;
+			overflow: hidden;
+			outline:none;
+		}
+	</style>
 </head>
 
 
@@ -232,7 +242,7 @@
 			</div>
 		</header><!--header end-->
 		<div class="posty">
-			<div class="post-bar no-margin">
+			<div class="post-bar">
 				<div class="post_topbar">
 					<div class="foto-section">
 						<div class="foto">
@@ -243,75 +253,48 @@
 				<div class="job-status-bar">
 					<ul class="like-com">
 						<li>
-							<a id="like-btn" href="/procesarLikeFoto/${foto}"><i class="la la-heart"></i> Like</a>
-							<span>25</span>
+							<a id="like-btn" href="/procesarLikeFoto/${foto.album.idAlbum}/${foto.idImagen}"><i class="la la-heart"></i> Like</a>
+							<span>${foto.likesCount()}</span>
 						</li>
 						<li>
 							<button id="comments-btn" onclick="mostrarSeccionComentarios()"><a><img src="/images/com.png" alt=""> Comentarios</a></button>
 						</li>
 					</ul>
-				</div>			</div><!--post-bar end-->
-			<div class="comment-section">
-				<div class="plus-ic">
-					<i class="la la-plus"></i>
 				</div>
-				<div class="comment-sec">
-					<ul>
-						<li>
-							<div class="comment-list">
-								<div class="bg-img">
-									<img src="/images/resources/bg-img1.png" alt="">
-								</div>
-								<div class="comment">
-									<h3>John Doe</h3>
-									<span><img src="/images/clock.png" alt=""> 3 min ago</span>
-									<p>Lorem ipsum dolor sit amet, </p>
-									<a href="#" title="" class="active"><i class="fa fa-reply-all"></i>Reply</a>
-								</div>
-							</div><!--comment-list end-->
-							<ul>
-								<li>
-									<div class="comment-list">
-										<div class="bg-img">
-											<img src="/images/resources/bg-img2.png" alt="">
-										</div>
-										<div class="comment">
-											<h3>John Doe</h3>
-											<span><img src="/images/clock.png" alt=""> 3 min ago</span>
-											<p>Hi John </p>
-											<a href="#" title=""><i class="fa fa-reply-all"></i>Reply</a>
-										</div>
-									</div><!--comment-list end-->
-								</li>
-							</ul>
-						</li>
-						<li>
-							<div class="comment-list">
-								<div class="bg-img">
-									<img src="/images/resources/bg-img3.png" alt="">
-								</div>
-								<div class="comment">
-									<h3>John Doe</h3>
-									<span><img src="/images/clock.png" alt=""> 3 min ago</span>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at.</p>
-									<a href="#" title=""><i class="fa fa-reply-all"></i>Reply</a>
-								</div>
-							</div><!--comment-list end-->
-						</li>
-					</ul>
-				</div><!--comment-sec end-->
-				<div class="post-comment">
-					<div class="cm_img">
-						<img src="/images/resources/bg-img4.png" alt="">
-					</div>
-					<div class="comment_box">
-						<form>
-							<input type="text" placeholder="Post a comment">
-							<button type="submit">Send</button>
-						</form>
-					</div>
-				</div><!--post-comment end-->
-			</div><!--comment-section end-->
+				<div id="comentarios">
+					<#list foto.listaComentarioFoto as comentario>
+						<div class="comment-section">
+							<div class="comment-sec">
+								<ul>
+									<li>
+										<div class="comment-list">
+											<div class="bg-img">
+												<img src="/images/resources/bg-img3.png" alt="">
+											</div>
+											<div class="comment">
+												<h3>${comentario.autor.nombres} ${comentario.autor.apellidos}</h3>
+												<span><img src="/images/clock.png" alt="">${comentario.fecha}</span>
+												<p>${comentario.comentario}</p>
+											</div>
+										</div><!--comment-list end-->
+									</li>
+								</ul>
+							</div><!--comment-sec end-->
+						</div><!--comment-section end-->
+					</#list>
+					<div id="comentar-div" class="post-comment">
+						<div class="cm_img">
+							<img src="/images/resources/bg-img4.png" alt="">
+						</div>
+						<div class="comment_box">
+							<form action="/comentarFoto/${foto.album.idAlbum}/${foto.idImagen}" method="post">
+								<input name="comentarioNuevo" type="text" placeholder="Pon un comentario...">
+								<button type="submit">Enviar</button>
+							</form>
+						</div>
+					</div><!--post-comment end-->
+				</div>
+			</div><!--post-bar end-->
 		</div>
 
 

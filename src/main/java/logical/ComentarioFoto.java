@@ -3,6 +3,7 @@ package logical;
 import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class ComentarioFoto {
@@ -12,6 +13,8 @@ public class ComentarioFoto {
 
     @NotNull
     private String comentario;
+
+    private Date fecha;
 
     @ManyToOne
     @JoinColumn(name = "idUsuario")
@@ -26,10 +29,11 @@ public class ComentarioFoto {
     public ComentarioFoto() {
     }
 
-    public ComentarioFoto(String comentario, Usuario autor, Imagen imagen) {
+    public ComentarioFoto(String comentario,Date fecha, Usuario autor, Imagen imagen) {
         this.comentario = comentario;
         this.autor = autor;
         this.imagen = imagen;
+        this.fecha = fecha;
     }
 
     public long getId() {
@@ -46,6 +50,14 @@ public class ComentarioFoto {
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     public Usuario getAutor() {

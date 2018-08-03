@@ -1,12 +1,13 @@
 package entidades;
 
 import logical.Album;
+import logical.ComentarioFoto;
 import servicios.MetodosDB;
 
-public class ServiciosComentarioFoto extends MetodosDB<Album> {
+public class ServiciosComentarioFoto extends MetodosDB<ComentarioFoto> {
     private static ServiciosComentarioFoto instancia;
 
-    private ServiciosComentarioFoto(){super(Album.class);}
+    private ServiciosComentarioFoto(){super(ComentarioFoto.class);}
 
     public static ServiciosComentarioFoto getInstancia(){
         if(instancia==null){
