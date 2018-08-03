@@ -245,7 +245,7 @@ public class RutasSpark {
                 String descripcion = request.queryParams("descripcion");
                 Usuario logUser = request.session(true).attribute("usuario");
 
-                Album nuevoAlbum = new Album(nombreAlbum,descripcion,logUser,null);
+                Album nuevoAlbum = new Album(nombreAlbum,descripcion,logUser,new Date());
                 ServiciosAlbum.getInstancia().editar(nuevoAlbum);
 
                 response.redirect("/redSocial/userArea/" + logUser.getCorreo() + "/perfilUsuario");

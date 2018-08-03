@@ -13,7 +13,7 @@ public class Album {
 
     private String nombre;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "album")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "album",cascade = CascadeType.ALL)
     private Set<Imagen> imagenes;
 
     @ManyToOne

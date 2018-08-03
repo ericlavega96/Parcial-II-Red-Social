@@ -1343,17 +1343,28 @@
 									<#list albumes as album>
 										<div class="product-feed-tab current animated fadeIn" id="album-imagenes-${album.idAlbum}">
 											<div class="portfolio-gallery-sec">
+												<div class="usy-name">
+													<span><img src="/images/clock.png" alt="">${album.fecha}</span>
+												</div>
+												<br>
 												<h5>${album.nombre}</h5>
 												<br>
 												<h3>${album.descripcion}</h3>
+												<div class="post-foto">
+													<ul>
+														<li><a class="post_foto" href="#" title=""><i class="la la-plus"></i> Añadir foto</a></li>
+													</ul>
+												</div><!--post-st end-->
 												<div class="gallery_pf">
-													<div class="post-foto">
-														<ul>
-															<li><a class="post_foto" href="#" title=""><i class="la la-plus"></i> Añadir foto</a></li>
-														</ul>
-													</div><!--post-st end-->
-
 													<div class="row">
+														<#list album.imagenes as foto>
+															<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+																<div class="gallery_pt">
+																	<img src="/${foto.imagen}" alt="">
+																	<a href="#" title=""><img src="/images/all-out.png" alt=""></a>
+																</div><!--gallery_pt end-->
+															</div>
+														</#list>
 														<div class="col-lg-4 col-md-4 col-sm-6 col-6">
 															<div class="gallery_pt">
 																<img src="/images/resources/pf-img1.jpg" alt="">
@@ -1414,8 +1425,7 @@
 																<a href="#" title=""><img src="/images/all-out.png" alt=""></a>
 															</div><!--gallery_pt end-->
 														</div>
-													</div>
-												</div><!--gallery_pf end-->
+													</div>												</div><!--gallery_pf end-->
 											</div><!--portfolio-gallery-sec end-->
 										</div>
 										<!--Pop-up para insertar imagen-->
@@ -1431,7 +1441,7 @@
 															</div>
 															<div class="col-lg-12">
 																<ul>
-																	<li><button class="active" type="submit" value="publicar"> Añadir foto</button></li>
+																	<li><button class="active" type="submit" value="publicar"> Añadir foto </button></li>
 																</ul>
 															</div>
 														</div>
