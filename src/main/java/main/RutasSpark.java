@@ -338,5 +338,15 @@ public class RutasSpark {
             return "";
         });
 
+        get("/visualizarImagen/:idAlbum/:imagen", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            Usuario logUser = request.session(true).attribute("usuario");
+            String imagen = request.params("imagen");
+            attributes.put("logUser",logUser);
+            attributes.put("foto",imagen);
+            return new ModelAndView(attributes, "messages.html");
+        }, freeMarkerEngine);
+
+
     }
 }
