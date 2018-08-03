@@ -5,6 +5,7 @@ import entidades.ServiciosImagen;
 import entidades.ServiciosPost;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -24,6 +25,9 @@ public class Imagen {
 
     @OneToMany(mappedBy = "imagen",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<ComentarioFoto> listaComentarioFoto;
+
+    @OneToMany(mappedBy = "imagen", cascade = CascadeType.ALL)
+    Set<LikeImagen> likeImagen = new HashSet<>();
 
     public Imagen() {
 
@@ -57,6 +61,14 @@ public class Imagen {
 
     public void setAlbum(Album album) {
         this.album = album;
+    }
+
+    public Set<LikeImagen> getLikeImagen() {
+        return likeImagen;
+    }
+
+    public void setLikeImagen(Set<LikeImagen> likeImagen) {
+        this.likeImagen = likeImagen;
     }
 
     public Set<Usuario> getListaUsuariosEtiquetados() {

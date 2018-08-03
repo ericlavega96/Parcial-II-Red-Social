@@ -9,7 +9,7 @@ import java.util.Set;
 public class LikePost implements Serializable {
     @Id
     @GeneratedValue
-    @Column(name="LIKESARTICULO_ID")
+    @Column(name="LIKESPOST_ID")
     private long id;
 
     @ManyToOne

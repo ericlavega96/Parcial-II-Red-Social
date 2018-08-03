@@ -210,6 +210,7 @@ public class RutasSpark {
             Usuario logUser = request.session(true).attribute("usuario");
             String correoUser = request.params("correo");
             Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
+            logUser.getTimeline().add(new Actividad(user,"Has entrado a un perfil", new Date()));
             attributes.put("logUser",logUser);
             attributes.put("usuario",user);
             attributes.put("posts",ServiciosPost.getInstancia().findByAuthor(logUser));

@@ -24,9 +24,6 @@ public class Album {
 
     private String descripcion;
 
-    @OneToMany(mappedBy = "album", cascade = CascadeType.ALL)
-    Set<LikeAlbum> likeAlbum = new HashSet<>();
-
     public Album() {
     }
 
@@ -60,14 +57,6 @@ public class Album {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public Set<LikeAlbum> getLikeAlbum() {
-        return likeAlbum;
-    }
-
-    public void setLikeAlbum(Set<LikeAlbum> likeAlbum) {
-        this.likeAlbum = likeAlbum;
     }
 
     public Usuario getUsuario() {
