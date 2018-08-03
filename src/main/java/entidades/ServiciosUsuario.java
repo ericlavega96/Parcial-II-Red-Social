@@ -107,11 +107,11 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
             return false;
     }
 
-    public List<Usuario> findNoAmigos(Usuario user){
+    public List<Usuario> findNoAmigos(Usuario user, List<Usuario> candidatos){
         List<Usuario> resultado = new ArrayList<>();
         boolean aux = false;
         if(user.getAmigos().size() > 0){
-            for(Usuario u : getInstancia().findAll()) {
+            for(Usuario u : candidatos) {
                 for (Usuario a : user.getAmigos()) {
                     if ((u.getCorreo().equals(a.getCorreo())) || u.getCorreo().equals(user.getCorreo())) {
                         aux = true;
@@ -143,5 +143,22 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
             }
        return false;
     }
+
+    public List<Usuario> findSugerencia(Usuario user){
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createQuery("select u from Usuario u where u.idUsuario <> :userID AND" +
+                    " (u.empleo = :empleo OR (u.ciudad = :ciudad AND u.pais = :pais) OR u.lugarDeEstudio = :estudio)");
+            query.setParameter("userID", user.getIdUsuario());
+            query.setParameter("empleo", user.getEmpleo());
+            query.setParameter("ciudad", user.getCiudad());
+            query.setParameter("pais", user.getPais());
+            query.setParameter("estudio", user.getLugarDeEstudio());
+            return query.getResultList();
+        }catch (Exception ex){
+            return null;
+        }
+    }
+
 
 }

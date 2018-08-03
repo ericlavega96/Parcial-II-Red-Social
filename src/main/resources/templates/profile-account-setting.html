@@ -406,13 +406,13 @@
 												<div class="accept-feat">
 
 													<ul>
-														<form action="/redSocial/userArea/${logUser.correo}/aceptarRequets?solicitud=${solicitud.idSolicitud}" method="post">
-															<li><button type="submit" class="accept-req">Accept</button></li>
-														</form>
+														<li><form action="/redSocial/userArea/${logUser.correo}/aceptarRequets?solicitud=${solicitud.idSolicitud}" method="post">
+															<button type="submit" class="accept-req">Accept</button>
+														</form></li>
 
-														<form action="/redSocial/userArea/${logUser.correo}/rechazarRequest?solicitud=${solicitud.idSolicitud}" method="post">
-															<li><button type="submit" class="close-req"><i class="la la-close"></i></button></li>
-														</form>
+														<li><form action="/redSocial/userArea/${logUser.correo}/rechazarRequest?solicitud=${solicitud.idSolicitud}" method="post">
+															<button type="submit" class="close-req"><i class="la la-close"></i></button>
+														</form></li>
 													</ul>
 												</div><!--accept-feat end-->
 											</div><!--request-detailse end-->

@@ -295,8 +295,6 @@
 							<div class="nav nav-tabs" id="nav-tab" role="tablist">
 								<a class="nav-item nav-link" id="nav-password-tab" data-toggle="tab"
 								   href="#nav-password" role="tab" aria-controls="nav-password" aria-selected="false"><i class="fa fa-lock"></i>Gestionar Usuarios</a>
-								<a class="nav-item nav-link" id="nav-status-tab" data-toggle="tab" href="#nav-status" role="tab" aria-controls="nav-status" aria-selected="false"><i class="fa fa-line-chart"></i>Estados</a>
-								<a class="nav-item nav-link" id="nav-requests-tab" data-toggle="tab" href="#nav-requests" role="tab" aria-controls="nav-requests" aria-selected="false"><i class="fa fa-group"></i>Solicitudes de Amistad</a>
 							</div>
 						</div><!--acc-leftbar end-->
 					</div>
@@ -305,14 +303,13 @@
 
 							<div class="tab-pane fade show active" id="nav-acc" role="tabpanel" aria-labelledby="nav-acc-tab">
 								<div class="acc-setting">
-									<h3>Configuración de la Cuenta</h3>
+									<h3>Zona Admin</h3>
 									<div class="notbar">
-										<h4>Sobre el menú de configuración</h4>
-										<p>Por este menú de opciones podrá ver diferentes parámetros de la
-											cuentra como la opción de cambiar la contraseña, ver el estado del
-											perfil o mirar las solicitudes de amistad recividas por otros
-											usuarios. Para moverse, utilice los tabs que se muestran a la
-											izquierda.</p>
+										<h4>Sobre el menú de admin</h4>
+										<p>Este menu representa las configuraciones que tendrá el administrador en
+											el sistema donde podrá manejar distintos parámetros que se ven en la
+											corrida del sistema.</p>
+										<p> ¡Este menú solo debe ser manipulado por un usuario autorizado!</p>
 									</div><!--notbar end-->
 								</div><!--acc-setting end-->
 							</div>
@@ -429,9 +426,10 @@
 											<tr>
 												<#list listaUsuarios as usuario>
 											<tr>
-												<td>${usuario.username}</td>
-												<td>${usuario.nombre} </td>
+												<td>${usuario.idUsuario}</td>
+												<td>${usuario.nombres} ${usuario.apellidos}</td>
 												<td>${usuario.password}</td>
+												<td>${usuario.correo}</td>
 												<#if usuario.administrador>
 												<td>Administrador</td>
 												<#elseif usuario.autor>
