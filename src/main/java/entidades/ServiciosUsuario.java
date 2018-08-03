@@ -109,19 +109,28 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
 
     public List<Usuario> findNoAmigos(Usuario user){
         List<Usuario> resultado = new ArrayList<>();
+        boolean aux = false;
         if(user.getAmigos().size() > 0){
-            for(Usuario u : getInstancia().findAll())
-                for(Usuario a : user.getAmigos())
-                    if(!u.getCorreo().equals(a.getCorreo()) && !u.getCorreo().equals(user.getCorreo()))
-                            resultado.add(u);
+            for(Usuario u : getInstancia().findAll()) {
+                for (Usuario a : user.getAmigos()) {
+                    if ((u.getCorreo().equals(a.getCorreo())) || u.getCorreo().equals(user.getCorreo())) {
+                        aux = true;
+                        System.out.println("entro1 " + !u.getCorreo().equals(a.getCorreo()));
+                    }
+                }
+                if(!aux)
+                    resultado.add(u);
+                aux=false;
+            }
         }
         else {
             for (Usuario u : getInstancia().findAll())
-                if (!u.getCorreo().equals(user.getCorreo()))
+                if (!u.getCorreo().equals(user.getCorreo())) {
                     resultado.add(u);
+                    System.out.println("entro2");
+                }
         }
-        for(Usuario u : resultado)
-            System.out.println("No amigo: " + u.getCorreo());
+
         return resultado;
     }
 
