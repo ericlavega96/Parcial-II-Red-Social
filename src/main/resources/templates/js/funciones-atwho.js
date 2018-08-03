@@ -31,10 +31,10 @@ $(function(){
 
     var at_config = {
         at: "*",
-        data: names,
+        data: "http://localhost:4567/json/amigos/admin@redsocial.com",
         headerTpl: '<div class="atwho-header">Member List<small>↑&nbsp;↓&nbsp;</small></div>',
         insertTpl: '*${email}',
-        displayTpl: "<li>${email} <small>${name}</small></li>",
+        displayTpl: "<li>${correo} <small>${nombres}</small></li>",
         limit: 200
     }
     var emoji_config = {

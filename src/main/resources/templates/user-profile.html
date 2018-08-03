@@ -48,6 +48,9 @@
 									<span><img src="/images/icon4.png" alt=""></span>
 									Usuarios
 								</a>
+								<ul>
+									<li><a href="/redSocial/userArea/${logUser.correo}/amigos" title="">Ver Amigos</a></li>
+								</ul>
 							</li>
 							<li>
 								<a href="#" title="" class="not-box-open">
@@ -76,7 +79,7 @@
 							</li>
 							<#if logUser.admin>
 								<li>
-									<a href="/redSocial/admin/:correo/zonaAdmin" title="">
+									<a href="/redSocial/admin/${logUser.correo}/zonaAdmin" title="">
 										<span><img src="/images/icon5.png" alt=""></span>
 										Zona Admin
 									</a>

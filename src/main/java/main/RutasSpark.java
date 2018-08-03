@@ -201,10 +201,12 @@ public class RutasSpark {
             return new ModelAndView(attributes, "amigos.html");
         }, freeMarkerEngine);
 
-        get("/json/amigos", (request, response) -> {
+        get("/json/amigos/:correo", (request, response) -> {
             Usuario logUser = request.session(true).attribute("usuario");
+            String correoUser = request.params("correo");
+            Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
             //String correoUser = request.params("correo");
-            return ServiciosUsuario.getInstancia().amigosToJSON(logUser);
+            return ServiciosUsuario.getInstancia().amigosToJSON(user);
         },  new JsonTransformer());
 
         get("redSocial/perfil/:correo/perfilUsuario", (request, response) -> {
