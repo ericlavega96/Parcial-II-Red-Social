@@ -74,6 +74,7 @@ public class RutasSpark {
             Usuario logUser = request.session(true).attribute("usuario");
             String correoUser = request.params("correo");
             Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
+            attributes.put("logUser",logUser);
             attributes.put("usuario",logUser);
             attributes.put("posts",ServiciosPost.getInstancia().findByAuthor(logUser));
             attributes.put("fecha_nacimiento", user.getFechaNacimiento());
