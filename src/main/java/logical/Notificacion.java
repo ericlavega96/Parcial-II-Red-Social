@@ -6,8 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Actividad {
-
+public class Notificacion {
     @Id
     @GeneratedValue
     private long idActividad;
@@ -22,10 +21,10 @@ public class Actividad {
     @NotNull
     private Date fechaActividad;
 
-    public Actividad() {
+    public Notificacion() {
     }
 
-    public Actividad(Usuario usuario, String actividad, Date fechaActividad) {
+    public Notificacion(Usuario usuario, String actividad, Date fechaActividad) {
         this.usuario = usuario;
         this.actividad = actividad;
         this.fechaActividad = fechaActividad;
@@ -61,5 +60,9 @@ public class Actividad {
 
     public void setFechaActividad(Date fechaActividad) {
         this.fechaActividad = fechaActividad;
+    }
+
+    public String getFechaString(){
+        return fechaActividad.toString();
     }
 }

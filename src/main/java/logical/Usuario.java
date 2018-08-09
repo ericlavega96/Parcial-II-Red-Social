@@ -57,6 +57,9 @@ public class Usuario implements Serializable{
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
     private Set<Actividad> timeline;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
+    private Set<Notificacion> notificaciones;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "AMISTADES", joinColumns = { @JoinColumn(name = "USUARIO") }, inverseJoinColumns = {
             @JoinColumn (name = "AMIGO") })
@@ -304,5 +307,13 @@ public class Usuario implements Serializable{
 
     public void setCiudad(String ciudad) {
         this.ciudad = ciudad;
+    }
+
+    public Set<Notificacion> getNotificaciones() {
+        return notificaciones;
+    }
+
+    public void setNotificaciones(Set<Notificacion> notificaciones) {
+        this.notificaciones = notificaciones;
     }
 }

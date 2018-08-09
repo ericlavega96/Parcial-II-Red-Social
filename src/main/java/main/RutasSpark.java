@@ -9,7 +9,6 @@ import spark.ModelAndView;
 import spark.Session;
 import spark.template.freemarker.FreeMarkerEngine;
 
-import java.awt.*;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -57,6 +56,7 @@ public class RutasSpark {
                         response.cookie("/", "sr5h464h846s4dhds4h6w9uyh",
                                 new Encriptamiento().encriptar(correoAVerificar), (60*60*24*7), false, true);
                     }
+
                     response.redirect("redSocial/userArea/" + logUser.getCorreo() + "/perfilUsuario");
                 } else {
                     response.redirect("/iniciarSesion");
@@ -111,6 +111,17 @@ public class RutasSpark {
                         new SimpleDateFormat("yyyy-mm-dd").parse(fechaNacimiento),ServiciosPais.getInstancia()
                         .findByCountry(pais), ciudad,lugarEstudio,empleo,null,false);
                 ServiciosUsuario.getInstancia().crear(nuevoUsuario);
+
+                Notificacion notificacion = new Notificacion(nuevoUsuario,"Bienvenido, " + nuevoUsuario.getNombres() + " " +
+                        nuevoUsuario.getApellidos() + " a nuestra red social.", new Date());
+                nuevoUsuario.getNotificaciones().add(notificacion);
+                ServiciosNotificaciones.getInstancia().crear(notificacion);
+                Actividad actividad = new Actividad(nuevoUsuario,nuevoUsuario.getNombres() + " " +
+                        nuevoUsuario.getApellidos() + " se ha unido a la red social.", new Date());
+                nuevoUsuario.getTimeline().add(actividad);
+                ServiciosActividad.getInstancia().crear(actividad);
+
+
                 response.redirect("/login");
 
             } catch (Exception e) {
@@ -134,6 +145,24 @@ public class RutasSpark {
                 Set<Tag> postEtiquetas = Tag.crearEtiquetas(tags.split(","));
                 Post nuevoPost = new Post(logUser,imagen,cuerpo,new Date(),null,postEtiquetas,null);
                 ServiciosPost.getInstancia().crear(nuevoPost);
+
+                Notificacion notificacion = new Notificacion(logUser,"Haz publicado un nuevo post.", new Date());
+                logUser.getNotificaciones().add(notificacion);
+                ServiciosNotificaciones.getInstancia().crear(notificacion);
+
+                for(Usuario a : logUser.getAmigos()){
+                    Notificacion notificacionAmigo = new Notificacion(a,
+                            logUser.getNombres() + " " + logUser.getApellidos() +
+                                    " ha publicado un nuevo post.", new Date());
+                    a.getNotificaciones().add(notificacionAmigo);
+                    ServiciosNotificaciones.getInstancia().crear(notificacionAmigo);
+                }
+
+                Actividad actividad = new Actividad(logUser,logUser.getNombres() + " " +
+                        logUser.getApellidos() + " ha publicado un nuevo post.", new Date());
+                logUser.getTimeline().add(actividad);
+                ServiciosActividad.getInstancia().crear(actividad);
+
                 response.redirect("/redSocial/userArea/" + logUser.getCorreo() + "/perfilUsuario");
             } catch (Exception e) {
                 System.out.println("Error al realizar post" + e.toString());
@@ -150,6 +179,23 @@ public class RutasSpark {
                 ComentarioPost nuevoComentario = new ComentarioPost(comentario,new Date(),autor,postActual);
                 ServiciosComentarioPost.getInstancia().crear(nuevoComentario);
                 response.redirect("/redSocial/userArea/" + autor.getCorreo() + "/perfilUsuario");
+
+                Notificacion notificacion = new Notificacion(autor,"Haz comentado en post.", new Date());
+                autor.getNotificaciones().add(notificacion);
+                ServiciosNotificaciones.getInstancia().crear(notificacion);
+
+                for(Usuario a : autor.getAmigos()){
+                    Notificacion notificacionAmigo = new Notificacion(a,
+                            autor.getNombres() + " " + autor.getApellidos() +
+                                    "Haz publicado un nuevo blog.", new Date());
+                    a.getNotificaciones().add(notificacionAmigo);
+                    ServiciosNotificaciones.getInstancia().crear(notificacionAmigo);
+                }
+
+                Actividad actividad = new Actividad(autor,autor.getNombres() + " " +
+                        autor.getApellidos() + " ha publicado un nuevo post.", new Date());
+                autor.getTimeline().add(actividad);
+                ServiciosActividad.getInstancia().crear(actividad);
 
             } catch (Exception e) {
                 System.out.println("Error al publicar comentario: " + e.toString());
@@ -215,7 +261,6 @@ public class RutasSpark {
             Usuario logUser = request.session(true).attribute("usuario");
             String correoUser = request.params("correo");
             Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
-            logUser.getTimeline().add(new Actividad(user,"Has entrado a un perfil", new Date()));
             attributes.put("logUser",logUser);
             attributes.put("usuario",user);
             attributes.put("posts",ServiciosPost.getInstancia().findByAuthor(logUser));
