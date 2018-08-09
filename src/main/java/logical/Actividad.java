@@ -62,4 +62,8 @@ public class Actividad {
     public void setFechaActividad(Date fechaActividad) {
         this.fechaActividad = fechaActividad;
     }
+
+    public String getFechaString(){
+        return fechaActividad.toString();
+    }
 }
