@@ -316,4 +316,6 @@ public class Usuario implements Serializable{
     public void setNotificaciones(Set<Notificacion> notificaciones) {
         this.notificaciones = notificaciones;
     }
+
+    public int contadorAmigos(){ return amigos.size();}
 }

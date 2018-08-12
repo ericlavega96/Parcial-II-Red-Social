@@ -83,6 +83,10 @@ public class RutasSpark {
             attributes.put("lugar_estudio", user.getLugarDeEstudio());
             attributes.put("trabajo", user.getEmpleo());
             attributes.put("albumes", ServiciosAlbum.getInstancia().findAlbumsByUser(logUser));
+            attributes.put("actividades",ServiciosActividad.getInstancia().findByUser(user));
+            attributes.put("sugerencias",
+                    ServiciosUsuario.getInstancia().findNoAmigos(logUser,
+                            ServiciosUsuario.getInstancia().findSugerencia(logUser)));
             for (Album album : ServiciosAlbum.getInstancia().findAlbumsByUser(logUser)){
                 System.out.println("Album cargado: " + String.valueOf(album.getIdAlbum()));
             }
@@ -180,14 +184,18 @@ public class RutasSpark {
                 ServiciosComentarioPost.getInstancia().crear(nuevoComentario);
                 response.redirect("/redSocial/userArea/" + autor.getCorreo() + "/perfilUsuario");
 
-                Notificacion notificacion = new Notificacion(autor,"Haz comentado en post.", new Date());
+                Notificacion notificacion = new Notificacion(autor,"Haz comentado en un post de " +
+                        postActual.getAutor().getNombres() + " " +
+                        postActual.getAutor().getApellidos() + ".", new Date());
                 autor.getNotificaciones().add(notificacion);
                 ServiciosNotificaciones.getInstancia().crear(notificacion);
 
                 for(Usuario a : autor.getAmigos()){
                     Notificacion notificacionAmigo = new Notificacion(a,
                             autor.getNombres() + " " + autor.getApellidos() +
-                                    "Haz publicado un nuevo blog.", new Date());
+                                    " ha comentado en el post de " +
+                                    postActual.getAutor().getNombres() + " " +
+                                    postActual.getAutor().getApellidos() + ".", new Date());
                     a.getNotificaciones().add(notificacionAmigo);
                     ServiciosNotificaciones.getInstancia().crear(notificacionAmigo);
                 }
@@ -263,7 +271,8 @@ public class RutasSpark {
             Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
             attributes.put("logUser",logUser);
             attributes.put("usuario",user);
-            attributes.put("posts",ServiciosPost.getInstancia().findByAuthor(logUser));
+            attributes.put("actividades",ServiciosActividad.getInstancia().findByUser(user));
+            attributes.put("posts",ServiciosPost.getInstancia().findByAuthor(user));
             attributes.put("fecha_nacimiento", user.getFechaNacimiento());
             attributes.put("pais_origen", user.getPais().getPais());
             attributes.put("ciudad_origen", user.getCiudad());

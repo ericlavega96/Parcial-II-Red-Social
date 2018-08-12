@@ -202,103 +202,45 @@
 											<a href="#" title=""><i class="fa fa-camera"></i></a>
 										</div><!--user-pro-img end-->
 										<div class="user_pro_status">
-											<ul class="flw-hr">
-												<li><a href="#" title="" class="flww"><i class="la la-plus"></i> Agregar a Amigos</a></li>
-												<li><a href="#" title="" class="hre">Hire</a></li>
-											</ul>
 											<ul class="flw-status">
 												<li>
 													<span>Amigos</span>
-													<b>34</b>
+													<b>${usuario.contadorAmigos()}</b>
 												</li>
 											</ul>
 										</div><!--user_pro_status end-->
-										<ul class="social_links">
-											<li><a href="#" title=""><i class="la la-globe"></i> www.example.com</a></li>
-											<li><a href="#" title=""><i class="fa fa-facebook-square"></i> Http://www.facebook.com/john...</a></li>
-											<li><a href="#" title=""><i class="fa fa-twitter"></i> Http://www.Twitter.com/john...</a></li>
-											<li><a href="#" title=""><i class="fa fa-google-plus-square"></i> Http://www.googleplus.com/john...</a></li>
-											<li><a href="#" title=""><i class="fa fa-behance-square"></i> Http://www.behance.com/john...</a></li>
-											<li><a href="#" title=""><i class="fa fa-pinterest"></i> Http://www.pinterest.com/john...</a></li>
-											<li><a href="#" title=""><i class="fa fa-instagram"></i> Http://www.instagram.com/john...</a></li>
-											<li><a href="#" title=""><i class="fa fa-youtube"></i> Http://www.youtube.com/john...</a></li>
-										</ul>
+
 									</div><!--user_profile end-->
 									<div class="suggestions full-width">
 										<div class="sd-title">
-											<h3>People Viewed Profile</h3>
+											<h3>Sugerencias</h3>
 											<i class="la la-ellipsis-v"></i>
 										</div><!--sd-title end-->
 										<div class="suggestions-list">
+											<#list sugerencias as sugerencia>
 											<div class="suggestion-usd">
 												<img src="/images/resources/s1.png" alt="">
 												<div class="sgt-text">
-													<h4>Jessica William</h4>
-													<span>Graphic Designer</span>
+													<h4>${sugerencia.nombres} ${sugerencia.apellidos}</h4>
+													<span>${sugerencia.ciudad}</span>
 												</div>
-												<span><i class="la la-plus"></i></span>
+												<span><a href="/redSocial/userArea/${logUser.correo}/enviarRequest?amigo=${sugerencia.correo}"><i class="la la-plus"></i></a></span>
 											</div>
-											<div class="suggestion-usd">
-												<img src="/images/resources/s2.png" alt="">
-												<div class="sgt-text">
-													<h4>John Doe</h4>
-													<span>PHP Developer</span>
-												</div>
-												<span><i class="la la-plus"></i></span>
-											</div>
-											<div class="suggestion-usd">
-												<img src="/images/resources/s3.png" alt="">
-												<div class="sgt-text">
-													<h4>Poonam</h4>
-													<span>Wordpress Developer</span>
-												</div>
-												<span><i class="la la-plus"></i></span>
-											</div>
-											<div class="suggestion-usd">
-												<img src="/images/resources/s4.png" alt="">
-												<div class="sgt-text">
-													<h4>Bill Gates</h4>
-													<span>C & C++ Developer</span>
-												</div>
-												<span><i class="la la-plus"></i></span>
-											</div>
-											<div class="suggestion-usd">
-												<img src="/images/resources/s5.png" alt="">
-												<div class="sgt-text">
-													<h4>Jessica William</h4>
-													<span>Graphic Designer</span>
-												</div>
-												<span><i class="la la-plus"></i></span>
-											</div>
-											<div class="suggestion-usd">
-												<img src="/images/resources/s6.png" alt="">
-												<div class="sgt-text">
-													<h4>John Doe</h4>
-													<span>PHP Developer</span>
-												</div>
-												<span><i class="la la-plus"></i></span>
-											</div>
-											<div class="view-more">
-												<a href="#" title="">View More</a>
-											</div>
-										</div><!--suggestions-list end-->
-									</div><!--suggestions end-->
+										</#list>
+
+										<div class="view-more">
+											<a href="#" title="">View More</a>
+										</div>
+									</div><!--suggestions-list end-->
+								</div><!--suggestions end-->
 								</div><!--main-left-sidebar end-->
 							</div>
 							<div class="col-lg-6">
 								<div class="main-ws-sec">
 									<div class="user-tab-sec">
-										<h3>John Doe</h3>
+										<h3>${usuario.nombres} ${usuario.apellidos}</h3>
 										<div class="star-descp">
-											<span>Graphic Designer at Self Employed</span>
-											<ul>
-												<li><i class="fa fa-star"></i></li>
-												<li><i class="fa fa-star"></i></li>
-												<li><i class="fa fa-star"></i></li>
-												<li><i class="fa fa-star"></i></li>
-												<li><i class="fa fa-star-half-o"></i></li>
-											</ul>
-											<a href="#" title="">Status</a>
+											<span>${usuario.ciudad}, ${usuario.pais.getPais()}</span>
 										</div><!--star-descp end-->
 										<div class="tab-feed st2">
 											<ul>
@@ -317,7 +259,7 @@
 												<li data-tab="my-bids">
 													<a href="#" title="">
 														<img src="/images/ic5.png" alt="">
-														<span>My Bids</span>
+														<span>Mis Actividades</span>
 													</a>
 												</li>
 												<li data-tab="portfolio-dd">
@@ -707,252 +649,37 @@
 											</div><!--process-comm end-->
 										</div><!--posts-section end-->
 									</div><!--product-feed-tab end-->
+
+
 									<div class="product-feed-tab" id="my-bids">
-										<div class="posts-section">
-											<div class="post-bar">
-												<div class="post_topbar">
-													<div class="usy-dt">
-														<img src="/images/resources/us-pic.png" alt="">
-														<div class="usy-name">
-															<h3>John Doe</h3>
-															<span><img src="/images/clock.png" alt="">3 min ago</span>
+										<#list actividades as actividad>
+											<div class="posts-section">
+												<div class="post-bar">
+													<div class="post_topbar">
+														<div class="usy-dt">
+															<img src="/images/resources/us-pic.png" alt="">
+															<div class="usy-name">
+																<h3>${actividad.usuario.nombres} ${actividad.usuario.apellidos}</h3>
+																<span><img src="/images/clock.png" alt="">${actividad.fechaActividad}</span>
+															</div>
 														</div>
 													</div>
-													<div class="ed-opts">
-														<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-														<ul class="ed-options">
-															<li><a href="#" title="">Edit Post</a></li>
-															<li><a href="#" title="">Unsaved</a></li>
-															<li><a href="#" title="">Unbid</a></li>
-															<li><a href="#" title="">Close</a></li>
-															<li><a href="#" title="">Hide</a></li>
+													<div class="epi-sec">
+														<ul class="descp">
+															<li><img src="/images/icon8.png" alt=""><span>Ciudad: ${actividad.usuario.ciudad}</span></li>
+															<li><img src="/images/icon9.png" alt=""><span>Pais: ${actividad.usuario.pais.getPais()}</span></li>
 														</ul>
 													</div>
-												</div>
-												<div class="epi-sec">
-													<ul class="descp">
-														<li><img src="/images/icon8.png" alt=""><span>Frontend Developer</span></li>
-														<li><img src="/images/icon9.png" alt=""><span>India</span></li>
-													</ul>
-													<ul class="bk-links">
-														<li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
-														<li><a href="#" title=""><i class="la la-envelope"></i></a></li>
-														<li><a href="#" title="" class="bid_now">Bid Now</a></li>
-													</ul>
-												</div>
-												<div class="job_descp">
-													<h3>Simple Classified Site</h3>
-													<ul class="job-dt">
-														<li><span>$300 - $350</span></li>
-													</ul>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="#" title="">view more</a></p>
-													<ul class="skill-tags">
-														<li><a href="#" title="">HTML</a></li>
-														<li><a href="#" title="">PHP</a></li>
-														<li><a href="#" title="">CSS</a></li>
-														<li><a href="#" title="">Javascript</a></li>
-														<li><a href="#" title="">Wordpress</a></li> 	
-														<li><a href="#" title="">Photoshop</a></li> 	
-														<li><a href="#" title="">Illustrator</a></li> 	
-														<li><a href="#" title="">Corel Draw</a></li> 	
-													</ul>
-												</div>
-												<div class="job-status-bar">
-													<ul class="like-com">
-														<li>
-															<a href="#"><i class="la la-heart"></i> Like</a>
-															<img src="/images/liked-img.png" alt="">
-															<span>25</span>
-														</li> 
-														<li><a href="#" title="" class="com"><img src="/images/com.png" alt=""> Comment 15</a></li>
-													</ul>
-													<a><i class="la la-eye"></i>Views 50</a>
-												</div>
-											</div><!--post-bar end-->
-											<div class="post-bar">
-												<div class="post_topbar">
-													<div class="usy-dt">
-														<img src="/images/resources/us-pic.png" alt="">
-														<div class="usy-name">
-															<h3>John Doe</h3>
-															<span><img src="/images/clock.png" alt="">3 min ago</span>
-														</div>
+													<div class="job_descp">
+														<p>${actividad.actividad}</p>
 													</div>
-													<div class="ed-opts">
-														<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-														<ul class="ed-options">
-															<li><a href="#" title="">Edit Post</a></li>
-															<li><a href="#" title="">Unsaved</a></li>
-															<li><a href="#" title="">Unbid</a></li>
-															<li><a href="#" title="">Close</a></li>
-															<li><a href="#" title="">Hide</a></li>
-														</ul>
-													</div>
-												</div>
-												<div class="epi-sec">
-													<ul class="descp">
-														<li><img src="/images/icon8.png" alt=""><span>Frontend Developer</span></li>
-														<li><img src="/images/icon9.png" alt=""><span>India</span></li>
-													</ul>
-													<ul class="bk-links">
-														<li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
-														<li><a href="#" title=""><i class="la la-envelope"></i></a></li>
-														<li><a href="#" title="" class="bid_now">Bid Now</a></li>
-													</ul>
-												</div>
-												<div class="job_descp">
-													<h3>Ios Shopping mobile app</h3>
-													<ul class="job-dt">
-														<li><span>$300 - $350</span></li>
-													</ul>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="#" title="">view more</a></p>
-													<ul class="skill-tags">
-														<li><a href="#" title="">HTML</a></li>
-														<li><a href="#" title="">PHP</a></li>
-														<li><a href="#" title="">CSS</a></li>
-														<li><a href="#" title="">Javascript</a></li>
-														<li><a href="#" title="">Wordpress</a></li> 	
-														<li><a href="#" title="">Photoshop</a></li> 	
-														<li><a href="#" title="">Illustrator</a></li> 	
-														<li><a href="#" title="">Corel Draw</a></li> 	
-													</ul>
-												</div>
-												<div class="job-status-bar">
-													<ul class="like-com">
-														<li>
-															<a href="#"><i class="la la-heart"></i> Like</a>
-															<img src="/images/liked-img.png" alt="">
-															<span>25</span>
-														</li> 
-														<li><a href="#" title="" class="com"><img src="/images/com.png" alt=""> Comment 15</a></li>
-													</ul>
-													<a><i class="la la-eye"></i>Views 50</a>
-												</div>
-											</div><!--post-bar end-->
-											<div class="post-bar">
-												<div class="post_topbar">
-													<div class="usy-dt">
-														<img src="/images/resources/us-pic.png" alt="">
-														<div class="usy-name">
-															<h3>John Doe</h3>
-															<span><img src="/images/clock.png" alt="">3 min ago</span>
-														</div>
-													</div>
-													<div class="ed-opts">
-														<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-														<ul class="ed-options">
-															<li><a href="#" title="">Edit Post</a></li>
-															<li><a href="#" title="">Unsaved</a></li>
-															<li><a href="#" title="">Unbid</a></li>
-															<li><a href="#" title="">Close</a></li>
-															<li><a href="#" title="">Hide</a></li>
-														</ul>
-													</div>
-												</div>
-												<div class="epi-sec">
-													<ul class="descp">
-														<li><img src="/images/icon8.png" alt=""><span>Frontend Developer</span></li>
-														<li><img src="/images/icon9.png" alt=""><span>India</span></li>
-													</ul>
-													<ul class="bk-links">
-														<li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
-														<li><a href="#" title=""><i class="la la-envelope"></i></a></li>
-														<li><a href="#" title="" class="bid_now">Bid Now</a></li>
-													</ul>
-												</div>
-												<div class="job_descp">
-													<h3>Simple Classified Site</h3>
-													<ul class="job-dt">
-														<li><span>$300 - $350</span></li>
-													</ul>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="#" title="">view more</a></p>
-													<ul class="skill-tags">
-														<li><a href="#" title="">HTML</a></li>
-														<li><a href="#" title="">PHP</a></li>
-														<li><a href="#" title="">CSS</a></li>
-														<li><a href="#" title="">Javascript</a></li>
-														<li><a href="#" title="">Wordpress</a></li> 	
-														<li><a href="#" title="">Photoshop</a></li> 	
-														<li><a href="#" title="">Illustrator</a></li> 	
-														<li><a href="#" title="">Corel Draw</a></li> 	
-													</ul>
-												</div>
-												<div class="job-status-bar">
-													<ul class="like-com">
-														<li>
-															<a href="#"><i class="la la-heart"></i> Like</a>
-															<img src="/images/liked-img.png" alt="">
-															<span>25</span>
-														</li> 
-														<li><a href="#" title="" class="com"><img src="/images/com.png" alt=""> Comment 15</a></li>
-													</ul>
-													<a><i class="la la-eye"></i>Views 50</a>
-												</div>
-											</div><!--post-bar end-->
-											<div class="post-bar">
-												<div class="post_topbar">
-													<div class="usy-dt">
-														<img src="/images/resources/us-pic.png" alt="">
-														<div class="usy-name">
-															<h3>John Doe</h3>
-															<span><img src="/images/clock.png" alt="">3 min ago</span>
-														</div>
-													</div>
-													<div class="ed-opts">
-														<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-														<ul class="ed-options">
-															<li><a href="#" title="">Edit Post</a></li>
-															<li><a href="#" title="">Unsaved</a></li>
-															<li><a href="#" title="">Unbid</a></li>
-															<li><a href="#" title="">Close</a></li>
-															<li><a href="#" title="">Hide</a></li>
-														</ul>
-													</div>
-												</div>
-												<div class="epi-sec">
-													<ul class="descp">
-														<li><img src="/images/icon8.png" alt=""><span>Frontend Developer</span></li>
-														<li><img src="/images/icon9.png" alt=""><span>India</span></li>
-													</ul>
-													<ul class="bk-links">
-														<li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
-														<li><a href="#" title=""><i class="la la-envelope"></i></a></li>
-														<li><a href="#" title="" class="bid_now">Bid Now</a></li>
-													</ul>
-												</div>
-												<div class="job_descp">
-													<h3>Ios Shopping mobile app</h3>
-													<ul class="job-dt">
-														<li><span>$300 - $350</span></li>
-													</ul>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="#" title="">view more</a></p>
-													<ul class="skill-tags">
-														<li><a href="#" title="">HTML</a></li>
-														<li><a href="#" title="">PHP</a></li>
-														<li><a href="#" title="">CSS</a></li>
-														<li><a href="#" title="">Javascript</a></li>
-														<li><a href="#" title="">Wordpress</a></li> 	
-														<li><a href="#" title="">Photoshop</a></li> 	
-														<li><a href="#" title="">Illustrator</a></li> 	
-														<li><a href="#" title="">Corel Draw</a></li> 	
-													</ul>
-												</div>
-												<div class="job-status-bar">
-													<ul class="like-com">
-														<li>
-															<a href="#"><i class="la la-heart"></i> Like</a>
-															<img src="/images/liked-img.png" alt="">
-															<span>25</span>
-														</li> 
-														<li><a href="#" title="" class="com"><img src="/images/com.png" alt=""> Comment 15</a></li>
-													</ul>
-													<a><i class="la la-eye"></i>Views 50</a>
-												</div>
-											</div><!--post-bar end-->
-											<div class="process-comm">
-												<a href="#" title=""><img src="/images/process-icon.png" alt=""></a>
-											</div><!--process-comm end-->
-										</div><!--posts-section end-->
+												</div><!--post-bar end-->
+
+												<div class="process-comm">
+													<a href="#" title=""><img src="/images/process-icon.png" alt=""></a>
+												</div><!--process-comm end-->
+											</div><!--posts-section end-->
+										</#list>
 									</div><!--product-feed-tab end-->
 
 									<!-- #inicio - Album -->
