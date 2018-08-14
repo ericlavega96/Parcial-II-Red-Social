@@ -83,7 +83,7 @@ public class RutasSpark {
             attributes.put("lugar_estudio", user.getLugarDeEstudio());
             attributes.put("trabajo", user.getEmpleo());
             attributes.put("albumes", ServiciosAlbum.getInstancia().findAlbumsByUser(logUser));
-            attributes.put("actividades",ServiciosActividad.getInstancia().findByUser(user));
+            attributes.put("actividades",ServiciosActividad.getInstancia().actividadesAmigos(user));
             attributes.put("sugerencias",
                     ServiciosUsuario.getInstancia().findNoAmigos(logUser,
                             ServiciosUsuario.getInstancia().findSugerencia(logUser)));
@@ -201,9 +201,16 @@ public class RutasSpark {
                 }
 
                 Actividad actividad = new Actividad(autor,autor.getNombres() + " " +
-                        autor.getApellidos() + " ha publicado un nuevo post.", new Date());
+                        autor.getApellidos() + " ha comentado un post de " + postActual.getAutor().getNombres() +
+                        " " + postActual.getAutor().getApellidos() + ".", new Date());
                 autor.getTimeline().add(actividad);
                 ServiciosActividad.getInstancia().crear(actividad);
+
+                Notificacion notificacionReceptor = new Notificacion(postActual.getAutor(),"Haz recivido un like en tu post de parte de" +
+                        autor.getNombres() + " " +
+                        autor.getApellidos() + ".", new Date());
+                postActual.getAutor().getNotificaciones().add(notificacionReceptor);
+                ServiciosNotificaciones.getInstancia().crear(notificacionReceptor);
 
             } catch (Exception e) {
                 System.out.println("Error al publicar comentario: " + e.toString());
@@ -222,6 +229,36 @@ public class RutasSpark {
                             ServiciosLikePost.getInstancia().deleteLike(post,usuario);
                         }else{
                             ServiciosLikePost.getInstancia().crear(new LikePost(post,usuario,true));
+
+                            Notificacion notificacion = new Notificacion(usuario,"Haz dado like al post de " +
+                                    post.getAutor().getNombres() + " " +
+                                    post.getAutor().getApellidos() + ".", new Date());
+                            usuario.getNotificaciones().add(notificacion);
+                            ServiciosNotificaciones.getInstancia().crear(notificacion);
+
+                            for(Usuario a : usuario.getAmigos()){
+                                Notificacion notificacionAmigo = new Notificacion(a,
+                                        usuario.getNombres() + " " + usuario.getApellidos() +
+                                                " le ha dado like al post de " +
+                                                post.getAutor().getNombres() + " " +
+                                                post.getAutor().getApellidos() + ".", new Date());
+                                a.getNotificaciones().add(notificacionAmigo);
+                                ServiciosNotificaciones.getInstancia().crear(notificacionAmigo);
+                            }
+
+                            Actividad actividad = new Actividad(usuario,usuario.getNombres() + " " +
+                                    usuario.getApellidos() + " le ha dado like al post de " + post.getAutor().getNombres() +
+                                    " " + post.getAutor().getApellidos() + ".", new Date());
+                            usuario.getTimeline().add(actividad);
+                            ServiciosActividad.getInstancia().crear(actividad);
+
+
+                            Notificacion notificacionReceptor = new Notificacion(post.getAutor(),"Haz recivido un like en tu post de parte de" +
+                                    usuario.getNombres() + " " +
+                                    usuario.getApellidos() + ".", new Date());
+                            post.getAutor().getNotificaciones().add(notificacionReceptor);
+                            ServiciosNotificaciones.getInstancia().crear(notificacionReceptor);
+
                         }
                         response.redirect("/redSocial/userArea/" + usuario.getCorreo() + "/perfilUsuario");
                     }
@@ -256,11 +293,9 @@ public class RutasSpark {
             return new ModelAndView(attributes, "amigos.html");
         }, freeMarkerEngine);
 
-        get("/json/amigos/:correo", (request, response) -> {
+        get("/json/amigos", (request, response) -> {
             Usuario logUser = request.session(true).attribute("usuario");
-            String correoUser = request.params("correo");
-            Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
-            //String correoUser = request.params("correo");
+            Usuario user = ServiciosUsuario.getInstancia().findByEmail(logUser.getCorreo());
             return ServiciosUsuario.getInstancia().amigosToJSON(user);
         },  new JsonTransformer());
 
@@ -299,6 +334,34 @@ public class RutasSpark {
                 ServiciosUsuario.getInstancia().deleteAmistad(user,amigo);
                 ServiciosUsuario.getInstancia().deleteAmistad(amigo,user);
                 ServiciosUsuario.getInstancia().editar(user);
+
+                Notificacion notificacion = new Notificacion(user,"Haz dejado de ser amigo con " +
+                        amigo.getNombres() + " " +
+                        amigo.getApellidos() + ".", new Date());
+                user.getNotificaciones().add(notificacion);
+                ServiciosNotificaciones.getInstancia().crear(notificacion);
+
+                for(Usuario a : user.getAmigos()){
+                    Notificacion notificacionAmigo = new Notificacion(a,
+                            user.getNombres() + " " + user.getApellidos() +
+                                    " ha dejado de ser amigo de " +
+                                    amigo.getNombres() + " " +
+                                    amigo.getApellidos() + ".", new Date());
+                    a.getNotificaciones().add(notificacionAmigo);
+                    ServiciosNotificaciones.getInstancia().crear(notificacionAmigo);
+                }
+
+                Actividad actividad = new Actividad(user,user.getNombres() + " " +
+                        user.getApellidos() + " ha dejado de ser amigo de " + amigo.getNombres() +
+                        " " + amigo.getApellidos() + ".", new Date());
+                user.getTimeline().add(actividad);
+                ServiciosActividad.getInstancia().crear(actividad);
+
+                Notificacion notificacionReceptor = new Notificacion(amigo,user.getNombres() + " " +
+                        user.getApellidos() + " ha dejado de ser tu amigo.", new Date());
+                amigo.getNotificaciones().add(notificacionReceptor);
+                ServiciosNotificaciones.getInstancia().crear(notificacionReceptor);
+
                 response.redirect("/redSocial/userArea/"+correoUser+"/amigos");
             }
             return "";
@@ -313,6 +376,20 @@ public class RutasSpark {
                 response.redirect("/");
             else{
                 ServiciosSolicitudAmistad.getInstancia().crearRequest(user,amigo);
+
+
+                Notificacion notificacion = new Notificacion(user,"Haz enviado una solicitud de amistad a " +
+                        amigo.getNombres() + " " +
+                        amigo.getApellidos() + ".", new Date());
+                user.getNotificaciones().add(notificacion);
+                ServiciosNotificaciones.getInstancia().crear(notificacion);
+
+                Notificacion notificacionReceptor = new Notificacion(amigo,user.getNombres() + " " +
+                        user.getApellidos() + " te ha enviado una solicitud de amistad.", new Date());
+                amigo.getNotificaciones().add(notificacionReceptor);
+                ServiciosNotificaciones.getInstancia().crear(notificacionReceptor);
+
+
                 response.redirect("/redSocial/perfil/"+correoUser+"/perfilUsuario");
             }
             return "";
@@ -328,6 +405,19 @@ public class RutasSpark {
                 response.redirect("/");
             else{
                 ServiciosSolicitudAmistad.getInstancia().eliminar(solicitud.getIdSolicitud());
+
+                Notificacion notificacion = new Notificacion(user,"Haz rechazado la solicitud de amistad de " +
+                        amigo.getNombres() + " " +
+                        amigo.getApellidos() + ".", new Date());
+                user.getNotificaciones().add(notificacion);
+                ServiciosNotificaciones.getInstancia().crear(notificacion);
+
+
+                Notificacion notificacionReceptor = new Notificacion(amigo,user.getNombres() + " " +
+                        user.getApellidos() + " ha rechazado tu solicitud de amistad.", new Date());
+                amigo.getNotificaciones().add(notificacionReceptor);
+                ServiciosNotificaciones.getInstancia().crear(notificacionReceptor);
+
                 response.redirect("/redSocial/userArea/"+correoUser+"/settings");
             }
             return "";
@@ -343,10 +433,38 @@ public class RutasSpark {
             if(user==null || amigo==null)
                 response.redirect("/");
             else{
+                Notificacion notificacion = new Notificacion(user,"Haz aceptado la solicitud de amistad a " +
+                        amigo.getNombres() + " " +
+                        amigo.getApellidos() + ".", new Date());
+                user.getNotificaciones().add(notificacion);
+                ServiciosNotificaciones.getInstancia().crear(notificacion);
+
+                for(Usuario a : user.getAmigos()){
+                    Notificacion notificacionAmigo = new Notificacion(a,
+                            user.getNombres() + " " + user.getApellidos() +
+                                    " ha añadido a  " +
+                                    amigo.getNombres() + " " +
+                                    amigo.getApellidos() + " como amigo.", new Date());
+                    a.getNotificaciones().add(notificacionAmigo);
+                    ServiciosNotificaciones.getInstancia().crear(notificacionAmigo);
+                }
+
+                Actividad actividad = new Actividad(user,user.getNombres() + " " +
+                        user.getApellidos() + " ha aceptado la solicitud de amistad " + amigo.getNombres() +
+                        " " + amigo.getApellidos() + ".", new Date());
+                user.getTimeline().add(actividad);
+                ServiciosActividad.getInstancia().crear(actividad);
+
+                Notificacion notificacionReceptor = new Notificacion(amigo,user.getNombres() + " " +
+                        user.getApellidos() + " ha aceptado tu solicitud de amistad.", new Date());
+                amigo.getNotificaciones().add(notificacionReceptor);
+                ServiciosNotificaciones.getInstancia().crear(notificacionReceptor);
+
                 user.getAmigos().add(amigo);
                 amigo.getAmigos().add(user);
                 ServiciosUsuario.getInstancia().editar(user);
                 ServiciosSolicitudAmistad.getInstancia().eliminar(solicitud.getIdSolicitud());
+
                 response.redirect("/redSocial/userArea/"+correoUser+"/settings");
             }
             return "";
@@ -375,9 +493,28 @@ public class RutasSpark {
                 Album nuevoAlbum = new Album(nombreAlbum,descripcion,logUser,new Date());
                 ServiciosAlbum.getInstancia().editar(nuevoAlbum);
 
+                Notificacion notificacion = new Notificacion(logUser,"Haz publicado un nuevo album llamado " +
+                        nombreAlbum + ".", new Date());
+                logUser.getNotificaciones().add(notificacion);
+                ServiciosNotificaciones.getInstancia().crear(notificacion);
+
+                for(Usuario a : logUser.getAmigos()){
+                    Notificacion notificacionAmigo = new Notificacion(a,
+                            logUser.getNombres() + " " + logUser.getApellidos() +
+                                    " ha publicado un nuevo album titulado " + nombreAlbum + ".", new Date());
+                    a.getNotificaciones().add(notificacionAmigo);
+                    ServiciosNotificaciones.getInstancia().crear(notificacionAmigo);
+                }
+
+                Actividad actividad = new Actividad(logUser,logUser.getNombres() + " " +
+                        logUser.getApellidos() + " ha publicado un nuevo album titulado " + nombreAlbum +
+                        ".", new Date());
+                logUser.getTimeline().add(actividad);
+                ServiciosActividad.getInstancia().crear(actividad);
+
                 response.redirect("/redSocial/userArea/" + logUser.getCorreo() + "/perfilUsuario");
             } catch (Exception e) {
-                System.out.println("Error al crear album" + e.toString());
+                System.out.println("Error al crear album " + e.toString());
             }
             return "";
         });
@@ -388,14 +525,18 @@ public class RutasSpark {
                 String idAlbum = request.params("idAlbum");
                 Album albumActual = ServiciosAlbum.getInstancia().find(Long.valueOf(idAlbum));
 
-                Imagen imagen = null;
                 if(imagenRuta != null){
-                    imagen = new Imagen(imagenRuta,albumActual,null);
+                    Imagen imagen = new Imagen(imagenRuta,albumActual,null);
                     albumActual.getImagenes().add(imagen);
                 }
                 Usuario logUser = request.session(true).attribute("usuario");
 
                 ServiciosAlbum.getInstancia().editar(albumActual);
+
+                Notificacion notificacion = new Notificacion(logUser,"Haz publicado un nuevo imagen en " +
+                        albumActual.getNombre() + ".", new Date());
+                logUser.getNotificaciones().add(notificacion);
+                ServiciosNotificaciones.getInstancia().crear(notificacion);
 
                 response.redirect("/redSocial/userArea/" + logUser.getCorreo() + "/perfilUsuario");
             } catch (Exception e) {
@@ -447,6 +588,34 @@ public class RutasSpark {
                         ServiciosLikeImagen.getInstancia().deleteLike(imagen,usuario);
                     }else{
                         ServiciosLikeImagen.getInstancia().crear(new LikeImagen(imagen,usuario,true));
+                        Notificacion notificacion = new Notificacion(usuario,"Haz dado like al post de " +
+                                imagen.getAlbum().getUsuario().getNombres() + " " +
+                                imagen.getAlbum().getUsuario().getApellidos() + ".", new Date());
+                        usuario.getNotificaciones().add(notificacion);
+                        ServiciosNotificaciones.getInstancia().crear(notificacion);
+
+                        for(Usuario a : usuario.getAmigos()){
+                            Notificacion notificacionAmigo = new Notificacion(a,
+                                    usuario.getNombres() + " " + usuario.getApellidos() +
+                                            " le ha dado like al post de " +
+                                            imagen.getAlbum().getUsuario().getNombres() + " " +
+                                            imagen.getAlbum().getUsuario().getApellidos() + ".", new Date());
+                            a.getNotificaciones().add(notificacionAmigo);
+                            ServiciosNotificaciones.getInstancia().crear(notificacionAmigo);
+                        }
+
+                        Actividad actividad = new Actividad(usuario,usuario.getNombres() + " " +
+                                usuario.getApellidos() + " le ha dado like al post de " + imagen.getAlbum().getUsuario().getNombres() +
+                                " " + imagen.getAlbum().getUsuario().getApellidos() + ".", new Date());
+                        usuario.getTimeline().add(actividad);
+                        ServiciosActividad.getInstancia().crear(actividad);
+
+
+                        Notificacion notificacionReceptor = new Notificacion(imagen.getAlbum().getUsuario(),"Haz recivido un like en una foto de parte de " +
+                                usuario.getNombres() + " " +
+                                usuario.getApellidos() + ".", new Date());
+                        imagen.getAlbum().getUsuario().getNotificaciones().add(notificacionReceptor);
+                        ServiciosNotificaciones.getInstancia().crear(notificacionReceptor);
                     }
                     response.redirect("/visualizarImagen/" + albumFoto + "idAlbum/" + imagenId);
                 }
@@ -467,6 +636,35 @@ public class RutasSpark {
 
                 ComentarioFoto nuevoComentario = new ComentarioFoto(comentario,new Date(),autor,imagenActual);
                 ServiciosComentarioFoto.getInstancia().crear(nuevoComentario);
+
+                Notificacion notificacion = new Notificacion(autor,"Haz comentado en una foto de " +
+                        imagenActual.getAlbum().getUsuario().getNombres() + " " +
+                        imagenActual.getAlbum().getUsuario().getApellidos() + ".", new Date());
+                autor.getNotificaciones().add(notificacion);
+                ServiciosNotificaciones.getInstancia().crear(notificacion);
+
+                for(Usuario a : autor.getAmigos()){
+                    Notificacion notificacionAmigo = new Notificacion(a,
+                            autor.getNombres() + " " + autor.getApellidos() +
+                                    " ha comentado en una foto de " +
+                                    imagenActual.getAlbum().getUsuario().getNombres() + " " +
+                                    imagenActual.getAlbum().getUsuario().getApellidos() + ".", new Date());
+                    a.getNotificaciones().add(notificacionAmigo);
+                    ServiciosNotificaciones.getInstancia().crear(notificacionAmigo);
+                }
+
+                Actividad actividad = new Actividad(autor,autor.getNombres() + " " +
+                        autor.getApellidos() + " ha comentado una foto de " +
+                        imagenActual.getAlbum().getUsuario().getNombres() +
+                        " " + imagenActual.getAlbum().getUsuario().getApellidos() + ".", new Date());
+                autor.getTimeline().add(actividad);
+                ServiciosActividad.getInstancia().crear(actividad);
+
+                Notificacion notificacionReceptor = new Notificacion(imagenActual.getAlbum().getUsuario(),
+                        autor.getNombres() + " " + autor.getApellidos() + " ha comentado tu foto.", new Date());
+                imagenActual.getAlbum().getUsuario().getNotificaciones().add(notificacionReceptor);
+                ServiciosNotificaciones.getInstancia().crear(notificacionReceptor);
+
                 response.redirect("/visualizarImagen/" + albumFoto + "idAlbum/" + imagenId);
 
             } catch (Exception e) {

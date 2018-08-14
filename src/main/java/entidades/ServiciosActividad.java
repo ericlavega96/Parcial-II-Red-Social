@@ -28,4 +28,11 @@ public class ServiciosActividad extends MetodosDB<Actividad> {
         List<Actividad> resultado = query.getResultList();
         return resultado;
     }
+
+    public List<Actividad> actividadesAmigos(Usuario user){
+        EntityManager em = getEntityManager();
+        Query query = em.createQuery("select ac from Usuario u, Actividad ac JOIN u.amigos a WHERE u.correo = :correo AND (ac.usuario = a OR ac.usuario = u) order by ac.fechaActividad DESC");
+        query.setParameter("correo", user.getCorreo());
+        return query.getResultList();
+    }
 }
