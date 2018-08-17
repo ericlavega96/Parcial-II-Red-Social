@@ -146,6 +146,8 @@ public class RutasSpark {
                 Usuario logUser = request.session(true).attribute("usuario");
                 String cuerpo = request.queryParams("cuerpo");
                 String tags = request.queryParams("tags");
+                String geolocation = request.queryParams("geolocalizacion");
+                System.out.println("Localización optenida: " + geolocation);
                 Set<Tag> postEtiquetas = Tag.crearEtiquetas(tags.split(","));
                 Post nuevoPost = new Post(logUser,imagen,cuerpo,new Date(),null,postEtiquetas,null);
                 ServiciosPost.getInstancia().crear(nuevoPost);

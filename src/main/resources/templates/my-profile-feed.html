@@ -407,6 +407,7 @@
 												<h4>${trabajo}</h4>
 											</div><!--user-profile-ov end-->
 										</#if>
+
 									</div><!--#fin - Tab info-->
 									<div class="product-feed-tab" id="saved-jobs">
 										<div class="posts-section">
@@ -933,6 +934,9 @@
 								<input class="tags-input" name="tags" placeholder=" Inserte los tags">
 							</div>
 							<div class="col-lg-12">
+								<h3>Ubicación Actual: <label id="geolocalizacion" name = "geolocalizacion"></label></h3>
+							</div><!--user-profile-ov end-->
+							<div class="col-lg-12">
 								<ul>
 									<li><button class="active" type="submit" value="publicar">Publicar</button></li>
 								</ul>
@@ -1088,6 +1092,7 @@
 	<script type="text/javascript" src="/js/funciones-atwho.js"></script>
 	<script type="text/javascript" src="/js/jquery.atwho.js"></script>
 	<script type="text/javascript" src="/js/jquery.caret.js"></script>
+	<script type="text/javascript" src="/js/geolocation.js"></script>
 	<script>
 		function mostrarSeccionComentarios() {
 			var seccionComentarios = document.getElementById("comentarios");
