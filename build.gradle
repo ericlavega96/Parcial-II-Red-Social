@@ -14,7 +14,7 @@ dependencies {
     //Librerias de Hibernate
     compile 'org.hibernate:hibernate-core:5.1.0.Final'
     compile 'org.hibernate:hibernate-entitymanager:5.1.0.Final'
-
+    compile group: 'org.simpleframework', name: 'simple-xml', version: '2.7.1'
     compile "com.sparkjava:spark-core:2.7.2"
     compile 'com.sparkjava:spark-template-freemarker:2.7.1'
     compile "com.h2database:h2:1.4.197"

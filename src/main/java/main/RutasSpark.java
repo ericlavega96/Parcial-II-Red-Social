@@ -299,7 +299,7 @@ public class RutasSpark {
             Usuario logUser = request.session(true).attribute("usuario");
             Usuario user = ServiciosUsuario.getInstancia().findByEmail(logUser.getCorreo());
             return ServiciosUsuario.getInstancia().amigosToJSON(user);
-        },  new JsonTransformer());
+        }, JsonTransformer.json());
 
         get("redSocial/perfil/:correo/perfilUsuario", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();

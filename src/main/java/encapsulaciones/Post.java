@@ -1,12 +1,20 @@
 package encapsulaciones;
 
 import java.util.Date;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
+@Root
 public class Post {
+    @Element
     private long id;
+    @Element
     private Usuario autor;
+    @Element
     private Imagen imagen;
+    @Element
     private String cuerpo;
+    @Element
     private Date fecha;
 
     public Post() {
@@ -14,6 +22,13 @@ public class Post {
 
     public Post(long id, Usuario autor, Imagen imagen, String cuerpo, Date fecha) {
         this.id = id;
+        this.autor = autor;
+        this.imagen = imagen;
+        this.cuerpo = cuerpo;
+        this.fecha = fecha;
+    }
+
+    public Post(Usuario autor, Imagen imagen, String cuerpo, Date fecha) {
         this.autor = autor;
         this.imagen = imagen;
         this.cuerpo = cuerpo;

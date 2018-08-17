@@ -2,6 +2,7 @@ package main;
 
 import entidades.ServiciosPais;
 import entidades.ServiciosUsuario;
+import rest.RestMain;
 import servicios.ServiciosBootStrap;
 
 import javax.persistence.EntityManager;
@@ -21,6 +22,7 @@ public class Main {
         ServiciosUsuario.getInstancia().crearAdmin();
         ServiciosUsuario.getInstancia().crearAmigoAdmin();
         new RutasSpark().iniciarSpark();
+        new RestMain().iniciarServicioRest();
         new Filtros().aplicarFiltros();
     }
 
