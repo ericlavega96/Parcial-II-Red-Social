@@ -97,7 +97,7 @@ public class RutasSpark {
         }, freeMarkerEngine);
 
         post("/registrarUsuario", (request, response) -> {
-            try {
+           // try {
                 String nombres = request.queryParams("nombres");
                 String apellidos = request.queryParams("apellidos");
                 String sexo = request.queryParams("cbMasculino");
@@ -128,9 +128,9 @@ public class RutasSpark {
 
                 response.redirect("/login");
 
-            } catch (Exception e) {
-                System.out.println("Error al intentar registrar usuario" + e.toString());
-            }
+           // } catch (Exception e) {
+           //     System.out.println("Error al intentar registrar usuario" + e.toString());
+            //}
             return "";
         });
 
@@ -138,21 +138,19 @@ public class RutasSpark {
             try {
                 String imagenRuta = (ServiciosImagen.getInstancia().guardarFoto("imagen",fotosDir,request));
                 Imagen imagen = null;
-                System.out.println(request.queryParams("imagen"));
                 if(imagenRuta != null){
-                    System.out.println("Entró para guardar la imagen");
                     imagen = new Imagen(imagenRuta,null,null);
                 }
                 Usuario logUser = request.session(true).attribute("usuario");
                 String cuerpo = request.queryParams("cuerpo");
                 String tags = request.queryParams("tags");
                 String geolocation = request.queryParams("geolocalizacion");
-                System.out.println("Localización optenida: " + geolocation);
+                System.out.println("Localización obtenida: " + geolocation);
                 Set<Tag> postEtiquetas = Tag.crearEtiquetas(tags.split(","));
                 Post nuevoPost = new Post(logUser,imagen,cuerpo,new Date(),null,postEtiquetas,null);
                 ServiciosPost.getInstancia().crear(nuevoPost);
 
-                Notificacion notificacion = new Notificacion(logUser,"Haz publicado un nuevo post.", new Date());
+                Notificacion notificacion = new Notificacion(logUser,"Has publicado un nuevo post.", new Date());
                 logUser.getNotificaciones().add(notificacion);
                 ServiciosNotificaciones.getInstancia().crear(notificacion);
 
@@ -186,7 +184,7 @@ public class RutasSpark {
                 ServiciosComentarioPost.getInstancia().crear(nuevoComentario);
                 response.redirect("/redSocial/userArea/" + autor.getCorreo() + "/perfilUsuario");
 
-                Notificacion notificacion = new Notificacion(autor,"Haz comentado en un post de " +
+                Notificacion notificacion = new Notificacion(autor,"Has comentado en un post de " +
                         postActual.getAutor().getNombres() + " " +
                         postActual.getAutor().getApellidos() + ".", new Date());
                 autor.getNotificaciones().add(notificacion);
@@ -232,7 +230,7 @@ public class RutasSpark {
                         }else{
                             ServiciosLikePost.getInstancia().crear(new LikePost(post,usuario,true));
 
-                            Notificacion notificacion = new Notificacion(usuario,"Haz dado like al post de " +
+                            Notificacion notificacion = new Notificacion(usuario,"Has dado like al post de " +
                                     post.getAutor().getNombres() + " " +
                                     post.getAutor().getApellidos() + ".", new Date());
                             usuario.getNotificaciones().add(notificacion);
@@ -255,7 +253,7 @@ public class RutasSpark {
                             ServiciosActividad.getInstancia().crear(actividad);
 
 
-                            Notificacion notificacionReceptor = new Notificacion(post.getAutor(),"Haz recivido un like en tu post de parte de" +
+                            Notificacion notificacionReceptor = new Notificacion(post.getAutor(),"Has recibido un like en tu post de parte de" +
                                     usuario.getNombres() + " " +
                                     usuario.getApellidos() + ".", new Date());
                             post.getAutor().getNotificaciones().add(notificacionReceptor);

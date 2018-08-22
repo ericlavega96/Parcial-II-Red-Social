@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletException;
+import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -33,13 +34,18 @@ public class ServiciosImagen extends MetodosDB<Imagen> {
     }
 
     public String guardarFoto(String attName,File fotosDir,Request req) throws IOException, ServletException {
-        Path tempFile = null;
-        tempFile = Files.createTempFile(fotosDir.toPath(), "", ".png");
         req.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/temp"));
-        try(InputStream input = req.raw().getPart(attName).getInputStream()){
-            Files.copy(input, tempFile, StandardCopyOption.REPLACE_EXISTING);
+        Path tempFile= null;
+        String ruta = null;
+        Part imagen = req.raw().getPart(attName);
+        if(imagen.getSize() > 0){
+            try(InputStream input = imagen.getInputStream()){
+                tempFile = Files.createTempFile(fotosDir.toPath(), "", ".png");
+                Files.copy(input, tempFile, StandardCopyOption.REPLACE_EXISTING);
+                ruta = tempFile.getFileName().toString();
+            }
         }
-        return tempFile.getFileName().toString();
+        return ruta;
     }
 
     public long getLikesCount(Imagen imagen){

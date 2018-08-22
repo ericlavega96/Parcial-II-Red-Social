@@ -333,11 +333,11 @@
 																<span>${post.likesCount()}</span>
                                                             </li>
                                                             <li>
-																<button id="comments-btn" onclick="mostrarSeccionComentarios()"><a><img src="/images/com.png" alt=""> Comentarios</a></button>
+																<button id="comments-btn" onclick="mostrarSeccionComentarios(${post.idPost})"><a><img src="/images/com.png" alt=""> Comentarios</a></button>
 															</li>
                                                         </ul>
                                                     </div>
-													<div id="comentarios">
+													<div id="comentarios${post.idPost}">
 														<#list post.listaComentariosPost as comentario>
 															<div class="comment-section">
 																<div class="comment-sec">
@@ -1094,8 +1094,8 @@
 	<script type="text/javascript" src="/js/jquery.caret.js"></script>
 	<script type="text/javascript" src="/js/geolocation.js"></script>
 	<script>
-		function mostrarSeccionComentarios() {
-			var seccionComentarios = document.getElementById("comentarios");
+		function mostrarSeccionComentarios(idPost) {
+			var seccionComentarios = document.getElementById("comentarios"+idPost);
 			if (seccionComentarios.style.display === "none") {
 				seccionComentarios.style.display = "block";
 			} else {
