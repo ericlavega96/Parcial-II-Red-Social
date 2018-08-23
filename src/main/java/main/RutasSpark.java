@@ -118,11 +118,11 @@ public class RutasSpark {
 
                 Notificacion notificacion = new Notificacion(nuevoUsuario,"Bienvenido, " + nuevoUsuario.getNombres() + " " +
                         nuevoUsuario.getApellidos() + " a nuestra red social.", new Date());
-                nuevoUsuario.getNotificaciones().add(notificacion);
+                ServiciosUsuario.getInstancia().find(nuevoUsuario.getIdUsuario()).getNotificaciones().add(notificacion);
                 ServiciosNotificaciones.getInstancia().crear(notificacion);
                 Actividad actividad = new Actividad(nuevoUsuario,nuevoUsuario.getNombres() + " " +
                         nuevoUsuario.getApellidos() + " se ha unido a la red social.", new Date());
-                nuevoUsuario.getTimeline().add(actividad);
+                ServiciosUsuario.getInstancia().find(nuevoUsuario.getIdUsuario()).getTimeline().add(actividad);
                 ServiciosActividad.getInstancia().crear(actividad);
 
 
@@ -673,6 +673,36 @@ public class RutasSpark {
             return "";
         });
 
+        post("/editarPost/:id", (request, response) -> {
+            try{
+                String idPostActual = request.params("id");
+
+                Post postAEditar = ServiciosPost.getInstancia().find(Long.parseLong(idPostActual));
+
+                String cuerpo = request.queryParams("cuerpo");
+
+                postAEditar.setCuerpo(cuerpo);
+                ServiciosPost.getInstancia().editar(postAEditar);
+                response.redirect("/");
+
+            }catch (Exception e){
+                System.out.println("Error al editar el post: " + e.toString());
+            }
+            return "";
+        });
+
+        post("/eliminarPost/:id", (request, response) -> {
+            try{
+                String idPostActual = request.params("id");
+                ServiciosPost.getInstancia().eliminar(Long.parseLong(idPostActual));
+
+                response.redirect("/");
+
+            }catch (Exception e){
+                System.out.println("Error al eliminar post: " + e.toString());
+            }
+            return "";
+        });
 
     }
 }

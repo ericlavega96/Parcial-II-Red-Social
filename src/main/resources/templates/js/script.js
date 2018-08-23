@@ -95,6 +95,50 @@ $(window).on("load", function() {
         "right": gap
     });
 
+    //  ============= EDITAR POST FUNCTION =========
+
+    $(".editar-post-open").on("click", function(){
+        $("#editar-post-box").addClass("open");
+        $(".wrapper").addClass("overlay");
+        $(".ed-opts-open").next(".ed-options").removeClass("active");
+        return false;
+    });
+    $(".close-box").on("click", function(){
+        $("#editar-post-box").removeClass("open");
+        $(".wrapper").removeClass("overlay");
+        $(".ed-opts-open").next(".ed-options").removeClass("active");
+        return false;
+    });
+
+    $(".close-editar-post-box").on("click", function(){
+        $("#editar-post-box").removeClass("open");
+        $(".wrapper").removeClass("overlay");
+        $(".ed-opts-open").next(".ed-options").removeClass("active");
+        return false;
+    });
+
+    //  ============= ELIMINAR POST FUNCTION =========
+
+    $(".eliminar-post-open").on("click", function(){
+        $("#eliminar-post-box").addClass("open");
+        $(".wrapper").addClass("overlay");
+        $(".ed-opts-open").next(".ed-options").removeClass("active");
+        return false;
+    });
+    $(".close-box").on("click", function(){
+        $("#eliminar-post-box").removeClass("open");
+        $(".wrapper").removeClass("overlay");
+        $(".ed-opts-open").next(".ed-options").removeClass("active");
+        return false;
+    });
+
+    $(".close-eliminar-post-box").on("click", function(){
+        $("#eliminar-post-box").removeClass("open");
+        $(".wrapper").removeClass("overlay");
+        $(".ed-opts-open").next(".ed-options").removeClass("active");
+        return false;
+    });
+
     //  ============= OVERVIEW EDIT FUNCTION =========
 
     $(".overview-open").on("click", function(){

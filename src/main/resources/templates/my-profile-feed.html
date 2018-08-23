@@ -293,24 +293,20 @@
                                                                 <span><img src="/images/clock.png" alt="">${post.fecha}</span>
                                                             </div>
                                                         </div>
-                                                        <div class="ed-opts">
-                                                            <a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-                                                            <ul class="ed-options">
-                                                                <li><a href="#" title="">Editar Post</a></li>
-                                                                <li><a href="#" title="">Unsaved</a></li>
-                                                                <li><a href="#" title="">Unbid</a></li>
-                                                                <li><a href="#" title="">Close</a></li>
-                                                                <li><a href="#" title="">Hide</a></li>
-                                                            </ul>
-                                                        </div>
+														<#if post.autor.idUsuario == usuario.idUsuario>
+															<div class="ed-opts">
+																<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+																<ul class="ed-options">
+																	<li><a href="" title="" class="editar-post-open">Editar Post</a></li>
+																	<li><a href="" title="" class="eliminar-post-open">Eliminar Post</a></li>
+																</ul>
+															</div>
+
+														</#if>
                                                     </div>
                                                     <div class="epi-sec">
                                                         <ul class="descp">
                                                             <li><img src="/images/icon9.png" alt=""><span>${usuario.pais.pais}</span></li>
-                                                        </ul>
-                                                        <ul class="bk-links">
-                                                            <li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
-                                                            <li><a href="#" title=""><i class="la la-envelope"></i></a></li>
                                                         </ul>
                                                     </div>
                                                     <div class="job_descp">
@@ -337,7 +333,7 @@
 															</li>
                                                         </ul>
                                                     </div>
-													<div id="comentarios${post.idPost}">
+													<div id="comentarios${post.idPost}" style="display: none">
 														<#list post.listaComentariosPost as comentario>
 															<div class="comment-section">
 																<div class="comment-sec">
@@ -371,6 +367,32 @@
 														</div><!--post-comment end-->
 													</div>
 												</div><!--post-bar end-->
+
+												<div class="editar-post-box" id="editar-post-box">
+													<div class="overview-edit">
+														<h3>Editar Post</h3>
+														<span>Contenido del post a editar:</span>
+														<form action="/editarPost/${post.idPost}" method="post">
+															<textarea name="cuerpo">${post.cuerpo}</textarea>
+															<button type="submit" class="save">Guardar</button>
+															<button type="submit" class="close-editar-post-box">Cancelar</button>
+														</form>
+														<a href="" title="" class="close-box"><i class="la la-close"></i></a>
+													</div><!--overview-edit end-->
+												</div><!--overview-box end-->
+
+												<div class="eliminar-post-box" id="eliminar-post-box">
+													<div class="overview-edit">
+														<h3>Eliminar Post</h3>
+														<span>Desea eliminar el post seleccionado?</span>
+														<form action="/eliminarPost/${post.idPost}" method="post">
+															<button type="submit" class="save">Sí</button>
+															<button class="close-eliminar-post-box">No</button>
+														</form>
+														<a href="" title="" class="close-box"><i class="la la-close"></i></a>
+													</div><!--overview-edit end-->
+												</div><!--overview-box end-->
+
 											</#list>
 											<div class="process-comm">
 												<div class="spinner">
@@ -973,18 +995,20 @@
 		</div><!--post-project-popup end-->
 
 
+
 		<div class="overview-box" id="overview-box">
 			<div class="overview-edit">
-				<h3>Overview</h3>
-				<span>5000 character left</span>
+				<h3>Overview Prueba</h3>
+				<span>5000 caracteres en pantalla</span>
 				<form>
 					<textarea></textarea>
-					<button type="submit" class="save">Save</button>
-					<button type="submit" class="cancel">Cancel</button>
+					<button type="submit" class="save">Guardar</button>
+					<button type="submit" class="cancel">Cancelar</button>
 				</form>
 				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
 			</div><!--overview-edit end-->
 		</div><!--overview-box end-->
+
 
 
 		<div class="overview-box" id="experience-box">

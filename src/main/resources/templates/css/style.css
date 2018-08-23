@@ -162,6 +162,8 @@ nav ul li a,
 .gallery_pt:before,
 .gallery_pt > a,
 .overview-box,
+.editar-post-box,
+.eliminar-post-box,
 .skl-name,
 .conv-list,
 .save-stngs ul li button,
@@ -3245,6 +3247,21 @@ footer {
 /* ============== overview-box ============= */
 
 .overview-box {
+	 width: 570px;
+	 position: fixed;
+	 top: 50%;
+	 left: 50%;
+	 -webkit-transform: translateX(-50%) translateY(-50%);
+	 -moz-transform: translateX(-50%) translateY(-50%);
+	 -ms-transform: translateX(-50%) translateY(-50%);
+	 -o-transform: translateX(-50%) translateY(-50%);
+	 transform: translateX(-50%) translateY(-50%);
+	 opacity: 0;
+	 visibility: hidden;
+	 z-index: 0;
+ }
+
+.editar-post-box {
 	width: 570px;
 	position: fixed;
 	top: 50%;
@@ -3258,6 +3275,22 @@ footer {
 	visibility: hidden;
 	z-index: 0;
 }
+
+.eliminar-post-box {
+	width: 570px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	-o-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	opacity: 0;
+	visibility: hidden;
+	z-index: 0;
+}
+
 .close-box {
 	position: absolute;
 	top: -20px;
@@ -3284,6 +3317,25 @@ footer {
 	visibility: visible;
 	z-index: 99999;
 }
+
+.editar-post-box.open {
+	opacity: 1;
+	visibility: visible;
+	z-index: 99999;
+}
+
+.eliminar-post-box.open {
+	opacity: 1;
+	visibility: visible;
+	z-index: 99999;
+}
+
+.-box.open {
+	opacity: 1;
+	visibility: visible;
+	z-index: 99999;
+}
+
 .overview-edit {
 	float: left;
 	width: 100%;
@@ -3301,8 +3353,8 @@ footer {
 .overview-edit span {
 	color: #b2b2b2;
 	font-size: 12px;
-	float: right;
-	margin-bottom: 5px;
+	float: left;
+	margin-bottom: 25px;
 }
 .overview-edit form {
 	float: left;

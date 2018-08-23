@@ -106,13 +106,6 @@
 								</div><!--sign_in_sec end-->
 								<div class="sign_in_sec" id="tab-2">
 									<h3>Registrarte</h3>
-									<div class="dff-tab current" id="tab-3">
-                                        <div id="myModal" class="modal">
-                                            <div class="modal-content">
-                                                <span class="close">&times;</span>
-                                                <p>El usuario ha sido agregado con éxito</p>
-                                            </div>
-                                        </div>
 										<form action="/registrarUsuario" method="post">
 											<div class="row">
 												<div class="col-lg-12 no-pdd">
@@ -228,38 +221,6 @@
             });
         });
 	</script>
-    <script>
-        // Get the modal
-        var modal = document.getElementById('myModal');
-
-        // Get the button that opens the modal
-        var btn = document.getElementById("registrar-btn");
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks the button, open the modal
-        btn.onclick = function() {
-            modal.style.display = "block";
-            modal.toggleClass("registrado");
-        }
-
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-            modal.removeClass("registrado");
-            modal.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.removeClass("registrado");
-                modal.style.display = "none";
-            }
-        }
-        if(modal.hasClass("registrado")){
-            modal.style.display = "block"
-		}
-    </script>
 </body>
 
 <!-- Mirrored from gamboldesigns.net/Demo/HTML/sign-in.ftl by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 03:36:46 GMT -->
