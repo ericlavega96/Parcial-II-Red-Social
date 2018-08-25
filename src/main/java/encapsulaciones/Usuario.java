@@ -1,9 +1,17 @@
 package encapsulaciones;
 
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+
+@Root
 public class Usuario {
+    @Element
     private String correo;
+    @Element
     private String password;
+    @Element
     private String nombres;
+    @Element
     private String apellidos;
 
     public Usuario() {

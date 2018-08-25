@@ -1,11 +1,18 @@
 package encapsulaciones;
 
 
-public class Amigo {
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
+@Root
+public class Amigo {
+    @Element
     private long codigo;
+    @Element
     private String correo;
+    @Element
     private String nombres;
+    @Element
     private String apellidos;
 
     public Amigo() {

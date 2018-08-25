@@ -1,16 +1,22 @@
 package rest;
 
 import com.google.gson.Gson;
+import encapsulaciones.PostAuxiliar;
+import entidades.ServiciosActividad;
+import entidades.ServiciosNotificaciones;
 import entidades.ServiciosPost;
 import entidades.ServiciosUsuario;
-import logical.Imagen;
-import logical.Usuario;
+import javafx.geometry.Pos;
+import logical.*;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 import servicios.JsonTransformer;
 import encapsulaciones.Post;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import static spark.Spark.*;
 
@@ -41,7 +47,8 @@ public class RestMain {
                     Post nuevoPost = null;
                     switch (request.headers("Content-Type")){
                         case ACCEPT_TYPE_JSON:
-                            nuevoPost = new Gson().fromJson(request.body(),Post.class);
+                            System.out.println("JSON recibido: " + request.body());
+                            nuevoPost = new Gson().fromJson(request.body(), Post.class);
                             break;
                         case ACCEPT_TYPE_XML:
                             nuevoPost = serializer.read(Post.class,request.body());
@@ -50,12 +57,46 @@ public class RestMain {
                             throw new IllegalArgumentException("Error el formato no disponible");
                     }
 
-                    logical.Usuario usuarioPost =  ServiciosUsuario.getInstancia().findByEmail(nuevoPost.getAutor().getCorreo());
-                    logical.Imagen imagenPost = new Imagen(nuevoPost.getImagen().getImagen(),null,null);
-                    logical.Post restPost = new logical.Post(usuarioPost,imagenPost,nuevoPost.getCuerpo(),nuevoPost.getFecha(),null,null,null);
-                    ServiciosPost.getInstancia().crear(restPost);
+                    logical.Usuario logUser =  ServiciosUsuario.getInstancia().findByEmailAndPassword(nuevoPost.getAutor().getCorreo(), nuevoPost.getAutor().getPassword());
+                    if(logUser != null){
+                        logical.Imagen imagenPost = new Imagen(nuevoPost.getImagen().getImagen(),null,null);
+                        Set<Tag> tagList = Tag.crearEtiquetas(nuevoPost.getEtiquetas().split(","));
 
-                    return restPost;
+                        logical.Post restPost = new logical.Post(logUser,imagenPost,nuevoPost.getCuerpo(),new Date(),
+                                null,tagList,null);
+                        ServiciosPost.getInstancia().crear(restPost);
+
+                        Set<logical.Usuario> mencionados = ServiciosUsuario.getInstancia().usuariosMencionados(nuevoPost.getCuerpo());
+                        for(logical.Usuario a : mencionados){
+                            Notificacion notificacion = new Notificacion(a,
+                                    logUser.getNombres() + " " + logUser.getApellidos() +
+                                            " te ha mencionado en su nuevo post.", new Date());
+                            a.getNotificaciones().add(notificacion);
+                            ServiciosNotificaciones.getInstancia().crear(notificacion);
+                        }
+
+                        Notificacion notificacion = new Notificacion(logUser,"Has publicado un nuevo post.", new Date());
+                        logUser.getNotificaciones().add(notificacion);
+                        ServiciosNotificaciones.getInstancia().crear(notificacion);
+
+                        for(logical.Usuario a : logUser.getAmigos()){
+                            Notificacion notificacionAmigo = new Notificacion(a,
+                                    logUser.getNombres() + " " + logUser.getApellidos() +
+                                            " ha publicado un nuevo post.", new Date());
+                            a.getNotificaciones().add(notificacionAmigo);
+                            ServiciosNotificaciones.getInstancia().crear(notificacionAmigo);
+                        }
+
+                        Actividad actividad = new Actividad(logUser,logUser.getNombres() + " " +
+                                logUser.getApellidos() + " ha publicado un nuevo post.", new Date());
+                        logUser.getTimeline().add(actividad);
+                        ServiciosActividad.getInstancia().crear(actividad);
+
+
+                        return restPost;
+                    }
+
+                    return null;
                 },JsonTransformer.json());
             });
         });

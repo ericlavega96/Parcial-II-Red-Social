@@ -19,7 +19,11 @@ public class Post {
     @Element
     private String etiquetas;
 
-    public Post() {
+    public Post(String correo, String password, String cuerpo, String imagen, String tags) {
+        this.autor = new Usuario(correo,password,"","");
+        this.cuerpo = cuerpo;
+        this.imagen = new Imagen(imagen);
+        this.etiquetas = tags;
     }
 
     public Post(long id, Usuario autor, Imagen imagen, String cuerpo, Date fecha ) {

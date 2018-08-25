@@ -157,5 +157,17 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
         }
     }
 
+    public Set<Usuario> usuariosMencionados(String texto){
+        Set<Usuario> usuarios = new HashSet<>();
+        for(String s : texto.split(" "))
+        {
+            if(s.substring(0,1).equals("*")) {
+                usuarios.add(instancia.findByEmail(s.substring(1, s.length() - 1)));
+                System.out.println(instancia.findByEmail(s.substring(1, s.length() - 1)));
+            }
+        }
+        return usuarios;
+    }
+
 
 }

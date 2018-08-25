@@ -71,7 +71,10 @@ public class RutasSpark {
 
         get("redSocial/userArea/:correo/perfilUsuario", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-            Usuario logUser = request.session(true).attribute("usuario");
+
+            Usuario tmpUser = request.session(true).attribute("usuario");
+            Usuario logUser = ServiciosUsuario.getInstancia().find(tmpUser.getIdUsuario());
+
             String correoUser = request.params("correo");
             Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
             attributes.put("logUser",logUser);
@@ -142,13 +145,23 @@ public class RutasSpark {
                 if(imagenRuta != null){
                     imagen = new Imagen(imagenRuta,null,null);
                 }
-                Usuario logUser = request.session(true).attribute("usuario");
+                Usuario tmpUser = request.session(true).attribute("usuario");
+                Usuario logUser = ServiciosUsuario.getInstancia().find(tmpUser.getIdUsuario());
                 String cuerpo = request.queryParams("cuerpo");
                 String tags = request.queryParams("tags");
                 String geolocation = request.queryParams("geolocalizacion");
                 System.out.println("Localización obtenida: " + geolocation);
                 Set<Tag> postEtiquetas = Tag.crearEtiquetas(tags.split(","));
                 Post nuevoPost = new Post(logUser,imagen,cuerpo,new Date(),null,postEtiquetas,null);
+                Set<Usuario> mencionados = ServiciosUsuario.getInstancia().usuariosMencionados(cuerpo);
+                for(Usuario a : mencionados){
+                    Notificacion notificacion = new Notificacion(a,
+                            logUser.getNombres() + " " + logUser.getApellidos() +
+                                    " te ha mencionado en su nuevo post.", new Date());
+                    a.getNotificaciones().add(notificacion);
+                    ServiciosNotificaciones.getInstancia().crear(notificacion);
+                }
+
                 ServiciosPost.getInstancia().crear(nuevoPost);
 
                 Notificacion notificacion = new Notificacion(logUser,"Has publicado un nuevo post.", new Date());
@@ -272,7 +285,8 @@ public class RutasSpark {
 
         get("/redSocial/listaUsuarios", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-            Usuario logUser = request.session(true).attribute("usuario");
+            Usuario tmpUser = request.session(true).attribute("usuario");
+            Usuario logUser = ServiciosUsuario.getInstancia().find(tmpUser.getIdUsuario());
 
             Usuario user = ServiciosUsuario.getInstancia().find(logUser.getIdUsuario());
             attributes.put("logUser",logUser);
@@ -285,7 +299,8 @@ public class RutasSpark {
 
         get("redSocial/userArea/:correo/amigos", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-            Usuario logUser = request.session(true).attribute("usuario");
+            Usuario tmpUser = request.session(true).attribute("usuario");
+            Usuario logUser = ServiciosUsuario.getInstancia().find(tmpUser.getIdUsuario());
 
             String correoUser = request.params("correo");
             Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
@@ -295,14 +310,16 @@ public class RutasSpark {
         }, freeMarkerEngine);
 
         get("/json/amigos", (request, response) -> {
-            Usuario logUser = request.session(true).attribute("usuario");
+            Usuario tmpUser = request.session(true).attribute("usuario");
+            Usuario logUser = ServiciosUsuario.getInstancia().find(tmpUser.getIdUsuario());
             Usuario user = ServiciosUsuario.getInstancia().findByEmail(logUser.getCorreo());
             return ServiciosUsuario.getInstancia().amigosToJSON(user);
         }, JsonTransformer.json());
 
         get("redSocial/perfil/:correo/perfilUsuario", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-            Usuario logUser = request.session(true).attribute("usuario");
+            Usuario tmpUser = request.session(true).attribute("usuario");
+            Usuario logUser = ServiciosUsuario.getInstancia().find(tmpUser.getIdUsuario());
             String correoUser = request.params("correo");
             Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
             attributes.put("logUser",logUser);
@@ -473,7 +490,8 @@ public class RutasSpark {
 
         get("/redSocial/userArea/:correo/settings", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-            Usuario logUser = request.session(true).attribute("usuario");
+            Usuario tmpUser = request.session(true).attribute("usuario");
+            Usuario logUser = ServiciosUsuario.getInstancia().find(tmpUser.getIdUsuario());
             String correoUser = request.params("correo");
             Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
             attributes.put("logUser",logUser);
@@ -489,7 +507,8 @@ public class RutasSpark {
             try {
                 String nombreAlbum = request.queryParams("nombreAlbum");
                 String descripcion = request.queryParams("descripcion");
-                Usuario logUser = request.session(true).attribute("usuario");
+                Usuario tmpUser = request.session(true).attribute("usuario");
+            Usuario logUser = ServiciosUsuario.getInstancia().find(tmpUser.getIdUsuario());
 
                 Album nuevoAlbum = new Album(nombreAlbum,descripcion,logUser,new Date());
                 ServiciosAlbum.getInstancia().editar(nuevoAlbum);
@@ -530,7 +549,8 @@ public class RutasSpark {
                     Imagen imagen = new Imagen(imagenRuta,albumActual,null);
                     albumActual.getImagenes().add(imagen);
                 }
-                Usuario logUser = request.session(true).attribute("usuario");
+                Usuario tmpUser = request.session(true).attribute("usuario");
+            Usuario logUser = ServiciosUsuario.getInstancia().find(tmpUser.getIdUsuario());
 
                 ServiciosAlbum.getInstancia().editar(albumActual);
 
@@ -557,7 +577,8 @@ public class RutasSpark {
 
         get("redSocial/admin/:correo/zonaAdmin", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-            Usuario logUser = request.session(true).attribute("usuario");
+            Usuario tmpUser = request.session(true).attribute("usuario");
+            Usuario logUser = ServiciosUsuario.getInstancia().find(tmpUser.getIdUsuario());
 
             String correoUser = request.params("correo");
             Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
@@ -569,7 +590,8 @@ public class RutasSpark {
 
         get("/visualizarImagen/:idAlbum/:idImagen", (request, response) -> {
             Map<String, Object> attributes = new HashMap<>();
-            Usuario logUser = request.session(true).attribute("usuario");
+            Usuario tmpUser = request.session(true).attribute("usuario");
+            Usuario logUser = ServiciosUsuario.getInstancia().find(tmpUser.getIdUsuario());
             String idImagen = request.params("idImagen");
             attributes.put("logUser",logUser);
             attributes.put("foto",ServiciosImagen.getInstancia().find(Long.valueOf(idImagen)));

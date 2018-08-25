@@ -21,7 +21,7 @@ public class RestWebService {
             for (int i = 0; i < tagList.size(); i++) {
                 if (i > 0)
                     tags += ", ";
-                tags += tagList.get(i);
+                tags += tagList.get(i).getTag();
             }
 
             resultSet.add(new Post(post.getIdPost(),
