@@ -113,10 +113,8 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
         if(user.getAmigos().size() > 0){
             for(Usuario u : candidatos) {
                 for (Usuario a : user.getAmigos()) {
-                    if ((u.getCorreo().equals(a.getCorreo())) || u.getCorreo().equals(user.getCorreo())) {
+                    if ((u.getCorreo().equals(a.getCorreo())) || u.getCorreo().equals(user.getCorreo()))
                         aux = true;
-                        System.out.println("entro1 " + !u.getCorreo().equals(a.getCorreo()));
-                    }
                 }
                 if(!aux)
                     resultado.add(u);
@@ -125,10 +123,9 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
         }
         else {
             for (Usuario u : getInstancia().findAll())
-                if (!u.getCorreo().equals(user.getCorreo())) {
+                if (!u.getCorreo().equals(user.getCorreo()))
                     resultado.add(u);
-                    System.out.println("entro2");
-                }
+
         }
 
         return resultado;

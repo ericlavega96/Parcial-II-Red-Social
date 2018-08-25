@@ -16,11 +16,13 @@ public class Post {
     private String cuerpo;
     @Element
     private Date fecha;
+    @Element
+    private String etiquetas;
 
     public Post() {
     }
 
-    public Post(long id, Usuario autor, Imagen imagen, String cuerpo, Date fecha) {
+    public Post(long id, Usuario autor, Imagen imagen, String cuerpo, Date fecha ) {
         this.id = id;
         this.autor = autor;
         this.imagen = imagen;
@@ -28,11 +30,13 @@ public class Post {
         this.fecha = fecha;
     }
 
-    public Post(Usuario autor, Imagen imagen, String cuerpo, Date fecha) {
+    public Post(long id, Usuario autor, Imagen imagen, String cuerpo, Date fecha, String etiquetas) {
+        this.id = id;
         this.autor = autor;
         this.imagen = imagen;
         this.cuerpo = cuerpo;
         this.fecha = fecha;
+        this.etiquetas = etiquetas;
     }
 
     public long getId() {
@@ -73,5 +77,13 @@ public class Post {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public String getEtiquetas() {
+        return etiquetas;
+    }
+
+    public void setEtiquetas(String etiquetas) {
+        this.etiquetas = etiquetas;
     }
 }

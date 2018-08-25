@@ -4,10 +4,9 @@ import entidades.ServiciosPais;
 import entidades.ServiciosUsuario;
 import rest.RestMain;
 import servicios.ServiciosBootStrap;
+import soap.SoapArranque;
 
 import javax.persistence.EntityManager;
-
-import java.io.File;
 
 import static spark.Spark.staticFiles;
 
@@ -21,6 +20,7 @@ public class Main {
         ServiciosPais.getInstancia().crearPaises();
         ServiciosUsuario.getInstancia().crearAdmin();
         ServiciosUsuario.getInstancia().crearAmigoAdmin();
+        SoapArranque.init();
         new RutasSpark().iniciarSpark();
         new RestMain().iniciarServicioRest();
         new Filtros().aplicarFiltros();
