@@ -164,6 +164,9 @@ nav ul li a,
 .overview-box,
 .editar-post-box,
 .eliminar-post-box,
+.editar-fecha-nacimiento-box,
+.centro-estudio-box,
+.centro-estudio-box,
 .skl-name,
 .conv-list,
 .save-stngs ul li button,
@@ -3291,6 +3294,51 @@ footer {
 	z-index: 0;
 }
 
+.editar-fecha-nacimiento-box {
+	width: 570px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	-o-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	opacity: 0;
+	visibility: hidden;
+	z-index: 0;
+}
+
+.centro-estudio-box {
+	width: 570px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	-o-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	opacity: 0;
+	visibility: hidden;
+	z-index: 0;
+}
+
+.centro-trabajo-box {
+	width: 570px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	-o-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	opacity: 0;
+	visibility: hidden;
+	z-index: 0;
+}
+
 .close-box {
 	position: absolute;
 	top: -20px;
@@ -3329,6 +3377,34 @@ footer {
 	visibility: visible;
 	z-index: 99999;
 }
+
+.editar-fecha-nacimiento-box.open {
+	opacity: 1;
+	visibility: visible;
+	z-index: 99999;
+}
+
+.editar-fecha-nacimiento-box.open {
+	opacity: 1;
+	visibility: visible;
+	z-index: 99999;
+}
+
+.centro-estudio-box.open {
+	opacity: 1;
+	visibility: visible;
+	z-index: 99999;
+}
+
+.centro-trabajo-box.open {
+	opacity: 1;
+	visibility: visible;
+	z-index: 99999;
+}
+
+
+
+
 
 .-box.open {
 	opacity: 1;

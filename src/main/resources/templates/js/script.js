@@ -141,14 +141,21 @@ $(window).on("load", function() {
 
     //  ============= OVERVIEW EDIT FUNCTION =========
 
-    $(".overview-open").on("click", function(){
-        $("#overview-box").addClass("open");
+    $(".fecha-nacimiento-open").on("click", function(){
+        $("#editar-fecha-nacimiento-box").addClass("open");
         $(".wrapper").addClass("overlay");
         return false;
     });
     $(".close-box").on("click", function(){
-        $("#overview-box").removeClass("open");
+        $("#editar-fecha-nacimiento-box").removeClass("open");
         $(".wrapper").removeClass("overlay");
+        return false;
+    });
+
+    $(".close-fecha-nacimiento-box").on("click", function(){
+        $("#editar-fecha-nacimiento-box").removeClass("open");
+        $(".wrapper").removeClass("overlay");
+        $(".ed-opts-open").next(".ed-options").removeClass("active");
         return false;
     });
 
@@ -190,6 +197,55 @@ $(window).on("load", function() {
         $(".wrapper").removeClass("overlay");
         return false;
     });
+
+    $(".close-location-box").on("click", function(){
+        $("#location-box").removeClass("open");
+        $(".wrapper").removeClass("overlay");
+        $(".ed-opts-open").next(".ed-options").removeClass("active");
+        return false;
+    });
+
+    //  ============= LUGAR DE ESTUDIO EDIT FUNCTION =========
+
+    $(".centro-estudio-open").on("click", function(){
+        $("#centro-estudio-box").addClass("open");
+        $(".wrapper").addClass("overlay");
+        return false;
+    });
+    $(".close-box").on("click", function(){
+        $("#centro-estudio-box").removeClass("open");
+        $(".wrapper").removeClass("overlay");
+        return false;
+    });
+
+    $(".close-centro-estudio-box").on("click", function(){
+        $("#centro-estudio-box").removeClass("open");
+        $(".wrapper").removeClass("overlay");
+        $(".ed-opts-open").next(".ed-options").removeClass("active");
+        return false;
+    });
+
+    //  ============= CENTRO DE TRABAJO EDIT FUNCTION =========
+
+    $(".centro-trabajo-open").on("click", function(){
+        $("#centro-trabajo-box").addClass("open");
+        $(".wrapper").addClass("overlay");
+        return false;
+    });
+    $(".close-box").on("click", function(){
+        $("#centro-trabajo-box").removeClass("open");
+        $(".wrapper").removeClass("overlay");
+        return false;
+    });
+
+    $(".close-centro-trabajo-box").on("click", function(){
+        $("#centro-trabajo-box").removeClass("open");
+        $(".wrapper").removeClass("overlay");
+        $(".ed-opts-open").next(".ed-options").removeClass("active");
+        return false;
+    });
+
+
 
     //  ============= SKILLS EDIT FUNCTION =========
 

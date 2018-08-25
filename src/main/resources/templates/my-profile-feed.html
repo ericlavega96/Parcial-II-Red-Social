@@ -407,25 +407,25 @@
 									<!-- #inicio - Tab info-->
 									<div class="product-feed-tab" id="info-dd">
 										<div class="user-profile-ov">
-											<h3><a href="#" title="" class="overview-open">Información General</a> <a href="#" title="" class="overview-open"><i class="fa fa-pencil"></i></a></h3>
+											<h3><a href="#" title="" class="fecha-nacimiento-open">Información General</a> <a href="#" title="" class="fecha-nacimiento-open"><i class="fa fa-pencil"></i></a></h3>
 											<h4>Fecha de Nacimiento: </h4><h5>${fecha_nacimiento}</h5>
 										</div><!--user-profile-ov end-->
 
 										<div class="user-profile-ov">
-											<h3><a href="#" title="" class="lct-box-open">Lugar de Nacimiento</a> <a href="#" title="" class="lct-box-open"><i class="fa fa-pencil"></i></a> <a href="#" title=""><i class="fa fa-plus-square"></i></a></h3>
+											<h3><a href="#" title="" class="lct-box-open">Lugar de Nacimiento</a> <a href="#" title="" class="lct-box-open"><i class="fa fa-pencil"></i></a> <a href="" title=""></i></a></h3>
 											<h4>${pais_origen}</h4>
 											<p> ${ciudad_origen} </p>
 										</div><!--user-profile-ov end-->
 
 										<#if lugar_estudio??>
 											<div class="user-profile-ov">
-											<h3><a href="#" title="" class="overview-open">Centro de Estudio</a> <a href="#" title="" class="overview-open"><i class="fa fa-pencil"></i></a></h3>
+											<h3><a href="" title="" class="centro-estudio-open">Centro de Estudio</a> <a href="#" title="" class="centro-estudio-open"><i class="fa fa-pencil"></i></a></h3>
 												<h4>${lugar_estudio}</h4>
 											</div><!--user-profile-ov end-->
 										</#if>
 										<#if trabajo??>
 											<div class="user-profile-ov st2">
-												<h3><a href="#" title="" class="overview-open">Centro de Trabajo</a> <a href="#" title="" class="overview-open"><i class="fa fa-pencil"></i></a></h3>
+												<h3><a href="" title="" class="centro-trabajo-open">Empleo</a> <a href="#" title="" class="centro-trabajo-open"><i class="fa fa-pencil"></i></a></h3>
 												<h4>${trabajo}</h4>
 											</div><!--user-profile-ov end-->
 										</#if>
@@ -996,18 +996,67 @@
 
 
 
-		<div class="overview-box" id="overview-box">
+		<div class="editar-fecha-nacimiento-box" id="editar-fecha-nacimiento-box">
 			<div class="overview-edit">
-				<h3>Overview Prueba</h3>
-				<span>5000 caracteres en pantalla</span>
-				<form>
-					<textarea></textarea>
+				<h3>Editar Fecha de Nacimiento</h3>
+				<form action="/editarInformacionGeneral/fechaDeNacimiento/${usuario.idUsuario}" method="post">
+					<input type="date" name="fechaNacimiento" required>
 					<button type="submit" class="save">Guardar</button>
-					<button type="submit" class="cancel">Cancelar</button>
+					<button class="close-fecha-nacimiento-box">Cancelar</button>
+				</form>
+				<a href="" title="" class="close-box"><i class="la la-close"></i></a>
+			</div><!--overview-edit end-->
+		</div><!--overview-box end-->
+
+		<div class="overview-box" id="location-box">
+			<div class="overview-edit">
+				<h3>Editar Lugar de Nacimiento</h3>
+				<form action="/editarInformacionGeneral/lugarDeNacimiento/${usuario.idUsuario}" method="post">
+					<div class="datefm">
+						<select name="cbBoxPais" required>
+							<#list paises as pais>
+								<option>${pais.pais}</option>
+							</#list>
+						</select>
+						<i class="fa fa-globe"></i>
+					</div>
+					<div class="datefm">
+						<i class="la la-building"></i>
+						<input type="text" name="ciudad" placeholder="Ciudad" required>
+					</div>
+					<button type="submit" class="save">Guardar</button>
+					<button class="close-location-box">Cancelar</button>
 				</form>
 				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
 			</div><!--overview-edit end-->
 		</div><!--overview-box end-->
+
+		<div class="overview-box" id="centro-estudio-box">
+			<div class="overview-edit">
+				<h3>Editar Centro de Estudio</h3>
+				<form action="/editarInformacionGeneral/centroEstudio/${usuario.idUsuario}" method="post">
+					<input type="text" name="centroEstudio" placeholder="Escuela / Universidad" required>
+
+					<button type="submit" class="save">Guardar</button>
+					<button type="submit" class="close-centro-estudio-box">Cancelar</button>
+				</form>
+				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
+			</div><!--overview-edit end-->
+		</div><!--overview-box end-->
+
+		<div class="overview-box" id="centro-trabajo-box">
+			<div class="overview-edit">
+				<h3>Editar Empleo</h3>
+				<form action="/editarInformacionGeneral/empleo/${usuario.idUsuario}" method="post">
+					<input type="text" name="empleo" placeholder="Empleo" required>
+
+					<button type="submit" class="save">Guardar</button>
+					<button type="submit" class="close-centro-trabajo-box">Cancelar</button>
+				</form>
+				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
+			</div><!--overview-edit end-->
+		</div><!--overview-box end-->
+
 
 
 
@@ -1050,37 +1099,6 @@
 					<textarea placeholder="Description"></textarea>
 					<button type="submit" class="save">Save</button>
 					<button type="submit" class="save-add">Save & Add More</button>
-					<button type="submit" class="cancel">Cancel</button>
-				</form>
-				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
-			</div><!--overview-edit end-->
-		</div><!--overview-box end-->
-
-		<div class="overview-box" id="location-box">
-			<div class="overview-edit">
-				<h3>Location</h3>
-				<form>
-					<div class="datefm">
-						<select>
-							<option>Country</option>
-							<option value="pakistan">Pakistan</option>
-							<option value="england">England</option>
-							<option value="india">India</option>
-							<option value="usa">United Sates</option>
-						</select>
-						<i class="fa fa-globe"></i>
-					</div>
-					<div class="datefm">
-						<select>
-							<option>City</option>
-							<option value="london">London</option>
-							<option value="new-york">New York</option>
-							<option value="sydney">Sydney</option>
-							<option value="chicago">Chicago</option>
-						</select>
-						<i class="fa fa-map-marker"></i>
-					</div>
-					<button type="submit" class="save">Save</button>
 					<button type="submit" class="cancel">Cancel</button>
 				</form>
 				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>

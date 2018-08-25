@@ -77,6 +77,7 @@ public class RutasSpark {
             attributes.put("logUser",logUser);
             attributes.put("usuario",logUser);
             attributes.put("posts",ServiciosPost.getInstancia().findByAuthor(logUser));
+            attributes.put("paises",ServiciosPais.getInstancia().findAllOrdenado());
             attributes.put("fecha_nacimiento", user.getFechaNacimiento());
             attributes.put("pais_origen", user.getPais().getPais());
             attributes.put("ciudad_origen", user.getCiudad());
@@ -97,11 +98,11 @@ public class RutasSpark {
         }, freeMarkerEngine);
 
         post("/registrarUsuario", (request, response) -> {
-           // try {
+            try {
                 String nombres = request.queryParams("nombres");
                 String apellidos = request.queryParams("apellidos");
                 String sexo = request.queryParams("cbMasculino");
-                System.out.println(sexo);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
                 String fechaNacimiento = request.queryParams("fechaNacimiento");
                 String pais = request.queryParams("cbBoxPais");
                 String ciudad = request.queryParams("ciudad");
@@ -112,7 +113,7 @@ public class RutasSpark {
 
                 Usuario nuevoUsuario = new Usuario(nombres,apellidos,correo,password,
                         (sexo != null) ? "Masculino":"Femenino",
-                        new SimpleDateFormat("yyyy-mm-dd").parse(fechaNacimiento),ServiciosPais.getInstancia()
+                        sdf.parse(fechaNacimiento),ServiciosPais.getInstancia()
                         .findByCountry(pais), ciudad,lugarEstudio,empleo,null,false);
                 ServiciosUsuario.getInstancia().crear(nuevoUsuario);
 
@@ -128,9 +129,9 @@ public class RutasSpark {
 
                 response.redirect("/login");
 
-           // } catch (Exception e) {
-           //     System.out.println("Error al intentar registrar usuario" + e.toString());
-            //}
+            } catch (Exception e) {
+                System.out.println("Error al intentar registrar usuario" + e.toString());
+            }
             return "";
         });
 
@@ -700,6 +701,81 @@ public class RutasSpark {
 
             }catch (Exception e){
                 System.out.println("Error al eliminar post: " + e.toString());
+            }
+            return "";
+        });
+
+        post("/editarInformacionGeneral/fechaDeNacimiento/:id", (request, response) -> {
+            try{
+                String idUsuario = request.params("id");
+
+                Usuario usuarioAEditar = ServiciosUsuario.getInstancia().find(Long.parseLong(idUsuario));
+
+                String fechaNacimiento = request.queryParams("fechaNacimiento");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+
+                usuarioAEditar.setFechaNacimiento(sdf.parse(fechaNacimiento));
+                ServiciosUsuario.getInstancia().editar(usuarioAEditar);
+                response.redirect("/");
+
+            }catch (Exception e){
+                System.out.println("Error al editar la fecha de nacimiento del usuario: " + e.toString());
+            }
+            return "";
+        });
+
+        post("/editarInformacionGeneral/lugarDeNacimiento/:id", (request, response) -> {
+            try{
+                String idUsuario = request.params("id");
+
+                Usuario usuarioAEditar = ServiciosUsuario.getInstancia().find(Long.parseLong(idUsuario));
+
+                String paisNacimiento = request.queryParams("cbBoxPais");
+                String ciudadDeNacimiento = request.queryParams("ciudad");
+
+                usuarioAEditar.setPais(ServiciosPais.getInstancia().findByCountry(paisNacimiento));
+                usuarioAEditar.setCiudad(ciudadDeNacimiento);
+                ServiciosUsuario.getInstancia().editar(usuarioAEditar);
+                response.redirect("/");
+
+            }catch (Exception e){
+                System.out.println("Error al editar el lugar de nacimiento del usuario: " + e.toString());
+            }
+            return "";
+        });
+
+        post("/editarInformacionGeneral/centroEstudio/:id", (request, response) -> {
+            try{
+                String idUsuario = request.params("id");
+
+                Usuario usuarioAEditar = ServiciosUsuario.getInstancia().find(Long.parseLong(idUsuario));
+
+                String centroEstudio = request.queryParams("centroEstudio");
+
+                usuarioAEditar.setLugarDeEstudio(centroEstudio);
+                ServiciosUsuario.getInstancia().editar(usuarioAEditar);
+                response.redirect("/");
+
+            }catch (Exception e){
+                System.out.println("Error al editar el centro de estudio del usuario: " + e.toString());
+            }
+            return "";
+        });
+
+        post("/editarInformacionGeneral/empleo/:id", (request, response) -> {
+            try{
+                String idUsuario = request.params("id");
+
+                Usuario usuarioAEditar = ServiciosUsuario.getInstancia().find(Long.parseLong(idUsuario));
+
+                String empleo = request.queryParams("empleo");
+
+                usuarioAEditar.setEmpleo(empleo);
+                ServiciosUsuario.getInstancia().editar(usuarioAEditar);
+                response.redirect("/");
+
+            }catch (Exception e){
+                System.out.println("Error al editar el empleo del usuario: " + e.toString());
             }
             return "";
         });
