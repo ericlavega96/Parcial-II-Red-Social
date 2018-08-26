@@ -116,6 +116,7 @@ public class MetodosDB<T> {
             T entidad = em.find(claseEntidad, entidadId);
             em.remove(entidad);
             em.getTransaction().commit();
+            System.out.println("El usuario se ha borrado correctamente.");
         }catch (Exception ex){
             em.getTransaction().rollback();
             throw  ex;

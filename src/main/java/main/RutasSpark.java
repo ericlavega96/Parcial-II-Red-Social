@@ -843,5 +843,18 @@ public class RutasSpark {
             return "";
         }));
 
+        get("redSocial/admin/eliminarCorreo/:correo", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            Usuario logUser = request.session(true).attribute("usuario");
+            String correoUser = request.params("correo");
+            Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
+            if(!user.isAdmin())
+                ServiciosUsuario.getInstancia().eliminar(user.getIdUsuario());
+
+            response.redirect("/redSocial/admin/"+logUser.getCorreo()+"/zonaAdmin");
+
+            return "";
+        });
+
     }
 }
