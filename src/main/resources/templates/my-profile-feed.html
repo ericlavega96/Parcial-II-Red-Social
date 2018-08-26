@@ -298,7 +298,7 @@
 																<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
 																<ul class="ed-options">
 																	<li><a href="" title="" class="editar-post-open-${post.idPost}">Editar Post</a></li>
-																	<li><a href="" title="" class="eliminar-post-open">Eliminar Post</a></li>
+																	<li><a href="" title="" class="eliminar-post-open-${post.idPost}">Eliminar Post</a></li>
 																</ul>
 															</div>
 
@@ -381,7 +381,7 @@
 													</div><!--overview-edit end-->
 												</div><!--overview-box end-->
 
-												<div class="eliminar-post-box" id="eliminar-post-box">
+												<div class="eliminar-post-box" id="eliminar-post-box-${post.idPost}">
 													<div class="overview-edit">
 														<h3>Eliminar Post</h3>
 														<span>Desea eliminar el post seleccionado?</span>
@@ -697,12 +697,11 @@
 														<p>${actividad.actividad}</p>
 													</div>
 												</div><!--post-bar end-->
-
-												<div class="process-comm">
-													<a href="#" title=""><img src="/images/process-icon.png" alt=""></a>
-												</div><!--process-comm end-->
 											</div><!--posts-section end-->
 										</#list>
+										<div class="process-comm">
+											<a href="#" title=""><img src="/images/process-icon.png" alt=""></a>
+										</div><!--process-comm end-->
 									</div><!--product-feed-tab end-->
 
 									<!-- #inicio - Album -->

@@ -31,7 +31,8 @@ public class RutasSpark {
             if(logUser==null)
                 response.redirect("/login");
             else
-                response.redirect("redSocial/userArea/" + logUser.getCorreo() + "/perfilUsuario");
+                response.redirect("redSocial/noticias");
+                //response.redirect("redSocial/userArea/" + logUser.getCorreo() + "/perfilUsuario");
             return "";
         });
 
@@ -153,7 +154,7 @@ public class RutasSpark {
                 System.out.println("Localización obtenida: " + geolocation);
                 Set<Tag> postEtiquetas = Tag.crearEtiquetas(tags.split(","));
                 Post nuevoPost = new Post(logUser,imagen,cuerpo,new Date(),null,postEtiquetas,null);
-                Set<Usuario> mencionados = ServiciosUsuario.getInstancia().usuariosMencionados(cuerpo);
+                Set<Usuario> mencionados = ServiciosUsuario.getInstancia().getAmigosTexto(cuerpo);
                 for(Usuario a : mencionados){
                     Notificacion notificacion = new Notificacion(a,
                             logUser.getNombres() + " " + logUser.getApellidos() +
@@ -801,6 +802,28 @@ public class RutasSpark {
             }
             return "";
         });
+
+        get("redSocial/noticias", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+
+            Usuario tmpUser = request.session(true).attribute("usuario");
+            Usuario logUser = ServiciosUsuario.getInstancia().find(tmpUser.getIdUsuario());
+
+            attributes.put("logUser",logUser);
+            attributes.put("cantAmigos", logUser.getAmigos().size());
+            attributes.put("posts",ServiciosPost.getInstancia().postAmigosUser(logUser));
+            attributes.put("sugerencias",
+                    ServiciosUsuario.getInstancia().findNoAmigos(logUser,
+                            ServiciosUsuario.getInstancia().findSugerencia(logUser)));
+            for (Album album : ServiciosAlbum.getInstancia().findAlbumsByUser(logUser)){
+                System.out.println("Album cargado: " + String.valueOf(album.getIdAlbum()));
+            }
+            for (Post post: ServiciosPost.getInstancia().findByAuthor(logUser)){
+                System.out.println(post.getCuerpo());
+            }
+            return new ModelAndView(attributes, "news-feed.html");
+        }, freeMarkerEngine);
+
 
     }
 }

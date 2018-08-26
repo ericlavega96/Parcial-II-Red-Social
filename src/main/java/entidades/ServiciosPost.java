@@ -46,4 +46,11 @@ public class ServiciosPost extends MetodosDB<Post> {
         boolean resultado = query.getResultList().size() >= 1;
         return resultado;
     }
+
+    public List<Post> postAmigosUser(Usuario user){
+        EntityManager em = getEntityManager();
+        Query query = em.createQuery("select p from Usuario u, Post p JOIN u.amigos a WHERE u.correo = :correo AND (p.autor = a OR p.autor = u) order by p.fecha DESC");
+        query.setParameter("correo", user.getCorreo());
+        return query.getResultList();
+    }
 }

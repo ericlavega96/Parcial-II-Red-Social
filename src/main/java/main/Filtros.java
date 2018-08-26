@@ -34,6 +34,14 @@ public class Filtros {
                 response.redirect("/");
         });
 
+        before("redSocial/admin/*", (request, response) -> {
+            // ... check if authenticated
+            Usuario logUser = request.session(true).attribute("usuario");
+            if (logUser == null || !logUser.isAdmin()) {
+                response.redirect("/");
+            }
+        });
+
 
     }
 }

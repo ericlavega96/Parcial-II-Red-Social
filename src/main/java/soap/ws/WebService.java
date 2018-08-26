@@ -25,25 +25,6 @@ public class WebService {
     }
 
     @WebMethod
-    public Post getPost(long id){
-        logical.Post postBuscado = ServiciosPost.getInstancia().find(id);
-        System.out.println("Enviado post #"+id);
-        String tags = "";
-        List<Tag> tagList = new ArrayList(postBuscado.getListaTags());
-        for (int i = 0; i < tagList.size(); i++) {
-            if (i > 0)
-                tags += ", ";
-            tags += tagList.get(i).getTag();
-        }
-
-        return new Post(id,
-                new Usuario(postBuscado.getAutor().getCorreo(),postBuscado.getAutor().getPassword(),
-                        postBuscado.getAutor().getNombres(), postBuscado.getAutor().getApellidos()),
-                new Imagen(postBuscado.getFotoPost().getImagen()),
-                postBuscado.getCuerpo(), postBuscado.getFecha(),tags);
-    }
-
-    @WebMethod
     public List<Post> getAllPost(){
         List<logical.Post> postEncontrados = ServiciosPost.getInstancia().findAll();
         List<Post> resultado = new ArrayList<>();
@@ -99,7 +80,7 @@ public class WebService {
             Set<Tag> tags = Tag.crearEtiquetas(etiquetas.split(","));
             logical.Post nuevoPost = new logical.Post(logUser,new logical.Imagen(imagen, null, null),
                     cuerpo,new Date(),null,tags,null);
-            Set<logical.Usuario> mencionados = ServiciosUsuario.getInstancia().usuariosMencionados(cuerpo);
+            Set<logical.Usuario> mencionados = ServiciosUsuario.getInstancia().getAmigosTexto(cuerpo);
 
             for(logical.Usuario a : mencionados){
                 Notificacion notificacion = new Notificacion(a,

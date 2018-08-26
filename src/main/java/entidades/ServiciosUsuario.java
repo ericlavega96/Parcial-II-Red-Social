@@ -27,9 +27,10 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
         Query query = em.createQuery("select u from Usuario u where u.correo = :correo AND u.password = :password");
         query.setParameter("correo", correo);
         query.setParameter("password", password);
-        Usuario resultado = (Usuario)query.getSingleResult();
-        return resultado;
-
+        if(query.getResultList().size()>0)
+            return (Usuario) query.getResultList().get(0);
+        else
+            return null;
     }
 
     public Usuario findByEmail(String correo){
@@ -69,7 +70,7 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
         Set<Usuario> resultado = new HashSet<>();
         Usuario user;
         for(String s : texto.split(" "))
-            if(s.contains("*") && s.length()>1) {
+            if(s.substring(0,1).equals("*") && s.length()>1) {
                 user = instancia.findByEmail(s.substring(1));
                 if(user != null)
                     resultado.add(user);
@@ -157,17 +158,6 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
         }
     }
 
-    public Set<Usuario> usuariosMencionados(String texto){
-        Set<Usuario> usuarios = new HashSet<>();
-        for(String s : texto.split(" "))
-        {
-            if(s.substring(0,1).equals("*")) {
-                usuarios.add(instancia.findByEmail(s.substring(1, s.length() - 1)));
-                System.out.println(instancia.findByEmail(s.substring(1, s.length() - 1)));
-            }
-        }
-        return usuarios;
-    }
 
 
 }

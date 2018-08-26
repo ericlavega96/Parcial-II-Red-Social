@@ -63,7 +63,7 @@ public class RestMain {
                         ServiciosPost.getInstancia().crear(restPost);
                         System.out.println("El post ha sido creado con éxito");
 
-                        Set<logical.Usuario> mencionados = ServiciosUsuario.getInstancia().usuariosMencionados(nuevoPost.getCuerpo());
+                        Set<logical.Usuario> mencionados = ServiciosUsuario.getInstancia().getAmigosTexto(nuevoPost.getCuerpo());
                         for(logical.Usuario a : mencionados){
                             Notificacion notificacion = new Notificacion(a,
                                     usuario.getNombres() + " " + usuario.getApellidos() +
