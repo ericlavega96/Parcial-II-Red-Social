@@ -3,27 +3,30 @@ package encapsulaciones;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
+
 @Root
 public class PostAuxiliar {
     @Element
-    String correo;
+    private String correo;
     @Element
-    String password;
+    private String password;
     @Element
-    String cuerpo;
+    private String imagen;
     @Element
-    String imagen;
+    private String cuerpo;
     @Element
-    String tags;
+    private String tags;
+
 
     public PostAuxiliar() {
+
     }
 
-    public PostAuxiliar(String correo, String password, String cuerpo, String imagen, String tags) {
+    public PostAuxiliar(String correo, String password, String imagen, String cuerpo, String tags) {
         this.correo = correo;
         this.password = password;
-        this.cuerpo = cuerpo;
         this.imagen = imagen;
+        this.cuerpo = cuerpo;
         this.tags = tags;
     }
 
@@ -31,8 +34,8 @@ public class PostAuxiliar {
         return correo;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setCorreo(String usuario) {
+        this.correo = usuario;
     }
 
     public String getPassword() {
@@ -43,20 +46,20 @@ public class PostAuxiliar {
         this.password = password;
     }
 
-    public String getCuerpo() {
-        return cuerpo;
-    }
-
-    public void setCuerpo(String cuerpo) {
-        this.cuerpo = cuerpo;
-    }
-
     public String getImagen() {
         return imagen;
     }
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public String getCuerpo() {
+        return cuerpo;
+    }
+
+    public void setCuerpo(String cuerpo) {
+        this.cuerpo = cuerpo;
     }
 
     public String getTags() {

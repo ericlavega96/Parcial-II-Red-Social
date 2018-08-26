@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class    Post {
+public class Post {
     @Id
     @GeneratedValue
     private long idPost;
