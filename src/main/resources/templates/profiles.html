@@ -23,98 +23,92 @@
 
 
 <body>
-	
-
-	<div class="wrapper">
-
-
-
-		<header>
-			<div class="container">
-				<div class="header-data">
-					<div class="logo">
-						<a href="index.html" title=""><img src="/images/logo.png" alt=""></a>
-					</div><!--logo end-->
-					<div class="search-bar">
-						<form>
-							<input type="text" name="search" placeholder="Search...">
-							<button type="submit"><i class="la la-search"></i></button>
-						</form>
-					</div><!--search-bar end-->
-					<nav>
-						<ul>
-							<li>
-								<a href="/" title="">
-									<span><img src="/images/icon1.png" alt=""></span>
-									Home
-								</a>
-							</li>
-							<li>
-								<a href="/redSocial/listaUsuarios" title="">
-									<span><img src="/images/icon4.png" alt=""></span>
-									Usuarios
-								</a>
-								<ul>
-									<li><a href="/redSocial/userArea/${logUser.correo}/amigos" title="">Ver Amigos</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="#" title="" class="not-box-open">
-									<span><img src="/images/icon7.png" alt=""></span>
-									Notificaciones
-								</a>
-								<div class="notification-box">
-									<div class="nott-list">
-										<#list logUser.timeline as notificacion>
-										<div class="notfication-details">
-											<div class="notification-info">
-												<h3>${notificacion.actividad}</h3>
-												<br>
-												<span><h2>${notificacion.getFechaString()}</h2></span>
-											</div><!--notification-info -->
-										</div>
-									</#list>
-								</div><!--nott-list end-->
-				</div><!--notification-box end-->
-				</li>
-				<li>
-					<a href="/redSocial/userArea/${logUser.correo}/settings" title="">
-						<span><img src="/images/icon3.png" alt=""></span>
-						Configuración
-					</a>
-				</li>
-				<#if logUser.admin>
-				<li>
-					<a href="/redSocial/admin/${logUser.correo}/zonaAdmin" title="">
-						<span><img src="/images/icon5.png" alt=""></span>
-						Zona Admin
-					</a>
-				</li>
-			</#if>
-			</ul>
-			</nav><!--nav end-->
-			<div class="menu-btn">
-				<a href="#" title=""><i class="fa fa-bars"></i></a>
-			</div><!--menu-btn end-->
-			<div class="user-account">
-				<div class="user-info">
-					<img src="/images/resources/user.png" alt="">
-					<a href="/" title=""> ${logUser.nombres}</a>
-					<i class="la la-sort-down"></i>
-				</div>
-				<div class="user-account-settingss">
-					<h3>Setting</h3>
-					<ul class="us-links">
-						<li><a href="/redSocial/userArea/${logUser.correo}/settings" title="">
-							Configuración de Cuenta</a></li>
-					</ul>
-					<h3 class="tc"><a href="/logout" title="">Logout</a></h3>
-				</div><!--user-account-settingss end-->
+<div class="wrapper">
+	<header>
+		<div class="container">
+			<div class="header-data">
+				<div class="logo">
+					<a href="http://localhost:4567/" title=""><img src="/images/logo.png" alt=""></a>
+				</div><!--logo end-->
+				<div class="search-bar">
+					<form>
+						<input type="text" name="search" placeholder="Search...">
+						<button type="submit"><i class="la la-search"></i></button>
+					</form>
+				</div><!--search-bar end-->
+				<nav>
+					<ul>
+						<li>
+							<a href="/" title="">
+								<span><img src="/images/icon1.png" alt=""></span>
+								Home
+							</a>
+						</li>
+						<li>
+							<a href="/redSocial/listaUsuarios" title="">
+								<span><img src="/images/icon4.png" alt=""></span>
+								Usuarios
+							</a>
+							<ul>
+								<li><a href="/redSocial/userArea/${logUser.correo}/amigos" title="">Ver Amigos</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#" title="" class="not-box-open">
+								<span><img src="/images/icon7.png" alt=""></span>
+								Notificaciones
+							</a>
+							<div class="notification-box">
+								<div class="nott-list">
+									<#list logUser.timeline as notificacion>
+									<div class="notfication-details">
+										<div class="notification-info">
+											<h3>${notificacion.actividad}</h3>
+											<br>
+											<span><h2>${notificacion.getFechaString()}</h2></span>
+										</div><!--notification-info -->
+									</div>
+								</#list>
+							</div><!--nott-list end-->
+			</div><!--notification-box end-->
+			</li>
+			<li>
+				<a href="/redSocial/userArea/${logUser.correo}/settings" title="">
+					<span><img src="/images/icon3.png" alt=""></span>
+					Configuración
+				</a>
+			</li>
+			<#if logUser.admin>
+			<li>
+				<a href="/redSocial/admin/${logUser.correo}/zonaAdmin" title="">
+					<span><img src="/images/icon5.png" alt=""></span>
+					Zona Admin
+				</a>
+			</li>
+		</#if>
+		</ul>
+		</nav><!--nav end-->
+		<div class="menu-btn">
+			<a href="#" title=""><i class="fa fa-bars"></i></a>
+		</div><!--menu-btn end-->
+		<div class="user-account">
+			<div class="user-info">
+				<img src="/images/resources/user.png" alt="">
+				<a href="/redSocial/userArea/${logUser.correo}/perfilUsuario" title=""> ${logUser.nombres}</a>
+				<i class="la la-sort-down"></i>
 			</div>
-	</div><!--header-data end-->
-	</div>
-	</header><!--header end-->
-
+			<div class="user-account-settingss">
+				<h3>Setting</h3>
+				<ul class="us-links">
+					<li><a href="/redSocial/userArea/${logUser.correo}/settings" title="">
+						Configuración de Cuenta</a></li>
+				</ul>
+				<h3 class="tc"><a href="/logout" title="">Logout</a></h3>
+			</div><!--user-account-settingss end-->
+		</div>
+</div><!--header-data end-->
+</div>
+</header><!--header end-->
 
 
 	<section class="companies-info">
