@@ -97,21 +97,23 @@ $(window).on("load", function() {
 
     //  ============= EDITAR POST FUNCTION =========
 
-    $(".editar-post-open").on("click", function(){
-        $("#editar-post-box").addClass("open");
+    $("[class^='editar-post-open-']").on("click", function(){
+        var id =  $(this).attr('class').replace('editar-post-open-','');
+        $("#editar-post-box-"+ id).addClass("open");
         $(".wrapper").addClass("overlay");
         $(".ed-opts-open").next(".ed-options").removeClass("active");
         return false;
     });
+
     $(".close-box").on("click", function(){
-        $("#editar-post-box").removeClass("open");
+        $("[id^=editar-post-box]").removeClass("open");
         $(".wrapper").removeClass("overlay");
         $(".ed-opts-open").next(".ed-options").removeClass("active");
         return false;
     });
 
     $(".close-editar-post-box").on("click", function(){
-        $("#editar-post-box").removeClass("open");
+        $("[id^=editar-post-box]").removeClass("open");
         $(".wrapper").removeClass("overlay");
         $(".ed-opts-open").next(".ed-options").removeClass("active");
         return false;

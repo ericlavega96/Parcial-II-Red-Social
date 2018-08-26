@@ -297,7 +297,7 @@
 															<div class="ed-opts">
 																<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
 																<ul class="ed-options">
-																	<li><a href="" title="" class="editar-post-open">Editar Post</a></li>
+																	<li><a href="" title="" class="editar-post-open-${post.idPost}">Editar Post</a></li>
 																	<li><a href="" title="" class="eliminar-post-open">Eliminar Post</a></li>
 																</ul>
 															</div>
@@ -368,14 +368,14 @@
 													</div>
 												</div><!--post-bar end-->
 
-												<div class="editar-post-box" id="editar-post-box">
+												<div class="editar-post-box" id="editar-post-box-${post.idPost}">
 													<div class="overview-edit">
 														<h3>Editar Post</h3>
 														<span>Contenido del post a editar:</span>
 														<form action="/editarPost/${post.idPost}" method="post">
 															<textarea name="cuerpo">${post.cuerpo}</textarea>
 															<button type="submit" class="save">Guardar</button>
-															<button type="submit" class="close-editar-post-box">Cancelar</button>
+															<button type="submit" id="close-editar-post-box" class="close-editar-post-box">Cancelar</button>
 														</form>
 														<a href="" title="" class="close-box"><i class="la la-close"></i></a>
 													</div><!--overview-edit end-->
