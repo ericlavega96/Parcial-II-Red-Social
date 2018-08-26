@@ -126,7 +126,11 @@
 				</div><!--menu-btn end-->
 				<div class="user-account">
 					<div class="user-info">
-						<img src="/images/resources/user.png" alt="">
+						<#if logUser.fotoPerfil??>
+							<img src="/${logUser.fotoPerfil.imagen}" alt="">
+							<#else>
+								<img src="/images/resources/user.png" alt="">
+						</#if>
 						<a href="/redSocial/userArea/${logUser.correo}/perfilUsuario" title=""> ${logUser.nombres}</a>
 						<i class="la la-sort-down"></i>
 					</div>
@@ -164,7 +168,11 @@
 										<div class="user-profile">
 											<div class="username-dt">
 												<div class="usr-pic">
-													<img src="/images/resources/user-pic.png" alt="">
+													<#if logUser.fotoPerfil??>
+														<img src="/${logUser.fotoPerfil.imagen}" alt="">
+													<#else>
+														<img src="/images/resources/user-pic.png" alt="">
+													</#if>
 												</div>
 											</div><!--username-dt end-->
 											<div class="user-specs">

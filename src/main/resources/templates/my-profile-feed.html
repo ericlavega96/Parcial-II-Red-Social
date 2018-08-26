@@ -165,7 +165,11 @@
 		</div><!--menu-btn end-->
 		<div class="user-account">
 			<div class="user-info">
-				<img src="/images/resources/user.png" alt="">
+				<#if usuario.fotoPerfil??>
+					<img src="/${usuario.fotoPerfil.imagen}" alt="">
+				<#else>
+					<img src="/images/resources/user.png" alt="">
+				</#if>
 				<a href="/redSocial/userArea/${logUser.correo}/perfilUsuario" title=""> ${logUser.nombres}</a>
 				<i class="la la-sort-down"></i>
 			</div>
@@ -198,8 +202,13 @@
 								<div class="main-left-sidebar">
 									<div class="user_profile">
 										<div class="user-pro-img">
-											<img src="/images/resources/user-pro-img.png" alt="">
-											<a href="#" title=""><i class="fa fa-camera"></i></a>
+											<#if usuario.fotoPerfil??>
+												<img src="/${usuario.fotoPerfil.imagen}" alt="">
+												<a href="" class="cambiar-foto-perfil-box-open" title=""><i class="fa fa-camera"></i></a>
+											<#else>
+												<img src="/images/resources/user-pro-img.png" alt="">
+												<a href="" class="cambiar-foto-perfil-box-open" title=""><i class="fa fa-camera"></i></a>
+											</#if>
 										</div><!--user-pro-img end-->
 										<div class="user_pro_status">
 											<ul class="flw-status">
@@ -255,7 +264,11 @@
 										<div class="posts-section">
 											<div class="post-topbar">
 												<div class="user-picy">
-													<img src="/images/resources/user-pic.png" alt="">
+													<#if usuario.fotoPerfil??>
+														<img src="/${usuario.fotoPerfil.imagen}" alt="">
+													<#else>
+														<img src="/images/resources/user-pic.png" alt="">
+													</#if>
 												</div>
 												<div class="post-st">
 													<ul>
@@ -372,7 +385,6 @@
 														<a href="" title="" class="close-box"><i class="la la-close"></i></a>
 													</div><!--overview-edit end-->
 												</div><!--overview-box end-->
-
 											</#list>
 											<div class="process-comm">
 												<div class="spinner">
@@ -652,6 +664,29 @@
 											</div><!--process-comm end-->
 										</div><!--posts-section end-->
 									</div><!--product-feed-tab end-->
+
+									<div class="cambiar-foto-perfil-box" id="cambiar-foto-perfil-box">
+										<div class="overview-edit">
+											<h3>Cambiar Foto de Perfil</h3>
+											<form action="/cambiarFotoPerfil" method="post" enctype="multipart/form-data">
+												<div class="col-lg-12 subir-imagen-div">
+													<button class="subir-imagen-btn"> Seleccione una imagen <i class="fa fa-upload"></i></button>
+													<input type="file" name="imagen" accept="image/*">
+												</div>
+												<div class="col-lg-12">
+													<ul>
+														<li><button class="save" type="submit" value="publicar"> Guardar </button></li>
+													</ul>
+												</div>
+												<div class="col-lg-12">
+													<ul>
+														<li><button name="close-foto-perfil-box" class="close-cambiar-foto-perfil-box">Cancelar</button></li>
+													</ul>
+												</div>
+											</form>
+											<a href="" title="" class="close-box"><i class="la la-close"></i></a>
+										</div><!--overview-edit end-->
+									</div><!--overview-box end-->
 
 
 									<div class="product-feed-tab" id="my-bids">

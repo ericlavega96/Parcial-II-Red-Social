@@ -142,7 +142,7 @@ $(window).on("load", function() {
         return false;
     });
 
-    //  ============= OVERVIEW EDIT FUNCTION =========
+    //  ============= FECHA NACIMIENTO EDIT FUNCTION =========
 
     $(".fecha-nacimiento-open").on("click", function(){
         $("#editar-fecha-nacimiento-box").addClass("open");
@@ -157,6 +157,26 @@ $(window).on("load", function() {
 
     $(".close-fecha-nacimiento-box").on("click", function(){
         $("#editar-fecha-nacimiento-box").removeClass("open");
+        $(".wrapper").removeClass("overlay");
+        $(".ed-opts-open").next(".ed-options").removeClass("active");
+        return false;
+    });
+
+    //  ============= FECHA NACIMIENTO EDIT FUNCTION =========
+
+    $(".cambiar-foto-perfil-box-open").on("click", function(){
+        $("#cambiar-foto-perfil-box").addClass("open");
+        $(".wrapper").addClass("overlay");
+        return false;
+    });
+    $(".close-box").on("click", function(){
+        $("#cambiar-foto-perfil-box").removeClass("open");
+        $(".wrapper").removeClass("overlay");
+        return false;
+    });
+
+    $(".close-cambiar-foto-perfil-box").on("click", function(){
+        $("#cambiar-foto-perfil-box").removeClass("open");
         $(".wrapper").removeClass("overlay");
         $(".ed-opts-open").next(".ed-options").removeClass("active");
         return false;

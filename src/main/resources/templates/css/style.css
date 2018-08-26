@@ -664,6 +664,8 @@ nav > ul > li > a:hover {
 	color: #000;
 }
 .user-info img {
+	width: 30px;
+	height: 30px;
 	margin-right: 10px;
 	-webkit-border-radius: 100px;
 	-moz-border-radius: 100px;
@@ -683,7 +685,7 @@ nav > ul > li > a:hover {
 .user-info > i {
 	position: absolute;
 	top: 51%;
-	right: 10px;
+	right: 5px;
 	color: #fff;
 	font-size: 12px;
 	-webkit-transform: translateY(-50%);
@@ -741,6 +743,8 @@ main {
 	margin-bottom: -48px;
 }
 .usr-pic > img {
+	width: 110px;
+	height:110px;
 	float: none;
 	border: 5px solid #fff;
 	-webkit-border-radius: 100px;
@@ -748,7 +752,6 @@ main {
 	-ms-border-radius: 100px;
 	-o-border-radius: 100px;
 	border-radius: 100px;
-	width: 100%;
 }
 .user-profile {
 	float: left;
@@ -982,7 +985,9 @@ main {
 	width: 50px;
 }
 .user-picy img {
-	width: 100%;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
 	object-fit: cover;
 }
 .post-st {
@@ -2764,6 +2769,8 @@ footer {
 }
 
 .user-pro-img img {
+	width: 170px;
+	height: 170px;
 	-webkit-border-radius: 100px;
 	-moz-border-radius: 100px;
 	-ms-border-radius: 100px;
@@ -3339,6 +3346,21 @@ footer {
 	z-index: 0;
 }
 
+.cambiar-foto-perfil-box {
+	width: 570px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	-o-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	opacity: 0;
+	visibility: hidden;
+	z-index: 0;
+}
+
 .close-box {
 	position: absolute;
 	top: -20px;
@@ -3384,11 +3406,6 @@ footer {
 	z-index: 99999;
 }
 
-.editar-fecha-nacimiento-box.open {
-	opacity: 1;
-	visibility: visible;
-	z-index: 99999;
-}
 
 .centro-estudio-box.open {
 	opacity: 1;
@@ -3401,6 +3418,14 @@ footer {
 	visibility: visible;
 	z-index: 99999;
 }
+
+.cambiar-foto-perfil-box.open {
+	opacity: 1;
+	visibility: visible;
+	z-index: 99999;
+}
+
+
 
 
 

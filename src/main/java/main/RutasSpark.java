@@ -824,6 +824,24 @@ public class RutasSpark {
             return new ModelAndView(attributes, "news-feed.html");
         }, freeMarkerEngine);
 
+        post("/cambiarFotoPerfil",((request, response) -> {
+            try {
+                String imagenRuta = (ServiciosImagen.getInstancia().guardarFoto("imagen", fotosDir, request));
+                Imagen imagen = null;
+                if (imagenRuta != null) {
+                    imagen = new Imagen(imagenRuta, null, null);
+                }
+                Usuario tmpUsuario = request.session(true).attribute("usuario");
+                Usuario logUser = ServiciosUsuario.getInstancia().find(Long.valueOf(tmpUsuario.getIdUsuario()));
+                logUser.setFotoPerfil(imagen);
+                ServiciosUsuario.getInstancia().editar(logUser);
+                System.out.println("La foto de perfil ha sido actualizada con éxito");
+                response.redirect("/");
+            }catch (Exception e){
+                System.out.println("Error al cambiar la imagen de perfil del usuario " + e.toString());
+            }
+            return "";
+        }));
 
     }
 }
