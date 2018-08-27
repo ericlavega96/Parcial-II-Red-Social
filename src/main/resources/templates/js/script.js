@@ -162,7 +162,7 @@ $(window).on("load", function() {
         return false;
     });
 
-    //  ============= FECHA NACIMIENTO EDIT FUNCTION =========
+    //  ============= CAMBIAR FOTO PERFIL FUNCTION =========
 
     $(".cambiar-foto-perfil-box-open").on("click", function(){
         $("#cambiar-foto-perfil-box").addClass("open");
@@ -181,6 +181,54 @@ $(window).on("load", function() {
         $(".ed-opts-open").next(".ed-options").removeClass("active");
         return false;
     });
+
+
+    //  ============= ETIQUETAR FUNCTION =========
+
+    $(".etiquetar-amigos-box-open").on("click", function(){
+        $("#etiquetar-amigos-box").addClass("open");
+        $(".wrapper").addClass("overlay");
+        return false;
+    });
+    $(".close-box").on("click", function(){
+        $("#etiquetar-amigos-box").removeClass("open");
+        $(".wrapper").removeClass("overlay");
+        return false;
+    });
+
+    $(".close-etiquetar-amigos-box").on("click", function(){
+        $("#etiquetar-amigos-box").removeClass("open");
+        $(".wrapper").removeClass("overlay");
+        $(".ed-opts-open").next(".ed-options").removeClass("active");
+        return false;
+    });
+
+    $(".close-etiquetar-amigos-box").on("click", function(){
+        $("#etiquetar-amigos-box").removeClass("open");
+        $(".wrapper").removeClass("overlay");
+        $(".ed-opts-open").next(".ed-options").removeClass("active");
+        return false;
+    });
+
+    /*
+    $("#guardar-etiquetas-btn").on("click", function(){
+        $("#etiquetados").text = $("#amigos-cbBox").options[$("#amigos-cbBox").selectedIndex].text;
+        $("#etiquetar-amigos-box").removeClass("open");
+        $(".wrapper").removeClass("overlay");
+        $(".ed-opts-open").next(".ed-options").removeClass("active");
+        return false;
+        //var cbBoxAmigos = $("#amigos-cbBox");
+        //var etiquetadosField = $("#etiquetados");
+        //var idUsuario = cbBoxAmigos.options[cbBoxAmigos.selectedIndex].value;
+
+        //etiquetadosField.text += cbBoxAmigos.options[cbBoxAmigos.selectedIndex].text +", ";
+        //$("#amigos-cbBox option[value='" + idUsuario + "']").remove();
+        //if(cbBoxAmigos.options.size = 0){
+        //    $("#etiquetar-btn").disabled = true;
+        //}
+    });
+    */
+
 
     //  ============= EXPERIENCE EDIT FUNCTION =========
 
@@ -308,6 +356,8 @@ $(window).on("load", function() {
         $(".wrapper").removeClass("overlay");
         return false;
     });
+
+
 
     //  =============== Ask a Question Popup ============
 

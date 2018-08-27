@@ -162,6 +162,7 @@ nav ul li a,
 .gallery_pt:before,
 .gallery_pt > a,
 .overview-box,
+.overview-box-etiquetar,
 .editar-post-box,
 .eliminar-post-box,
 .editar-fecha-nacimiento-box,
@@ -3271,6 +3272,21 @@ footer {
 	 z-index: 0;
  }
 
+.overview-box-etiquetar {
+	width: 687px;
+	position: fixed;
+	top: 57%;
+	left: 50%;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	-o-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	opacity: 0;
+	visibility: hidden;
+	z-index: 0;
+}
+
 .editar-post-box {
 	width: 570px;
 	position: fixed;
@@ -3383,6 +3399,12 @@ footer {
 	color: #fff;
 }
 .overview-box.open {
+	opacity: 1;
+	visibility: visible;
+	z-index: 99999;
+}
+
+.overview-box-etiquetar.open {
 	opacity: 1;
 	visibility: visible;
 	z-index: 99999;

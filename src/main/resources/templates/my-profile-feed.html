@@ -90,6 +90,12 @@
 		.fa.fa-upload {
 			color: white;
 		}
+		#etiquetar-btn{
+			width: 178px;
+			border-radius: 20px;
+			margin-bottom: 17px;
+			margin-left: 1px;
+		}
 	</style>
 </head>
 
@@ -368,7 +374,7 @@
 														<form action="/editarPost/${post.idPost}" method="post">
 															<textarea name="cuerpo">${post.cuerpo}</textarea>
 															<button type="submit" class="save">Guardar</button>
-															<button type="submit" id="close-editar-post-box" class="close-editar-post-box">Cancelar</button>
+															<button id="close-editar-post-box" class="close-editar-post-box">Cancelar</button>
 														</form>
 														<a href="" title="" class="close-box"><i class="la la-close"></i></a>
 													</div><!--overview-edit end-->
@@ -759,7 +765,7 @@
 												<h3>${album.descripcion}</h3>
 												<div class="post-foto">
 													<ul>
-														<li><a class="post_foto" href="#" title=""><i class="la la-plus"></i> Añadir foto</a></li>
+														<li><a class="post_foto" href="" title=""><i class="la la-plus"></i> Añadir foto</a></li>
 													</ul>
 												</div><!--post-st end-->
 												<div class="gallery_pf">
@@ -786,6 +792,12 @@
 															<div class="col-lg-12 subir-imagen-div">
 																<button class="subir-imagen-btn"> Seleccione una imagen <i class="fa fa-upload"></i></button>
 																<input type="file" name="fotoAlbum" accept="image/*">
+															</div>
+															<div class="col-lg-12">
+																<ul>
+																	<li><button  id="etiquetar-btn" class="active etiquetar-amigos-box-open"> Etiquetar <i class="fa fa-tag"></i></button></li>
+																	<li><input id="etiquetados" name="etiquetados" type="text" value="" readonly></li>
+																</ul>
 															</div>
 															<div class="col-lg-12">
 																<ul>
@@ -1053,7 +1065,7 @@
 					<input type="text" name="centroEstudio" placeholder="Escuela / Universidad" required>
 
 					<button type="submit" class="save">Guardar</button>
-					<button type="submit" class="close-centro-estudio-box">Cancelar</button>
+					<button class="close-centro-estudio-box">Cancelar</button>
 				</form>
 				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
 			</div><!--overview-edit end-->
@@ -1066,9 +1078,26 @@
 					<input type="text" name="empleo" placeholder="Empleo" required>
 
 					<button type="submit" class="save">Guardar</button>
-					<button type="submit" class="close-centro-trabajo-box">Cancelar</button>
+					<button class="close-centro-trabajo-box">Cancelar</button>
 				</form>
 				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
+			</div><!--overview-edit end-->
+		</div><!--overview-box end-->
+
+		<div class="overview-box-etiquetar" id="etiquetar-amigos-box">
+			<div class="overview-edit">
+				<h3>Etiquetar Amigos</h3>
+				<span>Seleccione un amigo a etiquetar:</span>
+				<form id="etiquetar-form" method="post">
+					<select id="amigos-cbBox" required>
+						<#list usuario.amigos as amigo>
+							<option value= "${amigo.idUsuario}">${amigo.nombres} ${amigo.apellidos}</option>
+						</#list>
+					</select>
+					<button class="save" id="guardar-etiquetas-btn">Etiquetar</button>
+					<button class="close-etiquetar-amigos-box">Cancelar</button>
+				</form>
+				<a href="" title="" class="close-box"><i class="la la-close"></i></a>
 			</div><!--overview-edit end-->
 		</div><!--overview-box end-->
 
