@@ -545,16 +545,24 @@ public class RutasSpark {
             try {
                 String imagenRuta = (ServiciosImagen.getInstancia().guardarFoto("fotoAlbum",fotosDir,request));
                 String idAlbum = request.params("idAlbum");
+                String etiquetados = request.queryParams("etiquetadosValores");
+
                 Album albumActual = ServiciosAlbum.getInstancia().find(Long.valueOf(idAlbum));
+                Set<Usuario> usuariosEtiquetados = ServiciosUsuario.listaUsuariosEtiquetados(etiquetados.split(","));
 
                 if(imagenRuta != null){
-                    Imagen imagen = new Imagen(imagenRuta,albumActual,null);
-                    albumActual.getImagenes().add(imagen);
+                    Imagen imagen = new Imagen(imagenRuta,albumActual,new HashSet<>());
+                    ServiciosImagen.getInstancia().crear(imagen);
+                    for(Usuario userTag : usuariosEtiquetados){
+                        userTag.getListaImagenesEtiquetadas().add(imagen);
+                        ServiciosUsuario.getInstancia().editar(userTag);
+                    }
+
                 }
                 Usuario tmpUser = request.session(true).attribute("usuario");
-            Usuario logUser = ServiciosUsuario.getInstancia().find(tmpUser.getIdUsuario());
+                Usuario logUser = ServiciosUsuario.getInstancia().find(tmpUser.getIdUsuario());
 
-                ServiciosAlbum.getInstancia().editar(albumActual);
+                //ServiciosAlbum.getInstancia().editar(albumActual);
 
                 Notificacion notificacion = new Notificacion(logUser,"Haz publicado un nuevo imagen en " +
                         albumActual.getNombre() + ".", new Date());

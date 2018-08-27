@@ -182,7 +182,7 @@ $(window).on("load", function() {
         return false;
     });
 
-
+/*
     //  ============= ETIQUETAR FUNCTION =========
 
     $(".etiquetar-amigos-box-open").on("click", function(){
@@ -209,8 +209,6 @@ $(window).on("load", function() {
         $(".ed-opts-open").next(".ed-options").removeClass("active");
         return false;
     });
-
-    /*
     $("#guardar-etiquetas-btn").on("click", function(){
         $("#etiquetados").text = $("#amigos-cbBox").options[$("#amigos-cbBox").selectedIndex].text;
         $("#etiquetar-amigos-box").removeClass("open");
@@ -227,8 +225,7 @@ $(window).on("load", function() {
         //    $("#etiquetar-btn").disabled = true;
         //}
     });
-    */
-
+*/
 
     //  ============= EXPERIENCE EDIT FUNCTION =========
 
