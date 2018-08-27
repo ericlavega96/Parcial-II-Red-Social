@@ -1,5 +1,6 @@
 package entidades;
 
+import logical.ComentarioFoto;
 import logical.Imagen;
 import logical.Usuario;
 import servicios.MetodosDB;
@@ -16,6 +17,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 import static spark.Spark.staticFiles;
 
@@ -63,6 +65,13 @@ public class ServiciosImagen extends MetodosDB<Imagen> {
         query.setParameter("user",user);
         boolean resultado = query.getResultList().size() >= 1;
         return resultado;
+    }
+
+    public List<ComentarioFoto> getComentariosOrdenados(Imagen imagen){
+        EntityManager em = getEntityManager();
+        Query query = em.createQuery("select c from Imagen i JOIN i.listaComentarioFoto c WHERE i.idImagen = :imagen order by c.fecha ASC");
+        query.setParameter("imagen", imagen.getIdImagen());
+        return query.getResultList();
     }
 
 }

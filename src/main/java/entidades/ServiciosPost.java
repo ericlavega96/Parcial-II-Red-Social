@@ -1,6 +1,7 @@
 package entidades;
 
 
+import logical.ComentarioPost;
 import logical.Post;
 import logical.Usuario;
 import servicios.MetodosDB;
@@ -51,6 +52,13 @@ public class ServiciosPost extends MetodosDB<Post> {
         EntityManager em = getEntityManager();
         Query query = em.createQuery("select p from Usuario u, Post p JOIN u.amigos a WHERE u.correo = :correo AND (p.autor = a OR p.autor = u) order by p.fecha DESC");
         query.setParameter("correo", user.getCorreo());
+        return query.getResultList();
+    }
+
+    public List<ComentarioPost> getComentariosOrdenados(Post post){
+        EntityManager em = getEntityManager();
+        Query query = em.createQuery("select c from Post p JOIN p.listaComentariosPost c WHERE p.idPost = :post order by c.fecha ASC");
+        query.setParameter("post", post.getIdPost());
         return query.getResultList();
     }
 }

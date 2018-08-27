@@ -6,6 +6,7 @@ import entidades.ServiciosPost;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -139,4 +140,7 @@ public class Post {
     public void setGeolocation(String geolocation) {
         this.geolocation = geolocation;
     }
+
+    public List<ComentarioPost> getImagenesOrdenadas(){
+        return ServiciosPost.getInstancia().getComentariosOrdenados(this);}
 }
