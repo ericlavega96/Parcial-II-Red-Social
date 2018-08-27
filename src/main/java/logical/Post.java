@@ -6,6 +6,7 @@ import entidades.ServiciosPost;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -134,8 +135,6 @@ public class Post {
         this.likePosts = likePosts;
     }
 
-    public long likesCount(){return ServiciosPost.getInstancia().getLikesCount(this);}
-
     public String getGeolocation() {
         return geolocation;
     }
@@ -151,4 +150,9 @@ public class Post {
     public void setEsPrivado(boolean esPrivado) {
         this.esPrivado = esPrivado;
     }
+
+    public List<ComentarioPost> getComentariosOrdenados(){
+        return ServiciosPost.getInstancia().getComentariosOrdenados(this);}
+
+    public long likesCount(){return ServiciosPost.getInstancia().getLikesCount(this);}
 }

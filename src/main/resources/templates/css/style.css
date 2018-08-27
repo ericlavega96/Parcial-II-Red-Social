@@ -166,6 +166,7 @@ nav ul li a,
 .editar-post-box,
 .eliminar-post-box,
 .editar-fecha-nacimiento-box,
+.cambiar-privacidad-post-box,
 .centro-estudio-box,
 .centro-estudio-box,
 .skl-name,
@@ -1597,6 +1598,63 @@ main {
 	background-color: #e44d3a;
 	color: #fff;
 	border-color: transparent;
+}
+
+
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 60px;
+	height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+input:checked + .slider {
+	background-color: #e44d3a;
+}
+
+input:focus + .slider {
+	box-shadow: 0 0 1px #e44d3a;
+}
+
+input:checked + .slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
 }
 
 
@@ -3394,6 +3452,21 @@ footer {
 	z-index: 0;
 }
 
+.cambiar-privacidad-post-box {
+	width: 570px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	-o-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	opacity: 0;
+	visibility: hidden;
+	z-index: 0;
+}
+
 .close-box {
 	position: absolute;
 	top: -20px;
@@ -3464,6 +3537,12 @@ footer {
 	z-index: 99999;
 }
 
+.cambiar-privacidad-post-box.open {
+	opacity: 1;
+	visibility: visible;
+	z-index: 99999;
+}
+
 
 
 
@@ -3524,6 +3603,20 @@ footer {
 	margin-bottom: 30px;
 	padding: 15px;
 }
+
+.overview-edit form .toggle-btn-div {
+	margin-bottom: 27px;
+}
+
+.overview-edit form .toggle-btn-div > label {
+	margin: -6px -10px -32px 12px;
+}
+
+.overview-edit form .toggle-btn-div .switch {
+	width: 56px;
+	height: 57px;
+}
+
 .save {
 	background-color: #e44d3a;
 	color: #fff;
@@ -4728,6 +4821,16 @@ a:hover {
 	position: absolute;
 	top: 35px;
 	right: 20px	;
+}
+
+.toggle-btn-div{
+	margin-bottom: 18px;
+}
+
+.toggle-btn-div > label{
+	margin: -4px -8px -11px 18px;
+	width: 60px;
+	height: 34px;
 }
 .save-stngs {
 	float: left;

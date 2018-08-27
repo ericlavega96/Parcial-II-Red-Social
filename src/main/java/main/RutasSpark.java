@@ -152,9 +152,9 @@ public class RutasSpark {
                 String cuerpo = request.queryParams("cuerpo");
                 String tags = request.queryParams("tags");
                 String geolocation = request.queryParams("geolocalizacion").replace("Ubicación Actual: ","");
-                System.out.println("Localización obtenida: " + geolocation);
                 Set<Tag> postEtiquetas = Tag.crearEtiquetas(tags.split(","));
-                Post nuevoPost = new Post(logUser,imagen,cuerpo,new Date(),null,postEtiquetas,null,geolocation,false);
+                boolean esPrivado = request.queryParams("esPrivado") == null ? false : true;
+                Post nuevoPost = new Post(logUser,imagen,cuerpo,new Date(),null,postEtiquetas,null,geolocation,esPrivado);
                 Set<Usuario> mencionados = ServiciosUsuario.getInstancia().getAmigosTexto(cuerpo);
                 for(Usuario a : mencionados){
                     Notificacion notificacion = new Notificacion(a,
@@ -881,6 +881,24 @@ public class RutasSpark {
             }
             response.redirect("/redSocial/admin/"+logUser.getCorreo()+"/zonaAdmin");
 
+            return "";
+        });
+
+        post("/cambiarPrivacidadPost/:id", (request, response) -> {
+            try{
+                String idPostActual = request.params("id");
+
+                Post postAEditar = ServiciosPost.getInstancia().find(Long.parseLong(idPostActual));
+
+                boolean esPrivado = request.queryParams("esPrivado-edit") == null ? false: true;
+
+                postAEditar.setEsPrivado(esPrivado);
+                ServiciosPost.getInstancia().editar(postAEditar);
+                response.redirect("/");
+
+            }catch (Exception e){
+                System.out.println("Error al editar la privacidad del post: " + e.toString());
+            }
             return "";
         });
 

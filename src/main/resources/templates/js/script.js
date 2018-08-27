@@ -7,6 +7,8 @@ $(window).on("load", function() {
 
     $(".post_project").on("click", function(){
         $(".post-popup.pst-pj").addClass("active");
+        document.getElementById("esPrivado").checked = false;
+        document.getElementById("publico-privado").innerHTML = "Público";
         $(".wrapper").addClass("overlay");
         return false;
     });
@@ -137,6 +139,32 @@ $(window).on("load", function() {
 
     $(".close-eliminar-post-box").on("click", function(){
         $("[id^=eliminar-post-box]").removeClass("open");
+        $(".wrapper").removeClass("overlay");
+        $(".ed-opts-open").next(".ed-options").removeClass("active");
+        return false;
+    });
+
+
+    //  ============= EDITAR PRIVACIDAD POST FUNCTION =========
+
+    $("[class^='cambiar-privacidad-post-open-']").on("click", function(){
+        document.getElementById("esPrivado-edit").checked = false;
+        document.getElementById("publico-privado-edit").innerHTML = "Público";
+        var id =  $(this).attr('class').replace('cambiar-privacidad-post-open-','');
+        $("#cambiar-privacidad-post-box-"+id).addClass("open");
+        $(".wrapper").addClass("overlay");
+        $(".ed-opts-open").next(".ed-options").removeClass("active");
+        return false;
+    });
+    $(".close-box").on("click", function(){
+        $("[id^=cambiar-privacidad-post-box]").removeClass("open");
+        $(".wrapper").removeClass("overlay");
+        $(".ed-opts-open").next(".ed-options").removeClass("active");
+        return false;
+    });
+
+    $(".close-cambiar-privacidad-post-box").on("click", function(){
+        $("[id^=cambiar-privacidad-post-box]").removeClass("open");
         $(".wrapper").removeClass("overlay");
         $(".ed-opts-open").next(".ed-options").removeClass("active");
         return false;
