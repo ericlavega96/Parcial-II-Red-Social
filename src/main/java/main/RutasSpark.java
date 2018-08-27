@@ -327,7 +327,7 @@ public class RutasSpark {
             attributes.put("logUser",logUser);
             attributes.put("usuario",user);
             attributes.put("actividades",ServiciosActividad.getInstancia().findByUser(user));
-            attributes.put("posts",ServiciosPost.getInstancia().findByAuthor(user));
+            attributes.put("posts",ServiciosPost.getInstancia().findPostPrivados(logUser,user));
             attributes.put("fecha_nacimiento", user.convertirFecha());
             attributes.put("pais_origen", user.getPais().getPais());
             attributes.put("ciudad_origen", user.getCiudad());

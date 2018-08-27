@@ -8,6 +8,7 @@ import servicios.MetodosDB;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServiciosPost extends MetodosDB<Post> {
@@ -50,7 +51,7 @@ public class ServiciosPost extends MetodosDB<Post> {
 
     public List<Post> postAmigosUser(Usuario user){
         EntityManager em = getEntityManager();
-        Query query = em.createQuery("select p from Usuario u, Post p JOIN u.amigos a WHERE u.correo = :correo AND (p.autor = a OR p.autor = u) order by p.fecha DESC");
+        Query query = em.createQuery("select p from Usuario u, Post p JOIN u.amigos a WHERE u.correo = :correo AND p.autor = a order by p.fecha DESC");
         query.setParameter("correo", user.getCorreo());
         return query.getResultList();
     }
@@ -60,5 +61,25 @@ public class ServiciosPost extends MetodosDB<Post> {
         Query query = em.createQuery("select c from Post p JOIN p.listaComentariosPost c WHERE p.idPost = :post order by c.fecha ASC");
         query.setParameter("post", post.getIdPost());
         return query.getResultList();
+    }
+
+    public List<Post> findPostPrivados(Usuario user, Usuario amigo){
+        List<Post> posts = new ArrayList<>();
+        for(Post post : amigo.getPosts()) {
+            if (isAmigo(user, amigo) && post.isEsPrivado())
+                posts.add(post);
+            else if(!post.isEsPrivado())
+                posts.add(post);
+        }
+        return posts;
+
+    }
+
+    private boolean isAmigo(Usuario user, Usuario amigo){
+
+        for(Usuario a : user.getAmigos())
+            if(a.getIdUsuario() == amigo.getIdUsuario())
+                return true;
+        return false;
     }
 }
