@@ -4,6 +4,9 @@ import com.sun.istack.internal.NotNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -318,4 +321,20 @@ public class Usuario implements Serializable{
     }
 
     public int contadorAmigos(){ return amigos.size();}
+
+    public String convertirFecha() {
+        String dateStr = "";
+        try {
+
+            DateFormat srcDf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            DateFormat destDf = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = srcDf.parse(fechaNacimiento.toString());
+
+            dateStr = destDf.format(date);
+            System.out.println("Fecha con nuevo formato: " + dateStr + " - Fecha con el viejo formato: " + fechaNacimiento.toString());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateStr;
+    }
 }
