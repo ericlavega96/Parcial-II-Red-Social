@@ -139,6 +139,18 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
        return false;
     }
 
+    public boolean deleteUser(Usuario user){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        Usuario usuario = em.find(Usuario.class,user.getIdUsuario());
+        em.remove(usuario);
+        em.getTransaction().commit();
+        System.out.println("El usuario se ha borrado correctamente.");
+        em.close();
+
+        return true;
+    }
+
     public List<Usuario> findSugerencia(Usuario user){
         EntityManager em = getEntityManager();
         try {

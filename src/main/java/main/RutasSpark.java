@@ -1,5 +1,6 @@
 package main;
 
+import encapsulaciones.Amigo;
 import entidades.*;
 import freemarker.template.Configuration;
 import logical.*;
@@ -848,9 +849,27 @@ public class RutasSpark {
             Usuario logUser = request.session(true).attribute("usuario");
             String correoUser = request.params("correo");
             Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
-            if(!user.isAdmin())
-                ServiciosUsuario.getInstancia().eliminar(user.getIdUsuario());
-
+            if(!user.isAdmin()) {
+                user.setFotoPerfil(null);
+                user.setPais(null);
+                for(Album a:user.getAlbumes())
+                    ServiciosAlbum.getInstancia().eliminar(a.getIdAlbum());
+                for(Usuario a:user.getAmigos()) {
+                    ServiciosUsuario.getInstancia().deleteAmistad(user,a);
+                    ServiciosUsuario.getInstancia().deleteAmistad(a,user);
+                    ServiciosUsuario.getInstancia().editar(user);
+                }
+                user.getAmigos().clear();
+                for(ComentarioPost c : user.getComentarios())
+                    ServiciosComentarioPost.getInstancia().eliminar(c.getId());
+                for(ComentarioFoto c : user.getComentariosAlbum())
+                    ServiciosComentarioFoto.getInstancia().eliminar(c.getId());
+                for(Actividad t:user.getTimeline())
+                    ServiciosActividad.getInstancia().eliminar(t.getIdActividad());
+                for(Notificacion n:user.getNotificaciones())
+                    ServiciosNotificaciones.getInstancia().eliminar(n.getIdActividad());
+                ServiciosUsuario.getInstancia().deleteUser(user);
+            }
             response.redirect("/redSocial/admin/"+logUser.getCorreo()+"/zonaAdmin");
 
             return "";

@@ -42,22 +42,22 @@ public class Usuario implements Serializable{
 
     private String empleo;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "autor")
+    @OneToMany(fetch = FetchType.EAGER,orphanRemoval = true, mappedBy = "autor")
     private Set<Post> posts;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "autor")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "autor",orphanRemoval = true)
     private Set<ComentarioPost> comentarios;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "autor")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "autor",orphanRemoval = true)
     private Set<ComentarioFoto> comentariosAlbum;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "usuario")
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "usuario",orphanRemoval = true)
     private Set<Album> albumes;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario",orphanRemoval = true)
     private Set<Actividad> timeline;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario",orphanRemoval = true)
     private Set<Notificacion> notificaciones;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -65,13 +65,13 @@ public class Usuario implements Serializable{
             @JoinColumn (name = "AMIGO") })
     private Set<Usuario> amigos;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,orphanRemoval = true)
     private Imagen fotoPerfil;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "emisor")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "emisor",orphanRemoval = true)
     private Set<SolicitudAmistad> solicitudesEnviadas;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "receptor")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "receptor",orphanRemoval = true)
     private Set<SolicitudAmistad> solicitudesRecibidas;
 
     @NotNull
@@ -82,10 +82,10 @@ public class Usuario implements Serializable{
             @JoinColumn (name = "IdImagen") })
     private Set<Imagen> listaImagenesEtiquetadas;
 
-    @OneToMany(mappedBy = "usuario",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario",fetch = FetchType.EAGER, cascade = CascadeType.ALL,orphanRemoval = true)
     Set<LikePost> likeArticulo = new HashSet<>();
 
-    @OneToMany(mappedBy = "usuario",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario",fetch = FetchType.EAGER, cascade = CascadeType.ALL,orphanRemoval = true)
     Set<LikePost> likePosts = new HashSet<>();
 
     public Usuario() {
