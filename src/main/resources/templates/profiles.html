@@ -122,7 +122,12 @@
 						<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 							<div class="company_profile_info">
 								<div class="company-up-info">
-									<img src="/images/resources/pf-icon1.png" alt="">
+									<!--img src="/images/resources/pf-icon1.png" alt=""-->
+									<#if amigo.fotoPerfil??>
+										<img src="/${amigo.fotoPerfil.imagen}" alt="">
+									<#else>
+										<img src="/images/resources/user.png" alt="">
+									</#if>
 									<h3>${amigo.nombres} ${amigo.apellidos}</h3>
 									<h4>${amigo.ciudad}, ${amigo.pais.getPais()}</h4>
 									<ul>
@@ -138,7 +143,12 @@
 						<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 							<div class="company_profile_info">
 								<div class="company-up-info">
-									<img src="/images/resources/pf-icon1.png" alt="">
+									<!--img src="/images/resources/pf-icon1.png" alt=""-->
+									<#if user.fotoPerfil??>
+										<img src="/${user.fotoPerfil.imagen}" alt="">
+									<#else>
+										<img src="/images/resources/user.png" alt="">
+									</#if>
 									<h3>${user.nombres} ${user.apellidos}</h3>
 									<h4>${user.ciudad}, ${user.pais.getPais()}</h4>
 									<ul>
