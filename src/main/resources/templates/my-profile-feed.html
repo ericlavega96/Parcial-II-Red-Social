@@ -303,7 +303,7 @@
 																<ul class="ed-options">
 																	<li><a href="" title="" class="editar-post-open-${post.idPost}"> Editar Post </a></li>
 																	<li><a href="" title="" class="eliminar-post-open-${post.idPost}"> Eliminar Post </a></li>
-																	<li><a href="" title="" class="cambiar-privacidad-post-open-${post.idPost}"> Cambiar Privacidad </a></li>
+																	<li><a href="" title="" class="cambiar-privacidad-post-open-${post.idPost}"> Privacidad </a></li>
 																</ul>
 															</div>
 
@@ -393,11 +393,19 @@
 														<span>Seleccione el estado de privacidad del post:</span>
 														<form action="/cambiarPrivacidadPost/${post.idPost}" method="post">
 															<div class="toggle-btn-div">
-																<label id="publico-privado-edit"></label>
-																<label class="switch">
-																	<input id="esPrivado-edit" name="esPrivado-edit" type="checkbox" checked>
-																	<span class="slider round"></span>
-																</label>
+																<#if post.esPrivado>
+																	<label id="publico-privado-edit-${post.idPost}">Privado</label>
+																	<label class="switch">
+																		<input class="esPrivado-edit-${post.idPost}" name="esPrivado-edit" type="checkbox" checked>
+																		<span class="slider round"></span>
+																	</label>
+																<#else>
+																	<label id="publico-privado-edit-${post.idPost}">Público</label>
+																	<label class="switch">
+																		<input class="esPrivado-edit-${post.idPost}" name="esPrivado-edit" type="checkbox">
+																		<span class="slider round"></span>
+																	</label>
+																</#if>
 															</div>
 															<button type="submit" class="save">Guardar</button>
 															<button id="close-cambiar-privacidad-post-box" class="close-cambiar-privacidad-post-box">Cancelar</button>
@@ -1264,14 +1272,17 @@
         })
 	</script>
 	<script>
-        $('#esPrivado-edit').on('change', function() {
+        $("[class^='esPrivado-edit-']").on('change', function() {
             var isChecked = $(this).is(':checked');
+            var id =  $(this).attr('class').replace('esPrivado-edit-','');
             if(isChecked) {
-                document.getElementById("publico-privado-edit").innerHTML = "Privado";
+                document.getElementById("publico-privado-edit-"+id).innerHTML = "Privado";
             } else {
-                document.getElementById("publico-privado-edit").innerHTML = "Público";
+                document.getElementById("publico-privado-edit-"+id).innerHTML = "Público";
             }
         })
+	</script>
+	<script>
 	</script>
 
 </body>

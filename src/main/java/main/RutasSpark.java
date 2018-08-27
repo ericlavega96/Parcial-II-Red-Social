@@ -717,7 +717,9 @@ public class RutasSpark {
 
                 postAEditar.setCuerpo(cuerpo);
                 ServiciosPost.getInstancia().editar(postAEditar);
-                response.redirect("/");
+
+                Usuario logUser = request.session(true).attribute("usuario");
+                response.redirect("/redSocial/userArea/"+logUser.getCorreo()+"/perfilUsuario");
 
             }catch (Exception e){
                 System.out.println("Error al editar el post: " + e.toString());
@@ -730,7 +732,8 @@ public class RutasSpark {
                 String idPostActual = request.params("id");
                 ServiciosPost.getInstancia().eliminar(Long.parseLong(idPostActual));
 
-                response.redirect("/");
+                Usuario logUser = request.session(true).attribute("usuario");
+                response.redirect("/redSocial/userArea/"+logUser.getCorreo()+"/perfilUsuario");
 
             }catch (Exception e){
                 System.out.println("Error al eliminar post: " + e.toString());
@@ -846,7 +849,7 @@ public class RutasSpark {
                 logUser.setFotoPerfil(imagen);
                 ServiciosUsuario.getInstancia().editar(logUser);
                 System.out.println("La foto de perfil ha sido actualizada con éxito");
-                response.redirect("/");
+                response.redirect("/redSocial/userArea/"+logUser.getCorreo()+"/perfilUsuario");
             }catch (Exception e){
                 System.out.println("Error al cambiar la imagen de perfil del usuario " + e.toString());
             }
@@ -891,10 +894,11 @@ public class RutasSpark {
                 Post postAEditar = ServiciosPost.getInstancia().find(Long.parseLong(idPostActual));
 
                 boolean esPrivado = request.queryParams("esPrivado-edit") == null ? false: true;
+                Usuario logUser = request.session(true).attribute("usuario");
 
                 postAEditar.setEsPrivado(esPrivado);
                 ServiciosPost.getInstancia().editar(postAEditar);
-                response.redirect("/");
+                response.redirect("/redSocial/userArea/"+logUser.getCorreo()+"/perfilUsuario");
 
             }catch (Exception e){
                 System.out.println("Error al editar la privacidad del post: " + e.toString());
