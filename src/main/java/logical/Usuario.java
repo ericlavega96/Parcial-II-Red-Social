@@ -77,7 +77,7 @@ public class Usuario implements Serializable{
     @NotNull
     private boolean admin;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "USUARIOS_TAGGED", joinColumns = { @JoinColumn(name = "idUsuario") }, inverseJoinColumns = {
             @JoinColumn (name = "IdImagen") })
     private Set<Imagen> listaImagenesEtiquetadas;

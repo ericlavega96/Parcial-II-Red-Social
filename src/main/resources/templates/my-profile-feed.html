@@ -96,6 +96,11 @@
 			margin-bottom: 17px;
 			margin-left: 1px;
 		}
+		#amigos-cbBox{
+			font-size: 18px;
+			width: 65%;
+			height: 20%;
+		}
 	</style>
 </head>
 
@@ -795,10 +800,16 @@
 																<input type="file" name="fotoAlbum" accept="image/*">
 															</div>
 															<div class="col-lg-12">
+																<select id="amigos-cbBox">
+																	<#list usuario.amigos as amigo>
+																		<option value= "${amigo.idUsuario}">${amigo.nombres} ${amigo.apellidos}</option>
+																	</#list>
+																</select>
 																<ul>
-																	<li><button  id="etiquetar-btn" class="active etiquetar-amigos-box-open"> Etiquetar <i class="fa fa-tag"></i></button></li>
-																	<li><input id="etiquetados" name="etiquetados" type="text" value="" readonly></li>
+																	<li><button id="etiquetar-btn" class="active" type="button"> Etiquetar <i class="fa fa-tag"></i></button></li>
 																</ul>
+																<input id="etiquetados" name="etiquetados" type="text" readonly>
+																<input id="etiquetadosValores" name="etiquetadosValores" type="hidden">
 															</div>
 															<div class="col-lg-12">
 																<ul>
@@ -1091,7 +1102,7 @@
 				<h3>Etiquetar Amigos</h3>
 				<span>Seleccione un amigo a etiquetar:</span>
 				<form id="etiquetar-form" method="post">
-					<select id="amigos-cbBox" required>
+					<select id="amigos-cbBox-prueba" required>
 						<#list usuario.amigos as amigo>
 							<option value= "${amigo.idUsuario}">${amigo.nombres} ${amigo.apellidos}</option>
 						</#list>
@@ -1198,6 +1209,24 @@
 			    like.removeClass("active");
             }else{
 			    like.toggleClass("active");
+			}
+        })
+	</script>
+	<script>
+		$('#etiquetar-btn').on("click",function () {
+            var sel = document.getElementById('amigos-cbBox');
+            if(document.getElementById("etiquetados").value != ""){
+                document.getElementById("etiquetados").value += ", "
+			}
+            document.getElementById("etiquetados").value += sel.options[sel.selectedIndex].text;
+            if(document.getElementById("etiquetadosValores").value != ""){
+                document.getElementById("etiquetadosValores").value += ","
+            }
+            document.getElementById("etiquetadosValores").value += sel.options[sel.selectedIndex].value;
+
+            sel.remove(sel.selectedIndex);
+            if(sel.size == 0){
+                sel.style.display = 'none';
 			}
         })
 	</script>

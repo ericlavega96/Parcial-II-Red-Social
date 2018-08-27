@@ -167,6 +167,13 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
         }
     }
 
+    public static Set<Usuario> listaUsuariosEtiquetados(String[] usuariosEtiquetados){
+        Set<Usuario> usuariosEtiquetadosList = new HashSet<>();
+        for (String usuarioEtiquetado : usuariosEtiquetados)
+            usuariosEtiquetadosList.add(ServiciosUsuario.getInstancia().find(Long.valueOf(usuarioEtiquetado)));
+        return usuariosEtiquetadosList;
+    }
+
 
 
 }
