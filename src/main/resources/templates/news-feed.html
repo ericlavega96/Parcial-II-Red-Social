@@ -186,7 +186,7 @@
 												<span>${cantAmigos}</span>
 											</li>
 											<li>
-												<a href="#" title="">View Profile</a>
+												<a href="/redSocial/userArea/${logUser.correo}/perfilUsuario" title="">Ver Perfil</a>
 											</li>
 										</ul>
 									</div><!--user-data end-->
@@ -215,7 +215,8 @@
 												</div>
 												<div class="epi-sec">
 													<ul class="descp">
-														<li><img src="/images/icon9.png" alt=""><span>${post.autor.pais.pais}</span></li>
+														<li><img src="/images/icon9.png" alt=""><span>${post.autor.pais.pais}
+																<br>Posteado en ${post.geolocation}</span></li>
 													</ul>
 													<ul class="bk-links">
 														<li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
@@ -224,7 +225,7 @@
 												</div>
 												<div class="job_descp">
 													<p>${post.cuerpo}</p>
-													<#if post.fotoPost!="">
+													<#if post.fotoPost??>
 													<div id="image-container">
 														<img id="postedImage" src="/${post.fotoPost.imagen}">
 													</div>

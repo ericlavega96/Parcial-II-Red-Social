@@ -140,7 +140,7 @@ public class RutasSpark {
         });
 
         post("/publicarPost", (request, response) -> {
-            try {
+            //try {
                 String imagenRuta = (ServiciosImagen.getInstancia().guardarFoto("imagen",fotosDir,request));
                 Imagen imagen = null;
                 if(imagenRuta != null){
@@ -150,10 +150,10 @@ public class RutasSpark {
                 Usuario logUser = ServiciosUsuario.getInstancia().find(tmpUser.getIdUsuario());
                 String cuerpo = request.queryParams("cuerpo");
                 String tags = request.queryParams("tags");
-                String geolocation = request.queryParams("geolocalizacion");
+                String geolocation = request.queryParams("geolocalizacion").replace("Ubicación Actual: ","");
                 System.out.println("Localización obtenida: " + geolocation);
                 Set<Tag> postEtiquetas = Tag.crearEtiquetas(tags.split(","));
-                Post nuevoPost = new Post(logUser,imagen,cuerpo,new Date(),null,postEtiquetas,null);
+                Post nuevoPost = new Post(logUser,imagen,cuerpo,new Date(),null,postEtiquetas,null,geolocation);
                 Set<Usuario> mencionados = ServiciosUsuario.getInstancia().getAmigosTexto(cuerpo);
                 for(Usuario a : mencionados){
                     Notificacion notificacion = new Notificacion(a,
@@ -183,9 +183,9 @@ public class RutasSpark {
                 ServiciosActividad.getInstancia().crear(actividad);
 
                 response.redirect("/redSocial/userArea/" + logUser.getCorreo() + "/perfilUsuario");
-            } catch (Exception e) {
+            /*} catch (Exception e) {
                 System.out.println("Error al realizar post" + e.toString());
-            }
+            }*/
             return "";
         });
 
@@ -842,6 +842,19 @@ public class RutasSpark {
             }
             return "";
         }));
+
+        get("redSocial/admin/eliminarCorreo/:correo", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            Usuario logUser = request.session(true).attribute("usuario");
+            String correoUser = request.params("correo");
+            Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
+            if(!user.isAdmin())
+                ServiciosUsuario.getInstancia().eliminar(user.getIdUsuario());
+
+            response.redirect("/redSocial/admin/"+logUser.getCorreo()+"/zonaAdmin");
+
+            return "";
+        });
 
     }
 }

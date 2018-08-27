@@ -75,10 +75,7 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
                 if(user != null)
                     resultado.add(user);
             }
-        if(resultado.size() > 0)
-            return resultado;
-        else
-            return null;
+        return resultado;
     }
 
     public List<Amigo> amigosToJSON(Usuario user){

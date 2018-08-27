@@ -39,7 +39,20 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     Set<LikePost> likePosts = new HashSet<>();
 
+    private String geolocation;
+
     public Post() {
+    }
+
+    public Post(Usuario autor, Imagen fotoPost, String cuerpo, Date fecha, Set<ComentarioPost> listaComentariosPost, Set<Tag> listaTags, Set<LikePost> likePosts, String geolocation) {
+        this.autor = autor;
+        this.fotoPost = fotoPost;
+        this.cuerpo = cuerpo;
+        this.fecha = fecha;
+        this.listaComentariosPost = listaComentariosPost;
+        this.listaTags = listaTags;
+        this.likePosts = likePosts;
+        this.geolocation = geolocation;
     }
 
     public Post(Usuario autor, Imagen fotoPost, String cuerpo, Date fecha, Set<ComentarioPost> listaComentariosPost, Set<Tag> listaTags, Set<LikePost> likePosts) {
@@ -50,6 +63,7 @@ public class Post {
         this.listaComentariosPost = listaComentariosPost;
         this.listaTags = listaTags;
         this.likePosts = likePosts;
+        this.geolocation = "";
     }
 
     public long getIdPost() {
@@ -117,4 +131,12 @@ public class Post {
     }
 
     public long likesCount(){return ServiciosPost.getInstancia().getLikesCount(this);}
+
+    public String getGeolocation() {
+        return geolocation;
+    }
+
+    public void setGeolocation(String geolocation) {
+        this.geolocation = geolocation;
+    }
 }

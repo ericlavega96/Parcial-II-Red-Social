@@ -221,14 +221,15 @@
 														<div class="usy-dt">
 															<img src="/images/resources/us-pic.png" alt="">
 															<div class="usy-name">
-																<h3>${usuario.nombres} ${usuario.apellidos}</h3>
+																<h3>${post.autor.nombres} ${post.autor.apellidos}</h3>
 																<span><img src="/images/clock.png" alt="">${post.fecha}</span>
 															</div>
 														</div>
 													</div>
 													<div class="epi-sec">
 														<ul class="descp">
-															<li><img src="/images/icon9.png" alt=""><span>${usuario.pais.pais}</span></li>
+															<li><img src="/images/icon9.png" alt=""><span>${post.autor.pais.pais}
+																<br>Posteado en ${post.geolocation}</span></li>
 														</ul>
 														<ul class="bk-links">
 															<li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
@@ -320,13 +321,13 @@
 											<p> ${ciudad_origen} </p>
 										</div><!--user-profile-ov end-->
 
-										<#if lugar_estudio??>
+										<#if lugar_estudio?has_content>
 											<div class="user-profile-ov">
 												<h3>Lugares de Estudio</h3>
 												<h4>${lugar_estudio}</h4>
 											</div><!--user-profile-ov end-->
 										</#if>
-										<#if trabajo??>
+										<#if trabajo?has_content>
 											<div class="user-profile-ov st2">
 												<h3>Centro de Trabajo</h3>
 												<h4>${trabajo}</h4>
