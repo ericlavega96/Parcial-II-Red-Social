@@ -1,8 +1,11 @@
 package logical;
 
+import entidades.ServiciosAlbum;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -81,5 +84,9 @@ public class Album {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public List<Imagen> getImagenesOrdenadas(){
+        return ServiciosAlbum.getInstancia().getImagenesOrdenadas(this);
     }
 }

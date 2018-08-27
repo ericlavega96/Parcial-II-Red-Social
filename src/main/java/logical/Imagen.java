@@ -99,4 +99,14 @@ public class Imagen {
     public void setFechaPublicacion(Date fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
     }
+
+    public String getAllTags(){
+        String tags = "";
+        for(Usuario u : listaUsuariosEtiquetados) {
+            if(!tags.equals(""))
+                tags+=", ";
+            tags += (u.getNombres() + " " +u.getApellidos()).trim();
+        }
+        return tags;
+    }
 }
