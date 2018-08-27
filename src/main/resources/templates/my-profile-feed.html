@@ -143,7 +143,7 @@
 							</a>
 							<div class="notification-box">
 								<div class="nott-list">
-									<#list logUser.timeline as notificacion>
+									<#list logUser.notificaciones as notificacion>
 									<div class="notfication-details">
 										<div class="notification-info">
 											<h3>${notificacion.actividad}</h3>
@@ -776,7 +776,7 @@
 												</div><!--post-st end-->
 												<div class="gallery_pf">
 													<div class="row">
-														<#list album.imagenes as foto>
+														<#list album.getImagenesOrdenadas() as foto>
 															<div class="col-lg-4 col-md-4 col-sm-6 col-6">
 																<div class="gallery_pt">
 																	<img src="/${foto.imagen}" alt="">
@@ -797,7 +797,7 @@
 														<div class="row">
 															<div class="col-lg-12 subir-imagen-div">
 																<button class="subir-imagen-btn"> Seleccione una imagen <i class="fa fa-upload"></i></button>
-																<input type="file" name="fotoAlbum" accept="image/*">
+																<input type="file" name="fotoAlbum" accept="image/*" required>
 															</div>
 															<div class="col-lg-12">
 																<select id="amigos-cbBox">

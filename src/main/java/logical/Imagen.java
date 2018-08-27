@@ -21,7 +21,7 @@ public class Imagen {
     @JoinColumn(name = "album")
     private Album album;
 
-    @ManyToMany(mappedBy = "listaImagenesEtiquetadas", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "listaImagenesEtiquetadas",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Usuario> listaUsuariosEtiquetados;
 
     @OneToMany(mappedBy = "imagen",fetch = FetchType.EAGER, cascade = CascadeType.ALL)

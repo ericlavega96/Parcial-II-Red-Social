@@ -552,6 +552,7 @@ public class RutasSpark {
 
                 if(imagenRuta != null){
                     Imagen imagen = new Imagen(imagenRuta,albumActual,new HashSet<>());
+                    imagen.setFechaPublicacion(new Date());
                     ServiciosImagen.getInstancia().crear(imagen);
                     for(Usuario userTag : usuariosEtiquetados){
                         userTag.getListaImagenesEtiquetadas().add(imagen);

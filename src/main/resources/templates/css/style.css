@@ -1610,6 +1610,23 @@ main {
 	border-bottom: 1px solid #e5e5e5;
 
 }
+
+.usuarios-etiquetados-section {
+	float: left;
+	width: 100%;
+	padding: 0px 25px;
+	border-bottom: 1px solid #e5e5e5;
+	display: inline;
+
+}
+
+.usuarios-etiquetados-section > p{
+	color: gray;
+	font-size: 15px;
+	display: inline-block;
+
+}
+
 .plus-ic {
 	float: left;
 	width: 100%;
