@@ -5,6 +5,7 @@ import entidades.ServiciosImagen;
 import entidades.ServiciosPost;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -27,7 +28,9 @@ public class Imagen {
     private Set<ComentarioFoto> listaComentarioFoto;
 
     @OneToMany(mappedBy = "imagen", cascade = CascadeType.ALL)
-    Set<LikeImagen> likeImagen = new HashSet<>();
+    private Set<LikeImagen> likeImagen = new HashSet<>();
+
+    private Date fechaPublicacion;
 
     public Imagen() {
 
@@ -88,4 +91,12 @@ public class Imagen {
     }
 
     public long likesCount(){return ServiciosImagen.getInstancia().getLikesCount(this);}
+
+    public Date getFechaPublicacion() {
+        return fechaPublicacion;
+    }
+
+    public void setFechaPublicacion(Date fechaPublicacion) {
+        this.fechaPublicacion = fechaPublicacion;
+    }
 }

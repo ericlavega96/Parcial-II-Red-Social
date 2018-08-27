@@ -1,8 +1,6 @@
 package entidades;
 
-import logical.Album;
-import logical.Pais;
-import logical.Usuario;
+import logical.*;
 import servicios.MetodosDB;
 
 import javax.persistence.EntityManager;
@@ -28,5 +26,12 @@ public class ServiciosAlbum extends MetodosDB<Album> {
         query.setParameter("usuario",usuario);
         List<Album> resultado = query.getResultList();
         return resultado;
+    }
+
+    public List<Imagen> getImagenesOrdenadas(Album album){
+        EntityManager em = getEntityManager();
+        Query query = em.createQuery("select i from Album a JOIN a.imagenes i WHERE a.idAlbum = :album order by i.fechaPublicacion DESC");
+        query.setParameter("album", album.getIdAlbum());
+        return query.getResultList();
     }
 }
