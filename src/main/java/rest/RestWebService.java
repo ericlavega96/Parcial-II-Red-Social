@@ -12,7 +12,7 @@ public class RestWebService {
     public static List<Post> getPostByAutor(String correo){
         logical.Usuario autor = ServiciosUsuario.getInstancia().findByEmail(correo);
         List<logical.Post> posts = ServiciosPost.getInstancia().findByAuthor(autor);
-        List<Post> resultSet = new ArrayList<Post>();
+        List<Post> resultSet = new ArrayList<>();
         String tags;
         for(logical.Post post : posts) {
 
@@ -28,7 +28,7 @@ public class RestWebService {
                     new Usuario(post.getAutor().getCorreo(), post.getAutor().getPassword(),
                             post.getAutor().getNombres(), post.getAutor().getApellidos()),
                     new Imagen(post.getFotoPost().getImagen()),
-                    post.getCuerpo(), post.getFecha(), tags));
+                    post.getCuerpo(), post.getFecha(), tags, post.isEsPrivado()));
         }
         return resultSet;
     }

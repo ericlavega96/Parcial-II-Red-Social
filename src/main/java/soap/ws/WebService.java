@@ -42,7 +42,7 @@ public class WebService {
                     new Usuario(postBuscado.getAutor().getCorreo(), postBuscado.getAutor().getPassword(),
                             postBuscado.getAutor().getNombres(), postBuscado.getAutor().getApellidos()),
                     new Imagen(postBuscado.getFotoPost().getImagen()),
-                    postBuscado.getCuerpo(), postBuscado.getFecha()));
+                    postBuscado.getCuerpo(), postBuscado.getFecha(),tags, postBuscado.isEsPrivado()));
         }
         return resultado;
     }
@@ -66,20 +66,20 @@ public class WebService {
                     new Usuario(postBuscado.getAutor().getCorreo(), postBuscado.getAutor().getPassword(),
                             postBuscado.getAutor().getNombres(), postBuscado.getAutor().getApellidos()),
                     new Imagen(postBuscado.getFotoPost().getImagen()),
-                    postBuscado.getCuerpo(), postBuscado.getFecha(),tags));
+                    postBuscado.getCuerpo(), postBuscado.getFecha(),tags, postBuscado.isEsPrivado()));
         }
         return resultado;
     }
 
     @WebMethod
-    public String subirPost(String correo, String password, String cuerpo, String imagen, String etiquetas){
+    public String subirPost(String correo, String password, String cuerpo, String imagen, String etiquetas, boolean privado){
         logical.Usuario logUser = ServiciosUsuario.getInstancia().findByEmailAndPassword(correo, password);
 
 
         if(logUser != null){
             Set<Tag> tags = Tag.crearEtiquetas(etiquetas.split(","));
             logical.Post nuevoPost = new logical.Post(logUser,new logical.Imagen(imagen, null, null),
-                    cuerpo,new Date(),null,tags,null,false);
+                    cuerpo,new Date(),null,tags,null, privado);
             Set<logical.Usuario> mencionados = ServiciosUsuario.getInstancia().getAmigosTexto(cuerpo);
 
             for(logical.Usuario a : mencionados){
