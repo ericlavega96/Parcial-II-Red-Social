@@ -148,8 +148,6 @@ $(window).on("load", function() {
     //  ============= EDITAR PRIVACIDAD POST FUNCTION =========
 
     $("[class^='cambiar-privacidad-post-open-']").on("click", function(){
-        document.getElementById("esPrivado-edit").checked = false;
-        document.getElementById("publico-privado-edit").innerHTML = "Público";
         var id =  $(this).attr('class').replace('cambiar-privacidad-post-open-','');
         $("#cambiar-privacidad-post-box-"+id).addClass("open");
         $(".wrapper").addClass("overlay");
@@ -159,13 +157,16 @@ $(window).on("load", function() {
     $(".close-box").on("click", function(){
         $("[id^=cambiar-privacidad-post-box]").removeClass("open");
         $(".wrapper").removeClass("overlay");
+        //$("[class^='esPrivado-edit-']").checked = $("[class^='esPrivado-edit-']").defaultValue;
         $(".ed-opts-open").next(".ed-options").removeClass("active");
         return false;
     });
 
     $(".close-cambiar-privacidad-post-box").on("click", function(){
+        var defaultCheked = $("[class^='esPrivado-edit-']").defaultChecked;
         $("[id^=cambiar-privacidad-post-box]").removeClass("open");
         $(".wrapper").removeClass("overlay");
+        //$("[class^='esPrivado-edit-']").checked = $("[class^='esPrivado-edit-']").defaultValue;
         $(".ed-opts-open").next(".ed-options").removeClass("active");
         return false;
     });
