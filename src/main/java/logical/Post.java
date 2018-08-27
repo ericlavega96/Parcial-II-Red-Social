@@ -41,10 +41,12 @@ public class Post {
 
     private String geolocation;
 
+    private boolean esPrivado;
+
     public Post() {
     }
 
-    public Post(Usuario autor, Imagen fotoPost, String cuerpo, Date fecha, Set<ComentarioPost> listaComentariosPost, Set<Tag> listaTags, Set<LikePost> likePosts, String geolocation) {
+    public Post(Usuario autor, Imagen fotoPost, String cuerpo, Date fecha, Set<ComentarioPost> listaComentariosPost, Set<Tag> listaTags, Set<LikePost> likePosts, String geolocation,boolean esPrivado) {
         this.autor = autor;
         this.fotoPost = fotoPost;
         this.cuerpo = cuerpo;
@@ -53,9 +55,10 @@ public class Post {
         this.listaTags = listaTags;
         this.likePosts = likePosts;
         this.geolocation = geolocation;
+        this.esPrivado = esPrivado;
     }
 
-    public Post(Usuario autor, Imagen fotoPost, String cuerpo, Date fecha, Set<ComentarioPost> listaComentariosPost, Set<Tag> listaTags, Set<LikePost> likePosts) {
+    public Post(Usuario autor, Imagen fotoPost, String cuerpo, Date fecha, Set<ComentarioPost> listaComentariosPost, Set<Tag> listaTags, Set<LikePost> likePosts,boolean esPrivado) {
         this.autor = autor;
         this.fotoPost = fotoPost;
         this.cuerpo = cuerpo;
@@ -64,6 +67,7 @@ public class Post {
         this.listaTags = listaTags;
         this.likePosts = likePosts;
         this.geolocation = "";
+        this.esPrivado = esPrivado;
     }
 
     public long getIdPost() {
@@ -138,5 +142,13 @@ public class Post {
 
     public void setGeolocation(String geolocation) {
         this.geolocation = geolocation;
+    }
+
+    public boolean isEsPrivado() {
+        return esPrivado;
+    }
+
+    public void setEsPrivado(boolean esPrivado) {
+        this.esPrivado = esPrivado;
     }
 }

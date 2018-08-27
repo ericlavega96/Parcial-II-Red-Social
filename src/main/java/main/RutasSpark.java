@@ -154,7 +154,7 @@ public class RutasSpark {
                 String geolocation = request.queryParams("geolocalizacion").replace("Ubicación Actual: ","");
                 System.out.println("Localización obtenida: " + geolocation);
                 Set<Tag> postEtiquetas = Tag.crearEtiquetas(tags.split(","));
-                Post nuevoPost = new Post(logUser,imagen,cuerpo,new Date(),null,postEtiquetas,null,geolocation);
+                Post nuevoPost = new Post(logUser,imagen,cuerpo,new Date(),null,postEtiquetas,null,geolocation,false);
                 Set<Usuario> mencionados = ServiciosUsuario.getInstancia().getAmigosTexto(cuerpo);
                 for(Usuario a : mencionados){
                     Notificacion notificacion = new Notificacion(a,

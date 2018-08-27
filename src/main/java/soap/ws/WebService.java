@@ -79,7 +79,7 @@ public class WebService {
         if(logUser != null){
             Set<Tag> tags = Tag.crearEtiquetas(etiquetas.split(","));
             logical.Post nuevoPost = new logical.Post(logUser,new logical.Imagen(imagen, null, null),
-                    cuerpo,new Date(),null,tags,null);
+                    cuerpo,new Date(),null,tags,null,false);
             Set<logical.Usuario> mencionados = ServiciosUsuario.getInstancia().getAmigosTexto(cuerpo);
 
             for(logical.Usuario a : mencionados){
