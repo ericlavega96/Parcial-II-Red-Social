@@ -151,6 +151,26 @@
 										<img src="/images/resources/user-pro-img.png" alt="">
 									</div><!--user-pro-img end-->
 
+											<div class="suggestions full-width">
+												<div class="sd-title">
+													<h3>Sugerencias</h3>
+													<i class="la la-ellipsis-v"></i>
+												</div><!--sd-title end-->
+												<div class="suggestions-list">
+													<#list sugerencias as sugerencia>
+													<div class="suggestion-usd">
+														<img src="/images/resources/s1.png" alt="">
+														<div class="sgt-text">
+															<h4>${sugerencia.nombres} ${sugerencia.apellidos}</h4>
+															<span>${sugerencia.ciudad}</span>
+														</div>
+														<span><a href="/redSocial/userArea/${logUser.correo}/enviarRequest?amigo=${sugerencia.correo}"><i class="la la-plus"></i></a></span>
+													</div>
+												</#list>
+
+											</div><!--suggestions-list end-->
+										</div><!--suggestions end-->
+
 								</div><!--main-left-sidebar end-->
 							</div>
 							<div class="col-lg-6">
@@ -210,7 +230,10 @@
 									<div class="epi-sec">
 										<ul class="descp">
 											<li><img src="/images/icon9.png" alt=""><span>${post.autor.pais.pais}
-																<br>Posteado en ${post.geolocation}</span></li>
+												<#if post.geolocation?has_content>
+													<br>Posteado en ${post.geolocation}</span>
+												</#if>
+											</li>
 										</ul>
 									</div>
 									<div class="job_descp">
@@ -332,13 +355,7 @@
 				</div><!--overview-edit end-->
 			</div><!--overview-box end-->
 		</#list>
-<div class="process-comm">
-	<div class="spinner">
-		<div class="bounce1"></div>
-		<div class="bounce2"></div>
-		<div class="bounce3"></div>
-	</div>
-</div><!--process-comm end-->
+
 </div><!--posts-section end-->
 
 									</div><!--product-feed-tab end-->
@@ -375,14 +392,23 @@
                                        <#list actividades as actividad>
 											<div class="posts-section">
 												<div class="post-bar">
+
 													<div class="post_topbar">
-														<div class="usy-dt">
-															<img src="/images/resources/us-pic.png" alt="">
-															<div class="usy-name">
-																<h3>${actividad.usuario.nombres} ${actividad.usuario.apellidos}</h3>
-																<span><img src="/images/clock.png" alt="">${actividad.fechaActividad}</span>
+
+														<div class="comment-list">
+															<div class="bg-img">
+																<#if actividad.usuario.fotoPerfil??>
+																	<img src="/${actividad.usuario.fotoPerfil.imagen}" alt="">
+																<#else>
+																	<img src="/images/resources/user-profile-default.png" alt="">
+																</#if>
 															</div>
+														<div class="comment">
+															<h3>${actividad.usuario.nombres} ${actividad.usuario.apellidos}</h3>
+															<span><img src="/images/clock.png" alt="">${actividad.fechaActividad}</span>
 														</div>
+													</div><!--comment-list end-->
+
 													</div>
 													<div class="epi-sec">
 														<ul class="descp">
@@ -397,9 +423,6 @@
 
 											</div><!--posts-section end-->
 										</#list>
-										<div class="process-comm">
-											<a href="#" title=""><img src="/images/process-icon.png" alt=""></a>
-										</div><!--process-comm end-->
                                     </div><!--product-feed-tab end-->
 
 
@@ -453,6 +476,8 @@
 									</div>
 									<!--Pop-up para insertar imagen-->
 								</#list>
+
+
 
 
 						</div>

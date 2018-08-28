@@ -923,5 +923,19 @@ public class RutasSpark {
             return usuariosJSON;
         }, JsonTransformer.json());
 
+        get("redSocial/admin/volverAdmin/:correo", (request, response) -> {
+            Map<String, Object> attributes = new HashMap<>();
+            Usuario logUser = request.session(true).attribute("usuario");
+            String correoUser = request.params("correo");
+            Usuario user = ServiciosUsuario.getInstancia().findByEmail(correoUser);
+            if(user!=null) {
+                user.setAdmin(true);
+                ServiciosUsuario.getInstancia().editar(user);
+            }
+            response.redirect("/redSocial/admin/"+logUser.getCorreo()+"/zonaAdmin");
+
+            return "";
+        });
+
     }
 }

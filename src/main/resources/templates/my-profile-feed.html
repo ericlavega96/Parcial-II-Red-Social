@@ -315,8 +315,11 @@
                                                     </div>
                                                     <div class="epi-sec">
                                                         <ul class="descp">
-                                                            <li><img src="/images/icon9.png" alt=""><span>${post.autor.pais.pais}
-																<br>Posteado en ${post.geolocation}</span></li>
+															<li><img src="/images/icon9.png" alt=""><span>${post.autor.pais.pais}
+																<#if post.geolocation?has_content>
+																	<br>Posteado en ${post.geolocation}</span>
+																</#if>
+															</li>
                                                         </ul>
                                                     </div>
                                                     <div class="job_descp">
@@ -438,13 +441,7 @@
 													</div><!--overview-edit end-->
 												</div><!--overview-box end-->
 											</#list>
-											<div class="process-comm">
-												<div class="spinner">
-													<div class="bounce1"></div>
-													<div class="bounce2"></div>
-													<div class="bounce3"></div>
-												</div>
-											</div><!--process-comm end-->
+
 										</div><!--posts-section end-->
 									</div><!--product-feed-tab end-->
 
@@ -707,9 +704,6 @@
 													<a><i class="la la-eye"></i>Views 50</a>
 												</div>
 											</div><!--post-bar end-->
-											<div class="process-comm">
-												<a href="#" title=""><img src="/images/process-icon.png" alt=""></a>
-											</div><!--process-comm end-->
 										</div><!--posts-section end-->
 									</div><!--product-feed-tab end-->
 
@@ -762,9 +756,6 @@
 												</div><!--post-bar end-->
 											</div><!--posts-section end-->
 										</#list>
-										<div class="process-comm">
-											<a href="#" title=""><img src="/images/process-icon.png" alt=""></a>
-										</div><!--process-comm end-->
 									</div><!--product-feed-tab end-->
 
 									<!-- #inicio - Album -->
@@ -980,9 +971,6 @@
 												</div>
 											</#list>
 
-											<div class="view-more">
-												<a href="" title=""> Ver Más </a>
-											</div>
 										</div><!--suggestions-list end-->
 									</div><!--suggestions end-->
 
