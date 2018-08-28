@@ -16,18 +16,21 @@ public class PostAuxiliar {
     private String cuerpo;
     @Element
     private String tags;
+    @Element
+    private boolean privado;
 
 
     public PostAuxiliar() {
 
     }
 
-    public PostAuxiliar(String correo, String password, String imagen, String cuerpo, String tags) {
+    public PostAuxiliar(String correo, String password, String imagen, String cuerpo, String tags, boolean privado) {
         this.correo = correo;
         this.password = password;
         this.imagen = imagen;
         this.cuerpo = cuerpo;
         this.tags = tags;
+        this.privado = privado;
     }
 
     public String getCorreo() {
@@ -68,5 +71,13 @@ public class PostAuxiliar {
 
     public void setTags(String tags) {
         this.tags = tags;
+    }
+
+    public boolean isPrivado() {
+        return privado;
+    }
+
+    public void setPrivado(boolean privado) {
+        this.privado = privado;
     }
 }

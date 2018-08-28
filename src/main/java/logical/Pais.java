@@ -13,7 +13,7 @@ public class Pais implements Serializable {
     //@NotNull
     //@Column(unique = true)
     private String pais;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pais")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pais", cascade = CascadeType.ALL)
     private Set<Usuario> usuarios;
 
     public Pais() {

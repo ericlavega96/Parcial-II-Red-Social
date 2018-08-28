@@ -18,6 +18,8 @@ public class Post {
     private Date fecha;
     @Element
     private String etiquetas;
+    @Element
+    private String estado;
 
     public Post(String correo, String password, String cuerpo, String imagen, String tags) {
         this.autor = new Usuario(correo,password,"","");
@@ -26,21 +28,25 @@ public class Post {
         this.etiquetas = tags;
     }
 
-    public Post(long id, Usuario autor, Imagen imagen, String cuerpo, Date fecha ) {
+    /*public Post(long id, Usuario autor, Imagen imagen, String cuerpo, Date fecha) {
         this.id = id;
         this.autor = autor;
         this.imagen = imagen;
         this.cuerpo = cuerpo;
         this.fecha = fecha;
-    }
+    }*/
 
-    public Post(long id, Usuario autor, Imagen imagen, String cuerpo, Date fecha, String etiquetas) {
+    public Post(long id, Usuario autor, Imagen imagen, String cuerpo, Date fecha, String etiquetas, boolean estado) {
         this.id = id;
         this.autor = autor;
         this.imagen = imagen;
         this.cuerpo = cuerpo;
         this.fecha = fecha;
         this.etiquetas = etiquetas;
+        if(!estado)
+            this.estado = "Privado";
+        else
+            this.estado = "Abierto";
     }
 
     public long getId() {
@@ -89,5 +95,13 @@ public class Post {
 
     public void setEtiquetas(String etiquetas) {
         this.etiquetas = etiquetas;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }

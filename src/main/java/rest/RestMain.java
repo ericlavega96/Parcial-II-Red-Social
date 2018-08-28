@@ -59,7 +59,7 @@ public class RestMain {
                     if(usuario != null){
                         logical.Imagen imagen = new Imagen(nuevoPost.getImagen(),null,null);
                         Set<logical.Tag> tagList = logical.Tag.crearEtiquetas(nuevoPost.getTags().split(","));
-                        restPost = new logical.Post(usuario,imagen, nuevoPost.getCuerpo(),new Date(),null,tagList,null,false);
+                        restPost = new logical.Post(usuario,imagen, nuevoPost.getCuerpo(),new Date(),null,tagList,null,nuevoPost.isPrivado());
                         ServiciosPost.getInstancia().crear(restPost);
                         System.out.println("El post ha sido creado con éxito");
 
