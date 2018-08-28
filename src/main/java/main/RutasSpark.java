@@ -312,9 +312,8 @@ public class RutasSpark {
         }, freeMarkerEngine);
 
         get("/json/amigos", (request, response) -> {
-            Usuario tmpUser = request.session(true).attribute("usuario");
-            Usuario logUser = ServiciosUsuario.getInstancia().find(tmpUser.getIdUsuario());
-            Usuario user = ServiciosUsuario.getInstancia().findByEmail(logUser.getCorreo());
+            Usuario logUser = request.session(true).attribute("usuario");
+            Usuario user = ServiciosUsuario.getInstancia().find(logUser.getIdUsuario());
             return ServiciosUsuario.getInstancia().amigosToJSON(user);
         }, JsonTransformer.json());
 
@@ -914,6 +913,14 @@ public class RutasSpark {
             }
             return "";
         });
+
+        get("/json/correos", (request, response) -> {
+            List<Usuario> users = ServiciosUsuario.getInstancia().findAll();
+            List<encapsulaciones.Usuario> usuariosJSON = new ArrayList<>();
+            for(Usuario u : users)
+                usuariosJSON.add(new encapsulaciones.Usuario(u.getCorreo(),null,null,null));
+            return usuariosJSON;
+        }, JsonTransformer.json());
 
     }
 }

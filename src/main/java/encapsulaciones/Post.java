@@ -43,7 +43,7 @@ public class Post {
         this.cuerpo = cuerpo;
         this.fecha = fecha;
         this.etiquetas = etiquetas;
-        if(!estado)
+        if(estado)
             this.estado = "Privado";
         else
             this.estado = "Abierto";
