@@ -198,7 +198,6 @@ public class RutasSpark {
 
                 ComentarioPost nuevoComentario = new ComentarioPost(comentario,new Date(),autor,postActual);
                 ServiciosComentarioPost.getInstancia().crear(nuevoComentario);
-                response.redirect("/redSocial/userArea/" + autor.getCorreo() + "/perfilUsuario");
 
                 Notificacion notificacion = new Notificacion(autor,"Has comentado en un post de " +
                         postActual.getAutor().getNombres() + " " +
@@ -222,11 +221,13 @@ public class RutasSpark {
                 autor.getTimeline().add(actividad);
                 ServiciosActividad.getInstancia().crear(actividad);
 
-                Notificacion notificacionReceptor = new Notificacion(postActual.getAutor(),"Haz recivido un like en tu post de parte de" +
+                Notificacion notificacionReceptor = new Notificacion(postActual.getAutor(),"Haz recivido un comentario en tu post de parte de" +
                         autor.getNombres() + " " +
                         autor.getApellidos() + ".", new Date());
                 postActual.getAutor().getNotificaciones().add(notificacionReceptor);
                 ServiciosNotificaciones.getInstancia().crear(notificacionReceptor);
+
+                response.redirect("/redSocial/userArea/" + postActual.getAutor().getCorreo() + "/perfilUsuario");
 
             } catch (Exception e) {
                 System.out.println("Error al publicar comentario: " + e.toString());
