@@ -254,7 +254,11 @@
 											<div class="request-details">
 												<!-- Añadir Imagen -->
 												<div class="noty-user-img">
-													<img src="/images/resources/r-img1.png" alt="">
+													<#if solicitud.emisor.fotoPerfil??>
+														<img src="/${solicitud.emisor.fotoPerfil.imagen}" alt="">
+													<#else>
+														<img src="/images/resources/user-profile-default.png" alt="">
+													</#if>
 												</div>
 												<div class="request-info">
 													<h3>${solicitud.emisor.nombres} ${solicitud.emisor.apellidos}</h3>
