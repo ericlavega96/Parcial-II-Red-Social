@@ -1,6 +1,6 @@
 package logical;
 
-import com.sun.istack.internal.NotNull;
+
 
 import javax.persistence.*;
 import java.io.Serializable;

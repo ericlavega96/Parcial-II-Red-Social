@@ -1,8 +1,8 @@
 package logical;
 
-import com.google.gson.annotations.Expose;
+
 import entidades.ServiciosImagen;
-import entidades.ServiciosPost;
+
 
 import javax.persistence.*;
 import java.util.Date;
