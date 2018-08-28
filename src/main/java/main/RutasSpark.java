@@ -570,6 +570,15 @@ public class RutasSpark {
                 logUser.getNotificaciones().add(notificacion);
                 ServiciosNotificaciones.getInstancia().crear(notificacion);
 
+                for(Usuario a : usuariosEtiquetados){
+                    Notificacion notificacionAmigo = new Notificacion(a,
+                            logUser.getNombres() + " " + logUser.getApellidos() +
+                                    " te ha etiquetado en el album " +
+                                    albumActual.getNombre() + ".", new Date());
+                    a.getNotificaciones().add(notificacionAmigo);
+                    ServiciosNotificaciones.getInstancia().crear(notificacionAmigo);
+                }
+
                 response.redirect("/redSocial/userArea/" + logUser.getCorreo() + "/perfilUsuario");
             } catch (Exception e) {
                 System.out.println("Error al realizar insertar imagen en el album" + e.toString());

@@ -89,4 +89,12 @@ public class Album {
     public List<Imagen> getImagenesOrdenadas(){
         return ServiciosAlbum.getInstancia().getImagenesOrdenadas(this);
     }
+    public String getNombreLimit(){
+        String resultado = "";
+        int max= 28;
+        if(nombre.length()>max)
+            resultado += nombre.substring(0,max-4) + "...";
+        else resultado= nombre;
+        return resultado;
+    }
 }
