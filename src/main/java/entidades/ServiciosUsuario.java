@@ -70,7 +70,7 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
         Set<Usuario> resultado = new HashSet<>();
         Usuario user;
         for(String s : texto.split(" "))
-            if(s.substring(0,1).equals("*") && s.length()>1) {
+            if(s.length()>1  && s.substring(0,1).equals("*")) {
                 user = instancia.findByEmail(s.substring(1));
                 if(user != null)
                     resultado.add(user);
@@ -174,6 +174,20 @@ public class ServiciosUsuario extends MetodosDB<Usuario> {
         return usuariosEtiquetadosList;
     }
 
-
+    public String reemplazarUsuariosTexto(String texto){
+        Set<Usuario> resultado = new HashSet<>();
+        Usuario user;
+        String nuevoTexto = texto;
+        for(String s : texto.split(" "))
+            if(s.length()>1  && s.substring(0,1).equals("*")) {
+                user = instancia.findByEmail(s.substring(1));
+                if(user != null)
+                    resultado.add(user);
+            }
+        for (Usuario u: resultado){
+            nuevoTexto.replaceAll("*"+u.getCorreo(),u.getNombres() + " " + u.getApellidos());
+        }
+        return nuevoTexto;
+    }
 
 }

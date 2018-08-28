@@ -33,7 +33,7 @@ $(function(){
         at: "*",
         data: "http://localhost:4567/json/amigos",
         headerTpl: '<div class="atwho-header">Member List<small>↑&nbsp;↓&nbsp;</small></div>',
-        insertTpl: '*${email}',
+        insertTpl: '*${correo}',
         displayTpl: "<li>${correo} <small>${nombres}</small></li>",
         limit: 200
     }

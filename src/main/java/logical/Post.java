@@ -2,6 +2,7 @@ package logical;
 
 import com.sun.istack.internal.NotNull;
 import entidades.ServiciosPost;
+import entidades.ServiciosUsuario;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -155,4 +156,21 @@ public class Post {
         return ServiciosPost.getInstancia().getComentariosOrdenados(this);}
 
     public long likesCount(){return ServiciosPost.getInstancia().getLikesCount(this);}
+
+    public String reemplazarUsuariosTexto(){
+        Set<Usuario> resultado = new HashSet<>();
+        Usuario user;
+        String nuevoTexto = cuerpo;
+        for(String s : nuevoTexto.split(" "))
+            if(s.length()>1  && s.substring(0,1).equals("*")) {
+                user = ServiciosUsuario.getInstancia().findByEmail(s.substring(1));
+                if(user != null)
+                    resultado.add(user);
+            }
+        for (Usuario u: resultado){
+            nuevoTexto = nuevoTexto.replace("*" + u.getCorreo(),u.getNombres() + " " + u.getApellidos());
+            System.out.println("Correo a reemplazar "  + "*" + u.getCorreo());
+        }
+        return nuevoTexto;
+    }
 }

@@ -523,6 +523,7 @@ nav ul li span img {
 nav ul li a {
 	color: #ffffff;
 	font-size: 14px;
+	cursor:pointer;
 }
 nav > ul > li > a:hover {
 	color: #fff;

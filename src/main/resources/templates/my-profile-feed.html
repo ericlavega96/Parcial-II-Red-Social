@@ -23,13 +23,13 @@
 	<link rel="stylesheet" href="/css/jquery.atwho.css" rel="stylesheet">
 	<style>
 		#postedImage{
-            display: block;
+			display: block;
 			min-width: 500px;
 			min-height: 300px;
-            max-width:500px;
-            max-height:300px;
-            width: auto;
-            height: auto;
+			max-width:500px;
+			max-height:300px;
+			width: auto;
+			height: auto;
 			margin: auto;
 			margin-bottom: 15px;
 		}
@@ -138,1145 +138,1147 @@
 							<div class="notification-box">
 								<div class="nott-list">
 									<#list logUser.notificaciones as notificacion>
-									<div class="notfication-details">
-										<div class="notification-info">
-											<h3>${notificacion.actividad}</h3>
-											<br>
-											<span><h2>${notificacion.getFechaString()}</h2></span>
-										</div><!--notification-info -->
-									</div>
-								</#list>
-							</div><!--nott-list end-->
-			</div><!--notification-box end-->
-			</li>
-			<li>
-				<a href="/redSocial/userArea/${logUser.correo}/settings" title="">
-					<span><img src="/images/icon3.png" alt=""></span>
-					Configuración
-				</a>
-			</li>
-			<#if logUser.admin>
-			<li>
-				<a href="/redSocial/admin/${logUser.correo}/zonaAdmin" title="">
-					<span><img src="/images/icon5.png" alt=""></span>
-					Zona Admin
-				</a>
-			</li>
-		</#if>
-		</ul>
-		</nav><!--nav end-->
-		<div class="menu-btn">
-			<a href="#" title=""><i class="fa fa-bars"></i></a>
-		</div><!--menu-btn end-->
-		<div class="user-account">
-			<div class="user-info">
-				<#if usuario.fotoPerfil??>
-					<img src="/${usuario.fotoPerfil.imagen}" alt="">
-				<#else>
-					<img src="/images/resources/user-profile-default.png" alt="">
-				</#if>
-				<a href="/redSocial/userArea/${logUser.correo}/perfilUsuario" title=""> ${logUser.nombres}</a>
-				<i class="la la-sort-down"></i>
-			</div>
-			<div class="user-account-settingss">
-				<ul class="us-links">
-					<li><a href="/redSocial/userArea/${logUser.correo}/settings" title="">
-						Configuración de Cuenta</a></li>
-				</ul>
-				<h3 class="tc"><a href="/logout" title="">Logout</a></h3>
-			</div><!--user-account-settingss end-->
+										<div class="notfication-details">
+											<div class="notification-info">
+												<h3>${notificacion.actividad}</h3>
+												<br>
+												<span><h2>${notificacion.getFechaString()}</h2></span>
+											</div><!--notification-info -->
+										</div>
+									</#list>
+								</div><!--nott-list end-->
+							</div><!--notification-box end-->
+						</li>
+						<li>
+							<a href="/redSocial/userArea/${logUser.correo}/settings" title="">
+								<span><img src="/images/icon3.png" alt=""></span>
+								Configuración
+							</a>
+						</li>
+						<#if logUser.admin>
+							<li>
+								<a href="/redSocial/admin/${logUser.correo}/zonaAdmin" title="">
+									<span><img src="/images/icon5.png" alt=""></span>
+									Zona Admin
+								</a>
+							</li>
+						</#if>
+					</ul>
+				</nav><!--nav end-->
+				<div class="menu-btn">
+					<a href="#" title=""><i class="fa fa-bars"></i></a>
+				</div><!--menu-btn end-->
+				<div class="user-account">
+					<div class="user-info">
+						<#if usuario.fotoPerfil??>
+							<img src="/${usuario.fotoPerfil.imagen}" alt="">
+							<#else>
+								<img src="/images/resources/user-profile-default.png" alt="">
+						</#if>
+						<a href="/redSocial/userArea/${logUser.correo}/perfilUsuario" title=""> ${logUser.nombres}</a>
+						<i class="la la-sort-down"></i>
+					</div>
+					<div class="user-account-settingss">
+						<ul class="us-links">
+							<li><a href="/redSocial/userArea/${logUser.correo}/settings" title="">
+								Configuración de Cuenta</a></li>
+						</ul>
+						<h3 class="tc"><a href="/logout" title="">Logout</a></h3>
+					</div><!--user-account-settingss end-->
+				</div>
+			</div><!--header-data end-->
 		</div>
-</div><!--header-data end-->
-</div>
-</header><!--header end-->
+	</header><!--header end-->
 
 
-		<section class="cover-sec">
-			<img src="/images/resources/cover-img.jpg" alt="">
-			<a href="#" title=""><i class="fa fa-camera"></i> Change Image</a>
-		</section>
+	<section class="cover-sec">
+		<img src="/images/resources/cover-img.jpg" alt="">
+		<a href="#" title=""><i class="fa fa-camera"></i> Change Image</a>
+	</section>
 
 
-		<main>
-			<div class="main-section">
-				<div class="container">
-					<div class="main-section-data">
-						<div class="row">
-							<div class="col-lg-3">
-								<div class="main-left-sidebar">
-									<div class="user_profile">
-										<div class="user-pro-img">
-											<#if usuario.fotoPerfil??>
-												<img src="/${usuario.fotoPerfil.imagen}" alt="">
-												<a href="" class="cambiar-foto-perfil-box-open" title=""><i class="fa fa-camera"></i></a>
+	<main>
+		<div class="main-section">
+			<div class="container">
+				<div class="main-section-data">
+					<div class="row">
+						<div class="col-lg-3">
+							<div class="main-left-sidebar">
+								<div class="user_profile">
+									<div class="user-pro-img">
+										<#if usuario.fotoPerfil??>
+											<img src="/${usuario.fotoPerfil.imagen}" alt="">
+											<a href="" class="cambiar-foto-perfil-box-open" title=""><i class="fa fa-camera"></i></a>
 											<#else>
 												<img src="\images\resources\user-profile-default.png" alt="">
 												<a href="" class="cambiar-foto-perfil-box-open" title=""><i class="fa fa-camera"></i></a>
-											</#if>
-										</div><!--user-pro-img end-->
-										<div class="user_pro_status">
-											<ul class="flw-status">
-												<li>
-													<span>Amigos</span>
-													<b>${usuario.contadorAmigos()}</b>
-												</li>
-											</ul>
-										</div><!--user_pro_status end-->
+										</#if>
+									</div><!--user-pro-img end-->
+									<div class="user_pro_status">
+										<ul class="flw-status">
+											<li>
+												<span>Amigos</span>
+												<b>${usuario.contadorAmigos()}</b>
+											</li>
+										</ul>
+									</div><!--user_pro_status end-->
 
-									</div><!--user_profile end-->
+								</div><!--user_profile end-->
 
-									
-								</div><!--main-left-sidebar end-->
-							</div>
-							<div class="col-lg-6">
-								<div class="main-ws-sec">
-									<div class="user-tab-sec">
-										<h3>${usuario.nombres} ${usuario.apellidos}</h3>
-										<div class="star-descp">
-											<span>${usuario.ciudad}, ${usuario.pais.getPais()}</span>
-										</div><!--star-descp end-->
-										<div class="tab-feed st2">
-											<ul>
-												<li data-tab="feed-dd" class="active">
-													<a href="#" title="">
-														<img src="/images/ic1.png" alt="">
-														<span>Muro</span>
-													</a>
-												</li>
-												<li data-tab="info-dd">
-													<a href="#" title="">
-														<img src="/images/ic2.png" alt="">
-														<span>Información</span>
-													</a>
-												</li>
-												<li data-tab="my-bids">
-													<a href="#" title="">
-														<img src="/images/ic5.png" alt="">
-														<span>Mis Actividades</span>
-													</a>
-												</li>
-												<li data-tab="portfolio-dd">
-													<a href="#" title="">
-														<img src="/images/ic3.png" alt="">
-														<span>Álbumes</span>
-													</a>
-												</li>
-											</ul>
-										</div><!-- tab-feed end-->
-									</div><!--user-tab-sec end-->
-									<div class="product-feed-tab current" id="feed-dd">
-										<div class="posts-section">
-											<div class="post-topbar">
-												<div class="user-picy">
-													<#if usuario.fotoPerfil??>
-														<img src="/${usuario.fotoPerfil.imagen}" alt="">
+
+							</div><!--main-left-sidebar end-->
+						</div>
+						<div class="col-lg-6">
+							<div class="main-ws-sec">
+								<div class="user-tab-sec">
+									<h3>${usuario.nombres} ${usuario.apellidos}</h3>
+									<div class="star-descp">
+										<span>${usuario.ciudad}, ${usuario.pais.getPais()}</span>
+									</div><!--star-descp end-->
+									<div class="tab-feed st2">
+										<ul>
+											<li data-tab="feed-dd" class="active">
+												<a href="#" title="">
+													<img src="/images/ic1.png" alt="">
+													<span>Muro</span>
+												</a>
+											</li>
+											<li data-tab="info-dd">
+												<a href="#" title="">
+													<img src="/images/ic2.png" alt="">
+													<span>Información</span>
+												</a>
+											</li>
+											<li data-tab="my-bids">
+												<a href="#" title="">
+													<img src="/images/ic5.png" alt="">
+													<span>Mis Actividades</span>
+												</a>
+											</li>
+											<li data-tab="portfolio-dd">
+												<a href="#" title="">
+													<img src="/images/ic3.png" alt="">
+													<span>Álbumes</span>
+												</a>
+											</li>
+										</ul>
+									</div><!-- tab-feed end-->
+								</div><!--user-tab-sec end-->
+								<div class="product-feed-tab current" id="feed-dd">
+									<div class="posts-section">
+										<div class="post-topbar">
+											<div class="user-picy">
+												<#if usuario.fotoPerfil??>
+													<img src="/${usuario.fotoPerfil.imagen}" alt="">
 													<#else>
 														<img src="/images/resources/user-profile-default.png" alt="">
-													</#if>
-												</div>
-												<div class="post-st">
-													<ul>
-														<li><a class="post_project" href="" title="">Publicar en el muro</a></li>
-													</ul>
-												</div><!--post-st end-->
-											</div><!--post-topbar end-->
-											<#list posts as post>
-                                                <div class="post-bar">
-                                                    <div class="post_topbar">
-                                                        <div class="usy-dt">
-															<#if usuario.fotoPerfil??>
-																<img id="foto-perfil" src="/${usuario.fotoPerfil.imagen}" alt="">
+												</#if>
+											</div>
+											<div class="post-st">
+												<ul>
+													<li><a class="post_project" href="" title="">Publicar en el muro</a></li>
+												</ul>
+											</div><!--post-st end-->
+										</div><!--post-topbar end-->
+										<#list posts as post>
+											<div class="post-bar">
+												<div class="post_topbar">
+													<div class="usy-dt">
+														<#if usuario.fotoPerfil??>
+															<img id="foto-perfil" src="/${usuario.fotoPerfil.imagen}" alt="">
 															<#else>
 																<img id="foto-perfil" src="/images/resources/user-profile-default.png" alt="">
-															</#if>
-                                                            <div class="usy-name">
-                                                                <h3>${usuario.nombres} ${usuario.apellidos}</h3>
-                                                                <span><img src="/images/clock.png" alt="">${post.fecha}</span>
-                                                            </div>
-                                                        </div>
-														<#if post.autor.idUsuario == usuario.idUsuario>
-															<div class="ed-opts">
-																<a href="" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-																<ul class="ed-options">
-																	<li><a href="" title="" class="editar-post-open-${post.idPost}"> Editar Post </a></li>
-																	<li><a href="" title="" class="eliminar-post-open-${post.idPost}"> Eliminar Post </a></li>
-																	<li><a href="" title="" class="cambiar-privacidad-post-open-${post.idPost}"> Privacidad </a></li>
-																</ul>
-															</div>
-
 														</#if>
-                                                    </div>
-                                                    <div class="epi-sec">
-                                                        <ul class="descp">
-															<li><img src="/images/icon9.png" alt=""><span>${post.autor.pais.pais}
+														<div class="usy-name">
+															<h3>${usuario.nombres} ${usuario.apellidos}</h3>
+															<span><img src="/images/clock.png" alt="">${post.fecha}</span>
+														</div>
+													</div>
+													<#if post.autor.idUsuario == usuario.idUsuario>
+														<div class="ed-opts">
+															<a href="" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+															<ul class="ed-options">
+																<li><a href="" title="" class="editar-post-open-${post.idPost}"> Editar Post </a></li>
+																<li><a href="" title="" class="eliminar-post-open-${post.idPost}"> Eliminar Post </a></li>
+																<li><a href="" title="" class="cambiar-privacidad-post-open-${post.idPost}"> Privacidad </a></li>
+															</ul>
+														</div>
+
+													</#if>
+												</div>
+												<div class="epi-sec">
+													<ul class="descp">
+														<li><img src="/images/icon9.png" alt=""><span>${post.autor.pais.pais}
 																<#if post.geolocation?has_content>
 																	<br>Posteado en ${post.geolocation}</span>
-																</#if>
-															</li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="job_descp">
-                                                        <p>${post.cuerpo}</p>
-														<#if post.fotoPost??>
-															<div id="image-container">
-																<img id="postedImage" src="/${post.fotoPost.imagen}">
-															</div>
-														</#if>
-                                                        <ul class="skill-tags">
-															<#list post.getListaTags() as tag>
-                                                                <li><a>${tag.tag}</a></li>
-															</#list>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="job-status-bar">
-                                                        <ul class="like-com">
-                                                            <li>
-                                                                <a id="like-btn" href="/procesarLike/${post.idPost}"><i class="la la-heart"></i> Like</a>
-																<span>${post.likesCount()}</span>
-                                                            </li>
-                                                            <li>
-																<button id="comments-btn" onclick="mostrarSeccionComentarios(${post.idPost})"><a><img src="/images/com.png" alt=""> Comentarios</a></button>
-															</li>
-                                                        </ul>
-                                                    </div>
-													<div id="comentarios${post.idPost}" style="display: none">
-														<#list post.getComentariosOrdenados() as comentario>
-															<div class="comment-section">
-																<div class="comment-sec">
-																	<ul>
-																		<li>
-																			<div class="comment-list">
-																				<div class="bg-img">
-																					<#if comentario.autor.fotoPerfil??>
-																						<img src="/${comentario.autor.fotoPerfil.imagen}" alt="">
+															</#if>
+														</li>
+													</ul>
+												</div>
+												<div class="job_descp">
+													<p>${post.reemplazarUsuariosTexto()}</p>
+													<#if post.fotoPost??>
+														<div id="image-container">
+															<img id="postedImage" src="/${post.fotoPost.imagen}">
+														</div>
+													</#if>
+													<ul class="skill-tags">
+														<#list post.getListaTags() as tag>
+															<li><a>${tag.tag}</a></li>
+														</#list>
+													</ul>
+												</div>
+												<div class="job-status-bar">
+													<ul class="like-com">
+														<li>
+															<a id="like-btn" href="/procesarLike/${post.idPost}"><i class="la la-heart"></i> Like</a>
+															<span>${post.likesCount()}</span>
+														</li>
+														<li>
+															<button id="comments-btn" onclick="mostrarSeccionComentarios(${post.idPost})"><a><img src="/images/com.png" alt=""> Comentarios</a></button>
+														</li>
+													</ul>
+												</div>
+												<div id="comentarios${post.idPost}" style="display: none">
+													<#list post.getComentariosOrdenados() as comentario>
+														<div class="comment-section">
+															<div class="comment-sec">
+																<ul>
+																	<li>
+																		<div class="comment-list">
+																			<div class="bg-img">
+																				<#if comentario.autor.fotoPerfil??>
+																					<img src="/${comentario.autor.fotoPerfil.imagen}" alt="">
 																					<#else>
 																						<img src="/images/resources/user-profile-default.png" alt="">
-																					</#if>
-																				</div>
-																				<div class="comment">
-																					<h3>${comentario.autor.nombres} ${comentario.autor.apellidos}</h3>
-																					<span><img src="/images/clock.png" alt="">${comentario.fecha}</span>
-																					<p>${comentario.comentario}</p>
-																				</div>
-																			</div><!--comment-list end-->
-																		</li>
-																	</ul>
-																</div><!--comment-sec end-->
-															</div><!--comment-section end-->
-														</#list>
-														<div id="comentar-div" class="post-comment">
-															<div class="cm_img">
-																<#if usuario.fotoPerfil??>
-																	<img src="/${usuario.fotoPerfil.imagen}" alt="">
+																				</#if>
+																			</div>
+																			<div class="comment">
+																				<h3>${comentario.autor.nombres} ${comentario.autor.apellidos}</h3>
+																				<span><img src="/images/clock.png" alt="">${comentario.fecha}</span>
+																				<p>${comentario.comentario}</p>
+																			</div>
+																		</div><!--comment-list end-->
+																	</li>
+																</ul>
+															</div><!--comment-sec end-->
+														</div><!--comment-section end-->
+													</#list>
+													<div id="comentar-div" class="post-comment">
+														<div class="cm_img">
+															<#if usuario.fotoPerfil??>
+																<img src="/${usuario.fotoPerfil.imagen}" alt="">
 																<#else>
 																	<img src="/images/resources/user-profile-default.png" alt="">
-																</#if>
-															</div>
-															<div class="comment_box">
-																<form action="/comentarPost/${post.idPost}" method="post">
-																	<input name="comentarioNuevo" type="text" placeholder="Pon un comentario...">
-																	<button type="submit">Enviar</button>
-																</form>
-															</div>
-														</div><!--post-comment end-->
-													</div>
-												</div><!--post-bar end-->
+															</#if>
+														</div>
+														<div class="comment_box">
+															<form action="/comentarPost/${post.idPost}" method="post">
+																<input name="comentarioNuevo" type="text" placeholder="Pon un comentario...">
+																<button type="submit">Enviar</button>
+															</form>
+														</div>
+													</div><!--post-comment end-->
+												</div>
+											</div><!--post-bar end-->
 
-												<div class="editar-post-box" id="editar-post-box-${post.idPost}">
-													<div class="overview-edit">
-														<h3>Editar Post</h3>
-														<span>Contenido del post a editar:</span>
-														<form action="/editarPost/${post.idPost}" method="post">
-															<textarea name="cuerpo">${post.cuerpo}</textarea>
-															<button type="submit" class="save">Guardar</button>
-															<button id="close-editar-post-box" class="close-editar-post-box">Cancelar</button>
-														</form>
-														<a href="" title="" class="close-box"><i class="la la-close"></i></a>
-													</div><!--overview-edit end-->
-												</div><!--overview-box end-->
+											<div class="editar-post-box" id="editar-post-box-${post.idPost}">
+												<div class="overview-edit">
+													<h3>Editar Post</h3>
+													<span>Contenido del post a editar:</span>
+													<form action="/editarPost/${post.idPost}" method="post">
+														<textarea name="cuerpo">${post.cuerpo}</textarea>
+														<button type="submit" class="save">Guardar</button>
+														<button id="close-editar-post-box" class="close-editar-post-box">Cancelar</button>
+													</form>
+													<a href="" title="" class="close-box"><i class="la la-close"></i></a>
+												</div><!--overview-edit end-->
+											</div><!--overview-box end-->
 
-												<div class="cambiar-privacidad-post-box" id="cambiar-privacidad-post-box-${post.idPost}">
-													<div class="overview-edit">
-														<h3>Cambiar Privacidad Post</h3>
-														<span>Seleccione el estado de privacidad del post:</span>
-														<form action="/cambiarPrivacidadPost/${post.idPost}" method="post">
-															<div class="toggle-btn-div">
-																<#if post.esPrivado>
-																	<label id="publico-privado-edit-${post.idPost}">Privado</label>
-																	<label class="switch">
-																		<input class="esPrivado-edit-${post.idPost}" name="esPrivado-edit" type="checkbox" checked>
-																		<span class="slider round"></span>
-																	</label>
+											<div class="cambiar-privacidad-post-box" id="cambiar-privacidad-post-box-${post.idPost}">
+												<div class="overview-edit">
+													<h3>Cambiar Privacidad Post</h3>
+													<span>Seleccione el estado de privacidad del post:</span>
+													<form action="/cambiarPrivacidadPost/${post.idPost}" method="post">
+														<div class="toggle-btn-div">
+															<#if post.esPrivado>
+																<label id="publico-privado-edit-${post.idPost}">Privado</label>
+																<label class="switch">
+																	<input class="esPrivado-edit-${post.idPost}" name="esPrivado-edit" type="checkbox" checked>
+																	<span class="slider round"></span>
+																</label>
 																<#else>
 																	<label id="publico-privado-edit-${post.idPost}">Público</label>
 																	<label class="switch">
 																		<input class="esPrivado-edit-${post.idPost}" name="esPrivado-edit" type="checkbox">
 																		<span class="slider round"></span>
 																	</label>
-																</#if>
-															</div>
-															<button type="submit" class="save">Guardar</button>
-															<button id="close-cambiar-privacidad-post-box" class="close-cambiar-privacidad-post-box">Cancelar</button>
-														</form>
-														<a href="" title="" class="close-box"><i class="la la-close"></i></a>
-													</div><!--overview-edit end-->
-												</div><!--overview-box end-->
+															</#if>
+														</div>
+														<button type="submit" class="save">Guardar</button>
+														<button id="close-cambiar-privacidad-post-box" class="close-cambiar-privacidad-post-box">Cancelar</button>
+													</form>
+													<a href="" title="" class="close-box"><i class="la la-close"></i></a>
+												</div><!--overview-edit end-->
+											</div><!--overview-box end-->
 
-												<div class="eliminar-post-box" id="eliminar-post-box-${post.idPost}">
-													<div class="overview-edit">
-														<h3>Eliminar Post</h3>
-														<span>Desea eliminar el post seleccionado?</span>
-														<form action="/eliminarPost/${post.idPost}" method="post">
-															<button type="submit" class="save">Sí</button>
-															<button class="close-eliminar-post-box">No</button>
-														</form>
-														<a href="" title="" class="close-box"><i class="la la-close"></i></a>
-													</div><!--overview-edit end-->
-												</div><!--overview-box end-->
-											</#list>
+											<div class="eliminar-post-box" id="eliminar-post-box-${post.idPost}">
+												<div class="overview-edit">
+													<h3>Eliminar Post</h3>
+													<span>Desea eliminar el post seleccionado?</span>
+													<form action="/eliminarPost/${post.idPost}" method="post">
+														<button type="submit" class="save">Sí</button>
+														<button class="close-eliminar-post-box">No</button>
+													</form>
+													<a href="" title="" class="close-box"><i class="la la-close"></i></a>
+												</div><!--overview-edit end-->
+											</div><!--overview-box end-->
+										</#list>
 
-										</div><!--posts-section end-->
-									</div><!--product-feed-tab end-->
+									</div><!--posts-section end-->
+								</div><!--product-feed-tab end-->
 
-									<!-- #inicio - Tab info-->
-									<div class="product-feed-tab" id="info-dd">
+								<!-- #inicio - Tab info-->
+								<div class="product-feed-tab" id="info-dd">
+									<div class="user-profile-ov">
+										<h3><a href="#" title="" class="fecha-nacimiento-open">Información General</a> <a href="#" title="" class="fecha-nacimiento-open"><i class="fa fa-pencil"></i></a></h3>
+										<h4>Fecha de Nacimiento: </h4><h5>${fecha_nacimiento}</h5>
+									</div><!--user-profile-ov end-->
+
+									<div class="user-profile-ov">
+										<h3><a href="#" title="" class="lct-box-open">Lugar de Nacimiento</a> <a href="#" title="" class="lct-box-open"><i class="fa fa-pencil"></i></a> <a href="" title=""></i></a></h3>
+										<h4>${pais_origen}</h4>
+										<p> ${ciudad_origen} </p>
+									</div><!--user-profile-ov end-->
+
+									<#if lugar_estudio?has_content>
 										<div class="user-profile-ov">
-											<h3><a href="#" title="" class="fecha-nacimiento-open">Información General</a> <a href="#" title="" class="fecha-nacimiento-open"><i class="fa fa-pencil"></i></a></h3>
-											<h4>Fecha de Nacimiento: </h4><h5>${fecha_nacimiento}</h5>
-										</div><!--user-profile-ov end-->
-
-										<div class="user-profile-ov">
-											<h3><a href="#" title="" class="lct-box-open">Lugar de Nacimiento</a> <a href="#" title="" class="lct-box-open"><i class="fa fa-pencil"></i></a> <a href="" title=""></i></a></h3>
-											<h4>${pais_origen}</h4>
-											<p> ${ciudad_origen} </p>
-										</div><!--user-profile-ov end-->
-
-										<#if lugar_estudio?has_content>
-											<div class="user-profile-ov">
 											<h3><a href="" title="" class="centro-estudio-open">Centro de Estudio</a> <a href="#" title="" class="centro-estudio-open"><i class="fa fa-pencil"></i></a></h3>
-												<h4>${lugar_estudio}</h4>
-											</div><!--user-profile-ov end-->
-										</#if>
-										<#if trabajo?has_content>
-											<div class="user-profile-ov st2">
-												<h3><a href="" title="" class="centro-trabajo-open">Empleo</a> <a href="#" title="" class="centro-trabajo-open"><i class="fa fa-pencil"></i></a></h3>
-												<h4>${trabajo}</h4>
-											</div><!--user-profile-ov end-->
-										</#if>
+											<h4>${lugar_estudio}</h4>
+										</div><!--user-profile-ov end-->
+									</#if>
+									<#if trabajo?has_content>
+										<div class="user-profile-ov st2">
+											<h3><a href="" title="" class="centro-trabajo-open">Empleo</a> <a href="#" title="" class="centro-trabajo-open"><i class="fa fa-pencil"></i></a></h3>
+											<h4>${trabajo}</h4>
+										</div><!--user-profile-ov end-->
+									</#if>
 
-									</div><!--#fin - Tab info-->
-									<div class="product-feed-tab" id="saved-jobs">
+								</div><!--#fin - Tab info-->
+								<div class="product-feed-tab" id="saved-jobs">
+									<div class="posts-section">
+										<div class="post-bar">
+											<div class="post_topbar">
+												<div class="usy-dt">
+													<img src="/images/resources/us-pic.png" alt="">
+													<div class="usy-name">
+														<h3>John Doe</h3>
+														<span><img src="/images/clock.png" alt="">3 min ago</span>
+													</div>
+												</div>
+												<div class="ed-opts">
+													<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+													<ul class="ed-options">
+														<li><a href="#" title="">Edit Post</a></li>
+														<li><a href="#" title="">Unsaved</a></li>
+														<li><a href="#" title="">Unbid</a></li>
+														<li><a href="#" title="">Close</a></li>
+														<li><a href="#" title="">Hide</a></li>
+													</ul>
+												</div>
+											</div>
+											<div class="epi-sec">
+												<ul class="descp">
+													<li><img src="/images/icon8.png" alt=""><span>Epic
+															Coder</span></li>
+													<li><img src="/images/icon9.png" alt=""><span>India</span></li>
+												</ul>
+											</div>
+											<div class="job_descp">
+												<h3>Senior Wordpress Developer</h3>
+												<ul class="job-dt">
+													<li><a href="#" title="">Full Time</a></li>
+													<li><span>$30 / hr</span></li>
+												</ul>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="#" title="">Ver Más</a></p>
+												<ul class="skill-tags">
+													<li><a href="#" title="">HTML</a></li>
+													<li><a href="#" title="">PHP</a></li>
+													<li><a href="#" title="">CSS</a></li>
+													<li><a href="#" title="">Javascript</a></li>
+													<li><a href="#" title="">Wordpress</a></li>
+												</ul>
+											</div>
+											<div class="job-status-bar">
+												<ul class="like-com">
+													<li>
+														<a href="#"><i class="la la-heart"></i> Like</a>
+														<img src="/images/liked-img.png" alt="">
+														<span>25</span>
+													</li>
+													<li><a href="#" title="" class="com"><img
+															src="/images/com.png" alt=""> Comment 15</a></li>
+												</ul>
+												<a><i class="la la-eye"></i>Views 50</a>
+											</div>
+										</div><!--post-bar end-->
+										<div class="post-bar">
+											<div class="post_topbar">
+												<div class="usy-dt">
+													<img src="/images/resources/us-pic.png" alt="">
+													<div class="usy-name">
+														<h3>John Doe</h3>
+														<span><img src="/images/clock.png" alt="">3 min ago</span>
+													</div>
+												</div>
+												<div class="ed-opts">
+													<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+													<ul class="ed-options">
+														<li><a href="#" title="">Edit Post</a></li>
+														<li><a href="#" title="">Unsaved</a></li>
+														<li><a href="#" title="">Unbid</a></li>
+														<li><a href="#" title="">Close</a></li>
+														<li><a href="#" title="">Hide</a></li>
+													</ul>
+												</div>
+											</div>
+											<div class="epi-sec">
+												<ul class="descp">
+													<li><img src="/images/icon8.png" alt=""><span>Epic
+															Coder</span></li>
+													<li><img src="/images/icon9.png" alt=""><span>India</span></li>
+												</ul>
+												<ul class="bk-links">
+													<li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
+													<li><a href="#" title=""><i class="la la-envelope"></i></a></li>
+												</ul>
+											</div>
+											<div class="job_descp">
+												<h3>Senior Wordpress Developer</h3>
+												<ul class="job-dt">
+													<li><a href="#" title="">Full Time</a></li>
+													<li><span>$30 / hr</span></li>
+												</ul>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="#" title="">view more</a></p>
+												<ul class="skill-tags">
+													<li><a href="#" title="">HTML</a></li>
+													<li><a href="#" title="">PHP</a></li>
+													<li><a href="#" title="">CSS</a></li>
+													<li><a href="#" title="">Javascript</a></li>
+													<li><a href="#" title="">Wordpress</a></li>
+												</ul>
+											</div>
+											<div class="job-status-bar">
+												<ul class="like-com">
+													<li>
+														<a href="#"><i class="la la-heart"></i> Like</a>
+														<img src="/images/liked-img.png" alt="">
+														<span>25</span>
+													</li>
+													<li><a href="#" title="" class="com"><img
+															src="/images/com.png" alt=""> Comment 15</a></li>
+												</ul>
+												<a><i class="la la-eye"></i>Views 50</a>
+											</div>
+										</div><!--post-bar end-->
+										<div class="post-bar">
+											<div class="post_topbar">
+												<div class="usy-dt">
+													<img src="/images/resources/us-pc2.png" alt="">
+													<div class="usy-name">
+														<h3>John Doe</h3>
+														<span><img src="/images/clock.png" alt="">3 min ago</span>
+													</div>
+												</div>
+												<div class="ed-opts">
+													<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+													<ul class="ed-options">
+														<li><a href="#" title="">Edit Post</a></li>
+														<li><a href="#" title="">Unsaved</a></li>
+														<li><a href="#" title="">Unbid</a></li>
+														<li><a href="#" title="">Close</a></li>
+														<li><a href="#" title="">Hide</a></li>
+													</ul>
+												</div>
+											</div>
+											<div class="epi-sec">
+												<ul class="descp">
+													<li><img src="/images/icon8.png" alt=""><span>Epic
+															Coder</span></li>
+													<li><img src="/images/icon9.png" alt=""><span>India</span></li>
+												</ul>
+												<ul class="bk-links">
+													<li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
+													<li><a href="#" title=""><i class="la la-envelope"></i></a></li>
+												</ul>
+											</div>
+											<div class="job_descp">
+												<h3>Senior Wordpress Developer</h3>
+												<ul class="job-dt">
+													<li><a href="#" title="">Full Time</a></li>
+													<li><span>$30 / hr</span></li>
+												</ul>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="#" title="">view more</a></p>
+												<ul class="skill-tags">
+													<li><a href="#" title="">HTML</a></li>
+													<li><a href="#" title="">PHP</a></li>
+													<li><a href="#" title="">CSS</a></li>
+													<li><a href="#" title="">Javascript</a></li>
+													<li><a href="#" title="">Wordpress</a></li>
+												</ul>
+											</div>
+											<div class="job-status-bar">
+												<ul class="like-com">
+													<li>
+														<a href="#"><i class="la la-heart"></i> Like</a>
+														<img src="/images/liked-img.png" alt="">
+														<span>25</span>
+													</li>
+													<li><a href="#" title="" class="com"><img
+															src="/images/com.png" alt=""> Comment 15</a></li>
+												</ul>
+												<a><i class="la la-eye"></i>Views 50</a>
+											</div>
+										</div><!--post-bar end-->
+										<div class="post-bar">
+											<div class="post_topbar">
+												<div class="usy-dt">
+													<img src="/images/resources/us-pic.png" alt="">
+													<div class="usy-name">
+														<h3>John Doe</h3>
+														<span><img src="/images/clock.png" alt="">3 min ago</span>
+													</div>
+												</div>
+												<div class="ed-opts">
+													<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
+													<ul class="ed-options">
+														<li><a href="#" title="">Edit Post</a></li>
+														<li><a href="#" title="">Unsaved</a></li>
+														<li><a href="#" title="">Unbid</a></li>
+														<li><a href="#" title="">Close</a></li>
+														<li><a href="#" title="">Hide</a></li>
+													</ul>
+												</div>
+											</div>
+											<div class="epi-sec">
+												<ul class="descp">
+													<li><img src="/images/icon8.png" alt=""><span>Epic Coder</span></li>
+													<li><img src="/images/icon9.png" alt=""><span>India</span></li>
+												</ul>
+												<ul class="bk-links">
+													<li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
+													<li><a href="#" title=""><i class="la la-envelope"></i></a></li>
+												</ul>
+											</div>
+											<div class="job_descp">
+												<h3>Senior Wordpress Developer</h3>
+												<ul class="job-dt">
+													<li><a href="#" title="">Full Time</a></li>
+													<li><span>$30 / hr</span></li>
+												</ul>
+												<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="#" title="">view more</a></p>
+												<ul class="skill-tags">
+													<li><a href="#" title="">HTML</a></li>
+													<li><a href="#" title="">PHP</a></li>
+													<li><a href="#" title="">CSS</a></li>
+													<li><a href="#" title="">Javascript</a></li>
+													<li><a href="#" title="">Wordpress</a></li>
+												</ul>
+											</div>
+											<div class="job-status-bar">
+												<ul class="like-com">
+													<li>
+														<a href="#"><i class="la la-heart"></i> Like</a>
+														<img src="/images/liked-img.png" alt="">
+														<span>25</span>
+													</li>
+													<li><a href="#" title="" class="com"><img src="/images/com.png" alt=""> Comment 15</a></li>
+												</ul>
+												<a><i class="la la-eye"></i>Views 50</a>
+											</div>
+										</div><!--post-bar end-->
+									</div><!--posts-section end-->
+								</div><!--product-feed-tab end-->
+
+								<div class="cambiar-foto-perfil-box" id="cambiar-foto-perfil-box">
+									<div class="overview-edit">
+										<h3>Cambiar Foto de Perfil</h3>
+										<form action="/cambiarFotoPerfil" method="post" enctype="multipart/form-data">
+											<div class="col-lg-12 subir-imagen-div">
+												<button class="subir-imagen-btn"> Seleccione una imagen <i class="fa fa-upload"></i></button>
+												<input type="file" name="imagen" accept="image/*">
+											</div>
+											<div class="col-lg-12">
+												<ul>
+													<li><button class="save" type="submit" value="publicar"> Guardar </button></li>
+												</ul>
+											</div>
+											<div class="col-lg-12">
+												<ul>
+													<li><button name="close-foto-perfil-box" class="close-cambiar-foto-perfil-box">Cancelar</button></li>
+												</ul>
+											</div>
+										</form>
+										<a href="" title="" class="close-box"><i class="la la-close"></i></a>
+									</div><!--overview-edit end-->
+								</div><!--overview-box end-->
+
+
+								<div class="product-feed-tab" id="my-bids">
+									<#list actividades as actividad>
 										<div class="posts-section">
 											<div class="post-bar">
 												<div class="post_topbar">
 													<div class="usy-dt">
 														<img src="/images/resources/us-pic.png" alt="">
 														<div class="usy-name">
-															<h3>John Doe</h3>
-															<span><img src="/images/clock.png" alt="">3 min ago</span>
+															<h3>${actividad.usuario.nombres} ${actividad.usuario.apellidos}</h3>
+															<span><img src="/images/clock.png" alt="">${actividad.fechaActividad}</span>
 														</div>
-													</div>
-													<div class="ed-opts">
-														<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-														<ul class="ed-options">
-															<li><a href="#" title="">Edit Post</a></li>
-															<li><a href="#" title="">Unsaved</a></li>
-															<li><a href="#" title="">Unbid</a></li>
-															<li><a href="#" title="">Close</a></li>
-															<li><a href="#" title="">Hide</a></li>
-														</ul>
 													</div>
 												</div>
 												<div class="epi-sec">
 													<ul class="descp">
-														<li><img src="/images/icon8.png" alt=""><span>Epic 
-															Coder</span></li>
-														<li><img src="/images/icon9.png" alt=""><span>India</span></li>
+														<li><img src="/images/icon8.png" alt=""><span>Ciudad: ${actividad.usuario.ciudad}</span></li>
+														<li><img src="/images/icon9.png" alt=""><span>Pais: ${actividad.usuario.pais.getPais()}</span></li>
 													</ul>
 												</div>
 												<div class="job_descp">
-													<h3>Senior Wordpress Developer</h3>
-													<ul class="job-dt">
-														<li><a href="#" title="">Full Time</a></li>
-														<li><span>$30 / hr</span></li>
-													</ul>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="#" title="">Ver Más</a></p>
-													<ul class="skill-tags">
-														<li><a href="#" title="">HTML</a></li>
-														<li><a href="#" title="">PHP</a></li>
-														<li><a href="#" title="">CSS</a></li>
-														<li><a href="#" title="">Javascript</a></li>
-														<li><a href="#" title="">Wordpress</a></li> 	
-													</ul>
-												</div>
-												<div class="job-status-bar">
-													<ul class="like-com">
-														<li>
-															<a href="#"><i class="la la-heart"></i> Like</a>
-															<img src="/images/liked-img.png" alt="">
-															<span>25</span>
-														</li> 
-														<li><a href="#" title="" class="com"><img 
-																src="/images/com.png" alt=""> Comment 15</a></li>
-													</ul>
-													<a><i class="la la-eye"></i>Views 50</a>
-												</div>
-											</div><!--post-bar end-->
-											<div class="post-bar">
-												<div class="post_topbar">
-													<div class="usy-dt">
-														<img src="/images/resources/us-pic.png" alt="">
-														<div class="usy-name">
-															<h3>John Doe</h3>
-															<span><img src="/images/clock.png" alt="">3 min ago</span>
-														</div>
-													</div>
-													<div class="ed-opts">
-														<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-														<ul class="ed-options">
-															<li><a href="#" title="">Edit Post</a></li>
-															<li><a href="#" title="">Unsaved</a></li>
-															<li><a href="#" title="">Unbid</a></li>
-															<li><a href="#" title="">Close</a></li>
-															<li><a href="#" title="">Hide</a></li>
-														</ul>
-													</div>
-												</div>
-												<div class="epi-sec">
-													<ul class="descp">
-														<li><img src="/images/icon8.png" alt=""><span>Epic 
-															Coder</span></li>
-														<li><img src="/images/icon9.png" alt=""><span>India</span></li>
-													</ul>
-													<ul class="bk-links">
-														<li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
-														<li><a href="#" title=""><i class="la la-envelope"></i></a></li>
-													</ul>
-												</div>
-												<div class="job_descp">
-													<h3>Senior Wordpress Developer</h3>
-													<ul class="job-dt">
-														<li><a href="#" title="">Full Time</a></li>
-														<li><span>$30 / hr</span></li>
-													</ul>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="#" title="">view more</a></p>
-													<ul class="skill-tags">
-														<li><a href="#" title="">HTML</a></li>
-														<li><a href="#" title="">PHP</a></li>
-														<li><a href="#" title="">CSS</a></li>
-														<li><a href="#" title="">Javascript</a></li>
-														<li><a href="#" title="">Wordpress</a></li> 	
-													</ul>
-												</div>
-												<div class="job-status-bar">
-													<ul class="like-com">
-														<li>
-															<a href="#"><i class="la la-heart"></i> Like</a>
-															<img src="/images/liked-img.png" alt="">
-															<span>25</span>
-														</li> 
-														<li><a href="#" title="" class="com"><img 
-																src="/images/com.png" alt=""> Comment 15</a></li>
-													</ul>
-													<a><i class="la la-eye"></i>Views 50</a>
-												</div>
-											</div><!--post-bar end-->
-											<div class="post-bar">
-												<div class="post_topbar">
-													<div class="usy-dt">
-														<img src="/images/resources/us-pc2.png" alt="">
-														<div class="usy-name">
-															<h3>John Doe</h3>
-															<span><img src="/images/clock.png" alt="">3 min ago</span>
-														</div>
-													</div>
-													<div class="ed-opts">
-														<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-														<ul class="ed-options">
-															<li><a href="#" title="">Edit Post</a></li>
-															<li><a href="#" title="">Unsaved</a></li>
-															<li><a href="#" title="">Unbid</a></li>
-															<li><a href="#" title="">Close</a></li>
-															<li><a href="#" title="">Hide</a></li>
-														</ul>
-													</div>
-												</div>
-												<div class="epi-sec">
-													<ul class="descp">
-														<li><img src="/images/icon8.png" alt=""><span>Epic 
-															Coder</span></li>
-														<li><img src="/images/icon9.png" alt=""><span>India</span></li>
-													</ul>
-													<ul class="bk-links">
-														<li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
-														<li><a href="#" title=""><i class="la la-envelope"></i></a></li>
-													</ul>
-												</div>
-												<div class="job_descp">
-													<h3>Senior Wordpress Developer</h3>
-													<ul class="job-dt">
-														<li><a href="#" title="">Full Time</a></li>
-														<li><span>$30 / hr</span></li>
-													</ul>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="#" title="">view more</a></p>
-													<ul class="skill-tags">
-														<li><a href="#" title="">HTML</a></li>
-														<li><a href="#" title="">PHP</a></li>
-														<li><a href="#" title="">CSS</a></li>
-														<li><a href="#" title="">Javascript</a></li>
-														<li><a href="#" title="">Wordpress</a></li> 	
-													</ul>
-												</div>
-												<div class="job-status-bar">
-													<ul class="like-com">
-														<li>
-															<a href="#"><i class="la la-heart"></i> Like</a>
-															<img src="/images/liked-img.png" alt="">
-															<span>25</span>
-														</li> 
-														<li><a href="#" title="" class="com"><img 
-																src="/images/com.png" alt=""> Comment 15</a></li>
-													</ul>
-													<a><i class="la la-eye"></i>Views 50</a>
-												</div>
-											</div><!--post-bar end-->
-											<div class="post-bar">
-												<div class="post_topbar">
-													<div class="usy-dt">
-														<img src="/images/resources/us-pic.png" alt="">
-														<div class="usy-name">
-															<h3>John Doe</h3>
-															<span><img src="/images/clock.png" alt="">3 min ago</span>
-														</div>
-													</div>
-													<div class="ed-opts">
-														<a href="#" title="" class="ed-opts-open"><i class="la la-ellipsis-v"></i></a>
-														<ul class="ed-options">
-															<li><a href="#" title="">Edit Post</a></li>
-															<li><a href="#" title="">Unsaved</a></li>
-															<li><a href="#" title="">Unbid</a></li>
-															<li><a href="#" title="">Close</a></li>
-															<li><a href="#" title="">Hide</a></li>
-														</ul>
-													</div>
-												</div>
-												<div class="epi-sec">
-													<ul class="descp">
-														<li><img src="/images/icon8.png" alt=""><span>Epic Coder</span></li>
-														<li><img src="/images/icon9.png" alt=""><span>India</span></li>
-													</ul>
-													<ul class="bk-links">
-														<li><a href="#" title=""><i class="la la-bookmark"></i></a></li>
-														<li><a href="#" title=""><i class="la la-envelope"></i></a></li>
-													</ul>
-												</div>
-												<div class="job_descp">
-													<h3>Senior Wordpress Developer</h3>
-													<ul class="job-dt">
-														<li><a href="#" title="">Full Time</a></li>
-														<li><span>$30 / hr</span></li>
-													</ul>
-													<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit amet... <a href="#" title="">view more</a></p>
-													<ul class="skill-tags">
-														<li><a href="#" title="">HTML</a></li>
-														<li><a href="#" title="">PHP</a></li>
-														<li><a href="#" title="">CSS</a></li>
-														<li><a href="#" title="">Javascript</a></li>
-														<li><a href="#" title="">Wordpress</a></li> 	
-													</ul>
-												</div>
-												<div class="job-status-bar">
-													<ul class="like-com">
-														<li>
-															<a href="#"><i class="la la-heart"></i> Like</a>
-															<img src="/images/liked-img.png" alt="">
-															<span>25</span>
-														</li> 
-														<li><a href="#" title="" class="com"><img src="/images/com.png" alt=""> Comment 15</a></li>
-													</ul>
-													<a><i class="la la-eye"></i>Views 50</a>
+													<p>${actividad.actividad}</p>
 												</div>
 											</div><!--post-bar end-->
 										</div><!--posts-section end-->
-									</div><!--product-feed-tab end-->
-
-									<div class="cambiar-foto-perfil-box" id="cambiar-foto-perfil-box">
-										<div class="overview-edit">
-											<h3>Cambiar Foto de Perfil</h3>
-											<form action="/cambiarFotoPerfil" method="post" enctype="multipart/form-data">
-												<div class="col-lg-12 subir-imagen-div">
-													<button class="subir-imagen-btn"> Seleccione una imagen <i class="fa fa-upload"></i></button>
-													<input type="file" name="imagen" accept="image/*">
-												</div>
-												<div class="col-lg-12">
-													<ul>
-														<li><button class="save" type="submit" value="publicar"> Guardar </button></li>
-													</ul>
-												</div>
-												<div class="col-lg-12">
-													<ul>
-														<li><button name="close-foto-perfil-box" class="close-cambiar-foto-perfil-box">Cancelar</button></li>
-													</ul>
-												</div>
-											</form>
-											<a href="" title="" class="close-box"><i class="la la-close"></i></a>
-										</div><!--overview-edit end-->
-									</div><!--overview-box end-->
-
-
-									<div class="product-feed-tab" id="my-bids">
-										<#list actividades as actividad>
-											<div class="posts-section">
-												<div class="post-bar">
-													<div class="post_topbar">
-														<div class="usy-dt">
-															<img src="/images/resources/us-pic.png" alt="">
-															<div class="usy-name">
-																<h3>${actividad.usuario.nombres} ${actividad.usuario.apellidos}</h3>
-																<span><img src="/images/clock.png" alt="">${actividad.fechaActividad}</span>
-															</div>
-														</div>
-													</div>
-													<div class="epi-sec">
-														<ul class="descp">
-															<li><img src="/images/icon8.png" alt=""><span>Ciudad: ${actividad.usuario.ciudad}</span></li>
-															<li><img src="/images/icon9.png" alt=""><span>Pais: ${actividad.usuario.pais.getPais()}</span></li>
-														</ul>
-													</div>
-													<div class="job_descp">
-														<p>${actividad.actividad}</p>
-													</div>
-												</div><!--post-bar end-->
-											</div><!--posts-section end-->
-										</#list>
-									</div><!--product-feed-tab end-->
-
-									<!-- #inicio - Album -->
-									<div class="product-feed-tab" id="portfolio-dd">
-											<div class="portfolio-gallery-sec">
-												<h5>Álbumes de ${usuario.nombres} ${usuario.apellidos}</h5>
-												<div class="post-album">
-													<ul>
-														<li><a class="post_album" href="#" title=""><i class="la la-plus"></i>Crear nuevo álbum</a></li>
-													</ul>
-												</div><!--post-st end-->
-												<div class="gallery_pf">
-													<div class="row">
-														<#list albumes as album>
-															<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-																<div class="album-container tab-feed">
-																	<ul>
-																		<li data-tab="album-imagenes-${album.idAlbum}" class="animated fadeIn active">
-																			<a href="" title=""></a>
-																			<img src="/images/folder.png" alt="">
-																			<p>${album.nombre}</p>
-																		</li>
-																	</ul>
-																</div><!--gallery_pt end-->
-															</div>
-														</#list>
-													</div>
-												</div>
-											</div><!--portfolio-gallery-sec end-->
-									</div><!-- #fin - Tab Album-->
-
-									<#list albumes as album>
-										<div class="product-feed-tab animated fadeIn" id="album-imagenes-${album.idAlbum}">
-											<div class="portfolio-gallery-sec">
-												<span><img src="/images/clock.png" alt="">${album.fecha}</span>
-												<br>
-												<br>
-												<h5>${album.nombre}</h5>
-												<br>
-												<h3>${album.descripcion}</h3>
-												<div class="post-foto">
-													<ul>
-														<li><a class="post_foto" href="" title=""><i class="la la-plus"></i> Añadir foto</a></li>
-													</ul>
-												</div><!--post-st end-->
-												<div class="gallery_pf">
-													<div class="row">
-														<#list album.getImagenesOrdenadas() as foto>
-															<div class="col-lg-4 col-md-4 col-sm-6 col-6">
-																<div class="gallery_pt">
-																	<img src="/${foto.imagen}" alt="">
-																	<a href="/visualizarImagen/${album.idAlbum}/${foto.idImagen}" title=""><img src="/images/all-out.png" alt=""></a>
-																</div><!--gallery_pt end-->
-															</div>
-														</#list>
-													</div>
-												</div><!--gallery_pf end-->
-											</div><!--portfolio-gallery-sec end-->
-										</div>
-										<!--Pop-up para insertar imagen-->
-										<div class="post-popup pst-foto">
-											<div class="post-foto">
-												<h3> Añadir foto</h3>
-												<div class="post-project-fields">
-													<form action="/insertarImagenAlbum/${album.idAlbum}" method="post" enctype="multipart/form-data">
-														<div class="row">
-															<div class="col-lg-12 subir-imagen-div">
-																<button class="subir-imagen-btn"> Seleccione una imagen <i class="fa fa-upload"></i></button>
-																<input type="file" name="fotoAlbum" accept="image/*" required>
-															</div>
-															<div class="col-lg-12">
-																<select id="amigos-cbBox">
-																	<#list usuario.amigos as amigo>
-																		<option value= "${amigo.idUsuario}">${amigo.nombres} ${amigo.apellidos}</option>
-																	</#list>
-																</select>
-																<ul>
-																	<li><button id="etiquetar-btn" class="active" type="button"> Etiquetar <i class="fa fa-tag"></i></button></li>
-																</ul>
-																<input id="etiquetados" name="etiquetados" type="text" readonly>
-																<input id="etiquetadosValores" name="etiquetadosValores" type="hidden">
-															</div>
-															<div class="col-lg-12">
-																<ul>
-																	<li><button class="active" type="submit" value="publicar"> Añadir foto </button></li>
-																</ul>
-															</div>
-														</div>
-													</form>
-												</div><!--post-project-fields end-->
-												<a href="#" title=""><i class="la la-times-circle-o"></i></a>
-											</div><!--post-project end-->
-										</div><!--post-project-popup end-->
 									</#list>
+								</div><!--product-feed-tab end-->
 
-
-									<div class="product-feed-tab" id="payment-dd">
-										<div class="billing-method">
+								<!-- #inicio - Album -->
+								<div class="product-feed-tab" id="portfolio-dd">
+									<div class="portfolio-gallery-sec">
+										<h5>Álbumes de ${usuario.nombres} ${usuario.apellidos}</h5>
+										<div class="post-album">
 											<ul>
-												<li>
-													<h3>Add Billing Method</h3>
-													<a href="#" title=""><i class="fa fa-plus-circle"></i></a>
-												</li>
-												<li>
-													<h3>See Activity</h3>
-													<a href="#" title="">View All</a>
-												</li>
-												<li>
-													<h3>Total Money</h3>
-													<span>$0.00</span>
-												</li>
+												<li><a class="post_album" href="#" title=""><i class="la la-plus"></i>Crear nuevo álbum</a></li>
 											</ul>
-											<div class="lt-sec">
-												<img src="/images/lt-icon.png" alt="">
-												<h4>All your transactions are saved here</h4>
-												<a href="#" title="">Click Here</a>
+										</div><!--post-st end-->
+										<div class="gallery_pf">
+											<div class="row">
+												<#list albumes as album>
+													<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+														<div class="album-container tab-feed">
+															<ul>
+																<li data-tab="album-imagenes-${album.idAlbum}" class="animated fadeIn active">
+																	<a href="" title=""></a>
+																	<img src="/images/folder.png" alt="">
+																	<p>${album.getNombreLimit()}</p>
+																</li>
+															</ul>
+														</div><!--gallery_pt end-->
+													</div>
+												</#list>
 											</div>
-										</div><!--billing-method end-->
-										<div class="add-billing-method">
-											<h3>Add Billing Method</h3>
-											<h4><img src="/images/dlr-icon.png" alt=""><span>With workwise payment protection , only pay for work delivered.</span></h4>
-											<div class="payment_methods">
-												<h4>Credit or Debit Cards</h4>
-												<form>
+										</div>
+									</div><!--portfolio-gallery-sec end-->
+								</div><!-- #fin - Tab Album-->
+
+								<#list albumes as album>
+									<div class="product-feed-tab animated fadeIn" id="album-imagenes-${album.idAlbum}">
+										<div class="portfolio-gallery-sec">
+											<span><img src="/images/clock.png" alt="">${album.fecha}</span>
+											<br>
+											<br>
+											<h5>${album.nombre}</h5>
+											<br>
+											<h3>${album.descripcion}</h3>
+											<div class="post-foto">
+												<ul>
+													<li><a class="post_foto" href="" title=""><i class="la la-plus"></i> Añadir foto</a></li>
+												</ul>
+											</div><!--post-st end-->
+											<div class="gallery_pf">
+												<div class="row">
+													<#list album.getImagenesOrdenadas() as foto>
+														<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+															<div class="gallery_pt">
+																<img src="/${foto.imagen}" alt="">
+																<a href="/visualizarImagen/${album.idAlbum}/${foto.idImagen}" title=""><img src="/images/all-out.png" alt=""></a>
+															</div><!--gallery_pt end-->
+														</div>
+													</#list>
+												</div>
+											</div><!--gallery_pf end-->
+										</div><!--portfolio-gallery-sec end-->
+									</div>
+									<!--Pop-up para insertar imagen-->
+									<div class="post-popup pst-foto">
+										<div class="post-foto">
+											<h3> Añadir foto</h3>
+											<div class="post-project-fields">
+												<form action="/insertarImagenAlbum/${album.idAlbum}" method="post" enctype="multipart/form-data">
 													<div class="row">
-														<div class="col-lg-12">
-															<div class="cc-head">
-																<h5>Card Number</h5>
-																<ul>
-																	<li><img src="/images/cc-icon1.png" alt=""></li>
-																	<li><img src="/images/cc-icon2.png" alt=""></li>
-																	<li><img src="/images/cc-icon3.png" alt=""></li>
-																	<li><img src="/images/cc-icon4.png" alt=""></li>
-																</ul>
-															</div>
-															<div class="inpt-field pd-moree">
-																<input type="text" name="cc-number" placeholder="">
-																<i class="fa fa-credit-card"></i>
-															</div><!--inpt-field end-->
-														</div>
-														<div class="col-lg-6">
-															<div class="cc-head">
-																<h5>First Name</h5>
-															</div>
-															<div class="inpt-field">
-																<input type="text" name="f-name" placeholder="">
-															</div><!--inpt-field end-->
-														</div>
-														<div class="col-lg-6">
-															<div class="cc-head">
-																<h5>Last Name</h5>
-															</div>
-															<div class="inpt-field">
-																<input type="text" name="l-name" placeholder="">
-															</div><!--inpt-field end-->
-														</div>
-														<div class="col-lg-6">
-															<div class="cc-head">
-																<h5>Expiresons</h5>
-															</div>
-															<div class="rowwy">
-																<div class="row">
-																	<div class="col-lg-6 pd-left-none no-pd">
-																		<div class="inpt-field">
-																			<input type="text" name="f-name" placeholder="">
-																		</div><!--inpt-field end-->
-																	</div>
-																	<div class="col-lg-6 pd-right-none no-pd">
-																		<div class="inpt-field">
-																			<input type="text" name="f-name" placeholder="">
-																		</div><!--inpt-field end-->
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="col-lg-6">
-															<div class="cc-head">
-																<h5>Cvv (Security Code) <i class="fa fa-question-circle"></i></h5>
-															</div>
-															<div class="inpt-field">
-																<input type="text" name="l-name" placeholder="">
-															</div><!--inpt-field end-->
+														<div class="col-lg-12 subir-imagen-div">
+															<button class="subir-imagen-btn"> Seleccione una imagen <i class="fa fa-upload"></i></button>
+															<input type="file" name="fotoAlbum" accept="image/*" required>
 														</div>
 														<div class="col-lg-12">
-															<button type="submit">Continue</button>
+															<select id="amigos-cbBox">
+																<#list usuario.amigos as amigo>
+																	<option value= "${amigo.idUsuario}">${amigo.nombres} ${amigo.apellidos}</option>
+																</#list>
+															</select>
+															<ul>
+																<li><button id="etiquetar-btn" class="active" type="button"> Etiquetar <i class="fa fa-tag"></i></button></li>
+															</ul>
+															<input id="etiquetados" name="etiquetados" type="text" readonly>
+															<input id="etiquetadosValores" name="etiquetadosValores" type="hidden">
+														</div>
+														<div class="col-lg-12">
+															<ul>
+																<li><button class="active" type="submit" value="publicar"> Añadir foto </button></li>
+															</ul>
 														</div>
 													</div>
 												</form>
-												<h4>Add Paypal Account</h4>
-											</div>
-										</div><!--add-billing-method end-->
-									</div><!--product-feed-tab end-->
-								</div><!--main-ws-sec end-->
-							</div>
-							<div class="col-lg-3">
-								<div class="right-sidebar">
+											</div><!--post-project-fields end-->
+											<a href="#" title=""><i class="la la-times-circle-o"></i></a>
+										</div><!--post-project end-->
+									</div><!--post-project-popup end-->
+								</#list>
 
 
-									<div class="suggestions full-width">
-										<div class="sd-title">
-											<h3>Sugerencias</h3>
-											<i class="la la-ellipsis-v"></i>
-										</div><!--sd-title end-->
-										<div class="suggestions-list">
-											<#list sugerencias as sugerencia>
-												<div class="suggestion-usd">
-													<img src="/images/resources/s1.png" alt="">
-													<div class="sgt-text">
-														<h4>${sugerencia.nombres} ${sugerencia.apellidos}</h4>
-														<span>${sugerencia.ciudad}</span>
+								<div class="product-feed-tab" id="payment-dd">
+									<div class="billing-method">
+										<ul>
+											<li>
+												<h3>Add Billing Method</h3>
+												<a href="#" title=""><i class="fa fa-plus-circle"></i></a>
+											</li>
+											<li>
+												<h3>See Activity</h3>
+												<a href="#" title="">View All</a>
+											</li>
+											<li>
+												<h3>Total Money</h3>
+												<span>$0.00</span>
+											</li>
+										</ul>
+										<div class="lt-sec">
+											<img src="/images/lt-icon.png" alt="">
+											<h4>All your transactions are saved here</h4>
+											<a href="#" title="">Click Here</a>
+										</div>
+									</div><!--billing-method end-->
+									<div class="add-billing-method">
+										<h3>Add Billing Method</h3>
+										<h4><img src="/images/dlr-icon.png" alt=""><span>With workwise payment protection , only pay for work delivered.</span></h4>
+										<div class="payment_methods">
+											<h4>Credit or Debit Cards</h4>
+											<form>
+												<div class="row">
+													<div class="col-lg-12">
+														<div class="cc-head">
+															<h5>Card Number</h5>
+															<ul>
+																<li><img src="/images/cc-icon1.png" alt=""></li>
+																<li><img src="/images/cc-icon2.png" alt=""></li>
+																<li><img src="/images/cc-icon3.png" alt=""></li>
+																<li><img src="/images/cc-icon4.png" alt=""></li>
+															</ul>
+														</div>
+														<div class="inpt-field pd-moree">
+															<input type="text" name="cc-number" placeholder="">
+															<i class="fa fa-credit-card"></i>
+														</div><!--inpt-field end-->
 													</div>
-													<span><a href="/redSocial/userArea/${logUser.correo}/enviarRequest?amigo=${sugerencia.correo}"><i class="la la-plus"></i></a></span>
+													<div class="col-lg-6">
+														<div class="cc-head">
+															<h5>First Name</h5>
+														</div>
+														<div class="inpt-field">
+															<input type="text" name="f-name" placeholder="">
+														</div><!--inpt-field end-->
+													</div>
+													<div class="col-lg-6">
+														<div class="cc-head">
+															<h5>Last Name</h5>
+														</div>
+														<div class="inpt-field">
+															<input type="text" name="l-name" placeholder="">
+														</div><!--inpt-field end-->
+													</div>
+													<div class="col-lg-6">
+														<div class="cc-head">
+															<h5>Expiresons</h5>
+														</div>
+														<div class="rowwy">
+															<div class="row">
+																<div class="col-lg-6 pd-left-none no-pd">
+																	<div class="inpt-field">
+																		<input type="text" name="f-name" placeholder="">
+																	</div><!--inpt-field end-->
+																</div>
+																<div class="col-lg-6 pd-right-none no-pd">
+																	<div class="inpt-field">
+																		<input type="text" name="f-name" placeholder="">
+																	</div><!--inpt-field end-->
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-lg-6">
+														<div class="cc-head">
+															<h5>Cvv (Security Code) <i class="fa fa-question-circle"></i></h5>
+														</div>
+														<div class="inpt-field">
+															<input type="text" name="l-name" placeholder="">
+														</div><!--inpt-field end-->
+													</div>
+													<div class="col-lg-12">
+														<button type="submit">Continue</button>
+													</div>
 												</div>
-											</#list>
-
-										</div><!--suggestions-list end-->
-									</div><!--suggestions end-->
-
-
-								</div><!--right-sidebar end-->
-							</div>
+											</form>
+											<h4>Add Paypal Account</h4>
+										</div>
+									</div><!--add-billing-method end-->
+								</div><!--product-feed-tab end-->
+							</div><!--main-ws-sec end-->
 						</div>
-					</div><!-- main-section-data end-->
-				</div> 
-			</div>
-		</main>
+						<div class="col-lg-3">
+							<div class="right-sidebar">
 
-		<footer>
-			<div class="footy-sec mn no-margin">
-				<div class="container">
-					<ul>
-						<li><a href="#" title="">Help Center</a></li>
-						<li><a href="#" title="">Privacy Policy</a></li>
-						<li><a href="#" title="">Community Guidelines</a></li>
-						<li><a href="#" title="">Cookies Policy</a></li>
-						<li><a href="#" title="">Career</a></li>
-						<li><a href="#" title="">Forum</a></li>
-						<li><a href="#" title="">Language</a></li>
-						<li><a href="#" title="">Copyright Policy</a></li>
-					</ul>
-					<p><img src="/images/copy-icon2.png" alt="">Copyright 2018</p>
-					<img class="fl-rgt" src="/images/logo2.png" alt="">
-				</div>
-			</div>
-		</footer><!--footer end-->
 
-		<div class="post-popup pst-pj">
-			<div class="post-project">
-				<h3>Nueva Publicación</h3>
-				<div class="post-project-fields">
-					<form action="/publicarPost" method="post" enctype="multipart/form-data">
-						<div class="row">
-							<div class="col-lg-12">
-								<textarea class="textarea inputor" id="inputor" name="cuerpo" placeholder=" Etiquete con *"></textarea>
-							</div>
-							<div class="col-lg-12 subir-imagen-div">
-								<button class="subir-imagen-btn">Seleccione una imagen <i class="fa fa-upload"></i></button>
-								<input type="file" name="imagen" accept="image/*">
-							</div>
-							<div class="col-lg-12">
-								<input class="tags-input" name="tags" placeholder=" Inserte los tags">
-							</div>
-							<div class="col-lg-12">
-								<!--h3>Ubicación Actual: <label id="geolocalizacion" name="geolocalizacion"></label></h3-->
-								<input type="text" id="geolocalizacion" name="geolocalizacion" readonly="readonly">
-							</div><!--user-profile-ov end-->
-							<div class="toggle-btn-div">
-								<label id="publico-privado"></label>
-								<label class="switch">
-									<input id="esPrivado" name="esPrivado" type="checkbox" checked>
-									<span class="slider round"></span>
-								</label>
-							</div>
-							<div class="col-lg-12">
-								<ul>
-									<li><button class="active" type="submit" value="publicar">Publicar</button></li>
-								</ul>
-							</div>
+								<div class="suggestions full-width">
+									<div class="sd-title">
+										<h3>Sugerencias</h3>
+										<i class="la la-ellipsis-v"></i>
+									</div><!--sd-title end-->
+									<div class="suggestions-list">
+										<#list sugerencias as sugerencia>
+											<div class="suggestion-usd">
+												<img src="/images/resources/s1.png" alt="">
+												<div class="sgt-text">
+													<h4>${sugerencia.nombres} ${sugerencia.apellidos}</h4>
+													<span>${sugerencia.ciudad}</span>
+												</div>
+												<span><a href="/redSocial/userArea/${logUser.correo}/enviarRequest?amigo=${sugerencia.correo}"><i class="la la-plus"></i></a></span>
+											</div>
+										</#list>
+
+									</div><!--suggestions-list end-->
+								</div><!--suggestions end-->
+
+
+							</div><!--right-sidebar end-->
 						</div>
-					</form>
-				</div><!--post-project-fields end-->
-				<a href="#" title=""><i class="la la-times-circle-o"></i></a>
-			</div><!--post-project end-->
-		</div><!--post-project-popup end-->
-
-		<div class="post-popup pst-album">
-			<div class="post-album">
-				<h3>Nuevo Álbum</h3>
-				<div class="post-project-fields">
-					<form action="/crearNuevoAlbum" method="post">
-						<div class="row">
-							<div class="col-lg-12">
-								<input type="text" name="nombreAlbum" placeholder="Nombre del Álbum">
-							</div>
-							<div class="col-lg-12">
-								<textarea type="text" name="descripcion" placeholder="Descripción"></textarea>
-							</div>
-							<div class="col-lg-12">
-								<ul>
-									<li><button class="active" type="submit" value="publicar"> Crear Álbum</button></li>
-								</ul>
-							</div>
-						</div>
-					</form>
-				</div><!--post-project-fields end-->
-				<a href="#" title=""><i class="la la-times-circle-o"></i></a>
-			</div><!--post-project end-->
-		</div><!--post-project-popup end-->
-
-
-
-		<div class="editar-fecha-nacimiento-box" id="editar-fecha-nacimiento-box">
-			<div class="overview-edit">
-				<h3>Editar Fecha de Nacimiento</h3>
-				<form action="/editarInformacionGeneral/fechaDeNacimiento/${usuario.idUsuario}" method="post">
-					<input type="date" name="fechaNacimiento" required>
-					<button type="submit" class="save">Guardar</button>
-					<button class="close-fecha-nacimiento-box">Cancelar</button>
-				</form>
-				<a href="" title="" class="close-box"><i class="la la-close"></i></a>
-			</div><!--overview-edit end-->
-		</div><!--overview-box end-->
-
-		<div class="overview-box" id="location-box">
-			<div class="overview-edit">
-				<h3>Editar Lugar de Nacimiento</h3>
-				<form action="/editarInformacionGeneral/lugarDeNacimiento/${usuario.idUsuario}" method="post">
-					<div class="datefm">
-						<select name="cbBoxPais" required>
-							<#list paises as pais>
-								<option>${pais.pais}</option>
-							</#list>
-						</select>
-						<i class="fa fa-globe"></i>
 					</div>
-					<div class="datefm">
-						<i class="la la-building"></i>
-						<input type="text" name="ciudad" placeholder="Ciudad" required>
+				</div><!-- main-section-data end-->
+			</div>
+		</div>
+	</main>
+
+	<footer>
+		<div class="footy-sec mn no-margin">
+			<div class="container">
+				<ul>
+					<li><a href="#" title="">Help Center</a></li>
+					<li><a href="#" title="">Privacy Policy</a></li>
+					<li><a href="#" title="">Community Guidelines</a></li>
+					<li><a href="#" title="">Cookies Policy</a></li>
+					<li><a href="#" title="">Career</a></li>
+					<li><a href="#" title="">Forum</a></li>
+					<li><a href="#" title="">Language</a></li>
+					<li><a href="#" title="">Copyright Policy</a></li>
+				</ul>
+				<p><img src="/images/copy-icon2.png" alt="">Copyright 2018</p>
+				<img class="fl-rgt" src="/images/logo2.png" alt="">
+			</div>
+		</div>
+	</footer><!--footer end-->
+
+	<div class="post-popup pst-pj">
+		<div class="post-project">
+			<h3>Nueva Publicación</h3>
+			<div class="post-project-fields">
+				<form action="/publicarPost" method="post" enctype="multipart/form-data">
+					<div class="row">
+						<div class="col-lg-12">
+							<textarea class="textarea inputor" id="inputor" name="cuerpo" placeholder=" Etiquete con *"></textarea>
+						</div>
+						<div class="col-lg-12 subir-imagen-div">
+							<button class="subir-imagen-btn">Seleccione una imagen <i class="fa fa-upload"></i></button>
+							<input type="file" name="imagen" accept="image/*">
+						</div>
+						<div class="col-lg-12">
+							<input class="tags-input" name="tags" placeholder=" Inserte los tags">
+						</div>
+						<div class="col-lg-12">
+							<!--h3>Ubicación Actual: <label id="geolocalizacion" name="geolocalizacion"></label></h3-->
+							<input type="text" id="geolocalizacion" name="geolocalizacion" readonly="readonly">
+						</div><!--user-profile-ov end-->
+						<div class="toggle-btn-div">
+							<label id="publico-privado"></label>
+							<label class="switch">
+								<input id="esPrivado" name="esPrivado" type="checkbox" checked>
+								<span class="slider round"></span>
+							</label>
+						</div>
+						<div class="col-lg-12">
+							<ul>
+								<li><button class="active" type="submit" value="publicar">Publicar</button></li>
+							</ul>
+						</div>
 					</div>
-					<button type="submit" class="save">Guardar</button>
-					<button class="close-location-box">Cancelar</button>
 				</form>
-				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
-			</div><!--overview-edit end-->
-		</div><!--overview-box end-->
+			</div><!--post-project-fields end-->
+			<a href="#" title=""><i class="la la-times-circle-o"></i></a>
+		</div><!--post-project end-->
+	</div><!--post-project-popup end-->
 
-		<div class="overview-box" id="centro-estudio-box">
-			<div class="overview-edit">
-				<h3>Editar Centro de Estudio</h3>
-				<form action="/editarInformacionGeneral/centroEstudio/${usuario.idUsuario}" method="post">
-					<input type="text" name="centroEstudio" placeholder="Escuela / Universidad" required>
-
-					<button type="submit" class="save">Guardar</button>
-					<button class="close-centro-estudio-box">Cancelar</button>
+	<div class="post-popup pst-album">
+		<div class="post-album">
+			<h3>Nuevo Álbum</h3>
+			<div class="post-project-fields">
+				<form action="/crearNuevoAlbum" method="post">
+					<div class="row">
+						<div class="col-lg-12">
+							<input type="text" name="nombreAlbum" placeholder="Nombre del Álbum">
+						</div>
+						<div class="col-lg-12">
+							<textarea type="text" name="descripcion" placeholder="Descripción"></textarea>
+						</div>
+						<div class="col-lg-12">
+							<ul>
+								<li><button class="active" type="submit" value="publicar"> Crear Álbum</button></li>
+							</ul>
+						</div>
+					</div>
 				</form>
-				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
-			</div><!--overview-edit end-->
-		</div><!--overview-box end-->
+			</div><!--post-project-fields end-->
+			<a href="#" title=""><i class="la la-times-circle-o"></i></a>
+		</div><!--post-project end-->
+	</div><!--post-project-popup end-->
 
-		<div class="overview-box" id="centro-trabajo-box">
-			<div class="overview-edit">
-				<h3>Editar Empleo</h3>
-				<form action="/editarInformacionGeneral/empleo/${usuario.idUsuario}" method="post">
-					<input type="text" name="empleo" placeholder="Empleo" required>
 
-					<button type="submit" class="save">Guardar</button>
-					<button class="close-centro-trabajo-box">Cancelar</button>
-				</form>
-				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
-			</div><!--overview-edit end-->
-		</div><!--overview-box end-->
 
-		<div class="overview-box-etiquetar" id="etiquetar-amigos-box">
-			<div class="overview-edit">
-				<h3>Etiquetar Amigos</h3>
-				<span>Seleccione un amigo a etiquetar:</span>
-				<form id="etiquetar-form" method="post">
-					<select id="amigos-cbBox-prueba" required>
-						<#list usuario.amigos as amigo>
-							<option value= "${amigo.idUsuario}">${amigo.nombres} ${amigo.apellidos}</option>
+	<div class="editar-fecha-nacimiento-box" id="editar-fecha-nacimiento-box">
+		<div class="overview-edit">
+			<h3>Editar Fecha de Nacimiento</h3>
+			<form action="/editarInformacionGeneral/fechaDeNacimiento/${usuario.idUsuario}" method="post">
+				<input type="date" name="fechaNacimiento" required>
+				<button type="submit" class="save">Guardar</button>
+				<button class="close-fecha-nacimiento-box">Cancelar</button>
+			</form>
+			<a href="" title="" class="close-box"><i class="la la-close"></i></a>
+		</div><!--overview-edit end-->
+	</div><!--overview-box end-->
+
+	<div class="overview-box" id="location-box">
+		<div class="overview-edit">
+			<h3>Editar Lugar de Nacimiento</h3>
+			<form action="/editarInformacionGeneral/lugarDeNacimiento/${usuario.idUsuario}" method="post">
+				<div class="datefm">
+					<select name="cbBoxPais" required>
+						<#list paises as pais>
+							<option>${pais.pais}</option>
 						</#list>
 					</select>
-					<button class="save" id="guardar-etiquetas-btn">Etiquetar</button>
-					<button class="close-etiquetar-amigos-box">Cancelar</button>
-				</form>
-				<a href="" title="" class="close-box"><i class="la la-close"></i></a>
-			</div><!--overview-edit end-->
-		</div><!--overview-box end-->
+					<i class="fa fa-globe"></i>
+				</div>
+				<div class="datefm">
+					<i class="la la-building"></i>
+					<input type="text" name="ciudad" placeholder="Ciudad" required>
+				</div>
+				<button type="submit" class="save">Guardar</button>
+				<button class="close-location-box">Cancelar</button>
+			</form>
+			<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
+		</div><!--overview-edit end-->
+	</div><!--overview-box end-->
+
+	<div class="overview-box" id="centro-estudio-box">
+		<div class="overview-edit">
+			<h3>Editar Centro de Estudio</h3>
+			<form action="/editarInformacionGeneral/centroEstudio/${usuario.idUsuario}" method="post">
+				<input type="text" name="centroEstudio" placeholder="Escuela / Universidad" required>
+
+				<button type="submit" class="save">Guardar</button>
+				<button class="close-centro-estudio-box">Cancelar</button>
+			</form>
+			<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
+		</div><!--overview-edit end-->
+	</div><!--overview-box end-->
+
+	<div class="overview-box" id="centro-trabajo-box">
+		<div class="overview-edit">
+			<h3>Editar Empleo</h3>
+			<form action="/editarInformacionGeneral/empleo/${usuario.idUsuario}" method="post">
+				<input type="text" name="empleo" placeholder="Empleo" required>
+
+				<button type="submit" class="save">Guardar</button>
+				<button class="close-centro-trabajo-box">Cancelar</button>
+			</form>
+			<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
+		</div><!--overview-edit end-->
+	</div><!--overview-box end-->
+
+	<div class="overview-box-etiquetar" id="etiquetar-amigos-box">
+		<div class="overview-edit">
+			<h3>Etiquetar Amigos</h3>
+			<span>Seleccione un amigo a etiquetar:</span>
+			<form id="etiquetar-form" method="post">
+				<select id="amigos-cbBox-prueba" required>
+					<#list usuario.amigos as amigo>
+						<option value= "${amigo.idUsuario}">${amigo.nombres} ${amigo.apellidos}</option>
+					</#list>
+				</select>
+				<button class="save" id="guardar-etiquetas-btn">Etiquetar</button>
+				<button class="close-etiquetar-amigos-box">Cancelar</button>
+			</form>
+			<a href="" title="" class="close-box"><i class="la la-close"></i></a>
+		</div><!--overview-edit end-->
+	</div><!--overview-box end-->
 
 
 
 
-		<div class="overview-box" id="experience-box">
-			<div class="overview-edit">
-				<h3>Experience</h3>
-				<form>
-					<input type="text" name="subject" placeholder="Subject">
-					<textarea></textarea>
-					<button type="submit" class="save">Save</button>
-					<button type="submit" class="save-add">Save & Add More</button>
-					<button type="submit" class="cancel">Cancel</button>
-				</form>
-				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
-			</div><!--overview-edit end-->
-		</div><!--overview-box end-->
+	<div class="overview-box" id="experience-box">
+		<div class="overview-edit">
+			<h3>Experience</h3>
+			<form>
+				<input type="text" name="subject" placeholder="Subject">
+				<textarea></textarea>
+				<button type="submit" class="save">Save</button>
+				<button type="submit" class="save-add">Save & Add More</button>
+				<button type="submit" class="cancel">Cancel</button>
+			</form>
+			<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
+		</div><!--overview-edit end-->
+	</div><!--overview-box end-->
 
-		<div class="overview-box" id="education-box">
-			<div class="overview-edit">
-				<h3>Education</h3>
-				<form>
-					<input type="text" name="school" placeholder="School / University">
-					<div class="datepicky">
-						<div class="row">
-							<div class="col-lg-6 no-left-pd">
-								<div class="datefm">
-									<input type="text" name="from" placeholder="From" class="datepicker">	
-									<i class="fa fa-calendar"></i>
-								</div>
+	<div class="overview-box" id="education-box">
+		<div class="overview-edit">
+			<h3>Education</h3>
+			<form>
+				<input type="text" name="school" placeholder="School / University">
+				<div class="datepicky">
+					<div class="row">
+						<div class="col-lg-6 no-left-pd">
+							<div class="datefm">
+								<input type="text" name="from" placeholder="From" class="datepicker">
+								<i class="fa fa-calendar"></i>
 							</div>
-							<div class="col-lg-6 no-righ-pd">
-								<div class="datefm">
-									<input type="text" name="to" placeholder="To" class="datepicker">
-									<i class="fa fa-calendar"></i>
-								</div>
+						</div>
+						<div class="col-lg-6 no-righ-pd">
+							<div class="datefm">
+								<input type="text" name="to" placeholder="To" class="datepicker">
+								<i class="fa fa-calendar"></i>
 							</div>
 						</div>
 					</div>
-					<input type="text" name="degree" placeholder="Degree">
-					<textarea placeholder="Description"></textarea>
-					<button type="submit" class="save">Save</button>
-					<button type="submit" class="save-add">Save & Add More</button>
-					<button type="submit" class="cancel">Cancel</button>
-				</form>
-				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
-			</div><!--overview-edit end-->
-		</div><!--overview-box end-->
+				</div>
+				<input type="text" name="degree" placeholder="Degree">
+				<textarea placeholder="Description"></textarea>
+				<button type="submit" class="save">Save</button>
+				<button type="submit" class="save-add">Save & Add More</button>
+				<button type="submit" class="cancel">Cancel</button>
+			</form>
+			<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
+		</div><!--overview-edit end-->
+	</div><!--overview-box end-->
 
-		<div class="overview-box" id="skills-box">
-			<div class="overview-edit">
-				<h3>Skills</h3>
-				<ul>
-					<li><a href="#" title="" class="skl-name">HTML</a><a href="#" title="" class="close-skl"><i class="la la-close"></i></a></li>
-					<li><a href="#" title="" class="skl-name">php</a><a href="#" title="" class="close-skl"><i class="la la-close"></i></a></li>
-					<li><a href="#" title="" class="skl-name">css</a><a href="#" title="" class="close-skl"><i class="la la-close"></i></a></li>
-				</ul>
-				<form>
-					<input type="text" name="skills" placeholder="Skills">
-					<button type="submit" class="save">Save</button>
-					<button type="submit" class="save-add">Save & Add More</button>
-					<button type="submit" class="cancel">Cancel</button>
-				</form>
-				<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
-			</div><!--overview-edit end-->
-		</div><!--overview-box end-->
+	<div class="overview-box" id="skills-box">
+		<div class="overview-edit">
+			<h3>Skills</h3>
+			<ul>
+				<li><a href="#" title="" class="skl-name">HTML</a><a href="#" title="" class="close-skl"><i class="la la-close"></i></a></li>
+				<li><a href="#" title="" class="skl-name">php</a><a href="#" title="" class="close-skl"><i class="la la-close"></i></a></li>
+				<li><a href="#" title="" class="skl-name">css</a><a href="#" title="" class="close-skl"><i class="la la-close"></i></a></li>
+			</ul>
+			<form>
+				<input type="text" name="skills" placeholder="Skills">
+				<button type="submit" class="save">Save</button>
+				<button type="submit" class="save-add">Save & Add More</button>
+				<button type="submit" class="cancel">Cancel</button>
+			</form>
+			<a href="#" title="" class="close-box"><i class="la la-close"></i></a>
+		</div><!--overview-edit end-->
+	</div><!--overview-box end-->
 
-	</div><!--theme-layout end-->
+</div><!--theme-layout end-->
 
-	<script type="text/javascript" src="/js/jquery.min.js"></script>
-	<script type="text/javascript" src="/js/popper.js"></script>
-	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="/js/flatpickr.min.js"></script>
-	<script type="text/javascript" src="/lib/slick/slick.min.js"></script>
-	<script type="text/javascript" src="/js/script.js"></script>
-	<script type="text/javascript" src="/js/funciones-atwho.js"></script>
-	<script type="text/javascript" src="/js/jquery.atwho.js"></script>
-	<script type="text/javascript" src="/js/jquery.caret.js"></script>
-	<script type="text/javascript" src="/js/geolocation.js"></script>
-	<script>
-		function mostrarSeccionComentarios(idPost) {
-			var seccionComentarios = document.getElementById("comentarios"+idPost);
-			if (seccionComentarios.style.display === "none") {
-				seccionComentarios.style.display = "block";
-			} else {
-				seccionComentarios.style.display = "none";
-			}
-		}
-	</script>
-	<script>
-		var like = $("#like-btn");
-		like.click(function () {
-			if(like.hasClass("active")){
-			    like.removeClass("active");
-            }else{
-			    like.toggleClass("active");
-			}
-        })
-	</script>
-	<script>
-		$('#etiquetar-btn').on("click",function () {
-            var sel = document.getElementById('amigos-cbBox');
-            if(document.getElementById("etiquetados").value != ""){
-                document.getElementById("etiquetados").value += ", "
-			}
-            document.getElementById("etiquetados").value += sel.options[sel.selectedIndex].text;
-            if(document.getElementById("etiquetadosValores").value != ""){
-                document.getElementById("etiquetadosValores").value += ","
-            }
-            document.getElementById("etiquetadosValores").value += sel.options[sel.selectedIndex].value;
+<script type="text/javascript" src="/js/jquery.min.js"></script>
+<script type="text/javascript" src="/js/popper.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/flatpickr.min.js"></script>
+<script type="text/javascript" src="/lib/slick/slick.min.js"></script>
+<script type="text/javascript" src="/js/script.js"></script>
+<script type="text/javascript" src="/js/funciones-atwho.js"></script>
+<script type="text/javascript" src="/js/jquery.atwho.js"></script>
+<script type="text/javascript" src="/js/jquery.caret.js"></script>
+<script type="text/javascript" src="/js/geolocation.js"></script>
+<script>
+    function mostrarSeccionComentarios(idPost) {
+        var seccionComentarios = document.getElementById("comentarios"+idPost);
+        if (seccionComentarios.style.display === "none") {
+            seccionComentarios.style.display = "block";
+        } else {
+            seccionComentarios.style.display = "none";
+        }
+    }
+</script>
+<script>
+    var like = $("#like-btn");
+    like.click(function () {
+        if(like.hasClass("active")){
+            like.removeClass("active");
+        }else{
+            like.toggleClass("active");
+        }
+    })
+</script>
+<script>
+    $('#etiquetar-btn').on("click",function () {
+        var sel = document.getElementById('amigos-cbBox');
+        var boton = document.getElementById('etiquetar-btn');
+        if(document.getElementById("etiquetados").value != ""){
+            document.getElementById("etiquetados").value += ", "
+        }
+        document.getElementById("etiquetados").value += sel.options[sel.selectedIndex].text;
+        if(document.getElementById("etiquetadosValores").value != ""){
+            document.getElementById("etiquetadosValores").value += ","
+        }
+        document.getElementById("etiquetadosValores").value += sel.options[sel.selectedIndex].value;
 
-            sel.remove(sel.selectedIndex);
-            if(sel.size == 0){
-                sel.style.display = 'none';
-			}
-        })
-	</script>
-	<script>
-        $('#esPrivado').on('change', function() {
-            var isChecked = $(this).is(':checked');
-            if(isChecked) {
-                document.getElementById("publico-privado").innerHTML = "Privado";
-            } else {
-                document.getElementById("publico-privado").innerHTML = "Público";
-            }
-        })
-	</script>
-	<script>
-        $("[class^='esPrivado-edit-']").on('change', function() {
-            var isChecked = $(this).is(':checked');
-            var id =  $(this).attr('class').replace('esPrivado-edit-','');
-            if(isChecked) {
-                document.getElementById("publico-privado-edit-"+id).innerHTML = "Privado";
-            } else {
-                document.getElementById("publico-privado-edit-"+id).innerHTML = "Público";
-            }
-        })
-	</script>
-	<script>
-	</script>
+        sel.remove(sel.selectedIndex);
+        if(sel.length < 1){
+            sel.style.display = 'none';
+            boton.style.display = 'none';
+        }
+    })
+</script>
+<script>
+    $('#esPrivado').on('change', function() {
+        var isChecked = $(this).is(':checked');
+        if(isChecked) {
+            document.getElementById("publico-privado").innerHTML = "Privado";
+        } else {
+            document.getElementById("publico-privado").innerHTML = "Público";
+        }
+    })
+</script>
+<script>
+    $("[class^='esPrivado-edit-']").on('change', function() {
+        var isChecked = $(this).is(':checked');
+        var id =  $(this).attr('class').replace('esPrivado-edit-','');
+        if(isChecked) {
+            document.getElementById("publico-privado-edit-"+id).innerHTML = "Privado";
+        } else {
+            document.getElementById("publico-privado-edit-"+id).innerHTML = "Público";
+        }
+    })
+</script>
+<script>
+</script>
 
 </body>
 <!-- Mirrored from gamboldesigns.net/Demo/HTML/my-profile-feed.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Jul 2018 03:36:28 GMT -->
