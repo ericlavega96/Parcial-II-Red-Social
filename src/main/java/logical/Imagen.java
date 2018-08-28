@@ -111,6 +111,6 @@ public class Imagen {
         return tags;
     }
 
-    public List<ComentarioFoto> getImagenesOrdenadas(){
+    public List<ComentarioFoto> getComentariosOrdenados(){
         return ServiciosImagen.getInstancia().getComentariosOrdenados(this);}
 }

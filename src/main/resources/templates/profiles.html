@@ -96,7 +96,7 @@
 				<#if logUser.fotoPerfil??>
 					<img src="/${logUser.fotoPerfil.imagen}" alt="">
 				<#else>
-					<img src="/images/resources/user.png" alt="">
+					<img src="/images/resources/user-profile-default.png" alt="">
 				</#if>
 				<a href="/redSocial/userArea/${logUser.correo}/perfilUsuario" title=""> ${logUser.nombres}</a>
 				<i class="la la-sort-down"></i>
@@ -130,7 +130,7 @@
 									<#if amigo.fotoPerfil??>
 										<img src="/${amigo.fotoPerfil.imagen}" alt="">
 									<#else>
-										<img src="/images/resources/user.png" alt="">
+										<img src="/images/resources/user-profile-default.png" alt="">
 									</#if>
 									<h3>${amigo.nombres} ${amigo.apellidos}</h3>
 									<h4>${amigo.ciudad}, ${amigo.pais.getPais()}</h4>
@@ -139,7 +139,7 @@
 													   "/redSocial/userArea/${logUser.correo}/eliminarAmigo?amigo=${amigo.correo}" title="" class="hire-us">Eliminar Amigo</a></li>
 									</ul>
 								</div>
-								<a href="/redSocial/perfil/${amigo.correo}/perfilUsuario" title="" class="view-more-pro">View Profile</a>
+								<a href="/redSocial/perfil/${amigo.correo}/perfilUsuario" title="" class="view-more-pro"> Ver Perfil </a>
 							</div><!--company_profile_info end-->
 						</div>
 					</#list>

@@ -151,14 +151,18 @@
 					</ul>
 				</div>
 				<div id="comentarios" style="display: none">
-					<#list foto.getImagenesOrdenadas() as comentario>
+					<#list foto.getComentariosOrdenados() as comentario>
 						<div class="comment-section">
 							<div class="comment-sec">
 								<ul>
 									<li>
 										<div class="comment-list">
 											<div class="bg-img">
-												<img src="/images/resources/bg-img3.png" alt="">
+												<#if comentario.autor.fotoPerfil??>
+													<img src="/${comentario.autor.fotoPerfil.imagen}" alt="">
+												<#else>
+													<img src="/images/resources/user-profile-default.png" alt="">
+												</#if>
 											</div>
 											<div class="comment">
 												<h3>${comentario.autor.nombres} ${comentario.autor.apellidos}</h3>
@@ -173,7 +177,11 @@
 					</#list>
 					<div id="comentar-div" class="post-comment">
 						<div class="cm_img">
-							<img src="/images/resources/bg-img4.png" alt="">
+							<#if logUser.fotoPerfil??>
+								<img src="/${logUser.fotoPerfil.imagen}" alt="">
+							<#else>
+								<img src="/images/resources/user-profile-default.png" alt="">
+							</#if>
 						</div>
 						<div class="comment_box">
 							<form action="/comentarFoto/${foto.album.idAlbum}/${foto.idImagen}" method="post">

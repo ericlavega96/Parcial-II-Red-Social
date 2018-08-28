@@ -750,9 +750,11 @@ public class RutasSpark {
                 String fechaNacimiento = request.queryParams("fechaNacimiento");
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
+                Usuario logUser = request.session(true).attribute("usuario");
+
                 usuarioAEditar.setFechaNacimiento(sdf.parse(fechaNacimiento));
                 ServiciosUsuario.getInstancia().editar(usuarioAEditar);
-                response.redirect("/");
+                response.redirect("/redSocial/userArea/"+logUser.getCorreo()+"/perfilUsuario");
 
             }catch (Exception e){
                 System.out.println("Error al editar la fecha de nacimiento del usuario: " + e.toString());
@@ -769,10 +771,12 @@ public class RutasSpark {
                 String paisNacimiento = request.queryParams("cbBoxPais");
                 String ciudadDeNacimiento = request.queryParams("ciudad");
 
+                Usuario logUser = request.session(true).attribute("usuario");
+
                 usuarioAEditar.setPais(ServiciosPais.getInstancia().findByCountry(paisNacimiento));
                 usuarioAEditar.setCiudad(ciudadDeNacimiento);
                 ServiciosUsuario.getInstancia().editar(usuarioAEditar);
-                response.redirect("/");
+                response.redirect("/redSocial/userArea/"+logUser.getCorreo()+"/perfilUsuario");
 
             }catch (Exception e){
                 System.out.println("Error al editar el lugar de nacimiento del usuario: " + e.toString());
@@ -788,9 +792,11 @@ public class RutasSpark {
 
                 String centroEstudio = request.queryParams("centroEstudio");
 
+                Usuario logUser = request.session(true).attribute("usuario");
+
                 usuarioAEditar.setLugarDeEstudio(centroEstudio);
                 ServiciosUsuario.getInstancia().editar(usuarioAEditar);
-                response.redirect("/");
+                response.redirect("/redSocial/userArea/"+logUser.getCorreo()+"/perfilUsuario");
 
             }catch (Exception e){
                 System.out.println("Error al editar el centro de estudio del usuario: " + e.toString());
@@ -806,9 +812,12 @@ public class RutasSpark {
 
                 String empleo = request.queryParams("empleo");
 
+                Usuario logUser = request.session(true).attribute("usuario");
+
+
                 usuarioAEditar.setEmpleo(empleo);
                 ServiciosUsuario.getInstancia().editar(usuarioAEditar);
-                response.redirect("/");
+                response.redirect("/redSocial/userArea/"+logUser.getCorreo()+"/perfilUsuario");
 
             }catch (Exception e){
                 System.out.println("Error al editar el empleo del usuario: " + e.toString());

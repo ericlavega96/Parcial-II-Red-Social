@@ -179,7 +179,7 @@
 				<#if usuario.fotoPerfil??>
 					<img src="/${usuario.fotoPerfil.imagen}" alt="">
 				<#else>
-					<img src="/images/resources/user.png" alt="">
+					<img src="/images/resources/user-profile-default.png" alt="">
 				</#if>
 				<a href="/redSocial/userArea/${logUser.correo}/perfilUsuario" title=""> ${logUser.nombres}</a>
 				<i class="la la-sort-down"></i>
@@ -217,7 +217,7 @@
 												<img src="/${usuario.fotoPerfil.imagen}" alt="">
 												<a href="" class="cambiar-foto-perfil-box-open" title=""><i class="fa fa-camera"></i></a>
 											<#else>
-												<img src="/images/resources/user-pro-img.png" alt="">
+												<img src="\images\resources\user-profile-default.png" alt="">
 												<a href="" class="cambiar-foto-perfil-box-open" title=""><i class="fa fa-camera"></i></a>
 											</#if>
 										</div><!--user-pro-img end-->
@@ -278,7 +278,7 @@
 													<#if usuario.fotoPerfil??>
 														<img src="/${usuario.fotoPerfil.imagen}" alt="">
 													<#else>
-														<img src="/images/resources/user-pic.png" alt="">
+														<img src="/images/resources/user-profile-default.png" alt="">
 													</#if>
 												</div>
 												<div class="post-st">
@@ -291,7 +291,11 @@
                                                 <div class="post-bar">
                                                     <div class="post_topbar">
                                                         <div class="usy-dt">
-                                                            <img src="/images/resources/us-pic.png" alt="">
+															<#if usuario.fotoPerfil??>
+																<img id="foto-perfil" src="/${usuario.fotoPerfil.imagen}" alt="">
+															<#else>
+																<img id="foto-perfil" src="/images/resources/user-profile-default.png" alt="">
+															</#if>
                                                             <div class="usy-name">
                                                                 <h3>${usuario.nombres} ${usuario.apellidos}</h3>
                                                                 <span><img src="/images/clock.png" alt="">${post.fecha}</span>
@@ -347,7 +351,11 @@
 																		<li>
 																			<div class="comment-list">
 																				<div class="bg-img">
-																					<img src="/images/resources/bg-img3.png" alt="">
+																					<#if comentario.autor.fotoPerfil??>
+																						<img src="/${comentario.autor.fotoPerfil.imagen}" alt="">
+																					<#else>
+																						<img src="/images/resources/user-profile-default.png" alt="">
+																					</#if>
 																				</div>
 																				<div class="comment">
 																					<h3>${comentario.autor.nombres} ${comentario.autor.apellidos}</h3>
@@ -362,7 +370,11 @@
 														</#list>
 														<div id="comentar-div" class="post-comment">
 															<div class="cm_img">
-																<img src="/images/resources/bg-img4.png" alt="">
+																<#if usuario.fotoPerfil??>
+																	<img src="/${usuario.fotoPerfil.imagen}" alt="">
+																<#else>
+																	<img src="/images/resources/user-profile-default.png" alt="">
+																</#if>
 															</div>
 															<div class="comment_box">
 																<form action="/comentarPost/${post.idPost}" method="post">
