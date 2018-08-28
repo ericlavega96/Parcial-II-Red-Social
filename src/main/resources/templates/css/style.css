@@ -665,6 +665,9 @@ nav > ul > li > a:hover {
 .tc a {
 	color: #000;
 }
+.tc a:hover{
+	color: #cd201f;
+}
 .user-info img {
 	width: 30px;
 	height: 30px;
