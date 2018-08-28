@@ -31,7 +31,7 @@ $(function(){
 
     var at_config = {
         at: "*",
-        data: "http://localhost:4567/json/amigos",
+        data: "http://lagash.me/json/amigos",
         headerTpl: '<div class="atwho-header">Member List<small>↑&nbsp;↓&nbsp;</small></div>',
         insertTpl: '*${correo}',
         displayTpl: "<li>${correo} <small>${nombres}</small></li>",
