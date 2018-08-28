@@ -221,7 +221,7 @@ public class RutasSpark {
                 autor.getTimeline().add(actividad);
                 ServiciosActividad.getInstancia().crear(actividad);
 
-                Notificacion notificacionReceptor = new Notificacion(postActual.getAutor(),"Haz recivido un comentario en tu post de parte de" +
+                Notificacion notificacionReceptor = new Notificacion(postActual.getAutor(),"Has recibido un comentario en tu post de parte de " +
                         autor.getNombres() + " " +
                         autor.getApellidos() + ".", new Date());
                 postActual.getAutor().getNotificaciones().add(notificacionReceptor);
@@ -355,7 +355,7 @@ public class RutasSpark {
                 ServiciosUsuario.getInstancia().deleteAmistad(amigo,user);
                 ServiciosUsuario.getInstancia().editar(user);
 
-                Notificacion notificacion = new Notificacion(user,"Haz dejado de ser amigo con " +
+                Notificacion notificacion = new Notificacion(user,"Has dejado de ser amigo con " +
                         amigo.getNombres() + " " +
                         amigo.getApellidos() + ".", new Date());
                 user.getNotificaciones().add(notificacion);
@@ -398,7 +398,7 @@ public class RutasSpark {
                 ServiciosSolicitudAmistad.getInstancia().crearRequest(user,amigo);
 
 
-                Notificacion notificacion = new Notificacion(user,"Haz enviado una solicitud de amistad a " +
+                Notificacion notificacion = new Notificacion(user,"Has enviado una solicitud de amistad a " +
                         amigo.getNombres() + " " +
                         amigo.getApellidos() + ".", new Date());
                 user.getNotificaciones().add(notificacion);
@@ -426,7 +426,7 @@ public class RutasSpark {
             else{
                 ServiciosSolicitudAmistad.getInstancia().eliminar(solicitud.getIdSolicitud());
 
-                Notificacion notificacion = new Notificacion(user,"Haz rechazado la solicitud de amistad de " +
+                Notificacion notificacion = new Notificacion(user,"Has rechazado la solicitud de amistad de " +
                         amigo.getNombres() + " " +
                         amigo.getApellidos() + ".", new Date());
                 user.getNotificaciones().add(notificacion);
@@ -453,7 +453,7 @@ public class RutasSpark {
             if(user==null || amigo==null)
                 response.redirect("/");
             else{
-                Notificacion notificacion = new Notificacion(user,"Haz aceptado la solicitud de amistad a " +
+                Notificacion notificacion = new Notificacion(user,"Has aceptado la solicitud de amistad a " +
                         amigo.getNombres() + " " +
                         amigo.getApellidos() + ".", new Date());
                 user.getNotificaciones().add(notificacion);
@@ -515,7 +515,7 @@ public class RutasSpark {
                 Album nuevoAlbum = new Album(nombreAlbum,descripcion,logUser,new Date());
                 ServiciosAlbum.getInstancia().editar(nuevoAlbum);
 
-                Notificacion notificacion = new Notificacion(logUser,"Haz publicado un nuevo album llamado " +
+                Notificacion notificacion = new Notificacion(logUser,"Has publicado un nuevo album llamado " +
                         nombreAlbum + ".", new Date());
                 logUser.getNotificaciones().add(notificacion);
                 ServiciosNotificaciones.getInstancia().crear(notificacion);
@@ -565,7 +565,7 @@ public class RutasSpark {
 
                 //ServiciosAlbum.getInstancia().editar(albumActual);
 
-                Notificacion notificacion = new Notificacion(logUser,"Haz publicado un nuevo imagen en " +
+                Notificacion notificacion = new Notificacion(logUser,"Has publicado un nuevo imagen en " +
                         albumActual.getNombre() + ".", new Date());
                 logUser.getNotificaciones().add(notificacion);
                 ServiciosNotificaciones.getInstancia().crear(notificacion);
@@ -622,7 +622,7 @@ public class RutasSpark {
                         ServiciosLikeImagen.getInstancia().deleteLike(imagen,usuario);
                     }else{
                         ServiciosLikeImagen.getInstancia().crear(new LikeImagen(imagen,usuario,true));
-                        Notificacion notificacion = new Notificacion(usuario,"Haz dado like al post de " +
+                        Notificacion notificacion = new Notificacion(usuario,"Has dado like al post de " +
                                 imagen.getAlbum().getUsuario().getNombres() + " " +
                                 imagen.getAlbum().getUsuario().getApellidos() + ".", new Date());
                         usuario.getNotificaciones().add(notificacion);
@@ -645,7 +645,7 @@ public class RutasSpark {
                         ServiciosActividad.getInstancia().crear(actividad);
 
 
-                        Notificacion notificacionReceptor = new Notificacion(imagen.getAlbum().getUsuario(),"Haz recivido un like en una foto de parte de " +
+                        Notificacion notificacionReceptor = new Notificacion(imagen.getAlbum().getUsuario(),"Has recibido un like en una foto de parte de " +
                                 usuario.getNombres() + " " +
                                 usuario.getApellidos() + ".", new Date());
                         imagen.getAlbum().getUsuario().getNotificaciones().add(notificacionReceptor);
@@ -671,7 +671,7 @@ public class RutasSpark {
                 ComentarioFoto nuevoComentario = new ComentarioFoto(comentario,new Date(),autor,imagenActual);
                 ServiciosComentarioFoto.getInstancia().crear(nuevoComentario);
 
-                Notificacion notificacion = new Notificacion(autor,"Haz comentado en una foto de " +
+                Notificacion notificacion = new Notificacion(autor,"Has comentado en una foto de " +
                         imagenActual.getAlbum().getUsuario().getNombres() + " " +
                         imagenActual.getAlbum().getUsuario().getApellidos() + ".", new Date());
                 autor.getNotificaciones().add(notificacion);
