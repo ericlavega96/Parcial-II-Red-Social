@@ -1,9 +1,16 @@
+plugins {
+    id 'java'
+}
+
 group 'parcial2'
 version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
+apply plugin: 'application'
 
 sourceCompatibility = 1.8
+
+mainClassName = 'main.Main'
 
 repositories {
     mavenCentral()
@@ -23,4 +30,5 @@ dependencies {
     compile 'org.jasypt:jasypt:1.9.2'
     compile group: 'com.google.code.gson', name: 'gson', version: '2.8.1'
     compile group: 'org.eclipse.jetty', name: 'jetty-http-spi', version: '9.4.4.v20170414'
+    compile group: 'org.hibernate', name: 'hibernate-validator', version: '4.2.0.Final'
 }

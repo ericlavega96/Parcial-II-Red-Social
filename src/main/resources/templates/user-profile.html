@@ -53,7 +53,7 @@
 		<div class="container">
 			<div class="header-data">
 				<div class="logo">
-					<a href="http://localhost:4567/" title=""><img src="/images/logo.png" alt=""></a>
+					<a href="/" title=""><img src="/images/logo.png" alt=""></a>
 				</div><!--logo end-->
 				<nav>
 					<ul>
@@ -112,7 +112,11 @@
 		</div><!--menu-btn end-->
 		<div class="user-account">
 			<div class="user-info">
-				<img src="/images/resources/user.png" alt="">
+				<#if logUser.fotoPerfil??>
+					<img src="/${logUser.fotoPerfil.imagen}" alt="">
+				<#else>
+					<img src="/images/resources/user-profile-default.png" alt="">
+				</#if>
 				<a href="/redSocial/userArea/${logUser.correo}/perfilUsuario" title=""> ${logUser.nombres}</a>
 				<i class="la la-sort-down"></i>
 			</div>
@@ -141,7 +145,11 @@
 								<div class="main-left-sidebar">
 									<div class="user-pro-img">
 										<!--img src="/images/resources/camera-icon.png" alt=""-->
-										<img src="/images/resources/user-pro-img.png" alt="">
+										<#if usuario.fotoPerfil??>
+											<img src="/${usuario.fotoPerfil.imagen}" alt="">
+										<#else>
+											<img src="\images\resources\user-profile-default.png" alt="">
+										</#if>
 									</div><!--user-pro-img end-->
 
 											<div class="suggestions full-width">
@@ -152,7 +160,13 @@
 												<div class="suggestions-list">
 													<#list sugerencias as sugerencia>
 													<div class="suggestion-usd">
-														<img src="/images/resources/s1.png" alt="">
+														<div class="noty-user-img">
+															<#if sugerencia.fotoPerfil??>
+																<img src="/${sugerencia.fotoPerfil.imagen}" alt="">
+															<#else>
+																<img src="/images/resources/user-profile-default.png" alt="">
+															</#if>
+														</div>
 														<div class="sgt-text">
 															<h4>${sugerencia.nombres} ${sugerencia.apellidos}</h4>
 															<span>${sugerencia.ciudad}</span>
@@ -280,7 +294,7 @@
 							</#list>
 						<div id="comentar-div" class="post-comment">
 							<div class="cm_img">
-								<#if usuario.fotoPerfil??>
+								<#if logUser.fotoPerfil??>
 									<img src="/${logUser.fotoPerfil.imagen}" alt="">
 								<#else>
 									<img src="/images/resources/user-profile-default.png" alt="">

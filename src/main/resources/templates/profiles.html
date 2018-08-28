@@ -28,7 +28,7 @@
 		<div class="container">
 			<div class="header-data">
 				<div class="logo">
-					<a href="http://localhost:4567/" title=""><img src="/images/logo.png" alt=""></a>
+					<a href="/" title=""><img src="/images/logo.png" alt=""></a>
 				</div><!--logo end-->
 				<nav>
 					<ul>
@@ -88,21 +88,21 @@
 		<div class="user-account">
 			<div class="user-info">
 				<#if logUser.fotoPerfil??>
-					<img src="/${logUser.fotoPerfil.imagen}" alt="">
+				<img src="/${logUser.fotoPerfil.imagen}" alt="">
 				<#else>
-					<img src="/images/resources/user-profile-default.png" alt="">
-				</#if>
-				<a href="/redSocial/userArea/${logUser.correo}/perfilUsuario" title=""> ${logUser.nombres}</a>
-				<i class="la la-sort-down"></i>
-			</div>
-			<div class="user-account-settingss">
-				<ul class="us-links">
-					<li><a href="/redSocial/userArea/${logUser.correo}/settings" title="">
-						Configuración de Cuenta</a></li>
-				</ul>
-				<h3 class="tc"><a href="/logout" title="">Logout</a></h3>
-			</div><!--user-account-settingss end-->
+				<img src="/images/resources/user-profile-default.png" alt="">
+			</#if>
+			<a href="/redSocial/userArea/${logUser.correo}/perfilUsuario" title=""> ${logUser.nombres}</a>
+			<i class="la la-sort-down"></i>
 		</div>
+		<div class="user-account-settingss">
+			<ul class="us-links">
+				<li><a href="/redSocial/userArea/${logUser.correo}/settings" title="">
+					Configuración de Cuenta</a></li>
+			</ul>
+			<h3 class="tc"><a href="/logout" title="">Logout</a></h3>
+		</div><!--user-account-settingss end-->
+</div>
 </div><!--header-data end-->
 </div>
 </header><!--header end-->
@@ -142,10 +142,10 @@
 								<div class="company-up-info">
 									<!--img src="/images/resources/pf-icon1.png" alt=""-->
 									<#if user.fotoPerfil??>
-										<img src="/${user.fotoPerfil.imagen}" alt="">
+									<img src="/${user.fotoPerfil.imagen}" alt="">
 									<#else>
-										<img src="/images/resources/user.png" alt="">
-									</#if>
+									<img src="/images/resources/user-profile-default.png" alt="">
+								</#if>
 									<h3>${user.nombres} ${user.apellidos}</h3>
 									<h4>${user.ciudad}, ${user.pais.getPais()}</h4>
 									<ul>

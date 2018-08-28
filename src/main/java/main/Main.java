@@ -19,7 +19,7 @@ public class Main {
         ServiciosBootStrap.getInstancia().init();
         ServiciosPais.getInstancia().crearPaises();
         ServiciosUsuario.getInstancia().crearAdmin();
-        ServiciosUsuario.getInstancia().crearAmigoAdmin();
+        //ServiciosUsuario.getInstancia().crearAmigoAdmin();
         SoapArranque.init();
         new RutasSpark().iniciarSpark();
         new RestMain().iniciarServicioRest();
