@@ -21,7 +21,7 @@ public class Post {
     @NotNull
     private Usuario autor;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Imagen fotoPost;
 
     @NotNull
@@ -30,15 +30,15 @@ public class Post {
     @NotNull
     private Date fecha;
 
-    @OneToMany(mappedBy = "post",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "post",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ComentarioPost> listaComentariosPost;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "POST_TAG", joinColumns = { @JoinColumn(name = "idPost") }, inverseJoinColumns = {
             @JoinColumn(name = "idTag") })
     private Set<Tag> listaTags;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     Set<LikePost> likePosts = new HashSet<>();
 
     private String geolocation;

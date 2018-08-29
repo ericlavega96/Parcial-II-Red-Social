@@ -1,5 +1,7 @@
 package logical;
 
+import entidades.ServiciosTag;
+
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
@@ -15,11 +17,19 @@ public class Tag {
     @NotNull
     private String tag;
 
-    @ManyToMany(mappedBy = "listaTags")
+    @ManyToMany(mappedBy = "listaTags",fetch = FetchType.EAGER)
     private Set<Post> listaPost;
 
     public Tag() {
 
+    }
+
+    public void unLinkPost(long postID){
+        for(Post p : listaPost)
+            if(p.getIdPost() == postID)
+                listaPost.remove(p);
+
+        ServiciosTag.getInstancia().editar(this);
     }
 
 

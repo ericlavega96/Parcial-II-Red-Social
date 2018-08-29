@@ -3,6 +3,7 @@ package entidades;
 
 import logical.ComentarioPost;
 import logical.Post;
+import logical.Tag;
 import logical.Usuario;
 import servicios.MetodosDB;
 
@@ -82,4 +83,17 @@ public class ServiciosPost extends MetodosDB<Post> {
                 return true;
         return false;
     }
+
+    public boolean deletePost(Post post){
+        EntityManager em = getEntityManager();
+        em.getTransaction().begin();
+        Post postborrar = em.find(Post.class,post.getIdPost());
+        em.remove(postborrar);
+        em.getTransaction().commit();
+        System.out.println("El usuario se ha borrado correctamente.");
+        em.close();
+
+        return true;
+    }
+
 }

@@ -3,6 +3,7 @@ package main;
 import encapsulaciones.Amigo;
 import entidades.*;
 import freemarker.template.Configuration;
+import javafx.geometry.Pos;
 import logical.*;
 import servicios.Encriptamiento;
 import servicios.JsonTransformer;
@@ -51,6 +52,10 @@ public class RutasSpark {
                 String isRecordado = request.queryParams("recordar");
                 Usuario logUser = ServiciosUsuario.getInstancia().findByEmailAndPassword(correoAVerificar,passwordsAVerificar);
 
+                Session ses = request.session(true);
+                ses.invalidate();
+                response.removeCookie("sr5h464h846s4dhds4h6w9uyh");
+
                 if (logUser != null) {
                     request.session(true);
                     request.session().attribute("usuario", logUser);
@@ -58,8 +63,8 @@ public class RutasSpark {
                         response.cookie("/", "sr5h464h846s4dhds4h6w9uyh",
                                 new Encriptamiento().encriptar(correoAVerificar), (60*60*24*7), false, true);
                     }
-
-                    response.redirect("redSocial/userArea/" + logUser.getCorreo() + "/perfilUsuario");
+                    response.redirect("/");
+                    //response.redirect("redSocial/userArea/" + logUser.getCorreo() + "/perfilUsuario");
                 } else {
                     response.redirect("/iniciarSesion");
                 }
@@ -739,7 +744,25 @@ public class RutasSpark {
         post("/eliminarPost/:id", (request, response) -> {
             try{
                 String idPostActual = request.params("id");
-                ServiciosPost.getInstancia().eliminar(Long.parseLong(idPostActual));
+                Post post = ServiciosPost.getInstancia().find(Long.parseLong(idPostActual));
+                /*for(LikePost l : post.getLikePosts())
+                    ServiciosLikePost.getInstancia().eliminar(l.getId());
+                for(ComentarioPost c : post.getListaComentariosPost())
+                    ServiciosComentarioPost.getInstancia().eliminar(c.getId());*/
+                for(Tag t : post.getListaTags())
+                    t.unLinkPost(post.getIdPost());
+
+                //post.setAutor(null);
+                /*post.setListaComentariosPost(new HashSet<>());
+                post.setLikePosts(new HashSet<>());
+                post.setListaTags(new HashSet<>());*/
+                //post.getLikePosts().clear();
+                //post.getListaComentariosPost().clear();
+                //post.getListaTags().clear();
+
+                //ServiciosPost.getInstancia().editar(post);
+                //post = ServiciosPost.getInstancia().find(post.getIdPost());
+                ServiciosPost.getInstancia().deletePost(post);
 
                 Usuario logUser = request.session(true).attribute("usuario");
                 response.redirect("/redSocial/userArea/"+logUser.getCorreo()+"/perfilUsuario");
