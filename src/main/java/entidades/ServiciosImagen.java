@@ -11,12 +11,15 @@ import javax.persistence.Query;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletException;
 import javax.servlet.http.Part;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Base64;
 import java.util.List;
 
 import static spark.Spark.staticFiles;
@@ -72,6 +75,20 @@ public class ServiciosImagen extends MetodosDB<Imagen> {
         Query query = em.createQuery("select c from Imagen i JOIN i.listaComentarioFoto c WHERE i.idImagen = :imagen order by c.fecha ASC");
         query.setParameter("imagen", imagen.getIdImagen());
         return query.getResultList();
+    }
+
+    public String guardarFotoBase64(String base64Img) throws IOException {
+        Path tempFile= null;
+        String ruta = null;
+        Path fotosDir = Paths.get("photos");
+        byte[] decodedImg = Base64.getDecoder().decode(base64Img);
+        if(decodedImg.length > 0){
+            ByteArrayInputStream bis = new ByteArrayInputStream(decodedImg);
+            tempFile = Files.createTempFile(fotosDir, "", ".png");
+            Files.copy(bis, tempFile, StandardCopyOption.REPLACE_EXISTING);
+            ruta = tempFile.getFileName().toString();
+        }
+        return ruta;
     }
 
 }

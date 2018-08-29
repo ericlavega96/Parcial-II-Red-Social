@@ -2,15 +2,11 @@ package rest;
 
 import com.google.gson.Gson;
 import encapsulaciones.PostAuxiliar;
-import entidades.ServiciosActividad;
-import entidades.ServiciosNotificaciones;
-import entidades.ServiciosPost;
-import entidades.ServiciosUsuario;
+import entidades.*;
 import logical.*;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
 import servicios.JsonTransformer;
-import encapsulaciones.Post;
 
 import java.util.Date;
 import java.util.Set;
@@ -56,8 +52,11 @@ public class RestMain {
                     }
 
                     logical.Usuario usuario = ServiciosUsuario.getInstancia().findByEmailAndPassword(nuevoPost.getCorreo(),nuevoPost.getPassword());
+                    logical.Imagen imagen = null;
                     if(usuario != null){
-                        logical.Imagen imagen = new Imagen(nuevoPost.getImagen(),null,null);
+                        if(nuevoPost.getImagen().length() > 3){
+                            imagen = new Imagen(ServiciosImagen.getInstancia().guardarFotoBase64(nuevoPost.getImagen()),null,null);
+                        }
                         Set<logical.Tag> tagList = logical.Tag.crearEtiquetas(nuevoPost.getTags().split(","));
                         restPost = new logical.Post(usuario,imagen, nuevoPost.getCuerpo(),new Date(),null,tagList,null,nuevoPost.isPrivado());
                         ServiciosPost.getInstancia().crear(restPost);

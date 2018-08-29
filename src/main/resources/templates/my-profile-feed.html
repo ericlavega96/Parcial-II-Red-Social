@@ -251,7 +251,7 @@
 											<li data-tab="my-bids">
 												<a href="#" title="">
 													<img src="/images/ic5.png" alt="">
-													<span>Mis Actividades</span>
+													<span>Actividades</span>
 												</a>
 											</li>
 											<li data-tab="portfolio-dd">
@@ -728,13 +728,19 @@
 										<div class="posts-section">
 											<div class="post-bar">
 												<div class="post_topbar">
-													<div class="usy-dt">
-														<img src="/images/resources/us-pic.png" alt="">
-														<div class="usy-name">
-															<h3>${actividad.usuario.nombres} ${actividad.usuario.apellidos}</h3>
-															<span><img src="/images/clock.png" alt="">${actividad.fechaActividad}</span>
-														</div>
+													<div class="comment-list">
+														<div class="bg-img">
+															<#if actividad.usuario.fotoPerfil??>
+															<img src="/${actividad.usuario.fotoPerfil.imagen}" alt="">
+															<#else>
+															<img src="/images/resources/user-profile-default.png" alt="">
+														</#if>
 													</div>
+													<div class="comment">
+														<h3>${actividad.usuario.nombres} ${actividad.usuario.apellidos}</h3>
+														<span><img src="/images/clock.png" alt="">${actividad.fechaActividad}</span>
+													</div>
+												</div><!--comment-list end-->
 												</div>
 												<div class="epi-sec">
 													<ul class="descp">
