@@ -1,9 +1,7 @@
 package main;
 
-import encapsulaciones.Amigo;
 import entidades.*;
 import freemarker.template.Configuration;
-import javafx.geometry.Pos;
 import logical.*;
 import servicios.Encriptamiento;
 import servicios.JsonTransformer;
