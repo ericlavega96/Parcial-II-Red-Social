@@ -144,7 +144,7 @@ public class RutasSpark {
         });
 
         post("/publicarPost", (request, response) -> {
-            //try {
+            try {
                 String imagenRuta = (ServiciosImagen.getInstancia().guardarFoto("imagen",fotosDir,request));
                 Imagen imagen = null;
                 if(imagenRuta != null){
@@ -187,9 +187,9 @@ public class RutasSpark {
                 ServiciosActividad.getInstancia().crear(actividad);
 
                 response.redirect("/redSocial/userArea/" + logUser.getCorreo() + "/perfilUsuario");
-            /*} catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println("Error al realizar post" + e.toString());
-            }*/
+            }
             return "";
         });
 

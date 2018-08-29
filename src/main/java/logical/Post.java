@@ -33,7 +33,7 @@ public class Post {
     @OneToMany(mappedBy = "post",fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ComentarioPost> listaComentariosPost;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "POST_TAG", joinColumns = { @JoinColumn(name = "idPost") }, inverseJoinColumns = {
             @JoinColumn(name = "idTag") })
     private Set<Tag> listaTags;
