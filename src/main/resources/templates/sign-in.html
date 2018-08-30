@@ -77,13 +77,13 @@
 								<div class="row">
 									<div class="col-lg-12 no-pdd">
 										<div class="sn-field">
-											<input id="correo-login" type="text" name="email" placeholder="Correo electrónico">
+											<input id="correo-login" type="text" name="email" placeholder="Correo electrónico" required>
 											<i class="la la-user"></i>
 										</div><!--sn-field end-->
 									</div>
 									<div class="col-lg-12 no-pdd">
 										<div class="sn-field">
-											<input type="password" name="password" placeholder="Contraseña">
+											<input type="password" name="password" placeholder="Contraseña" required>
 											<i class="la la-lock"></i>
 										</div>
 									</div>
@@ -226,7 +226,7 @@
 </script >
 <script type="text/javascript">
     $(document).ready(function() {
-        $.getJSON('http://localhost:4567/json/correos', function (json) {
+        $.getJSON('https://lagash.me/json/correos', function (json) {
             $('#correos').val(JSON.stringify(json));
         });
     });
