@@ -27,10 +27,16 @@ public class RestWebService {
             resultSet.add(new Post(post.getIdPost(),
                     new Usuario(post.getAutor().getCorreo(), post.getAutor().getPassword(),
                             post.getAutor().getNombres(), post.getAutor().getApellidos()),
-                    new Imagen(post.getFotoPost().getImagen()),
+                    new Imagen(comprobarNullImagen(post.getFotoPost())),
                     post.getCuerpo(), post.getFecha(), tags, post.isEsPrivado()));
         }
         return resultSet;
+    }
+
+    public static String comprobarNullImagen(logical.Imagen im){
+        if(im == null)
+            return "";
+        return im.getImagen();
     }
 
 }
